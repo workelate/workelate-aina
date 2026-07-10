@@ -42,6 +42,9 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
 9. Human connection is required: founders visible and accountable
    (names, note in first person, "you talk to Chitransh or Pratik"),
    warm micro-copy. NEVER fabricate customer quotes or testimonials.
-10. Imagery: self-hosted product-artifact mockups (dashboards, agent
-   logs, receipts) rendered in-palette. No stock photos, no external
-   image requests.
+10. Imagery (founder-amended 2026-07-10): photography is welcome — stock
+   or self-made, founder's call is quality, not provenance ("lagao
+   dhang k pics"). All images self-hosted (no runtime external image
+   requests). Prefer shots that sit well on the white/blue palette;
+   product-artifact mockups (dashboards, agent logs, receipts) remain
+   first choice for product-proof slots.
