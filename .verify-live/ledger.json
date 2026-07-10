@@ -20,10 +20,17 @@
       "evidence": "site/about.html exists (10738 bytes, mtime 2026-07-10T00:21:57.760Z) but is NOT in the working tree or last commit — it may predate this change; creation not provable",
       "firstSeen": "2026-07-10T05:18:44.935Z",
       "status": "open"
+    },
+    {
+      "text": "GET /api/score responds",
+      "type": "http_ok",
+      "evidence": "no --url given; cannot probe GET /api/score",
+      "firstSeen": "2026-07-10T05:30:18.215Z",
+      "status": "open"
     }
   ],
   "totals": {
-    "proven": 4,
+    "proven": 5,
     "resolved": 0,
     "busted": 0
   }

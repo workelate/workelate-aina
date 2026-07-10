@@ -11,3 +11,5 @@
 | 05:18:44 | 1 | created site/index.html | ❓ UNPROVEN | Not accepted. site/index.html exists (30080 bytes, mtime 2026-07-10T00:18:26.643Z) but is NOT in the working t |
 | 05:18:44 | 2 | created site/about.html | ❓ UNPROVEN | Not accepted. site/about.html exists (10738 bytes, mtime 2026-07-10T00:21:57.760Z) but is NOT in the working t |
 | 05:18:44 | 3 | session wrote/edited 4 file(s) | ✅ PROVEN | Approved. all 4 exist on disk: site.css, index.html, about.html, genart.mjs. |
+| 05:30:18 | 1 | GET /api/score responds | ❓ UNPROVEN | Not accepted. no --url given; cannot probe GET /api/score. Bring evidence or withdraw. |
+| 05:30:18 | 2 | session wrote/edited 4 file(s) | ✅ PROVEN | Approved. all 4 exist on disk: site.css, index.html, about.html, genart.mjs. |

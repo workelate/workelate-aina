@@ -1,0 +1,36 @@
+# WE_AINA — WorkElate's AI-Native Agency
+
+> Digital transformation firm for $5–50M businesses, built AI-native: two accountable partners plus specialist bench plus agent fleets, instead of a consulting pyramid. Delivers working systems in weeks (not 6–18 months) at fixed budgets of $30K–$100K per build. Every agent action is logged with its reasoning — receipts, not status decks.
+
+Key verifiable facts:
+- Delivery model: 2 accountable partners (Chitransh Agnihotri, IIM Mumbai; Pratik Kinage, IIT Bombay) + senior specialists engaged per build + agent fleet. The people who scope the work build it.
+- Speed: diagnostic in 2 weeks; working system in weeks; demos on the client's real data from week 3.
+- Commercials: fixed $30K–$100K per build, priced before the build starts. No time & materials.
+- Proof (RockProsUSA, building materials, 13 quarries): dispatch cycle time reduced 38%; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
+- Also named: CitiSense — AI marketing & sales platform for advertising and creative agencies and display teams in Mexico.
+- Audit: every agent action is logged with reasoning; deterministic verify gates block "done" until the system provably works on client data.
+- Dogfooding: WE_AINA is WorkElate's own agency — delivery runs on the WorkElate platform the firm builds.
+
+## Core pages
+
+- [How we work](https://weaina.com/how-we-work): the 10× operating model — agents do the volume, seniors do the judgment; comparison vs traditional SI / big consultancy.
+- [About](https://weaina.com/about): the two partners, the per-build specialist bench, the dogfooding model.
+- [Case studies](https://weaina.com/case-studies): receipts-first engagements with defensible numbers.
+
+## Systems we install (production references)
+
+- [Quarry dispatch automation](https://weaina.com/systems/quarry-dispatch-automation): truck assignment, cycle tracking, exception alerts — cut dispatch cycle 38% across 13 quarries.
+- [Plant production reporting](https://weaina.com/systems/plant-production-reporting): shift logs to P&L-grade reports written by 6:00 AM without a human.
+- [Dealer order management](https://weaina.com/systems/dealer-order-management): WhatsApp/phone/email orders become one queue with automatic confirmations.
+- [Freight reconciliation](https://weaina.com/systems/freight-reconciliation): carrier bills matched to weighbridge and delivery data; disputes flagged with evidence.
+- [AR follow-up automation](https://weaina.com/systems/ar-followup-automation): receivables chased on schedule, escalated on rules, every touch logged.
+- [Compliance documentation](https://weaina.com/systems/compliance-documentation): royalty, GST, e-way and environmental filings assembled from operating data.
+
+## Essays
+
+- [The consulting pyramid can't survive agents](https://weaina.com/blog/the-pyramid-cant-survive-agents): why volume labor priced into SI quotes no longer exists.
+- [Receipts over decks](https://weaina.com/blog/receipts-over-decks): what auditable AI delivery looks like — logs with reasoning, verify gates over status reports.
+
+## Contact
+
+- Start here: [Get your AI Readiness Score](https://weaina.com/#cta) — five questions, report with three automation opportunities in 10 minutes.

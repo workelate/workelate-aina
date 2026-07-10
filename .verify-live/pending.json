@@ -1,7 +1,8 @@
 {
-  "when": "2026-07-10T05:18:44.935Z",
+  "when": "2026-07-10T05:30:18.215Z",
   "actionables": [
-    "\"created site/index.html\" — show it in the diff / create it, or withdraw the claim",
-    "\"created site/about.html\" — show it in the diff / create it, or withdraw the claim"
+    "\"GET /api/score responds\" — re-run with --url <base> (or add expectStatus to the contract)",
+    "vague: \"Root cause fixed permanently: repo had **no git at all** (`fatal: not \" — restate with exact file paths / commands, or drop it",
+    "vague: \"Ran `git init -b main`, wrote `.gitignore` (node_modules, leads.db, lo\" — restate with exact file paths / commands, or drop it"
   ]
 }

@@ -165,6 +165,12 @@ const page = (p, idx) => {
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://weaina.com/systems/${p.slug}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${p.h1} — WE_AINA">
+<meta property="og:description" content="${p.metaDesc}">
+<meta property="og:image" content="https://weaina.com/og.png">
+<meta property="og:url" content="https://weaina.com/systems/${p.slug}">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 ${JSON.stringify({
   "@context": "https://schema.org",
