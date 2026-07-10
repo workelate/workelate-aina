@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/chitransh/Desktop/WE_CL/Workelate/verify-live/bin/cli.js\" gate"
+          }
+        ]
+      }
+    ]
+  }
+}

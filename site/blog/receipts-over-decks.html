@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Receipts over decks: what auditable AI delivery looks like — WE_AINA</title>
+<meta name="description" content="Everyone promises responsible AI; almost nobody shows the log. How we build agent systems where every action carries its reasoning, and why verify gates beat status reports.">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://weaina.com/blog/receipts-over-decks">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Receipts over decks: what auditable AI delivery looks like",
+  "author": { "@type": "Person", "name": "Pratik Kinage" },
+  "datePublished": "2026-07-08",
+  "publisher": { "@type": "Organization", "name": "WE_AINA" }
+}
+</script>
+</head>
+<body>
+
+<header class="nav"><div class="wrap row">
+  <a class="logo" href="/">WE_<span>AINA</span></a>
+  <nav>
+    <a href="/how-we-work">How we work</a>
+    <a href="/about">About</a>
+    <a href="/case-studies">Case studies</a>
+    <a href="/blog" aria-current="page">Blog</a>
+    <a href="/systems/quarry-dispatch-automation">Systems</a>
+    <a class="btn" href="/#cta">Get your AI Readiness Score</a>
+  </nav>
+</div></header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="label">Blog · 2026-07-08 · Pratik Kinage</span>
+    <h1>Receipts over decks: what auditable AI delivery looks like</h1>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <article class="post">
+      <p>The fastest way to lose an operator's trust is to automate a decision they can't inspect. The fastest way to earn it is the opposite: show them a log where every action the system took carries the reasoning it was taken with. Not a dashboard of green circles — the actual line: <em>invoice INV-2219 flagged, billed 34.2t vs weighbridge 31.8t, routed to A. Sharma with evidence bundle.</em></p>
+      <p>We hold our agent systems to two disciplines, and they matter more than any model choice.</p>
+      <h2>Discipline one: every action is a log line</h2>
+      <p>Every system we ship writes an audit trail as a first-class feature — not telemetry bolted on, the actual spine. When the dispatch agent proposes an assignment, the proposal and its reasoning land in the log before the dispatcher sees it. When the AR agent suppresses a reminder because payment arrived, that suppression is logged. The monthly report to the client is generated <em>from</em> that log, which means every number in it traces to an event. Nobody writes the report; the report is what happened.</p>
+      <blockquote>A status deck is a claim. A log is a receipt. The difference is who you have to trust.</blockquote>
+      <h2>Discipline two: nobody grades their own homework</h2>
+      <p>During delivery, our own agents write most of the volume code — which raises the obvious question: who checks the agents? The answer is deterministic verification. Every build runs inside gates that a script enforces, not a person: does the system pass its behavioral probes on real client data, does the audit trail capture every action, do the numbers reconcile end to end. "Done" is not a feeling or a standup update; it's an exit code. If the gate fails, the work is not done, whoever — or whatever — claims otherwise.</p>
+      <p>We run the same gate on ourselves at the level you'd least expect: our own status claims. When we tell a client "the invoices matched," the statement is checked against the logs before it goes out. It sounds paranoid until you've watched one wrong "it works" cost a client a week of quiet damage.</p>
+      <h2>Why this is the whole trust story</h2>
+      <p>A two-person firm shipping enterprise systems has no brand armor. We can't say "trust us, we're a big four." What we can say is: here is everything the system did, here is why, here is the gate it passed, and here is the report generated from the same log you can read yourself. That is a stronger guarantee than a logo — and unlike a logo, it compounds: every month of clean logs is evidence the next client can check.</p>
+      <p>If a vendor pitches you AI automation and can't show you their audit trail on a live system, you are not buying automation. You are buying a demo. <a href="/case-studies">Ours come with the logs.</a></p>
+    </article>
+  </div>
+</section>
+
+<footer class="mega">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <a class="logo" href="/">WE_<span>AINA</span></a>
+        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform — weeks not quarters, $30K–$100K fixed, every action logged.</p>
+      </div>
+      <div>
+        <div class="fh">Company</div>
+        <a href="/about">About us</a>
+        <a href="/how-we-work">How we work</a>
+        <a href="/case-studies">Case studies</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div>
+        <div class="fh">Systems</div>
+        <a href="/systems/quarry-dispatch-automation">Dispatch automation</a>
+        <a href="/systems/plant-production-reporting">Production reporting</a>
+        <a href="/systems/dealer-order-management">Order management</a>
+        <a href="/systems/freight-reconciliation">Freight reconciliation</a>
+        <a href="/systems/ar-followup-automation">AR follow-up</a>
+        <a href="/systems/compliance-documentation">Compliance documentation</a>
+      </div>
+      <div>
+        <div class="fh">Engage</div>
+        <a href="/#cta">Get your AI Readiness Score</a>
+        <a href="/how-we-work">The Diagnostic Sprint</a>
+        <a href="/blog/receipts-over-decks">Our audit-trail promise</a>
+      </div>
+    </div>
+    <div class="baseline">
+      <span>© 2026 WE_AINA — WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
+      <span>Every claim on this site is auditable. Ask for the logs.</span>
+    </div>
+  </div>
+</footer>
+<script type="module" src="/js/reveal.js"></script>
+</body>
+</html>

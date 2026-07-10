@@ -1,0 +1,22 @@
+{
+  "claims": [
+    {
+      "type": "behavior",
+      "text": "site is DONE for this pass: full verify gate passes 6/6 against the live server",
+      "probe": "npm run -s verify",
+      "differential": false
+    },
+    {
+      "type": "behavior",
+      "text": "insights card row exists on home and all three card links resolve (blog posts + how-we-work)",
+      "probe": "grep -q 'id=\"insight-carousel\"' site/index.html && curl -sf -o /dev/null http://localhost:4310/blog/the-pyramid-cant-survive-agents && curl -sf -o /dev/null http://localhost:4310/blog/receipts-over-decks && curl -sf -o /dev/null http://localhost:4310/how-we-work",
+      "differential": false
+    },
+    {
+      "type": "behavior",
+      "text": "perf ledger is real: hero PNGs are gone, hero JPEGs exist and each is under 150KB, homepage serves them",
+      "probe": "test ! -e site/img/hero-1.png && test -f site/img/hero-1.jpg && test -f site/img/hero-2.jpg && test -f site/img/hero-3.jpg && [ $(stat -f%z site/img/hero-1.jpg) -lt 153600 ] && [ $(stat -f%z site/img/hero-2.jpg) -lt 153600 ] && [ $(stat -f%z site/img/hero-3.jpg) -lt 153600 ] && curl -sf http://localhost:4310/ | grep -q 'hero-1.jpg'",
+      "differential": false
+    }
+  ]
+}
