@@ -1,8 +1,6 @@
 {
-  "when": "2026-07-10T05:30:18.215Z",
+  "when": "2026-07-10T07:55:38.927Z",
   "actionables": [
-    "\"GET /api/score responds\" — re-run with --url <base> (or add expectStatus to the contract)",
-    "vague: \"Root cause fixed permanently: repo had **no git at all** (`fatal: not \" — restate with exact file paths / commands, or drop it",
-    "vague: \"Ran `git init -b main`, wrote `.gitignore` (node_modules, leads.db, lo\" — restate with exact file paths / commands, or drop it"
+    "vague: \"- http://localhost:4310/how-we-work\" — restate with exact file paths / commands, or drop it"
   ]
 }

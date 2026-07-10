@@ -13,3 +13,8 @@
 | 05:18:44 | 3 | session wrote/edited 4 file(s) | ✅ PROVEN | Approved. all 4 exist on disk: site.css, index.html, about.html, genart.mjs. |
 | 05:30:18 | 1 | GET /api/score responds | ❓ UNPROVEN | Not accepted. no --url given; cannot probe GET /api/score. Bring evidence or withdraw. |
 | 05:30:18 | 2 | session wrote/edited 4 file(s) | ✅ PROVEN | Approved. all 4 exist on disk: site.css, index.html, about.html, genart.mjs. |
+| 07:39:11 | 1 | changed scripts/gensystems.mjs | ✅ PROVEN | Approved. scripts/gensystems.mjs in diff (status M). |
+| 07:39:11 | 2 | created site/blog/index.html | ✅ PROVEN | Approved. site/blog/index.html exists (5259 bytes, mtime 2026-07-10T07:37:39.541Z), git status M. |
+| 07:39:11 | 3 | created site/case-studies/index.html | ✅ PROVEN | Approved. site/case-studies/index.html exists (7156 bytes, mtime 2026-07-10T07:37:35.697Z), git status M. |
+| 07:39:11 | 4 | session wrote/edited 11 file(s) | ✅ PROVEN | Approved. all 11 exist on disk: llms.txt, site.css, index.html, about.html, genart.mjs, gensystems.mjs, …. |
+| 07:55:38 | 1 | session wrote/edited 11 file(s) | ✅ PROVEN | Approved. all 11 exist on disk: llms.txt, site.css, index.html, about.html, genart.mjs, gensystems.mjs, …. |
