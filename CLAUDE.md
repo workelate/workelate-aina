@@ -23,8 +23,11 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
    checks every claim.
 
 ## Commands
-- `npm run dev` — server on http://localhost:4310 (NOT 4321 — another
-  project owns [::1]:4321; do not kill it).
+- `npm run dev` — Next.js dev server on http://localhost:4310 (NOT
+  4321 — another project owns [::1]:4321; do not kill it).
+- `npm run build` / `npm run start` — Next.js production build/serve.
+- `npm run dev:legacy` — old zero-dependency server.mjs (kept as
+  reference; same routes).
 - `npm run verify` — deterministic gate (Playwright). Needs dev server.
 - `npm run frames` — regenerate the 160 procedural scrub frames.
 - `node scripts/gensystems.mjs` — regenerate /systems pages + sitemap.
@@ -38,12 +41,17 @@ Edit the generator in scripts/, then re-run it. A hand edit dies on
 the next regeneration.
 
 ## Architecture facts (non-obvious)
-- Static site in site/, zero-dependency node server (server.mjs):
-  static + POST /api/score. DB = leads.db via node:sqlite (leads +
-  audit tables — every step audited, keep it that way).
+- Next.js (founder call 2026-07-13) is the delivery layer only: pages
+  stay statically generated HTML in site/, served byte-identical by
+  the catch-all app/[[...slug]]/route.js (site/ + assets/). Content
+  still comes from generators — do NOT convert pages to JSX without a
+  founder call. server.mjs kept as dev:legacy reference.
+- POST /api/score lives in app/api/score/route.js. DB = leads.db via
+  node:sqlite in lib/db.js (leads + audit tables — every step audited,
+  keep it that way). Report generation runs via next/server after().
 - /api/score has a spam guard: 5/hr/IP rate limit, payload validation,
-  honeypot field `website` (returns fake 200). Server restart needed
-  after server.mjs edits — it is not hot-reloaded.
+  honeypot field `website` (returns fake 200). Next dev hot-reloads
+  route handlers; no manual restart needed.
 - Scrub engine (site/js/scrollFrames.js) keeps only a ±24 frame
   ImageBitmap window (~full deck would hold ~1.3 GB). Don't "simplify"
   the window away. Frames are placeholder SVGs until the real video

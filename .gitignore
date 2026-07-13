@@ -2,3 +2,5 @@ node_modules/
 leads.db
 *.log
 .DS_Store
+.next/
+next-env.d.ts

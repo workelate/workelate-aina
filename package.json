@@ -4,9 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.mjs",
+    "dev": "next dev -p 4310",
+    "dev:legacy": "node server.mjs",
+    "build": "next build",
+    "start": "next start -p 4310",
     "frames": "node scripts/genframes.mjs",
     "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "playwright": "^1.49.0"
