@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The 6 AM production report nobody had to write — WE_AINA</title>
-<meta name="description" content="Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM — reconciled, discrepancies flagged, no human in the loop.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-var-latin.woff2" crossorigin>
+<title>The 6 AM production report nobody had to write, WE_AINA</title>
+<meta name="description" content="Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, no human in the loop.">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-var-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://weaina.com/systems/plant-production-reporting">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The 6 AM production report nobody had to write — WE_AINA">
-<meta property="og:description" content="Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM — reconciled, discrepancies flagged, no human in the loop.">
+<meta property="og:title" content="The 6 AM production report nobody had to write, WE_AINA">
+<meta property="og:description" content="Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, no human in the loop.">
 <meta property="og:image" content="https://weaina.com/og.png">
 <meta property="og:url" content="https://weaina.com/systems/plant-production-reporting">
 <meta name="twitter:card" content="summary_large_image">
@@ -42,7 +42,7 @@
    "name": "Can it write the MIS my directors already expect?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. The output template is yours — same structure your board reads today, produced without the three people who currently assemble it."
+    "text": "Yes. The output template is yours, same structure your board reads today, produced without the three people who currently assemble it."
    }
   },
   {
@@ -58,7 +58,7 @@
    "name": "What about multiple plants?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Each plant gets its own daily report; a group roll-up compares plants on the same definitions — which is usually the first time the definitions have actually matched."
+    "text": "Each plant gets its own daily report; a group roll-up compares plants on the same definitions, which is usually the first time the definitions have actually matched."
    }
   },
   {
@@ -78,7 +78,7 @@
  "@type": "Service",
  "name": "The 6 AM production report nobody had to write",
  "serviceType": "Plant production reporting automation",
- "description": "Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM — reconciled, discrepancies flagged, no human in the loop.",
+ "description": "Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, no human in the loop.",
  "provider": {
   "@type": "Organization",
   "name": "WE_AINA",
@@ -118,27 +118,27 @@
 <section>
   <div class="wrap">
     <span class="label">The system</span>
-    <p>The system pulls shift logs, weighbridge tickets, downtime entries and energy readings as they happen, reconciles them against each other, and writes the daily production report before the morning meeting. Discrepancies — tonnage that does not match tickets, downtime nobody logged — are flagged in the report, not buried under it. The report reads like your best plant manager wrote it, because it is built from the questions they would ask.</p>
-    <p class="accent" style="margin-top:24px">The same reporting spine runs inside the RockProsUSA deployment — 11,200 ops hours returned across the account in year one, a large share of them reporting hours.</p>
+    <p>The system pulls shift logs, weighbridge tickets, downtime entries and energy readings as they happen, reconciles them against each other, and writes the daily production report before the morning meeting. Discrepancies, tonnage that does not match tickets, downtime nobody logged, are flagged in the report, not buried under it. The report reads like your best plant manager wrote it, because it is built from the questions they would ask.</p>
+    <p class="accent" style="margin-top:24px">The same reporting spine runs inside the RockProsUSA deployment, 11,200 ops hours returned across the account in year one, a large share of them reporting hours.</p>
   </div>
 </section>
 
 <section class="deep">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
-    <p>The first two weeks are plumbing: connectors to wherever your data actually lives — Tally exports, the weighbridge PC, the operator's shift-log spreadsheet, the DCS historian if you have one. Nothing about how your operators record data changes; the system meets the data where it is. By week three you get a parallel report every morning alongside whatever you produce today. You mark what is wrong or missing, the reconciliation rules tighten, and within a month the parallel report is the report. The person who used to assemble it gets their mornings back — most plants redeploy them onto the discrepancies the report now surfaces.</p>
+    <p>The first two weeks are plumbing: connectors to wherever your data actually lives, Tally exports, the weighbridge PC, the operator's shift-log spreadsheet, the DCS historian if you have one. Nothing about how your operators record data changes; the system meets the data where it is. By week three you get a parallel report every morning alongside whatever you produce today. You mark what is wrong or missing, the reconciliation rules tighten, and within a month the parallel report is the report. The person who used to assemble it gets their mornings back, most plants redeploy them onto the discrepancies the report now surfaces.</p>
     <h3 style="margin-top:48px">Signs you need this</h3>
-    <p class="dim" style="margin-top:12px">— The morning meeting argues about what happened instead of what to do.</p>
-    <p class="dim" style="margin-top:12px">— Downtime totals differ depending on who you ask.</p>
-    <p class="dim" style="margin-top:12px">— Month-end production numbers get 'adjusted' and nobody can say why.</p>
-    <p class="dim" style="margin-top:12px">— Your MIS is accurate but ten days late, or timely but wrong.</p>
+    <p class="dim" style="margin-top:12px">- The morning meeting argues about what happened instead of what to do.</p>
+    <p class="dim" style="margin-top:12px">- Downtime totals differ depending on who you ask.</p>
+    <p class="dim" style="margin-top:12px">- Month-end production numbers get 'adjusted' and nobody can say why.</p>
+    <p class="dim" style="margin-top:12px">- Your MIS is accurate but ten days late, or timely but wrong.</p>
   </div>
 </section>
 
 <section id="cta">
   <div class="wrap">
     <h2>Get your AI Readiness Score</h2>
-    <p class="dim">Five questions. Your report — three automation opportunities with conservative numbers — arrives in 10 minutes.</p>
+    <p class="dim">Five questions. Your report, three automation opportunities with conservative numbers, arrives in 10 minutes.</p>
     <p style="margin-top:24px"><a class="btn" href="/#cta">Get your AI Readiness Score</a></p>
   </div>
 </section>
@@ -148,9 +148,9 @@
     <span class="label">Questions operators ask</span>
     <div class="step"><span class="k">Q</span><div><h3>Our data lives in Tally, Excel and a DCS. Can it read all three?</h3><p class="dim">Yes. The system was built for exactly that mess. Connectors handle ERP exports, spreadsheet drops and historian feeds; reconciliation happens in the middle layer.</p></div></div>
     <div class="step"><span class="k">Q</span><div><h3>What if the underlying data is wrong?</h3><p class="dim">Then the report says so, with the specific mismatch called out. Bad data flagged at 6 AM is a fixable problem; bad data discovered at month-end is a write-off.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Can it write the MIS my directors already expect?</h3><p class="dim">Yes. The output template is yours — same structure your board reads today, produced without the three people who currently assemble it.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Can it write the MIS my directors already expect?</h3><p class="dim">Yes. The output template is yours, same structure your board reads today, produced without the three people who currently assemble it.</p></div></div>
     <div class="step"><span class="k">Q</span><div><h3>Do operators have to enter data differently?</h3><p class="dim">No. Changing operator behavior is where reporting projects die, so we refuse to depend on it. The system adapts to your logs as they are; if a specific field would sharpen the report materially, we tell you the trade-off and you decide.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What about multiple plants?</h3><p class="dim">Each plant gets its own daily report; a group roll-up compares plants on the same definitions — which is usually the first time the definitions have actually matched.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What about multiple plants?</h3><p class="dim">Each plant gets its own daily report; a group roll-up compares plants on the same definitions, which is usually the first time the definitions have actually matched.</p></div></div>
     <div class="step"><span class="k">Q</span><div><h3>Daily only, or shift-level too?</h3><p class="dim">Both. Shift handover summaries generate at shift close; the daily rolls them up. Weekly and monthly views come from the same data with no extra work.</p></div></div>
     <p class="dim" style="margin-top:48px">Related systems: <a href="/systems/dealer-order-management">dealer order management automation</a> · <a href="/systems/freight-reconciliation">freight reconciliation automation</a> · <a href="/systems/ar-followup-automation">accounts receivable follow-up automation</a></p>
   </div>
@@ -161,7 +161,7 @@
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform — weeks not quarters, $30K–$100K fixed, every action logged.</p>
+        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, every action logged.</p>
       </div>
       <div>
         <div class="fh">Company</div>
@@ -187,8 +187,7 @@
       </div>
     </div>
     <div class="baseline">
-      <span>© 2026 WE_AINA — WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
-      <span>Every claim on this site is auditable. Ask for the logs.</span>
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
     </div>
   </div>
 </footer>

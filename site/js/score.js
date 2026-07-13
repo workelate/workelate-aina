@@ -1,4 +1,4 @@
-// AI Readiness Score widget — state in memory only, no localStorage.
+// AI Readiness Score widget, state in memory only, no localStorage.
 const form = document.getElementById("score-form");
 const steps = [...form.querySelectorAll(".q")];
 const bar = document.querySelector("#score-progress i");
@@ -108,6 +108,6 @@ form.addEventListener("submit", async e => {
   tick();
 
   document.getElementById("verdict").textContent = qualified
-    ? `Score ${score}. There is recoverable money in this operation — your report lands in 10 minutes.`
-    : `Score ${score}. Not sprint-ready yet — your report shows the two things to fix first.`;
+    ? `Score ${score}. There is recoverable money in this operation. Your report lands in 10 minutes.`
+    : `Score ${score}. Not sprint-ready yet. Your report shows the two things to fix first.`;
 });

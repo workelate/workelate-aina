@@ -1,22 +1,22 @@
 {
-  "_howto": "Add one object per project. Required: tag (industry — geography), title, summary, metric, metricLabel. Optional: anonymous:true renders without the client name pressure, status:'placeholder' renders as a dashed coming-soon card. Run `node scripts/gencases.mjs` after editing.",
+  "_howto": "Add one object per project. Required: tag (industry, geography), title, summary, metric, metricLabel. Optional: anonymous:true renders without the client name pressure, status:'placeholder' renders as a dashed coming-soon card. Run `node scripts/gencases.mjs` after editing.",
   "cases": [
     {
-      "tag": "Industrial ops — USA",
+      "tag": "Industrial ops, USA",
       "title": "RockProsUSA: 13 quarries on one agentic dispatch system",
       "summary": "Dispatch, invoicing and reporting moved onto agents across 13 quarry sites. Truck assignment proposed with logged reasoning, invoices 3-way matched without a human pass, daily reports written by 6 AM. Cycle time fell 38% in the first quarter after cutover; 11,200 operations hours returned in year one.",
       "metric": "−38%",
       "metricLabel": "dispatch cycle time · 2,140 invoices, zero touches"
     },
     {
-      "tag": "Marketing & creative — Mexico",
+      "tag": "Marketing & creative, Mexico",
       "title": "CitiSense: AI marketing & sales platform for agencies",
-      "summary": "An AI-enabled marketing and sales platform for advertising and creative agencies and display teams — campaign operations, sales workflows and reporting carried by agents so the creative teams do creative work.",
+      "summary": "An AI-enabled marketing and sales platform for advertising and creative agencies and display teams, campaign operations, sales workflows and reporting carried by agents so the creative teams do creative work.",
       "metric": "MX",
       "metricLabel": "agencies & display teams live"
     },
     {
-      "tag": "Logistics — India",
+      "tag": "Logistics, India",
       "title": "Freight reconciliation on agents",
       "summary": "Every carrier bill line matched against weighbridge, gate and delivery data; clean lines cleared automatically, disputes queued with evidence bundles attached.",
       "metric": "96%+",
@@ -24,7 +24,7 @@
       "anonymous": true
     },
     {
-      "tag": "Professional services — India",
+      "tag": "Professional services, India",
       "title": "AR follow-up: no account goes quiet",
       "summary": "Receivables chased on cadence, escalated on rules, every touch logged; promises to pay tracked to their date and re-chased the morning after they break.",
       "metric": "DSO ↓",
@@ -34,7 +34,7 @@
     {
       "tag": "Your project here",
       "title": "20+ more engagements being written up",
-      "summary": "We are documenting the full portfolio — industrial, agency, logistics, SaaS and D2C engagements — in the same receipts-first format. Each entry ships with numbers we can defend.",
+      "summary": "We are documenting the full portfolio, industrial, agency, logistics, SaaS and D2C engagements, in the same receipts-first format. Each entry ships with numbers we can defend.",
       "metric": "…",
       "metricLabel": "in documentation",
       "status": "placeholder"

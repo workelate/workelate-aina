@@ -5,33 +5,85 @@
       "type": "file_created",
       "evidence": "scripts/genart.mjs exists (3296 bytes, mtime 2026-07-10T00:20:46.699Z) but is NOT in the working tree or last commit — it may predate this change; creation not provable",
       "firstSeen": "2026-07-10T00:23:50.464Z",
-      "status": "open"
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-10T10:35:11.494Z"
     },
     {
       "text": "created site/index.html",
       "type": "file_created",
       "evidence": "site/index.html exists (30080 bytes, mtime 2026-07-10T00:18:26.643Z) but is NOT in the working tree or last commit — it may predate this change; creation not provable",
       "firstSeen": "2026-07-10T05:18:44.935Z",
-      "status": "open"
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-10T10:27:05.609Z"
     },
     {
       "text": "created site/about.html",
       "type": "file_created",
       "evidence": "site/about.html exists (10738 bytes, mtime 2026-07-10T00:21:57.760Z) but is NOT in the working tree or last commit — it may predate this change; creation not provable",
       "firstSeen": "2026-07-10T05:18:44.935Z",
-      "status": "open"
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-10T10:35:11.494Z"
     },
     {
       "text": "GET /api/score responds",
       "type": "http_ok",
       "evidence": "no --url given; cannot probe GET /api/score",
       "firstSeen": "2026-07-10T05:30:18.215Z",
-      "status": "open"
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-10T10:27:05.609Z"
+    },
+    {
+      "text": "created scripts/genart.mjs",
+      "type": "file_created",
+      "evidence": "scripts/genart.mjs exists (3296 bytes, mtime 2026-07-10T00:20:46.699Z) but is NOT in the working tree or last commit — it may predate this change; creation not provable",
+      "firstSeen": "2026-07-10T10:35:11.494Z",
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-13T05:33:44.736Z"
+    },
+    {
+      "text": "created site/about.html",
+      "type": "file_created",
+      "evidence": "site/about.html exists (11221 bytes, mtime 2026-07-10T07:57:03.339Z) but is NOT in the working tree or last commit — it may predate this change; creation not provable",
+      "firstSeen": "2026-07-10T10:35:11.494Z",
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-13T05:33:44.736Z"
+    },
+    {
+      "text": "changed site/sitemap.xml",
+      "type": "file_changed",
+      "evidence": "site/sitemap.xml exists but has no changes in the working tree or last commit — the change may lie in an earlier commit; not provable from here",
+      "firstSeen": "2026-07-13T05:53:48.977Z",
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-13T05:57:42.938Z"
+    },
+    {
+      "text": "changed site/robots.txt",
+      "type": "file_changed",
+      "evidence": "site/robots.txt exists but has no changes in the working tree or last commit — the change may lie in an earlier commit; not provable from here",
+      "firstSeen": "2026-07-13T05:53:48.977Z",
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-13T05:57:42.938Z"
+    },
+    {
+      "text": "changed site/sitemap.xml",
+      "type": "file_changed",
+      "evidence": "site/sitemap.xml exists but has no changes in the working tree or last commit — the change may lie in an earlier commit; not provable from here",
+      "firstSeen": "2026-07-13T05:57:42.938Z",
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-13T10:30:52.395Z"
+    },
+    {
+      "text": "changed site/robots.txt",
+      "type": "file_changed",
+      "evidence": "site/robots.txt exists but has no changes in the working tree or last commit — the change may lie in an earlier commit; not provable from here",
+      "firstSeen": "2026-07-13T05:57:42.938Z",
+      "status": "withdrawn",
+      "resolvedAt": "2026-07-13T10:30:52.395Z"
     }
   ],
   "totals": {
-    "proven": 11,
-    "resolved": 0,
-    "busted": 0
+    "proven": 25,
+    "resolved": 10,
+    "busted": 3
   }
 }

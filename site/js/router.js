@@ -12,13 +12,13 @@ const NEEDS = {
   "manual-ops": {
     label: "Cut manual operations",
     title: "Put the repetitive day on agents",
-    blurb: "Dispatch, data entry, matching, chasing — the work that eats your team's day is exactly what agent systems carry best. At RockProsUSA this cut dispatch cycle time 38% across 13 quarries.",
+    blurb: "Dispatch, data entry, matching, chasing, the work that eats your team's day is exactly what agent systems carry best. At RockProsUSA this cut dispatch cycle time 38% across 13 quarries.",
     link: "/systems/quarry-dispatch-automation", linkText: "See the dispatch automation system"
   },
   "reporting": {
     label: "Reporting & visibility",
     title: "Reports that write themselves by 6 AM",
-    blurb: "Operating data reconciled continuously and written up daily — discrepancies flagged, not buried. No human assembles anything; decisions run on today's numbers, not last week's.",
+    blurb: "Operating data reconciled continuously and written up daily, discrepancies flagged, not buried. No human assembles anything; decisions run on today's numbers, not last week's.",
     link: "/systems/plant-production-reporting", linkText: "See the production reporting system"
   },
   "cash": {
@@ -35,7 +35,7 @@ const NEEDS = {
   },
   "leakage": {
     label: "Reconciliation & leakage",
-    title: "Bills that match themselves — or explain why not",
+    title: "Bills that match themselves, or explain why not",
     blurb: "Every vendor and carrier bill line matched against your operating records. Clean lines clear automatically; disputes queue with the evidence bundled and ready to send.",
     link: "/systems/freight-reconciliation", linkText: "See the reconciliation system"
   },

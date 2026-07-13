@@ -1,4 +1,4 @@
-// Case-studies index generated from data/cases.json — founder adds entries
+// Case-studies index generated from data/cases.json, founder adds entries
 // there; never hand-edit site/case-studies/index.html.
 import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import path from "node:path";
@@ -24,9 +24,9 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case studies — WE_AINA</title>
-<meta name="description" content="Receipts-first case studies: 13 quarries on agentic dispatch, AI campaign ops for agencies in Mexico, freight reconciliation, AR automation — numbers we can defend.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-var-latin.woff2" crossorigin>
+<title>Case studies, WE_AINA</title>
+<meta name="description" content="Receipts-first case studies: 13 quarries on agentic dispatch, AI campaign ops for agencies in Mexico, freight reconciliation, AR automation, numbers we can defend.">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-var-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -50,7 +50,7 @@ const html = `<!doctype html>
   <div class="wrap">
     <span class="label">Case studies</span>
     <h1>Work with numbers<br><span class="accent">we can defend.</span></h1>
-    <p class="sub dim">Every case here follows the same rule as our systems: receipts over adjectives. Where a client prefers their edge quiet, the work appears without the name — and we walk qualified prospects through the details in the Sprint.</p>
+    <p class="sub dim">Every case here follows the same rule as our systems: receipts over adjectives. Where a client prefers their edge quiet, the work appears without the name, and we walk qualified prospects through the details in the Sprint.</p>
   </div>
 </section>
 
@@ -63,7 +63,7 @@ ${cases.map(card).join("\n")}
 <section id="cta" class="deep">
   <div class="wrap">
     <h2>Get your AI Readiness Score</h2>
-    <p class="dim">Five questions. Your report — three automation opportunities with conservative numbers — arrives in 10 minutes.</p>
+    <p class="dim">Five questions. Your report, three automation opportunities with conservative numbers, arrives in 10 minutes.</p>
     <p style="margin-top:24px"><a class="btn" href="/#cta">Get your AI Readiness Score</a></p>
   </div>
 </section>
@@ -73,7 +73,7 @@ ${cases.map(card).join("\n")}
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform — weeks not quarters, $30K–$100K fixed, every action logged.</p>
+        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, every action logged.</p>
       </div>
       <div>
         <div class="fh">Company</div>
@@ -99,8 +99,7 @@ ${cases.map(card).join("\n")}
       </div>
     </div>
     <div class="baseline">
-      <span>© 2026 WE_AINA — WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
-      <span>Every claim on this site is auditable. Ask for the logs.</span>
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
     </div>
   </div>
 </footer>

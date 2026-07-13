@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trucks that stop waiting: quarry dispatch that runs itself — WE_AINA</title>
+<title>Trucks that stop waiting: quarry dispatch that runs itself, WE_AINA</title>
 <meta name="description" content="AI dispatch for quarries: truck assignment, cycle tracking, exception alerts. The system that cut dispatch cycle time 38% across 13 quarries.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/spacegrotesk-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-var-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://weaina.com/systems/quarry-dispatch-automation">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Trucks that stop waiting: quarry dispatch that runs itself — WE_AINA">
+<meta property="og:title" content="Trucks that stop waiting: quarry dispatch that runs itself, WE_AINA">
 <meta property="og:description" content="AI dispatch for quarries: truck assignment, cycle tracking, exception alerts. The system that cut dispatch cycle time 38% across 13 quarries.">
 <meta property="og:image" content="https://weaina.com/og.png">
 <meta property="og:url" content="https://weaina.com/systems/quarry-dispatch-automation">
@@ -26,12 +26,12 @@
    "name": "Does this replace my dispatchers?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "No. It replaces the parts of their day that are radio tag and spreadsheet copying. Assignment decisions stay human-approved until you decide otherwise — the system earns autonomy per decision type, with logs to justify it."
+    "text": "No. It replaces the parts of their day that are radio tag and spreadsheet copying. Assignment decisions stay human-approved until you decide otherwise, the system earns autonomy per decision type, with logs to justify it."
    }
   },
   {
    "@type": "Question",
-   "name": "We run mixed fleets — owned and hired trucks. Does that work?",
+   "name": "We run mixed fleets, owned and hired trucks. Does that work?",
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "Yes. Hired trucks are tracked from gate-in to gate-out even without telematics, using weighbridge and gate events. Owned trucks with GPS get full cycle tracking."
@@ -58,7 +58,7 @@
    "name": "Can it handle multiple sites with shared fleet?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes — that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same logged reasoning as single-site assignments."
+    "text": "Yes, that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same logged reasoning as single-site assignments."
    }
   },
   {
@@ -111,14 +111,14 @@
   <div class="wrap">
     <span class="label">What this costs you today</span>
     <p>A 22-minute average gate-to-load wait across 40 trucks burns roughly 290 driver-hours a month at one site.</p>
-    <p style="margin-top:16px">One mis-assigned haul per shift, at 3 shifts a day, is about 90 wasted cycles a month — fuel, wear and driver pay with no material moved.</p>
+    <p style="margin-top:16px">One mis-assigned haul per shift, at 3 shifts a day, is about 90 wasted cycles a month, fuel, wear and driver pay with no material moved.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="label">The system</span>
-    <p>The system watches orders, truck positions and weighbridge events, then proposes the next assignment before the dispatcher asks for it. It tracks every cycle end to end, flags the ones that break pattern — a loader down, a queue forming, a driver stuck at the pit — and escalates only those. Dispatchers stop juggling radios and start approving decisions. Every assignment carries the reasoning it was made with, so a bad call can be traced in one click instead of one argument.</p>
+    <p>The system watches orders, truck positions and weighbridge events, then proposes the next assignment before the dispatcher asks for it. It tracks every cycle end to end, flags the ones that break pattern, a loader down, a queue forming, a driver stuck at the pit, and escalates only those. Dispatchers stop juggling radios and start approving decisions. Every assignment carries the reasoning it was made with, so a bad call can be traced in one click instead of one argument.</p>
     <p class="accent" style="margin-top:24px">This is the system running 13 quarries at RockProsUSA today. Dispatch cycle time fell 38% in the first quarter after cutover.</p>
   </div>
 </section>
@@ -126,19 +126,19 @@
 <section class="deep">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
-    <p>Week one, the system runs in shadow mode: it watches your dispatch decisions and proposes its own in parallel, and nobody's workflow changes. Week two, you compare its proposals against what your dispatchers actually did — the gaps go both ways, and both are useful. From week three, dispatchers approve assignments from a queue instead of building them from radio calls. The transition is deliberately boring: no big-bang cutover, no retraining week, no consultants standing behind chairs. The dispatch office on day 30 looks like the dispatch office on day 1, minus the shouting.</p>
+    <p>Week one, the system runs in shadow mode: it watches your dispatch decisions and proposes its own in parallel, and nobody's workflow changes. Week two, you compare its proposals against what your dispatchers actually did, the gaps go both ways, and both are useful. From week three, dispatchers approve assignments from a queue instead of building them from radio calls. The transition is deliberately boring: no big-bang cutover, no retraining week, no consultants standing behind chairs. The dispatch office on day 30 looks like the dispatch office on day 1, minus the shouting.</p>
     <h3 style="margin-top:48px">Signs you need this</h3>
-    <p class="dim" style="margin-top:12px">— Trucks queue at the gate while a loaded pit sits idle two benches away.</p>
-    <p class="dim" style="margin-top:12px">— Your best dispatcher is unpromotable because nobody else can hold the board in their head.</p>
-    <p class="dim" style="margin-top:12px">— Cycle counts come from a diary, and the diary disagrees with the weighbridge.</p>
-    <p class="dim" style="margin-top:12px">— Evening reconciliation regularly finds hauls nobody can explain.</p>
+    <p class="dim" style="margin-top:12px">- Trucks queue at the gate while a loaded pit sits idle two benches away.</p>
+    <p class="dim" style="margin-top:12px">- Your best dispatcher is unpromotable because nobody else can hold the board in their head.</p>
+    <p class="dim" style="margin-top:12px">- Cycle counts come from a diary, and the diary disagrees with the weighbridge.</p>
+    <p class="dim" style="margin-top:12px">- Evening reconciliation regularly finds hauls nobody can explain.</p>
   </div>
 </section>
 
 <section id="cta">
   <div class="wrap">
     <h2>Get your AI Readiness Score</h2>
-    <p class="dim">Five questions. Your report — three automation opportunities with conservative numbers — arrives in 10 minutes.</p>
+    <p class="dim">Five questions. Your report, three automation opportunities with conservative numbers, arrives in 10 minutes.</p>
     <p style="margin-top:24px"><a class="btn" href="/#cta">Get your AI Readiness Score</a></p>
   </div>
 </section>
@@ -146,11 +146,11 @@
 <section>
   <div class="wrap">
     <span class="label">Questions operators ask</span>
-    <div class="step"><span class="k">Q</span><div><h3>Does this replace my dispatchers?</h3><p class="dim">No. It replaces the parts of their day that are radio tag and spreadsheet copying. Assignment decisions stay human-approved until you decide otherwise — the system earns autonomy per decision type, with logs to justify it.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>We run mixed fleets — owned and hired trucks. Does that work?</h3><p class="dim">Yes. Hired trucks are tracked from gate-in to gate-out even without telematics, using weighbridge and gate events. Owned trucks with GPS get full cycle tracking.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Does this replace my dispatchers?</h3><p class="dim">No. It replaces the parts of their day that are radio tag and spreadsheet copying. Assignment decisions stay human-approved until you decide otherwise, the system earns autonomy per decision type, with logs to justify it.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>We run mixed fleets, owned and hired trucks. Does that work?</h3><p class="dim">Yes. Hired trucks are tracked from gate-in to gate-out even without telematics, using weighbridge and gate events. Owned trucks with GPS get full cycle tracking.</p></div></div>
     <div class="step"><span class="k">Q</span><div><h3>What data does it need on day one?</h3><p class="dim">Orders, truck list, and weighbridge feed. That is enough to start proposing assignments. Telematics and loader status make it sharper but are not prerequisites.</p></div></div>
     <div class="step"><span class="k">Q</span><div><h3>What happens when the internet drops at the pit?</h3><p class="dim">Dispatch falls back to the last approved plan and queues events locally; when the link returns, the system reconciles what actually happened against what was planned and flags the gaps. A connectivity blip never blanks the board.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Can it handle multiple sites with shared fleet?</h3><p class="dim">Yes — that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same logged reasoning as single-site assignments.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Can it handle multiple sites with shared fleet?</h3><p class="dim">Yes, that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same logged reasoning as single-site assignments.</p></div></div>
     <div class="step"><span class="k">Q</span><div><h3>How long until it pays for itself?</h3><p class="dim">At RockProsUSA scale the returned hours covered the build cost inside two quarters. Your Diagnostic Sprint report puts conservative numbers on your specific operation before you commit.</p></div></div>
     <p class="dim" style="margin-top:48px">Related systems: <a href="/systems/plant-production-reporting">plant production reporting automation</a> · <a href="/systems/dealer-order-management">dealer order management automation</a> · <a href="/systems/freight-reconciliation">freight reconciliation automation</a></p>
   </div>
@@ -161,7 +161,7 @@
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform — weeks not quarters, $30K–$100K fixed, every action logged.</p>
+        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, every action logged.</p>
       </div>
       <div>
         <div class="fh">Company</div>
@@ -187,8 +187,7 @@
       </div>
     </div>
     <div class="baseline">
-      <span>© 2026 WE_AINA — WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
-      <span>Every claim on this site is auditable. Ask for the logs.</span>
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh Agnihotri & Pratik Kinage</span>
     </div>
   </div>
 </footer>

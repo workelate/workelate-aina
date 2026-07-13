@@ -15,7 +15,7 @@ export class ScrollFrames {
   // ---- PRELOAD LOOP: first/last/middle first, then fill gaps ----
   // Loads lightweight Image handles only. Bitmaps (the expensive rasters:
   // 1920×1080×4B each) are created lazily in a ±window around the current
-  // frame and evicted outside it — full-deck bitmaps would hold ~1.3 GB.
+  // frame and evicted outside it, full-deck bitmaps would hold ~1.3 GB.
   async preload(onProgress) {
     const order = this.priorityOrder();     // 0, N-1, N/2, N/4, 3N/4 ...
     let loaded = 0;
@@ -57,7 +57,7 @@ export class ScrollFrames {
     if (this._filling) return;   // one filler at a time; next frame re-triggers
     this._filling = true;
     try {
-      // current frame first, then outward — the scrub needs "here" before "near"
+      // current frame first, then outward, the scrub needs "here" before "near"
       for (let d = 0; d <= this.window; d++) {
         for (const i of d === 0 ? [center] : [center - d, center + d]) {
           if (i < lo || i > hi || this.bitmaps.has(i) || !this.imgs[i]) continue;

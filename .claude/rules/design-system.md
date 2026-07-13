@@ -9,11 +9,15 @@ businesses"): WHITE + BLUE, corporate-grade. Green survives only as a
 pinch on positive deltas. Voice talks like a transformation partner —
 speed, team size, fixed budgets ($30K–$100K) stated on the page.
 
-1. Two typefaces with strict roles: system SANS for prose
-   (`-apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial`),
-   MONO for data — numbers, labels, receipts, tickers, code
+1. Typefaces (founder-amended 2026-07-13): self-hosted DISPLAY font
+   for headings — "Bricolage Grotesque" (replaced Space Grotesk;
+   founder call: "heading font looks robotic"). Self-hosted Inter for
+   prose, MONO for data — numbers, labels, receipts, tickers, code
    (`ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas`).
-   Never mono prose paragraphs, never sans numbers. No webfonts.
+   Never mono prose paragraphs, never sans numbers. Fonts self-hosted
+   only — no runtime external font requests.
+   Also founder-amended 2026-07-13: no backdrop-filter/blur on the
+   sticky header (perf + founder taste); em dashes banned in copy.
 2. Palette: `#FAFCFF` (paper, default bg), `#0A1830` (ink, text),
    `#0B5FFF` (brand blue — CTAs, labels, structure), `#0A1F44` (navy,
    inverted `.deep` sections; `#7FB0FF` is the accent on navy),

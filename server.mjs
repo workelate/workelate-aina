@@ -27,7 +27,7 @@ const audit = (leadId, step, detail) =>
 // ---- report generation (Anthropic) ----
 async function generateReport(payload) {
   const key = process.env.ANTHROPIC_API_KEY;
-  if (!key) return { stub: true, text: "No ANTHROPIC_API_KEY set — report generation skipped." };
+  if (!key) return { stub: true, text: "No ANTHROPIC_API_KEY set, report generation skipped." };
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -38,7 +38,7 @@ async function generateReport(payload) {
     body: JSON.stringify({
       model: process.env.AINA_MODEL || "claude-sonnet-4-6",
       max_tokens: 1500,
-      system: "You are WE_AINA's diagnostic engine. Given this business profile, produce a 1-page report: 3 specific automation opportunities for THIS business (name the workflow, the system we'd build, the estimated hours/money recovered — conservative numbers), then one paragraph on why building-materials operators specifically leak money here. Blunt operator tone. No buzzwords. End with the Diagnostic Sprint offer.",
+      system: "You are WE_AINA's diagnostic engine. Given this business profile, produce a 1-page report: 3 specific automation opportunities for THIS business (name the workflow, the system we'd build, the estimated hours/money recovered, conservative numbers), then one paragraph on why building-materials operators specifically leak money here. Blunt operator tone. No buzzwords. End with the Diagnostic Sprint offer.",
       messages: [{ role: "user", content: JSON.stringify(payload) }]
     })
   });
@@ -68,7 +68,7 @@ const VALID = {
 };
 function validate(p) {
   if (typeof p !== "object" || p === null) return "bad payload";
-  if (p.website) return "honeypot"; // hidden field — humans never fill it
+  if (p.website) return "honeypot"; // hidden field, humans never fill it
   if (typeof p.email !== "string" || p.email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)) return "bad email";
   const a = p.answers;
   if (typeof a !== "object" || a === null) return "bad answers";
@@ -114,12 +114,12 @@ async function handleScore(req, res) {
   res.writeHead(200, { "content-type": "application/json" });
   res.end(JSON.stringify({ ok: true, leadId: Number(leadId) }));
 
-  // report generation after response — lead is already stored
+  // report generation after response, lead is already stored
   try {
     const report = await generateReport(payload);
     audit(leadId, report.stub ? "report_stubbed" : "report_generated", report.text.slice(0, 500));
     // SMTP not configured in dev: log instead of send, keep the receipt
-    audit(leadId, "email_skipped", "SMTP not configured — report stored in audit only");
+    audit(leadId, "email_skipped", "SMTP not configured, report stored in audit only");
   } catch (e) {
     audit(leadId, "report_failed", e.message);
   }

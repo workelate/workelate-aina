@@ -33,7 +33,7 @@ if (pill) {
   new IntersectionObserver(([e]) => { ctaIn = e.isIntersecting; upd(); }).observe(cta);
 }
 
-// Mobile gets stills — non-negotiable (design rule 7)
+// Mobile gets stills, non-negotiable (design rule 7)
 const mobile = matchMedia("(max-width: 768px)").matches;
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -62,14 +62,14 @@ if (!mobile && !reduced) {
   }, { rootMargin: "150% 0px" });
   kick.observe(section);
 
-  // callouts ride the same frame event — no second scroll listener
+  // callouts ride the same frame event, no second scroll listener
   const callouts = [...section.querySelectorAll(".callout")];
   section.addEventListener("frame", e => {
     callouts.forEach(c =>
       c.classList.toggle("on", e.detail.progress >= +c.dataset.at &&
                                 e.detail.progress <  +c.dataset.at + 0.18));
   });
-  // no scrub on this path yet — readiness set when preload completes above
+  // no scrub on this path yet, readiness set when preload completes above
 } else if (!mobile && reduced) {
   // reduced motion on desktop: collapse the pin, show the static strip
   document.getElementById("cs-pin").style.display = "none";
