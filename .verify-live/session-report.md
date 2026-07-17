@@ -46,3 +46,5 @@
 | 05:57:42 | 1 | is migration to next.js is done ? | 🟡 PARTIAL | Held. 1 item(s) evidenced, 2 missing — submit the remaining evidence before sign-off. |
 | 10:30:52 | 1 | is migration to next.js is done ? | ❓ UNPROVEN | Nothing on the record for this task. Name exact files or provide a probe — no evidence, no sign-off. |
 | 11:00:46 | 1 | is migration to next.js is done ? | ❓ UNPROVEN | Nothing on the record for this task. Name exact files or provide a probe — no evidence, no sign-off. |
+| 12:17:48 | 1 | complete next.js and then do commit all changes asap | ✅ PROVEN | Approved. all 6 exist on disk: db.js, route.js, route.js, next.config.mjs, package.json, CLAUDE.md. |
+| 12:30:42 | 1 | code pushed to the github ? | ❓ UNPROVEN | Nothing on the record for this task. Name exact files or provide a probe — no evidence, no sign-off. |

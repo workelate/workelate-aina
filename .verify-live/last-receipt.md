@@ -1,8 +1,8 @@
 # verify-live receipt — 🟡 **UNPROVEN**
 
-**Task asked:** is migration to next.js is done ?
+**Task asked:** code pushed to the github ?
 
-> 0 proven · 0 busted · 0 unproven · coverage 0/0 (0%) — `/Users/chitransh/Desktop/WE_CL/WE_AINA` — 2026-07-13T11:00:46.427Z — 0 tokens spent
+> 0 proven · 0 busted · 0 unproven · coverage 0/0 (0%) — `/Users/chitransh/Desktop/WE_CL/WE_AINA` — 2026-07-13T12:30:42.890Z — 0 tokens spent
 
 | verdict | claim | evidence |
 |---|---|---|
