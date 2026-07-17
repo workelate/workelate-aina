@@ -1,7 +1,7 @@
 // POST /api/score — ported from server.mjs. Same contract, same spam guard,
 // same audit trail: every step recorded in the audit table.
 import { after } from "next/server";
-import { db, audit } from "../../../lib/db.js";
+import { insertLead, audit } from "../../../lib/db.js";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -85,22 +85,27 @@ export async function POST(req) {
   }
 
   const { email = "", answers = {}, score = 0, qualified = false, ts = new Date().toISOString() } = payload;
-  const { lastInsertRowid: leadId } = db.prepare(
-    "INSERT INTO leads (email, answers, score, qualified, ts) VALUES (?,?,?,?,?)"
-  ).run(email, JSON.stringify(answers), score | 0, qualified ? 1 : 0, ts);
-  audit(leadId, "lead_stored", `score=${score} qualified=${qualified}`);
+
+  // Store persists locally; on Vercel's ephemeral FS it returns null and we
+  // record the skip so the caller still gets a receipt (mirrors the SMTP/
+  // Anthropic stubs). Wire a hosted store to make this persist in prod.
+  const leadId = await insertLead({ email, answers, score, qualified, ts });
+  if (leadId == null) {
+    return json({ ok: true, persisted: false, note: "lead store not configured" });
+  }
+  await audit(leadId, "lead_stored", `score=${score} qualified=${qualified}`);
 
   // report generation after the response is sent; lead is already stored
   after(async () => {
     try {
       const report = await generateReport(payload);
-      audit(leadId, report.stub ? "report_stubbed" : "report_generated", report.text.slice(0, 500));
+      await audit(leadId, report.stub ? "report_stubbed" : "report_generated", report.text.slice(0, 500));
       // SMTP not configured: log instead of send, keep the receipt
-      audit(leadId, "email_skipped", "SMTP not configured, report stored in audit only");
+      await audit(leadId, "email_skipped", "SMTP not configured, report stored in audit only");
     } catch (e) {
-      audit(leadId, "report_failed", e.message);
+      await audit(leadId, "report_failed", e.message);
     }
   });
 
-  return json({ ok: true, leadId: Number(leadId) });
+  return json({ ok: true, persisted: true, leadId });
 }
