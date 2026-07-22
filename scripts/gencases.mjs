@@ -73,7 +73,7 @@ ${cases.map(card).join("\n")}
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, every action logged.</p>
+        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
       </div>
       <div>
         <div class="fh">Company</div>

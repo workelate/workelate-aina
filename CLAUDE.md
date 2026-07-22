@@ -16,7 +16,7 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
    the compliant alternative.
 4. Section order: hero → ticker → shift → work → services → casestudy
    → process → founders → cta → footer.
-5. After touching the casestudy scrub or any JS: run Lighthouse mobile;
+5. After touching #casestudy or any JS: run Lighthouse mobile;
    budgets — perf ≥ 95, 0 long tasks >50ms during scroll, CLS 0.
 6. Final summaries must name exact file paths for created/changed
    files and state "tests pass" only after running them — verify-live
@@ -29,7 +29,9 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
 - `npm run dev:legacy` — old zero-dependency server.mjs (kept as
   reference; same routes).
 - `npm run verify` — deterministic gate (Playwright). Needs dev server.
-- `npm run frames` — regenerate the 160 procedural scrub frames.
+- `npm run frames` — regenerates the 160 procedural scrub frames.
+  DEAD as of 2026-07-22: the scrub section was cut, nothing reads
+  assets/frames/casestudy/ any more. Kept only as reference.
 - `node scripts/gensystems.mjs` — regenerate /systems pages + sitemap.
 - `node scripts/genartifacts.mjs` — regenerate product mockup PNGs.
 - `node scripts/genog.mjs` — regenerate the OG image.
@@ -52,17 +54,25 @@ the next regeneration.
 - /api/score has a spam guard: 5/hr/IP rate limit, payload validation,
   honeypot field `website` (returns fake 200). Next dev hot-reloads
   route handlers; no manual restart needed.
-- Scrub engine (site/js/scrollFrames.js) keeps only a ±24 frame
-  ImageBitmap window (~full deck would hold ~1.3 GB). Don't "simplify"
-  the window away. Frames are placeholder SVGs until the real video
-  exists; then ffmpeg-extract to webp, same path/count, engine
-  untouched.
+- The pinned scroll-scrub was CUT on 2026-07-22 (founder: "entirely
+  looking pathetic") — 500vh of near-blank navy, because the frames
+  were never more than placeholder SVGs. #casestudy is now a static
+  content section in site/index.html. site/js/scrollFrames.js and
+  assets/frames/casestudy/ (4.8 MB) are now DEAD CODE, imported by
+  nothing; delete them once the founder confirms no scrub returns.
 - Anthropic report + email send are STUBBED until ANTHROPIC_API_KEY /
   SMTP creds exist; the audit table records the skip. The site promises
   "report in 10 minutes" — do not deploy before wiring this.
 
 ## Copy rules
 - Receipts over adjectives; every claim carries a real number.
+- BANNED sitewide (founder call 2026-07-22): audit/logging as a selling
+  point. "Every action logged. Every claim auditable.", "audit trail",
+  "auditable", "every touch logged", "the log shows". Stripped from 50
+  occurrences across site/, scripts/ and data/cases.json. A receipt is a
+  NUMBER THAT MOVED, not a log line — say what changed, not that it was
+  recorded. The leads/audit DB tables in lib/db.js stay untouched; this
+  is a copy ban, not an architecture change.
 - One CTA phrase sitewide: "Get your AI Readiness Score".
   "contact us" is banned (verify enforces both).
 - NEVER fabricate customer quotes, testimonials, or project numbers.
@@ -74,10 +84,10 @@ the next regeneration.
 
 ## Success = (in order)
 1. Verify gate 6/6 green.
-2. Lighthouse mobile ≥95, scrub jank 0.
+2. Lighthouse mobile ≥95, scroll jank 0.
 3. A lead submitted through the widget lands in leads.db with a full
    audit trail.
 4. Founder-blocked items tracked, not silently dropped: real visuals
-   (hero video + scrub source), founder photos, CitiSense number,
+   (hero video), founder photos, CitiSense number,
    LinkedIn URLs, Sprint fee band, SMTP + Anthropic creds, real domain
    (weaina.com in canonicals is a placeholder), git init + deploy.

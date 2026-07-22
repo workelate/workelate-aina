@@ -53,7 +53,7 @@ const MOCKS = {
     </table>
   </div>`,
 
-  "agent-log": `${BASE}<div class="bar"><span><b>WE_AINA</b> · agent activity, invoices</span><span>last 24h · 71 actions · 0 unlogged</span></div>
+  "agent-log": `${BASE}<div class="bar"><span><b>WE_AINA</b> · agent worklist, invoices</span><span>last 24h · 71 actions · 0 failed</span></div>
   <div class="body log">
     <div><span class="t">05:58:11</span><span class="a">agent.match</span> delivery #88671 ↔ invoice INV-2214, 3-way match OK (order, weighbridge, delivery) → <b>posted</b></div>
     <div><span class="t">05:58:14</span><span class="a">agent.match</span> delivery #88672 ↔ invoice INV-2215, matched, tolerance 0.4% → <b>posted</b></div>
@@ -95,9 +95,15 @@ for (const [name, html] of Object.entries(MOCKS)) {
   writeFileSync(tmp, `<!doctype html><html><head>${html.split("</style>")[0]}</style></head><body>${html.split("</style>")[1]}</body></html>`);
   const p = await b.newPage({ viewport: { width: 1400, height: 900 }, deviceScaleFactor: 1 });
   await p.goto("file://" + tmp);
-  await p.screenshot({ path: path.join(OUT, `${name}.png`) });
+  // crop to the content, not the viewport: the mocks are shorter than 900px and
+  // a fixed-height shot left a slab of dead white under every artifact.
+  const h = await p.evaluate(() => {
+    document.body.style.height = "auto";
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  });
+  await p.screenshot({ path: path.join(OUT, `${name}.png`), clip: { x: 0, y: 0, width: 1400, height: h } });
   await p.close();
   unlinkSync(tmp);
-  console.log(`wrote site/img/${name}.png`);
+  console.log(`wrote site/img/${name}.png (1400x${h})`);
 }
 await b.close();

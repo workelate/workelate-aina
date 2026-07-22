@@ -158,38 +158,74 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .svc p { margin-top: 8px; padding-left: 44px; font-size: 14px; }
 .svc:hover h3 { color: var(--blue); }
 
-/* ---- case study scrub ---- */
-#casestudy { padding: 0; border-top: 4px solid var(--blue); background: var(--deep); color: #FFFFFF; }
-#casestudy .label { color: #7FB0FF; }
-.pin-wrap { height: 500vh; position: relative; }
-.pin { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-.pin canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cs-head { position: absolute; top: 40px; left: 24px; z-index: 2; }
-.callout {
-  font-family: var(--mono);
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(24px, 4vw, 48px);
-  font-weight: 700;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.35s;
-  pointer-events: none;
-  max-width: 90vw;
-  text-shadow: none;
+/* ---- banner band: a 4-shot crossfade of real delivery work.
+   Founder call 2026-07-22: the single stock team photo was cut outright
+   ("remove this image totally"); the slot keeps an image, but it rotates.
+   Opacity + transform only, so the band never costs a layout pass. ---- */
+.band-cycle { margin: 0 0 48px; }
+.bc-frames {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--deep);
 }
-.callout.on { opacity: 1; }
-.loadbar-wrap { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; z-index: 3; }
-#loadbar { height: 100%; width: 0; background: var(--blue); }
-.cs-static { display: none; }
+.bc-frames img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: bandCycle 28s infinite;
+  will-change: opacity, transform;
+}
+.bc-frames img:nth-child(1) { animation-delay: 0s; }
+.bc-frames img:nth-child(2) { animation-delay: 7s; }
+.bc-frames img:nth-child(3) { animation-delay: 14s; }
+.bc-frames img:nth-child(4) { animation-delay: 21s; }
+@keyframes bandCycle {
+  0%   { opacity: 0; transform: scale(1.02); }
+  3%   { opacity: 1; }
+  25%  { opacity: 1; transform: scale(1.06); }
+  28%  { opacity: 0; }
+  100% { opacity: 0; transform: scale(1.02); }
+}
+@media (max-width: 768px) { .bc-frames { aspect-ratio: 3 / 2; } }
+/* reduced motion: hold the first shot, no rotation. The global reduce rule
+   kills the animation, which would otherwise leave every frame at opacity 0 */
+@media (prefers-reduced-motion: reduce) {
+  .bc-frames img { opacity: 0; transform: none; }
+  .bc-frames img:first-child { opacity: 1; }
+}
 
+/* ---- case study ---- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.cs-h2 { font-size: clamp(30px, 4.2vw, 52px); max-width: 900px; margin-top: 20px; }
+#casestudy .sub { max-width: 700px; margin-top: 22px; font-size: 17px; }
+/* .tens sets 3 columns further down the sheet, so this needs the extra
+   class to win the cascade rather than relying on source order */
+.tens.tens-4 { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.cs-cmp { margin-top: 64px; }
+.cs-cmp th:first-child { width: 18%; }
+.cs-cmp td:not(:first-child) { width: 41%; }
+.cs-more { margin-top: 44px; font-family: var(--mono); font-size: 15px; font-weight: 700; }
+#casestudy .artifact-strip img { border-color: rgba(255, 255, 255, 0.25); }
+/* the two mockups crop to different heights; pin the captions to a common
+   baseline so the pair reads as one row */
+#casestudy .artifact-strip { align-items: stretch; }
+#casestudy .artifact-strip figure { display: flex; flex-direction: column; }
+#casestudy .artifact-strip figcaption { margin-top: auto; padding-top: 14px; }
+
+@media (max-width: 1000px) { .tens.tens-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) {
-  .pin-wrap, .pin { display: none; }
-  .cs-static { display: block; padding: 80px 0; }
-  .cs-static figure { margin: 0 0 16px; }
-  .cs-static img { width: 100%; display: block; }
-  .cs-static figcaption { padding: 16px 0 40px; font-size: 20px; font-weight: 700; }
+  .tens.tens-4 { grid-template-columns: 1fr; }
+  .cs-cmp th:first-child, .cs-cmp td:not(:first-child) { width: auto; }
 }
 
 /* ---- process ---- */

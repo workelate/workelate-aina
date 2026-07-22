@@ -28,7 +28,7 @@ const PAGES = [
       ["We run mixed fleets, owned and hired trucks. Does that work?", "Yes. Hired trucks are tracked from gate-in to gate-out even without telematics, using weighbridge and gate events. Owned trucks with GPS get full cycle tracking."],
       ["What data does it need on day one?", "Orders, truck list, and weighbridge feed. That is enough to start proposing assignments. Telematics and loader status make it sharper but are not prerequisites."],
       ["What happens when the internet drops at the pit?", "Dispatch falls back to the last approved plan and queues events locally; when the link returns, the system reconciles what actually happened against what was planned and flags the gaps. A connectivity blip never blanks the board."],
-      ["Can it handle multiple sites with shared fleet?", "Yes, that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same logged reasoning as single-site assignments."],
+      ["Can it handle multiple sites with shared fleet?", "Yes, that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same reasoning attached as single-site assignments."],
       ["How long until it pays for itself?", "At RockProsUSA scale the returned hours covered the build cost inside two quarters. Your Diagnostic Sprint report puts conservative numbers on your specific operation before you commit."]
     ]
   },
@@ -39,7 +39,7 @@ const PAGES = [
     metaDesc: "Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, no human in the loop.",
     costNums: ["A plant manager spending 90 minutes a day assembling shift data loses about 33 working days a year to copying numbers between systems.",
       "Decisions made on day-old production data cost real tonnage: a crusher running 7% under rate for two days before anyone notices is roughly 800 tonnes of lost throughput at a mid-size plant."],
-    system: "The system pulls shift logs, weighbridge tickets, downtime entries and energy readings as they happen, reconciles them against each other, and writes the daily production report before the morning meeting. Discrepancies, tonnage that does not match tickets, downtime nobody logged, are flagged in the report, not buried under it. The report reads like your best plant manager wrote it, because it is built from the questions they would ask.",
+    system: "The system pulls shift logs, weighbridge tickets, downtime entries and energy readings as they happen, reconciles them against each other, and writes the daily production report before the morning meeting. Discrepancies, tonnage that does not match tickets, downtime nobody entered, are flagged in the report, not buried under it. The report reads like your best plant manager wrote it, because it is built from the questions they would ask.",
     landing: "The first two weeks are plumbing: connectors to wherever your data actually lives, Tally exports, the weighbridge PC, the operator's shift-log spreadsheet, the DCS historian if you have one. Nothing about how your operators record data changes; the system meets the data where it is. By week three you get a parallel report every morning alongside whatever you produce today. You mark what is wrong or missing, the reconciliation rules tighten, and within a month the parallel report is the report. The person who used to assemble it gets their mornings back, most plants redeploy them onto the discrepancies the report now surfaces.",
     signs: ["The morning meeting argues about what happened instead of what to do.",
       "Downtime totals differ depending on who you ask.",
@@ -91,7 +91,7 @@ const PAGES = [
       "The same route's billed distance varies 20% between carriers and nobody has asked why.",
       "Disputes die because assembling the evidence takes longer than the amount is worth.",
       "You have never audited a full month of freight lines, only samples."],
-    proof: "The matching engine descends from the RockProsUSA invoice pipeline, 2,140 invoices processed with zero manual touches and a full audit trail on every match decision.",
+    proof: "The matching engine descends from the RockProsUSA invoice pipeline, 2,140 invoices processed with zero manual touches and every match decision carrying the evidence behind it.",
     faq: [
       ["Our carriers bill in every format imaginable. Does that break it?", "No. PDFs, spreadsheets, scanned images, extraction handles all of them. Format chaos is a solved problem; missing source data is the only real blocker, and the system tells you when that is the case."],
       ["What happens to disputed lines?", "They queue with evidence bundled: the bill line, the matching records, the discrepancy. Your team sends the dispute in two clicks; the system tracks it to resolution."],
@@ -103,25 +103,25 @@ const PAGES = [
   },
   {
     slug: "ar-followup-automation",
-    h1: "Receivables chased every day, escalated on rules, logged forever",
+    h1: "Receivables chased every day, escalated on rules, never dropped",
     cat: "Accounts receivable follow-up automation",
-    metaDesc: "Every open invoice chased on cadence, escalated by rule, every touch logged. Promises to pay tracked to their date and re-chased the morning after.",
+    metaDesc: "Every open invoice chased on cadence, escalated by rule. Promises to pay tracked to their date and re-chased the morning after.",
     costNums: ["A collections follow-up that depends on one person's memory skips 30–40% of due accounts in any given week, the quiet accounts age silently.",
       "Every 10 days of DSO on ₹50 Cr revenue is roughly ₹1.4 Cr of working capital parked in other people's businesses."],
-    system: "The system watches every open invoice, sends reminders on the cadence you set, and escalates by rule, amount, age, customer tier, to the right human at the right moment. Every touch is logged: what was sent, when, what the customer replied. Promises to pay get tracked to their date and re-chased the morning after they break. Your team handles conversations; the system makes sure no account goes quiet.",
+    system: "The system watches every open invoice, sends reminders on the cadence you set, and escalates by rule, amount, age, customer tier, to the right human at the right moment. You can see what was sent, when, and what the customer replied. Promises to pay get tracked to their date and re-chased the morning after they break. Your team handles conversations; the system makes sure no account goes quiet.",
     landing: "Setup is one working session: your invoice feed, your customer tiers, and the escalation ladder, who gets pinged at 30 days, who picks up the phone at 60, whose name goes on the letter at 90. The first week runs reminders for your approval before sending, so you see exactly what customers will receive in your tone, not ours. After that the cadence runs itself. The change your team feels is subtraction: no more Monday list-building, no more 'did anyone follow up with them?', the answer is in the log, timestamped. The change your customers feel is consistency, which is quietly the strongest collections lever there is.",
     signs: ["DSO is a number you calculate for the bank, not one you manage weekly.",
       "Collections follow-up collapses every time the person who owns it goes on leave.",
       "Promises to pay are remembered, not tracked, and remembered generously.",
       "Your largest overdue account is also the one nobody wants to call."],
-    proof: "Runs on the audited-action spine proven at RockProsUSA, every action logged, every claim auditable. That audit trail is what makes an automated chaser safe to point at your customers.",
+    proof: "Runs on the same delivery spine proven at RockProsUSA, where 2,140 invoices went out with zero manual touches. That track record is what makes an automated chaser safe to point at your customers.",
     faq: [
       ["Will this annoy my customers?", "The cadence and tone are yours. Most operators find customers respond better to consistent, polite, accurate reminders than to the current pattern, silence, then an angry call at day 90."],
       ["Can it hold back on strategic accounts?", "Yes. Tiering is a first-class rule. Key accounts can route straight to a named owner with a prepared summary instead of an automated reminder."],
       ["Does it work with post-dated cheques and part-payments?", "Yes. Part-payments re-age the balance correctly; PDC dates suppress reminders until they matter, then verify clearance."],
       ["What channels does it use?", "Email and WhatsApp are standard; SMS and voice-note reminders where those are what your customers actually read. Escalations land as prepared briefs for a human call, not another automated message."],
       ["Can it reconcile payments against invoices automatically?", "Yes, incoming payments match to invoices including partial and clubbed payments, so reminders never chase money that already arrived, which is the fastest way an automated chaser loses a customer's respect."],
-      ["How do I know it is working?", "The monthly report shows DSO trend, promise-kept rate and every action taken. If DSO does not move, the log shows exactly where the sticking accounts are."]
+      ["How do I know it is working?", "The monthly report shows DSO trend, promise-kept rate and every action taken. If DSO does not move, the report names the sticking accounts."]
     ]
   },
   {
@@ -137,14 +137,14 @@ const PAGES = [
       "Filed numbers and operating numbers are reconciled only when an inspector asks.",
       "One person holds the entire filing process, and their notice period is 30 days.",
       "You have paid a late fee this year for a filing whose data existed on time."],
-    proof: "Built on the audit-first architecture running at RockProsUSA: every action logged, every number traceable to a source event. Compliance is where that discipline pays twice.",
+    proof: "Built on the same architecture running at RockProsUSA, where every filed number comes straight from the operating data that produced it. Compliance is where that discipline pays twice.",
     faq: [
       ["Our compliance rules change constantly. How does the system keep up?", "Rule changes are configuration, not rebuilds. When a format or threshold changes, the template updates once and every subsequent filing follows it."],
       ["Does it file directly with government portals?", "It prepares filing-ready artifacts and, where portals allow programmatic submission, files them. Where they do not, your team submits a prepared package instead of building one."],
       ["What about historical gaps, we are behind on documentation?", "The Diagnostic Sprint sizes the backlog first. Back-filling from existing weighbridge and dispatch records is usually possible for 12–18 months of history."],
       ["Can it handle multi-state GST and different state royalty regimes?", "Yes. Each site carries its own regime configuration; the group view shows every site's filing status on one board, which is usually the first time a director has seen that board at all."],
-      ["What does an inspector see if they audit us?", "A filing where every number traces to a logged source event, ticket, dispatch record, production log, with timestamps. Inspections get shorter when the trail is instant."],
-      ["Who is liable if a filing is wrong?", "Same as today: you. What changes is that every number in the filing traces to a logged source event, so wrong filings become rare and defensible instead of common and mysterious."]
+      ["What does an inspector see if they audit us?", "A filing where every number comes straight from the ticket, dispatch record or production entry that produced it. Inspections get shorter when the evidence is already assembled."],
+      ["Who is liable if a filing is wrong?", "Same as today: you. What changes is that every number in the filing comes straight from the operating data behind it, so wrong filings become rare and defensible instead of common and mysterious."]
     ]
   }
 ];
@@ -259,7 +259,7 @@ ${JSON.stringify({
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, every action logged.</p>
+        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
       </div>
       <div>
         <div class="fh">Company</div>

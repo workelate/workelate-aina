@@ -32,10 +32,18 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
 5. One CTA on the whole site: "Get your AI Readiness Score".
    The phrase "contact us" is banned.
 6. Motion: count-up stats, reveal-on-scroll, hover fills are welcome —
-   cheap transforms/opacity only, no layout thrash. The case-study
-   scrub stays the centerpiece. Respect `prefers-reduced-motion`.
-7. Mobile (<768px) gets static frames instead of the scrub engine.
-   Non-negotiable.
+   cheap transforms/opacity only, no layout thrash. Respect
+   `prefers-reduced-motion`.
+   Founder-amended 2026-07-22: the 500vh pinned case-study SCRUB IS
+   DEAD ("this section is entirely looking pathetic"). It rendered as
+   near-blank navy because the 160 frames were procedural placeholders
+   and no real video ever landed. #casestudy is now a normal-height
+   content section: stat band + before/after table + product-artifact
+   mockups. Do NOT reinstate a scroll-scrub without real footage AND
+   a fresh founder call.
+7. The case-study section carries its weight with CONTENT, not motion,
+   and reads the same on mobile and desktop. Any full-viewport
+   scroll-jacked section needs a founder call before it ships.
 8. Voice: industry-agnostic, process-agnostic. Never position as
    "industrial only". Named proof: RockProsUSA (industrial ops),
    CitiSense (marketing/creative, Mexico). The other projects stay
@@ -52,3 +60,9 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    requests). Prefer shots that sit well on the white/blue palette;
    product-artifact mockups (dashboards, agent logs, receipts) remain
    first choice for product-proof slots.
+   Founder-amended 2026-07-22: img/photos/team.jpg is DELETED, do not
+   reinstate it. Wide banner slots use `.band-cycle` — a 4-shot
+   crossfade (28s, 7s per shot, opacity+transform only), not one static
+   hero photo. Source shots must be at least 3:2; a near-square source
+   in a 2:1 band loses ~48% of the frame to the crop and turns into a
+   wall of face, which is what got team.jpg cut.

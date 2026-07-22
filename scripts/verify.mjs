@@ -39,7 +39,7 @@ assert("schema present", (await page.locator(
 // scroll-jank probe on the case study — measured at steady state: load-time
 // work is Lighthouse TBT's domain; this budget is about SCROLLING.
 await page.evaluate(() => {
-  const s = document.getElementById("cs-pin");
+  const s = document.getElementById("casestudy");
   if (s) s.scrollIntoView();               // trigger lazy preload
 });
 await page.waitForFunction(() => window.__scrubReady === true, { timeout: 20000 }).catch(() => {});

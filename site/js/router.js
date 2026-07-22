@@ -24,7 +24,7 @@ const NEEDS = {
   "cash": {
     label: "Collections & cash flow",
     title: "No receivable goes quiet again",
-    blurb: "Every open invoice chased on cadence, escalated by rule, every touch logged. Promises to pay tracked to their date. DSO drops, or the log shows you exactly where it's stuck.",
+    blurb: "Every open invoice chased on cadence, escalated by rule. Promises to pay tracked to their date. DSO drops, or you see exactly where it's stuck.",
     link: "/systems/ar-followup-automation", linkText: "See the AR follow-up system"
   },
   "orders": {

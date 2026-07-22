@@ -4,7 +4,7 @@
     {
       "tag": "Industrial ops, USA",
       "title": "RockProsUSA: 13 quarries on one agentic dispatch system",
-      "summary": "Dispatch, invoicing and reporting moved onto agents across 13 quarry sites. Truck assignment proposed with logged reasoning, invoices 3-way matched without a human pass, daily reports written by 6 AM. Cycle time fell 38% in the first quarter after cutover; 11,200 operations hours returned in year one.",
+      "summary": "Dispatch, invoicing and reporting moved onto agents across 13 quarry sites. Truck assignment proposed with its reasoning attached, invoices 3-way matched without a human pass, daily reports written by 6 AM. Cycle time fell 38% in the first quarter after cutover; 11,200 operations hours returned in year one.",
       "metric": "−38%",
       "metricLabel": "dispatch cycle time · 2,140 invoices, zero touches"
     },
@@ -26,7 +26,7 @@
     {
       "tag": "Professional services, India",
       "title": "AR follow-up: no account goes quiet",
-      "summary": "Receivables chased on cadence, escalated on rules, every touch logged; promises to pay tracked to their date and re-chased the morning after they break.",
+      "summary": "Receivables chased on cadence, escalated on rules; promises to pay tracked to their date and re-chased the morning after they break.",
       "metric": "DSO ↓",
       "metricLabel": "measured monthly, log-verified",
       "anonymous": true

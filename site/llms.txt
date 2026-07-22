@@ -23,13 +23,13 @@ Key verifiable facts:
 - [Plant production reporting](https://weaina.com/systems/plant-production-reporting): shift logs to P&L-grade reports written by 6:00 AM without a human.
 - [Dealer order management](https://weaina.com/systems/dealer-order-management): WhatsApp/phone/email orders become one queue with automatic confirmations.
 - [Freight reconciliation](https://weaina.com/systems/freight-reconciliation): carrier bills matched to weighbridge and delivery data; disputes flagged with evidence.
-- [AR follow-up automation](https://weaina.com/systems/ar-followup-automation): receivables chased on schedule, escalated on rules, every touch logged.
+- [AR follow-up automation](https://weaina.com/systems/ar-followup-automation): receivables chased on schedule, escalated on rules, promises to pay tracked.
 - [Compliance documentation](https://weaina.com/systems/compliance-documentation): royalty, GST, e-way and environmental filings assembled from operating data.
 
 ## Essays
 
 - [The consulting pyramid can't survive agents](https://weaina.com/blog/the-pyramid-cant-survive-agents): why volume labor priced into SI quotes no longer exists.
-- [Receipts over decks](https://weaina.com/blog/receipts-over-decks): what auditable AI delivery looks like, logs with reasoning, verify gates over status reports.
+- [Receipts over decks](https://weaina.com/blog/receipts-over-decks): what we hand you instead of slides, numbers that moved, verify gates over status reports.
 
 ## Contact
 
