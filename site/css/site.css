@@ -237,6 +237,24 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
   .ask-chips button { font-size: 12px; }
 }
 
+/* ---- portfolio depth & width. Numbers are counted off the GitHub crawl
+   (374 repos, 41 programmes); see data/portfolio-inventory.md. Rules and
+   whitespace only, no cards. ---- */
+#portfolio .tens { margin-bottom: 72px; }
+.pf-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; border-top: 1px solid rgba(10,24,48,0.14); padding-top: 44px; }
+.pf-col h3 { font-size: 20px; margin-bottom: 22px; }
+.pf-list { list-style: none; columns: 2; column-gap: 28px; }
+.pf-list li { font-size: 14.5px; padding: 7px 0; break-inside: avoid; border-bottom: 1px solid rgba(10,24,48,0.08); }
+.pf-note { font-size: 13px; margin-top: 22px; max-width: 460px; }
+.pf-depth dt { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.04em; margin-top: 20px; }
+.pf-depth dt:first-child { margin-top: 0; }
+.pf-depth dd { font-size: 14.5px; margin: 5px 0 0; color: rgba(10,24,48,0.68); padding-bottom: 14px; border-bottom: 1px solid rgba(10,24,48,0.08); }
+.pf-foot { margin-top: 48px; padding-top: 28px; border-top: 2px solid var(--blue); font-size: 17px; max-width: 780px; }
+@media (max-width: 860px) {
+  .pf-split { grid-template-columns: 1fr; gap: 44px; }
+  .pf-list { columns: 1; }
+}
+
 /* ---- then vs now: what agents changed about our own economics ---- */
 .thennow { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(255,255,255,0.25); }
 .thennow .tn { padding: 32px; border-right: 1px solid rgba(255,255,255,0.25); }

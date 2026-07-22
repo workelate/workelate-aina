@@ -46,9 +46,29 @@ const FACTS = [
   },
   {
     id: "trust",
-    q: ["proof", "trust", "reference", "portfolio", "experience", "track record", "done before", "credentials"],
-    a: `We have shipped across ${projects.length} programmes since 2019, from a 13-site dispatch platform to an AI annotation tool with in-browser inference back in 2020. Ask about your industry and I will point you at the closest one.`,
-    links: [{ label: "Case studies", href: "/case-studies" }]
+    q: ["proof", "trust", "reference", "portfolio", "experience", "track record", "done before", "credentials", "how many projects", "how much work"],
+    a: "374 repositories across 41 distinct programmes, shipped continuously from 2018 to 2026. That is whole programmes with their apps, backends, admin consoles and integrations, not forty demos. Ask about your sector and I will point you at the closest one.",
+    links: [{ label: "Depth and width", href: "/#portfolio" }, { label: "Case studies", href: "/case-studies" }]
+  },
+  {
+    id: "sectors",
+    q: ["industry", "industries", "sector", "sectors", "verticals", "who do you work with", "clients", "kind of business", "worked with"],
+    a: "Sixteen sectors so far: property development, industrial operations, fuel distribution, freight, manufacturing, pharma and diversified industry, ERP and finance ops, e-commerce, edtech, SaaS, marketing, ML tooling, AR and VR, marketplaces, HR and contract intelligence.",
+    links: [{ label: "Depth and width", href: "/#portfolio" }]
+  },
+  {
+    id: "enterprise",
+    // plurals are listed explicitly: matching is word-boundary, so "enterprise"
+    // does not match "enterprises" and the question fell through to a project
+    q: ["enterprise", "enterprises", "large company", "large companies", "big company", "big companies", "listed", "corporate", "conglomerate", "serious client", "serious clients", "name your clients", "client names", "logos"],
+    a: "Yes, including listed developers and diversified industrial groups. Several do not publicise their vendors, so we name them in the room with their permission rather than on a landing page. What we can show you publicly is the work itself.",
+    links: [{ label: "Depth and width", href: "/#portfolio" }, { label: "Case studies", href: "/case-studies" }]
+  },
+  {
+    id: "erp",
+    q: ["tally", "erp integration", "accounting software", "connector", "erp connector", "books", "gst"],
+    a: "Thirteen repositories on Tally connectors alone. Most Indian businesses run on it, most integrations with it are written once and abandoned, and we have been back to that problem enough times to know where it breaks.",
+    links: [{ label: "Depth and width", href: "/#portfolio" }]
   },
   {
     id: "start",
