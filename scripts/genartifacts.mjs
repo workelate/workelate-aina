@@ -59,7 +59,7 @@ const MOCKS = {
     <div><span class="t">05:58:14</span><span class="a">agent.match</span> delivery #88672 ↔ invoice INV-2215, matched, tolerance 0.4% → <b>posted</b></div>
     <div><span class="t">06:02:47</span><span class="a">agent.report</span> daily production report assembled, 4 sources reconciled, 1 discrepancy flagged → sent 06:00 list</div>
     <div><span class="t">06:14:03</span><span class="h">agent.flag</span> invoice INV-2219: billed qty 34.2t vs weighbridge 31.8t (+7.5%) → routed to A. Sharma with evidence bundle</div>
-    <div><span class="t">06:14:04</span><span class="a">agent.audit</span> evidence bundle: ticket #10221, gate log 05:11, rate card v7, attached</div>
+    <div><span class="t">06:14:04</span><span class="a">agent.check</span> evidence bundle: ticket #10221, gate log 05:11, rate card v7, attached</div>
     <div><span class="t">07:30:00</span><span class="a">agent.ar</span> reminder #2 sent, INV-2101 (day 32), tier B cadence, promise-to-pay date watching: 11 Jul</div>
     <div><span class="t">07:30:02</span><span class="a">agent.ar</span> INV-2088 payment received yesterday, reminder suppressed, account re-aged</div>
     <div><span class="t">08:05:19</span><span class="a">agent.order</span> WhatsApp order parsed, dealer Sunrise Traders, 60t M-sand, site Yelahanka, credit OK → auto-confirmed in 41s</div>

@@ -1,6 +1,6 @@
 # WE_AINA · WorkElate's AI-Native Agency
 
-> Digital transformation firm for $5–50M businesses, built AI-native: two accountable partners plus specialist bench plus agent fleets, instead of a consulting pyramid. Delivers working systems in weeks (not 6–18 months) at fixed budgets of $30K–$100K per build. Every agent action is logged with its reasoning, receipts, not status decks.
+> Digital transformation firm for $5–50M businesses, built AI-native: two accountable partners plus specialist bench plus agent fleets, instead of a consulting pyramid. Delivers working systems in weeks (not 6–18 months) at fixed budgets of $30K–$100K per build. Every claim carries the number that moved, receipts, not status decks.
 
 Key verifiable facts:
 - Delivery model: 2 accountable partners (Chitransh, IIM Mumbai; Pratik, IIT Bombay) + senior specialists engaged per build + agent fleet. The people who scope the work build it.
@@ -8,7 +8,7 @@ Key verifiable facts:
 - Commercials: fixed $30K–$100K per build, priced before the build starts. No time & materials.
 - Proof (RockProsUSA, building materials, 13 quarries): dispatch cycle time reduced 38%; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
 - Also named: CitiSense, AI marketing & sales platform for advertising and creative agencies and display teams in Mexico.
-- Audit: every agent action is logged with reasoning; deterministic verify gates block "done" until the system provably works on client data.
+- Proof: deterministic verify gates block "done" until the system provably works on client data; every claim carries the number that moved.
 - Dogfooding: WE_AINA is WorkElate's own agency, delivery runs on the WorkElate platform the firm builds.
 
 ## Core pages

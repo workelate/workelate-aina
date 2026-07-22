@@ -28,7 +28,7 @@
       "title": "AR follow-up: no account goes quiet",
       "summary": "Receivables chased on cadence, escalated on rules; promises to pay tracked to their date and re-chased the morning after they break.",
       "metric": "DSO ↓",
-      "metricLabel": "measured monthly, log-verified",
+      "metricLabel": "measured monthly against the prior baseline",
       "anonymous": true
     },
     {
