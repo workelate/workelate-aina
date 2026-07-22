@@ -3,7 +3,7 @@
 > Digital transformation firm for $5–50M businesses, built AI-native: two accountable partners plus specialist bench plus agent fleets, instead of a consulting pyramid. Delivers working systems in weeks (not 6–18 months) at fixed budgets of $30K–$100K per build. Every agent action is logged with its reasoning, receipts, not status decks.
 
 Key verifiable facts:
-- Delivery model: 2 accountable partners (Chitransh Agnihotri, IIM Mumbai; Pratik Kinage, IIT Bombay) + senior specialists engaged per build + agent fleet. The people who scope the work build it.
+- Delivery model: 2 accountable partners (Chitransh, IIM Mumbai; Pratik, IIT Bombay) + senior specialists engaged per build + agent fleet. The people who scope the work build it.
 - Speed: diagnostic in 2 weeks; working system in weeks; demos on the client's real data from week 3.
 - Commercials: fixed $30K–$100K per build, priced before the build starts. No time & materials.
 - Proof (RockProsUSA, building materials, 13 quarries): dispatch cycle time reduced 38%; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
