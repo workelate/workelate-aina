@@ -25,7 +25,10 @@ const FACTS = [
   },
   {
     id: "speed",
-    q: ["how long", "timeline", "how fast", "duration", "weeks", "deadline", "quickly", "speed", "faster", "ship faster", "launch", "mvp", "how soon"],
+    // "weeks" removed as a trigger: it appears in half the questions a visitor
+    // asks ("an MVP in weeks", "live in weeks") and was stealing them from the
+    // more specific facts. "mvp" belongs to the mvp fact, not here.
+    q: ["how long", "timeline", "how fast", "duration", "deadline", "quickly", "how soon", "when can you"],
     a: "Diagnostic Sprint takes two weeks. The build runs weeks, not quarters, with demos on your real data every week. Before agents this same scope took us nine to twelve months.",
     links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
@@ -61,9 +64,90 @@ const FACTS = [
   },
   {
     id: "ai",
-    q: ["ai", "agent", "agents", "llm", "model", "automation", "machine learning", "chatbot"],
+    q: ["ai", "agent", "agents", "llm", "automation", "machine learning", "chatbot"],
     a: "Agents do the volume work: reading messy input, matching records, drafting, chasing and reporting. People keep the judgement calls. That split is the whole method, and we run it on our own delivery first.",
     links: [{ label: "How we work", href: "/how-we-work" }]
+  },
+
+  // ---- product-studio questions (founder call 2026-07-22: the assistant was
+  // answering operations-automation questions from the old positioning) ----
+  {
+    id: "build",
+    q: ["what do you build", "what do you actually build", "what do you make", "services", "what you do", "offering", "capabilities", "product studio"],
+    a: "Four shapes of work: a product built from zero, a platform with several apps on one backend, AI features inside a product that already exists, and the internal systems a company runs on. Web, mobile and the backend under them.",
+    links: [{ label: "See what we have built", href: "/case-studies" }]
+  },
+  {
+    id: "mvp",
+    q: ["mvp", "from scratch", "zero", "new product", "greenfield", "idea", "prototype", "v1", "first version", "ship a product"],
+    a: "A first version is where the fixed price works hardest: we scope it in the two-week Sprint, then build it for $30K to $100K in weeks. You get a product real users can hit, not a prototype that needs rebuilding.",
+    links: [{ label: "How engagement works", href: "/how-we-work" }]
+  },
+  {
+    id: "mobile",
+    q: ["mobile", "app", "ios", "android", "react native", "phone app", "mobile app"],
+    a: "Yes. At RockProsUSA we shipped three separate React Native apps, one each for customers, truckers and drivers, against a shared backend. Field apps are a different discipline from web and we build both.",
+    links: [{ label: "Read the case study", href: "/case-studies" }]
+  },
+  {
+    id: "platform",
+    q: ["platform", "marketplace", "two sided", "two-sided", "saas", "multi tenant", "multi-tenant", "portal", "dashboard"],
+    a: "Our largest builds are platforms, not single apps. Edunomics runs donor, applicant and admin surfaces on 33 endpoints; WorkElate is a whole suite of apps on one backend. Multi-role and multi-tenant is the normal case for us.",
+    links: [{ label: "See what we have built", href: "/case-studies" }]
+  },
+  {
+    id: "aifeature",
+    q: ["add ai", "ai features", "ai into", "existing product", "llm features", "ai feature", "intelligence", "copilot", "recommendation"],
+    a: "We shipped a detection model running in the browser to pre-label images for human correction in 2020, well before this was a category. Putting AI inside a live product is an engineering problem, not a demo, and it is what we do.",
+    links: [{ label: "See what we have built", href: "/case-studies" }]
+  },
+  {
+    id: "rescue",
+    q: ["stalled", "take over", "takeover", "inherit", "existing codebase", "rescue", "stuck", "abandoned", "previous developer", "previous agency", "half built", "half-built"],
+    a: "We inherit the codebase and spend the two-week Sprint on what is actually there rather than what the last team said was there. It ends with a fixed price to finish it, or a written recommendation to stop.",
+    links: [{ label: "How engagement works", href: "/how-we-work" }]
+  },
+  {
+    id: "stack",
+    q: ["stack", "technology", "tech", "framework", "react", "node", "language", "built with", "typescript", "database"],
+    a: "React and Next.js on the front, React Native for mobile, Node behind it, Mongo or Postgres underneath, deployed on cloud infrastructure. We pick what your team can hire for later, not what is fashionable this quarter.",
+    links: [{ label: "How we work", href: "/how-we-work" }]
+  },
+  {
+    id: "billing",
+    q: ["payment", "payments", "stripe", "subscription", "billing", "checkout", "razorpay", "paypal", "monetise", "monetize"],
+    a: "Yes, including the parts that get skipped. We have shipped a product with Stripe and PayPal both live, tiered pricing and the invoicing behind it, so subscriptions actually reconcile.",
+    links: [{ label: "See what we have built", href: "/case-studies" }]
+  },
+  {
+    id: "hire",
+    q: ["hire", "hiring", "in house", "in-house", "our own team", "recruit", "developers", "freelancer", "agency instead", "why not hire"],
+    a: "Hiring a product team takes months before anyone writes a line, and you carry the salaries whether or not the roadmap needs them. We are two senior partners plus agents at a fixed price, and we go away when it ships.",
+    links: [{ label: "How we work", href: "/how-we-work" }]
+  },
+  {
+    id: "agentcode",
+    q: ["agents write", "ai write", "who writes the code", "written by ai", "vibe", "generated code", "quality", "is it safe", "reliable"],
+    a: "Yes, agents write most of the volume code, and that is exactly why every build runs inside a deterministic gate: automated checks that block \"done\" until it provably works on your data. Two named partners are accountable for what ships, not a tool.",
+    links: [{ label: "The verify loop", href: "/how-we-work" }]
+  },
+  {
+    id: "integrate",
+    q: ["integrate", "integration", "erp", "tally", "sap", "api", "existing systems", "connect", "sync", "whatsapp", "legacy"],
+    a: "Every build we ship plugs into something older than itself: ERP exports, weighbridges, WhatsApp, spreadsheets, customer portals. Integration is usually where the real work is, so we scope it in the Sprint rather than discovering it later.",
+    links: [{ label: "See the systems we install", href: "/systems/quarry-dispatch-automation" }]
+  },
+  {
+    id: "design",
+    q: ["design", "ux", "ui", "designer", "wireframe", "figma", "look", "brand", "interface"],
+    a: "Design is part of the build, not a separate purchase. A product designer works on every engagement, and the interfaces are made for the people who use them all day rather than for a demo.",
+    links: [{ label: "The delivery bench", href: "/about" }]
+  },
+  {
+    id: "internal",
+    q: ["internal tool", "internal tools", "spreadsheet", "excel", "back office", "admin panel", "ops tool", "manual process"],
+    a: "Every scaling company has one spreadsheet holding it together and one person who understands it. Turning that into a system the whole team can use, with the rules written down instead of remembered, is a common first build.",
+    links: [{ label: "See the systems we install", href: "/systems/dealer-order-management" }]
   }
 ];
 
