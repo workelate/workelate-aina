@@ -135,13 +135,9 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .hero-meta { margin-top: 72px; font-size: 13px; }
 .hero-meta span { margin-right: 32px; }
 
-/* ---- ticker ---- */
-#ticker { padding: 0; background: var(--deep); color: #FFFFFF; border: none; overflow: hidden; font-weight: 600; font-family: var(--mono); }
-.ticker-track { display: flex; width: max-content; animation: tick 42s linear infinite; }
-.ticker-track span { padding: 14px 40px; white-space: nowrap; font-size: 14px; }
-.ticker-track span::after { content: "/"; color: #7FB0FF; margin-left: 40px; }
-@keyframes tick { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .ticker-track { flex-wrap: wrap; width: auto; } }
+/* ticker removed 2026-07-22 (founder call): a scrolling strip of raw numbers
+   taught a buyer nothing. The hero meta row now carries the offer instead,
+   and the numbers live in #casestudy where they have a story around them. */
 
 /* ---- shift ---- */
 #shift .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -198,6 +194,20 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   .bc-frames img { opacity: 0; transform: none; }
   .bc-frames img:first-child { opacity: 1; }
+}
+
+/* ---- then vs now: what agents changed about our own economics ---- */
+.thennow { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(255,255,255,0.25); }
+.thennow .tn { padding: 32px; border-right: 1px solid rgba(255,255,255,0.25); }
+.thennow .tn.now { border-right: none; background: rgba(127,176,255,0.08); }
+.thennow .tnk { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #7FB0FF; }
+.thennow .tnv { font-family: var(--mono); font-size: clamp(26px, 3.4vw, 40px); font-weight: 700; line-height: 1.1; margin: 10px 0 8px; }
+.thennow .tn.now .tnv { color: var(--green); }   /* pinch: the positive delta */
+.thennow .tn p.dim { font-size: 14px; }
+.thennow .tnnote { grid-column: 1 / -1; padding: 24px 32px; border-top: 1px solid rgba(255,255,255,0.25); font-size: 14px; }
+@media (max-width: 768px) {
+  .thennow { grid-template-columns: 1fr; }
+  .thennow .tn { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.25); }
 }
 
 /* ---- case study ---- */
@@ -471,8 +481,19 @@ main, section:first-of-type { scroll-margin-top: 90px; }
 #hero { min-height: 100vh; padding: 0; position: relative; overflow: hidden; background: var(--deep); color: #fff; display: flex; align-items: center; }
 #hero .bg { position: absolute; inset: 0; }
 #hero .bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroCycle 32s infinite; will-change: opacity, transform; }
-#hero .bg img:nth-child(1) { animation-delay: 0s; }
+/* The first frame is the LCP element, so it must NOT fade in: a 7%-of-32s
+   ramp meant the hero was invisible for 2.2s and LCP landed at 3.8s on
+   throttled mobile. It now starts opaque and only ever fades OUT. By the
+   time it loops back it is sitting under frame 2 at full opacity, so the
+   reset is not visible. (founder budget: mobile perf >= 95) */
+#hero .bg img:nth-child(1) { animation-name: heroCycleFirst; animation-delay: 0s; opacity: 1; }
 #hero .bg img:nth-child(2) { animation-delay: 16s; }
+@keyframes heroCycleFirst {
+  0% { opacity: 1; transform: scale(1.02); }
+  50% { opacity: 1; transform: scale(1.07); }
+  57% { opacity: 0; }
+  100% { opacity: 0; transform: scale(1.02); }
+}
 @keyframes heroCycle {
   0% { opacity: 0; transform: scale(1.02); }
   7% { opacity: 1; }

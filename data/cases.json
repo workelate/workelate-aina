@@ -32,8 +32,39 @@
       "anonymous": true
     },
     {
+      "tag": "AI tooling, 2020",
+      "title": "AI-assisted image annotation platform",
+      "summary": "A labelling platform for machine-learning datasets: polygon and bounding-box tooling on canvas, with a detection model running in the browser to pre-annotate every image before a human touched it. Projects, datasets and team notifications built in; exports to Pascal-VOC XML and JSON. Four engineers, 117 commits, shipped in one quarter.",
+      "metric": "2020",
+      "metricLabel": "human-plus-model labelling, five years before the hype",
+      "anonymous": true
+    },
+    {
+      "tag": "SaaS product, subscription",
+      "title": "Customer-experience SaaS, built and billed",
+      "summary": "The full commercial surface of a CX product: journey-mapping module, tiered pricing, Stripe and PayPal checkout, blog engine and a programmatic SEO service generating landing pages from a template. Front end, payments and content infrastructure delivered by one team.",
+      "metric": "2 rails",
+      "metricLabel": "Stripe + PayPal, live subscription billing",
+      "anonymous": true
+    },
+    {
+      "tag": "Marketplace, EdTech",
+      "title": "Edunomics Scholar: a two-sided scholarship marketplace",
+      "summary": "Donors publish scholarships, invite and review applicants and award grants; applicants build profiles, apply and track status, with a super-admin console over both sides. 33 API endpoints, token auth with password reset, document upload, transactional email and status workflows. Three years of continuous development.",
+      "metric": "33",
+      "metricLabel": "API endpoints · donor, applicant and admin surfaces"
+    },
+    {
+      "tag": "Fintech, data",
+      "title": "Financial data pipelines",
+      "summary": "ETL scripts pulling, normalising and reconciling financial records into a single feed, the unglamorous plumbing that decides whether every dashboard above it is trustworthy.",
+      "metric": "ETL",
+      "metricLabel": "ingestion, normalisation, reconciliation",
+      "anonymous": true
+    },
+    {
       "tag": "Your project here",
-      "title": "20+ more engagements being written up",
+      "title": "More engagements being written up",
       "summary": "We are documenting the full portfolio, industrial, agency, logistics, SaaS and D2C engagements, in the same receipts-first format. Each entry ships with numbers we can defend.",
       "metric": "…",
       "metricLabel": "in documentation",
