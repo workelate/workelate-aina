@@ -1,5 +1,18 @@
 # WE_AINA design system — v4 (founder-amended 2026-07-08, third pass)
 
+POSITIONING (founder call 2026-07-22): WE_AINA is an **AI-native product
+studio** and digital engineering partner. We BUILD: products, platforms,
+mobile apps and the internal systems a company runs on. The old
+"digital transformation partner / we fix your software" framing read as a
+support company and is banned. Never describe the firm as fixing,
+supporting or maintaining someone else's software as the primary offer.
+Vocabulary: "product studio", "digital and product engineering",
+"design, build and ship". Still keep "WorkElate's AI-Native Agency".
+
+No decorative background images in the hero (founder: "no zebra lines").
+The hero-*.jpg banded placeholder art is DELETED. Hero is flat navy and
+carries itself on type.
+
 These rules are law. If a change request violates one, push back and
 propose the compliant version instead of silently complying.
 

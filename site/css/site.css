@@ -1,4 +1,4 @@
-/* WE_AINA · design system v4.2: white/blue digital-transformation firm.
+/* WE_AINA · design system v4.2: white/blue AI-native product studio.
    Blue leads, navy inverts, green is a PINCH (positive numbers only),
    orange retired to micro-accents. Space Grotesk display, Inter body,
    mono for data. Fonts self-hosted, no external requests. */
@@ -519,29 +519,9 @@ main, section:first-of-type { scroll-margin-top: 90px; }
 
 /* full-bleed cinematic hero */
 #hero { min-height: 100vh; padding: 0; position: relative; overflow: hidden; background: var(--deep); color: #fff; display: flex; align-items: center; }
-#hero .bg { position: absolute; inset: 0; }
-#hero .bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroCycle 32s infinite; will-change: opacity, transform; }
-/* The first frame is the LCP element, so it must NOT fade in: a 7%-of-32s
-   ramp meant the hero was invisible for 2.2s and LCP landed at 3.8s on
-   throttled mobile. It now starts opaque and only ever fades OUT. By the
-   time it loops back it is sitting under frame 2 at full opacity, so the
-   reset is not visible. (founder budget: mobile perf >= 95) */
-#hero .bg img:nth-child(1) { animation-name: heroCycleFirst; animation-delay: 0s; opacity: 1; }
-#hero .bg img:nth-child(2) { animation-delay: 16s; }
-@keyframes heroCycleFirst {
-  0% { opacity: 1; transform: scale(1.02); }
-  50% { opacity: 1; transform: scale(1.07); }
-  57% { opacity: 0; }
-  100% { opacity: 0; transform: scale(1.02); }
-}
-@keyframes heroCycle {
-  0% { opacity: 0; transform: scale(1.02); }
-  7% { opacity: 1; }
-  50% { opacity: 1; transform: scale(1.07); }
-  57% { opacity: 0; }
-  100% { opacity: 0; }
-}
-#hero .scrim { position: absolute; inset: 0; background: rgba(10,31,68,0.45); }
+/* hero background images removed 2026-07-22 (founder: no zebra lines). The
+   hero-*.jpg set was procedural placeholder art, diagonal blue bands, not
+   photography. Hero is flat navy now, which also drops an LCP image. */
 #hero .wrap { position: relative; z-index: 2; text-align: center; padding-top: 140px; padding-bottom: 100px; width: 100%; }
 #hero h1 { color: #fff; margin: 0 auto; max-width: 1000px; }
 #hero p { max-width: 640px; margin: 30px auto 42px; font-size: 18px; color: rgba(255,255,255,0.85); }
@@ -550,8 +530,6 @@ main, section:first-of-type { scroll-margin-top: 90px; }
 #hero .hero-meta { color: rgba(255,255,255,0.8); margin-top: 64px; }
 #hero .hero-meta .accent { color: #7FB0FF; }
 #hero .btn { border-radius: 12px; }
-@media (prefers-reduced-motion: reduce) { #hero .bg img { animation: none; opacity: 0; } #hero .bg img:first-child { opacity: 1; } }
-@media (max-width: 768px) { #hero .bg img { animation: none; opacity: 0; } #hero .bg img:first-child { opacity: 1; } }
 
 /* centered display sections */
 .center-head { text-align: center; }

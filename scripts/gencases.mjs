@@ -46,6 +46,8 @@ const html = `<!doctype html>
   </nav>
 </div></header>
 
+<main id="main">
+
 <section class="page-hero">
   <div class="wrap">
     <span class="label">Case studies</span>
@@ -68,12 +70,14 @@ ${cases.map(card).join("\n")}
   </div>
 </section>
 
+</main>
+
 <footer class="mega">
   <div class="wrap">
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>Digital transformation, delivered 10×. WorkElate's AI-Native Agency: our delivery runs on our own platform, weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
+        <p>An AI-native product studio. WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
       </div>
       <div>
         <div class="fh">Company</div>
