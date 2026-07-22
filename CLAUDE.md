@@ -33,11 +33,14 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
   DEAD as of 2026-07-22: the scrub section was cut, nothing reads
   assets/frames/casestudy/ any more. Kept only as reference.
 - `node scripts/gensystems.mjs` — regenerate /systems pages + sitemap.
+- `node scripts/gencorpus.mjs` — rebuild site/data/corpus.json, the
+  knowledge base the hero assistant answers from.
 - `node scripts/genartifacts.mjs` — regenerate product mockup PNGs.
 - `node scripts/genog.mjs` — regenerate the OG image.
 
 ## Generated files — never hand-edit
-site/systems/*.html, site/sitemap.xml, site/robots.txt, site/og.png,
+site/systems/*.html, site/data/corpus.json, site/sitemap.xml,
+site/robots.txt, site/og.png,
 site/img/*.png, assets/frames/casestudy/* are ALL generator output.
 Edit the generator in scripts/, then re-run it. A hand edit dies on
 the next regeneration.
@@ -63,6 +66,19 @@ the next regeneration.
 - Anthropic report + email send are STUBBED until ANTHROPIC_API_KEY /
   SMTP creds exist; the audit table records the skip. The site promises
   "report in 10 minutes" — do not deploy before wiring this.
+
+- Hero assistant (site/js/chat.js) answers from site/data/corpus.json ONLY,
+  a local deterministic retrieval engine, no model call. It cannot say
+  anything the corpus does not contain, which is deliberate: a hosted model
+  free-typing about our numbers is how a consultancy site starts lying.
+  Corpus comes from data/projects.json + data/cases.json via gencorpus.mjs.
+- data/projects.json is the delivery portfolio, derived from the ESLABS101 /
+  workelate GitHub account (300 accessible repos, 2019-2026, crawled
+  2026-07-22). `named:false` means the client has NOT cleared use of their
+  name; render the descriptor only.
+- IMPORTANT: never run `npm run build` while `npm run dev` is running. They
+  share .next/ and the production build corrupts the dev server (module not
+  found on every route). Kill dev, or build, then `rm -rf .next`.
 
 ## Copy rules
 - Receipts over adjectives; every claim carries a real number.

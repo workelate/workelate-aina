@@ -69,11 +69,20 @@
     <span class="label">WE_AINA · Digital transformation, delivered 10×</span>
     <h1 class="rise"><span>Your business runs 24/7.</span><span>Your software waits for clicks.</span><span class="accent" style="color:#7FB0FF">We fix that.</span></h1>
     <p>The AI-native transformation partner for $5–50M businesses. 10× faster than the big consultancies, a tenth of the team, at $30K–$100K fixed.</p>
-    <a class="btn" href="#cta">Get your AI Readiness Score</a>
-    <div class="hero-meta">
-      <span>$30K–$100K, fixed before we build</span>
-      <span>Weeks to live, not quarters</span>
-      <span>Two partners, no pyramid</span>
+    <div id="ask">
+      <form class="ask-form" autocomplete="off">
+        <label class="sr-only" for="ask-input">Ask what we would build for your business</label>
+        <input class="ask-input" id="ask-input" name="q" type="text" placeholder="Ask what we would build for your business…">
+        <button class="ask-send" type="submit" aria-label="Send">→</button>
+      </form>
+      <div class="ask-chips" aria-label="example questions">
+        <button type="button" data-ask="We run 6 quarries and dispatch by phone all day">Dispatch runs on phone calls</button>
+        <button type="button" data-ask="Dealer orders come on WhatsApp and nothing is tracked">Orders arrive on WhatsApp</button>
+        <button type="button" data-ask="What does a build cost and how long does it take?">What does it cost?</button>
+        <button type="button" data-ask="We are a funded startup and need to ship a product faster">We need to ship faster</button>
+      </div>
+      <div class="ask-log" role="log" aria-live="polite"></div>
+      <p class="ask-cta"><a class="btn" href="#cta">Get your AI Readiness Score</a></p>
     </div>
   </div>
 </section>
@@ -565,6 +574,7 @@
 
 <a id="cta-pill" class="btn" href="#cta">Get your AI Readiness Score</a>
 
+<script type="module" src="/js/chat.js"></script>
 <script type="module" src="/js/main.js"></script>
 <script type="module" src="/js/score.js"></script>
 <script type="module" src="/js/router.js"></script>
