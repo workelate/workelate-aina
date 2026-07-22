@@ -54,7 +54,7 @@
     <a href="/case-studies">Case studies</a>
     <a href="/blog">Blog</a>
     <a href="/systems/quarry-dispatch-automation">Systems</a>
-    <a class="btn" href="#cta">Get your AI Readiness Score</a>
+    <a class="btn" href="#ask">Get your AI Readiness Score</a>
   </nav>
 </div></header>
 
@@ -82,7 +82,7 @@
         <button type="button" data-ask="We are a funded startup and need to ship a product faster">We need to ship faster</button>
       </div>
       <div class="ask-log" role="log" aria-live="polite"></div>
-      <p class="ask-cta"><a class="btn" href="#cta">Get your AI Readiness Score</a></p>
+      <p class="ask-cta"><a class="btn" href="#ask">Get your AI Readiness Score</a></p>
     </div>
   </div>
 </section>
@@ -112,7 +112,7 @@
         <div class="qr-links">
           <a class="text" href="#"></a>
           <a class="text" href="/case-studies"></a>
-          <a class="btn" href="#cta">Get your AI Readiness Score</a>
+          <a class="btn" href="#ask">Get your AI Readiness Score</a>
         </div>
       </div>
       <button type="button" class="q-back">← start over</button>
@@ -454,86 +454,6 @@
   </div>
 </section>
 
-<!-- CTA, Score widget -->
-<section id="cta">
-  <div class="wrap">
-    <div class="center-head">
-      <span class="label">08 · Start here</span>
-      <h2>Get your <span class="accent2">AI Readiness Score</span></h2>
-      <p class="sub dim">Five questions, two minutes. Your score report, three automation opportunities specific to your business, with conservative numbers, arrives in 10 minutes.</p>
-    </div>
-
-    <div id="score-widget" data-shadow-ok>
-      <div id="score-progress"><i></i></div>
-
-      <form id="score-form" novalidate>
-        <div class="q on" data-step="0">
-          <span class="qnum">1 / 5</span>
-          <h3>What business are you in?</h3>
-          <button type="button" class="opt" data-k="industry" data-v="building-materials">Building materials</button>
-          <button type="button" class="opt" data-k="industry" data-v="manufacturing">Manufacturing</button>
-          <button type="button" class="opt" data-k="industry" data-v="logistics">Logistics</button>
-          <button type="button" class="opt" data-k="industry" data-v="other">Other</button>
-        </div>
-
-        <div class="q" data-step="1">
-          <span class="qnum">2 / 5</span>
-          <h3>Annual revenue band?</h3>
-          <button type="button" class="opt" data-k="revenue" data-v="lt5cr">&lt; ₹5 Cr (&lt; $600K)</button>
-          <button type="button" class="opt" data-k="revenue" data-v="5-50cr">₹5–50 Cr ($600K–$6M)</button>
-          <button type="button" class="opt" data-k="revenue" data-v="50-500cr">₹50–500 Cr ($6M–$60M)</button>
-        </div>
-
-        <div class="q" data-step="2">
-          <span class="qnum">3 / 5</span>
-          <h3>Team size?</h3>
-          <button type="button" class="opt" data-k="team" data-v="lt10">&lt; 10</button>
-          <button type="button" class="opt" data-k="team" data-v="10-50">10–50</button>
-          <button type="button" class="opt" data-k="team" data-v="50-250">50–250</button>
-          <button type="button" class="opt" data-k="team" data-v="250plus">250+</button>
-        </div>
-
-        <div class="q" data-step="3">
-          <span class="qnum">4 / 5</span>
-          <h3>Biggest manual bottleneck right now?</h3>
-          <input type="text" id="bottleneck" maxlength="140" placeholder="e.g. matching freight bills to deliveries takes 3 people 4 days">
-          <p class="hint dim">140 characters. Be specific: the report is built from this.</p>
-          <button type="button" class="btn next" data-adv>Next</button>
-        </div>
-
-        <div class="q" data-step="4">
-          <span class="qnum">5 / 5</span>
-          <h3>What runs the business today? (pick all that apply)</h3>
-          <button type="button" class="opt multi" data-k="stack" data-v="excel-whatsapp">Excel + WhatsApp</button>
-          <button type="button" class="opt multi" data-k="stack" data-v="tally-erp">Tally / ERP</button>
-          <button type="button" class="opt multi" data-k="stack" data-v="custom">Custom software</button>
-          <button type="button" class="opt multi" data-k="stack" data-v="ai">Already using AI</button>
-          <button type="button" class="btn next" data-adv>Next</button>
-        </div>
-
-        <div class="q" data-step="5">
-          <span class="qnum">Last step</span>
-          <h3>Where should the report go?</h3>
-          <input type="email" id="email" placeholder="you@company.com" required>
-          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" placeholder="leave empty">
-          <p class="hint dim">Your score report arrives in 10 minutes.</p>
-          <button type="submit" class="btn next">Get your AI Readiness Score</button>
-        </div>
-      </form>
-
-      <div id="score-result">
-        <svg id="dial" width="180" height="180" viewBox="0 0 180 180" aria-label="readiness score">
-          <circle class="track" cx="90" cy="90" r="78" fill="none" stroke-width="4"/>
-          <circle class="arc" cx="90" cy="90" r="78" fill="none" stroke-width="4"
-                  stroke-dasharray="490" stroke-dashoffset="490"
-                  transform="rotate(-90 90 90)"/>
-          <text x="90" y="102" text-anchor="middle">0</text>
-        </svg>
-        <p id="verdict"></p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer class="mega">
@@ -561,7 +481,7 @@
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/#cta">Get your AI Readiness Score</a>
+        <a href="/#ask">Get your AI Readiness Score</a>
         <a href="/how-we-work">The Diagnostic Sprint</a>
         <a href="/blog/receipts-over-decks">Receipts over decks</a>
       </div>
@@ -572,11 +492,10 @@
   </div>
 </footer>
 
-<a id="cta-pill" class="btn" href="#cta">Get your AI Readiness Score</a>
+<a id="cta-pill" class="btn" href="#ask">Get your AI Readiness Score</a>
 
 <script type="module" src="/js/chat.js"></script>
 <script type="module" src="/js/main.js"></script>
-<script type="module" src="/js/score.js"></script>
 <script type="module" src="/js/router.js"></script>
 </body>
 </html>

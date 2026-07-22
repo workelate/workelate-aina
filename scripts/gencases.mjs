@@ -42,7 +42,7 @@ const html = `<!doctype html>
     <a href="/case-studies" aria-current="page">Case studies</a>
     <a href="/blog">Blog</a>
     <a href="/systems/quarry-dispatch-automation">Systems</a>
-    <a class="btn" href="/#cta">Get your AI Readiness Score</a>
+    <a class="btn" href="/#ask">Get your AI Readiness Score</a>
   </nav>
 </div></header>
 
@@ -64,7 +64,7 @@ ${cases.map(card).join("\n")}
   <div class="wrap">
     <h2>Get your AI Readiness Score</h2>
     <p class="dim">Five questions. Your report, three automation opportunities with conservative numbers, arrives in 10 minutes.</p>
-    <p style="margin-top:24px"><a class="btn" href="/#cta">Get your AI Readiness Score</a></p>
+    <p style="margin-top:24px"><a class="btn" href="/#ask">Get your AI Readiness Score</a></p>
   </div>
 </section>
 
@@ -93,7 +93,7 @@ ${cases.map(card).join("\n")}
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/#cta">Get your AI Readiness Score</a>
+        <a href="/#ask">Get your AI Readiness Score</a>
         <a href="/how-we-work">The Diagnostic Sprint</a>
         <a href="/blog/receipts-over-decks">Receipts over decks</a>
       </div>

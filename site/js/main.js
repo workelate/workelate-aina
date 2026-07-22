@@ -23,12 +23,11 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
 // sticky CTA pill: appears once the hero button scrolls out, hides at the widget
 const pill = document.getElementById("cta-pill");
 if (pill) {
+  // #cta was removed 2026-07-22; the assistant in the hero is the intake now,
+  // so the pill simply tracks whether the hero is off screen.
   const hero = document.getElementById("hero");
-  const cta = document.getElementById("cta");
-  let heroOut = false, ctaIn = false;
-  const upd = () => pill.classList.toggle("show", heroOut && !ctaIn);
-  new IntersectionObserver(([e]) => { heroOut = !e.isIntersecting; upd(); }).observe(hero);
-  new IntersectionObserver(([e]) => { ctaIn = e.isIntersecting; upd(); }).observe(cta);
+  const upd = out => pill.classList.toggle("show", out);
+  new IntersectionObserver(([e]) => upd(!e.isIntersecting)).observe(hero);
 }
 
 // carousel arrows

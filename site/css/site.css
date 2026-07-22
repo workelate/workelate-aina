@@ -200,7 +200,7 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
    Borders and inversion only. No shadow, no gradient (design rule 3, and
    the verify gate fails the build on either). */
 #ask { max-width: 720px; margin: 0 auto; text-align: left; }
-.ask-form { display: flex; align-items: center; gap: 8px; border: 2px solid rgba(255,255,255,0.55); border-radius: 999px; background: rgba(10,31,68,0.55); padding: 6px 6px 6px 22px; }
+.ask-form { display: flex; align-items: center; gap: 8px; border: 2px solid rgba(127,176,255,0.55); border-radius: 999px; background: var(--deep); padding: 6px 6px 6px 22px; }
 .ask-form:focus-within { border-color: #FFFFFF; }
 .ask-input { flex: 1; background: none; border: none; color: #FFFFFF; font-family: var(--sans); font-size: 16px; padding: 14px 0; min-width: 0; }
 .ask-input::placeholder { color: rgba(255,255,255,0.7); }
@@ -209,8 +209,10 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .ask-send:hover { background: #FFFFFF; color: var(--blue); }
 
 .ask-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-.ask-chips button { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.92); font-family: var(--sans); font-size: 13px; padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease); }
-.ask-chips button:hover { background: var(--blue); border-color: var(--blue); color: #fff; transform: translateY(-2px); }
+/* Solid navy, not translucent: over a photographic hero a see-through chip
+   picks up whatever is behind it and reads as torn. (founder, 2026-07-22) */
+.ask-chips button { background: var(--deep); border: 1px solid rgba(127,176,255,0.55); color: #FFFFFF; font-family: var(--sans); font-size: 13px; padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease); }
+.ask-chips button:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-2px); }
 
 .ask-log { display: none; margin-top: 22px; max-height: 300px; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 18px; }
 #ask.open .ask-log { display: block; }
@@ -303,7 +305,6 @@ section.deep .work-grid { border-color: rgba(247,251,247,0.25); }
 .founder .cred { font-size: 13px; margin-top: 4px; }
 
 /* ---- score widget ---- */
-#cta { border-top: 4px solid var(--blue); }
 #score-widget { max-width: 760px; margin: 56px auto 0; border: 2px solid var(--blue); border-radius: 22px; padding: 48px; background: #FFFFFF; }
 #score-progress { height: 3px; background: rgba(10,24,48,0.1); margin-bottom: 40px; }
 #score-progress i { display: block; height: 100%; width: 0; background: var(--blue); transition: width 0.25s; }

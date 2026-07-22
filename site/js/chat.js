@@ -180,4 +180,23 @@ if (root) {
     const c = e.target.closest("[data-ask]");
     if (c) ask(c.dataset.ask);
   });
+
+  // The score widget was removed 2026-07-22, but "Get your AI Readiness Score"
+  // is the one CTA phrase sitewide (design rule 5). Rather than leave it
+  // pointing at a dead anchor, every instance now opens the assistant and
+  // starts the readiness conversation.
+  document.querySelectorAll('a[href="#ask"], a[href="/#ask"]').forEach(a => {
+    a.addEventListener("click", e => {
+      if (a.getAttribute("href") === "/#ask" && location.pathname !== "/") return;
+      e.preventDefault();
+      root.scrollIntoView({ behavior: "smooth", block: "center" });
+      input.focus({ preventScroll: true });
+      // open with the assistant asking, not with a question faked as the
+      // visitor's: they clicked a button, they did not type anything
+      if (!root.classList.contains("open")) {
+        root.classList.add("open");
+        bubble("bot", "<p>Readiness takes one answer to start: what industry are you in, and which process eats the most time right now? Dispatch, orders, collections, reporting, compliance, or a product you need shipped.</p><p class=\"ask-follow\">Type it in your own words and I will show you the closest thing we have built and what it moved.</p>");
+      }
+    });
+  });
 }

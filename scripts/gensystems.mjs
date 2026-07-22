@@ -202,7 +202,7 @@ ${JSON.stringify({
     <a href="/case-studies">Case studies</a>
     <a href="/blog">Blog</a>
     <a href="/systems/${p.slug}" aria-current="page">Systems</a>
-    <a class="btn" href="/#cta">Get your AI Readiness Score</a>
+    <a class="btn" href="/#ask">Get your AI Readiness Score</a>
   </nav>
 </div></header>
 <section id="hero" style="min-height:auto">
@@ -241,7 +241,7 @@ ${JSON.stringify({
   <div class="wrap">
     <h2>Get your AI Readiness Score</h2>
     <p class="dim">Five questions. Your report, three automation opportunities with conservative numbers, arrives in 10 minutes.</p>
-    <p style="margin-top:24px"><a class="btn" href="/#cta">Get your AI Readiness Score</a></p>
+    <p style="margin-top:24px"><a class="btn" href="/#ask">Get your AI Readiness Score</a></p>
   </div>
 </section>
 
@@ -279,7 +279,7 @@ ${JSON.stringify({
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/#cta">Get your AI Readiness Score</a>
+        <a href="/#ask">Get your AI Readiness Score</a>
         <a href="/how-we-work">The Diagnostic Sprint</a>
         <a href="/blog/receipts-over-decks">Receipts over decks</a>
       </div>

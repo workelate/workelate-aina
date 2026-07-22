@@ -49,9 +49,9 @@ const FACTS = [
   },
   {
     id: "start",
-    q: ["start", "begin", "next step", "get going", "engage", "talk", "call", "contact", "reach"],
-    a: "Two ways in: take the AI Readiness Score on this page, or book the two-week Diagnostic Sprint. The Sprint ends with a build plan and a fixed price, and if we find nothing worth building we say so in writing.",
-    links: [{ label: "Get your AI Readiness Score", href: "#cta" }]
+    q: ["start", "begin", "next step", "get going", "engage", "talk", "call", "reach", "readiness", "readiness score", "assess", "assessment"],
+    a: "Tell me your industry and the process that hurts and I will show you the closest thing we have built. When you want it costed, the two-week Diagnostic Sprint ends with a build plan and a fixed price, and if we find nothing worth building we say so in writing.",
+    links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
   {
     id: "own",
