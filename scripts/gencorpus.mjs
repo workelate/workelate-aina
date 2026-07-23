@@ -40,9 +40,9 @@ const FACTS = [
   },
   {
     id: "why",
-    q: ["why you", "why work", "different", "compare", "versus", "instead", "big four", "consultancy", "competitor"],
-    a: "A large consultancy bills a pyramid of people for the work agents now do. We kept the senior judgement, replaced the pyramid, and passed the difference on: same scope, roughly a third to a quarter of the cost, in weeks.",
-    links: [{ label: "How we work", href: "/how-we-work" }]
+    q: ["why you", "why work", "different", "compare", "versus", "instead", "big four", "consultancy", "competitor", "accenture", "tcs", "infosys", "wipro", "dxc", "coforge", "cognizant", "vs agency", "why not a big firm"],
+    a: "A pyramid firm, Accenture, TCS, Infosys, DXC, prices your project as a headcount line: revenue for them, a rate-card discount for you, and impact is nobody's number. We fix the price to the build instead, so shipping it faster is our gain. Same scope, a third to a quarter of the cost, in weeks.",
+    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Why the pyramid can't survive agents", href: "/blog/the-pyramid-cant-survive-agents" }]
   },
   {
     id: "trust",
