@@ -47,7 +47,7 @@ const FACTS = [
   {
     id: "trust",
     q: ["proof", "trust", "reference", "portfolio", "experience", "track record", "done before", "credentials", "how many projects", "how much work"],
-    a: "374 repositories across 41 distinct programmes, shipped continuously from 2018 to 2026. That is whole programmes with their apps, backends, admin consoles and integrations, not forty demos. Ask about your sector and I will point you at the closest one.",
+    a: "100+ projects shipped continuously from 2018 to 2026, across 16 sectors. Whole systems with their apps, backends, admin consoles and integrations, not a wall of demos. Ask about your sector and I will point you at the closest one.",
     links: [{ label: "Depth and width", href: "/#portfolio" }, { label: "Case studies", href: "/case-studies" }]
   },
   {
@@ -67,7 +67,7 @@ const FACTS = [
   {
     id: "erp",
     q: ["tally", "erp integration", "accounting software", "connector", "erp connector", "books", "gst"],
-    a: "Thirteen repositories on Tally connectors alone. Most Indian businesses run on it, most integrations with it are written once and abandoned, and we have been back to that problem enough times to know where it breaks.",
+    a: "We have built Tally connectors more than a dozen times over. Most Indian businesses run on it, most integrations with it are written once and abandoned, and we have been back to that problem enough times to know exactly where it breaks.",
     links: [{ label: "Depth and width", href: "/#portfolio" }]
   },
   {

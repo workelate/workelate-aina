@@ -238,7 +238,7 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 }
 
 /* ---- portfolio depth & width. Numbers are counted off the GitHub crawl
-   (374 repos, 41 programmes); see data/portfolio-inventory.md. Rules and
+   (100+ projects); see data/portfolio-inventory.md. Rules and
    whitespace only, no cards. ---- */
 #portfolio .tens { margin-bottom: 72px; }
 .pf-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; border-top: 1px solid rgba(10,24,48,0.14); padding-top: 44px; }
