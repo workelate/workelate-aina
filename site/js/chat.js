@@ -99,7 +99,7 @@ function answer(text) {
   state.turns++;
 
   if (useFact) {
-    return { text: bestFact.a, links: bestFact.links, followup: pickFollowup() };
+    return { text: bestFact.a, links: bestFact.links, followup: pickFollowup(), factId: bestFact.id };
   }
   if (ranked.length) {
     const top = ranked[0].c;
@@ -109,15 +109,23 @@ function answer(text) {
     return {
       text: `Closest thing we have built: ${top.title}. ${top.body}${line}`,
       links: top.links,
-      followup: pickFollowup()
+      followup: pickFollowup(),
+      factId: null,
+      matched: true
     };
   }
   return {
     text: "I can only speak to what we have actually built, so tell me the industry and the process that hurts, dispatch, orders, collections, reporting, compliance, or a product you need shipped. I will point you at the closest thing we have delivered.",
     links: [{ label: "Browse the case studies", href: "/case-studies" }],
-    followup: null
+    followup: null,
+    factId: null
   };
 }
+
+// buying signals: when one of these facts is the answer, the visitor is asking
+// how to actually engage, which is the right moment to ask for a way to reach
+// them back. Ordinary "what do you build" curiosity is not.
+const BUYING = new Set(["price", "start", "mvp", "rescue", "speed"]);
 
 function pickFollowup() {
   for (const f of FOLLOWUPS) {
@@ -151,16 +159,21 @@ if (root) {
     CORPUS = await r.json();
   }
 
+  // transcript is sent with the lead so the founders read the intent, not just
+  // an address. capture state gates the ask so it fires once, at the right time.
+  const transcript = [];
+  const cap = { done: false, shown: false };
+
   async function ask(text) {
     if (!text.trim()) return;
     root.classList.add("open");
     bubble("me", esc(text));
+    transcript.push("You: " + text);
     input.value = "";
     const thinking = bubble("bot", '<span class="ask-dots"><i></i><i></i><i></i></span>');
     try {
       await ensureCorpus();
       const a = answer(text);
-      // small deliberate beat: an instant reply reads like a lookup table
       await new Promise(r => setTimeout(r, 260));
       let html = `<p>${esc(a.text)}</p>`;
       if (a.followup) html += `<p class="ask-follow">${esc(a.followup)}</p>`;
@@ -169,10 +182,67 @@ if (root) {
           a.links.map(l => `<a href="${esc(l.href)}">${esc(l.label)} →</a>`).join("") + `</p>`;
       }
       thinking.innerHTML = html;
+      transcript.push("WE_AINA: " + a.text);
       log.scrollTop = log.scrollHeight;
+      // the right point: a buying-signal answer, or once the conversation has
+      // real substance (>=2 exchanges). Never on the first curious question.
+      const signal = BUYING.has(a.factId);
+      if (!cap.done && !cap.shown && (signal || state.turns >= 2)) showCapture(signal);
     } catch (err) {
       thinking.innerHTML = `<p>That did not load. The case studies cover the same ground: <a href="/case-studies">browse them here →</a></p>`;
     }
+  }
+
+  // ---- lead capture, inline in the chat ----
+  function showCapture(signal) {
+    cap.shown = true;
+    const lead = signal
+      ? "If you want this costed, leave an email or phone and Chitransh or Pratik will come back with a build plan, usually same day."
+      : "Want the two of us to look at your specifics? Leave an email or phone and we will come back with where we would start.";
+    const el = bubble("bot cap", `
+      <p>${lead}</p>
+      <form class="cap-form" autocomplete="on">
+        <input class="cap-website" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="cap-input" name="contact" type="text" inputmode="email"
+               placeholder="you@company.com or +91…" aria-label="Your email or phone">
+        <button class="cap-send" type="submit">Send</button>
+      </form>
+      <p class="cap-msg" role="status"></p>`);
+    const f = el.querySelector(".cap-form");
+    const msg = el.querySelector(".cap-msg");
+    f.addEventListener("submit", async e => {
+      e.preventDefault();
+      const contact = f.contact.value.trim();
+      if (!contact) return;
+      f.cap_send?.setAttribute("disabled", "true");
+      msg.textContent = "Sending…";
+      try {
+        const r = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            contact,
+            website: f.website.value,        // honeypot
+            industry: state.industry || "",
+            transcript: transcript.join("\n"),
+            path: location.pathname
+          })
+        });
+        const d = await r.json().catch(() => ({}));
+        if (r.ok && d.ok) {
+          cap.done = true;
+          f.remove();
+          msg.textContent = "Got it. You will hear from Chitransh or Pratik, not an autoresponder.";
+        } else {
+          msg.textContent = d.error === "need a valid email or phone"
+            ? "That does not look like an email or phone, try again?"
+            : "Could not send just now. Email us directly at hello@weaina.com.";
+        }
+      } catch {
+        msg.textContent = "Could not send just now. Email us directly at hello@weaina.com.";
+      }
+    });
+    log.scrollTop = log.scrollHeight;
   }
 
   form.addEventListener("submit", e => { e.preventDefault(); ask(input.value); });
@@ -181,21 +251,18 @@ if (root) {
     if (c) ask(c.dataset.ask);
   });
 
-  // The score widget was removed 2026-07-22, but "Get your AI Readiness Score"
-  // is the one CTA phrase sitewide (design rule 5). Rather than leave it
-  // pointing at a dead anchor, every instance now opens the assistant and
-  // starts the readiness conversation.
+  // "Book a Diagnostic Sprint" is the one CTA phrase sitewide (design rule 5).
+  // It opens the assistant and goes straight to capturing a way to reach back.
   document.querySelectorAll('a[href="#ask"], a[href="/#ask"]').forEach(a => {
     a.addEventListener("click", e => {
       if (a.getAttribute("href") === "/#ask" && location.pathname !== "/") return;
       e.preventDefault();
       root.scrollIntoView({ behavior: "smooth", block: "center" });
       input.focus({ preventScroll: true });
-      // open with the assistant asking, not with a question faked as the
-      // visitor's: they clicked a button, they did not type anything
       if (!root.classList.contains("open")) {
         root.classList.add("open");
-        bubble("bot", "<p>Readiness takes one answer to start: what industry are you in, and which process eats the most time right now? Dispatch, orders, collections, reporting, compliance, or a product you need shipped.</p><p class=\"ask-follow\">Type it in your own words and I will show you the closest thing we have built and what it moved.</p>");
+        bubble("bot", "<p>The Diagnostic Sprint is two weeks: we sit inside your operation, then hand you a build plan with a fixed price. Tell me your industry and what you want built, or leave a contact below and we will reach out.</p>");
+        if (!cap.done) showCapture(true);
       }
     });
   });

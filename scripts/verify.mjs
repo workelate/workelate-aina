@@ -23,7 +23,7 @@ if (errors.length) console.error("console errors:", errors);
 assert("single H1", (await page.locator("h1").count()) === 1);
 
 assert("one CTA phrase only",
-  (await page.getByText("Get your AI Readiness Score").count()) >= 2 &&
+  (await page.getByText("Book a Diagnostic Sprint").count()) >= 2 &&
   (await page.getByText(/contact us/i).count()) === 0);
 
 assert("no banned styles", await page.evaluate(() =>
