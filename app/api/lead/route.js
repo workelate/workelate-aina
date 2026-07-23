@@ -9,6 +9,32 @@ import { insertChatLead, audit } from "../../../lib/db.js";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// Every lead goes to one inbox, by founder instruction (2026-07-23): no other
+// address. Overridable by env only so staging can point elsewhere, never
+// broadened in code.
+const NOTIFY_TO = process.env.LEAD_NOTIFY_TO || "chitransh@workelate.com";
+
+// Send the notification the moment an email provider key exists; until then the
+// lead is stored and the skip is recorded. Uses Resend's HTTP API (no npm dep,
+// just fetch), gated on RESEND_API_KEY.
+async function notify(lead) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return { sent: false, reason: "no RESEND_API_KEY" };
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      from: process.env.LEAD_NOTIFY_FROM || "WE_AINA <onboarding@resend.dev>",
+      to: [NOTIFY_TO],
+      reply_to: lead.kind === "email" ? lead.contact : undefined,
+      subject: `New lead: ${lead.contact} (${lead.industry || "no industry"})`,
+      text: `Contact: ${lead.contact} [${lead.kind}]\nIndustry: ${lead.industry || "-"}\nPage: ${lead.path || "-"}\nWhen: ${lead.ts}\n\n--- conversation ---\n${lead.transcript || "(none)"}`
+    })
+  });
+  if (!res.ok) return { sent: false, reason: `resend ${res.status}: ${(await res.text()).slice(0, 200)}` };
+  return { sent: true };
+}
+
 // per-IP rate limit, in memory (mirrors the retired score route)
 const RATE_LIMIT = 8, RATE_WINDOW_MS = 60 * 60 * 1000;
 const hits = globalThis.__aina_lead_hits ?? (globalThis.__aina_lead_hits = new Map());
@@ -68,9 +94,15 @@ export async function POST(req) {
   if (id == null) return json({ ok: true, persisted: false, note: "lead store not configured" });
 
   await audit(id, "chat_lead_captured", `${kind} · ${lead.industry || "no-industry"}`);
-  // notify (email/SMS) once creds exist; recorded as skipped until then
+  // email chitransh@workelate.com after the response is sent; lead is stored
   after(async () => {
-    await audit(id, "notify_skipped", "SMTP/SMS not configured; lead stored only");
+    try {
+      const r = await notify(lead);
+      await audit(id, r.sent ? "notify_sent" : "notify_skipped",
+        r.sent ? `to ${NOTIFY_TO}` : r.reason);
+    } catch (e) {
+      await audit(id, "notify_failed", e.message);
+    }
   });
 
   return json({ ok: true, persisted: true, id });

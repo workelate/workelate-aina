@@ -236,10 +236,10 @@ if (root) {
         } else {
           msg.textContent = d.error === "need a valid email or phone"
             ? "That does not look like an email or phone, try again?"
-            : "Could not send just now. Email us directly at hello@weaina.com.";
+            : "Could not send just now. Email Chitransh directly at chitransh@workelate.com.";
         }
       } catch {
-        msg.textContent = "Could not send just now. Email us directly at hello@weaina.com.";
+        msg.textContent = "Could not send just now. Email Chitransh directly at chitransh@workelate.com.";
       }
     });
     log.scrollTop = log.scrollHeight;

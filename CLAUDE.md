@@ -63,9 +63,16 @@ the next regeneration.
   content section in site/index.html. site/js/scrollFrames.js and
   assets/frames/casestudy/ (4.8 MB) are now DEAD CODE, imported by
   nothing; delete them once the founder confirms no scrub returns.
-- Anthropic report + email send are STUBBED until ANTHROPIC_API_KEY /
-  SMTP creds exist; the audit table records the skip. The site promises
-  "report in 10 minutes" — do not deploy before wiring this.
+- Lead capture: the on-page assistant (site/js/chat.js) captures a
+  contact mid-conversation and POSTs to app/api/lead/route.js, which
+  stores it in the chat_leads table (lib/db.js) and emails it. ALL leads
+  go to chitransh@workelate.com and no other address (founder call
+  2026-07-23); override only via env LEAD_NOTIFY_TO. Notification uses
+  Resend's HTTP API gated on RESEND_API_KEY — set that (and optionally
+  LEAD_NOTIFY_FROM with a verified domain) to turn sending on. Until
+  then leads are stored and the audit table records notify_skipped.
+- The old /api/score readiness widget was DELETED 2026-07-23; the one
+  CTA phrase is now "Book a Diagnostic Sprint" (verify enforces it).
 
 - Hero assistant (site/js/chat.js) answers from site/data/corpus.json ONLY,
   a local deterministic retrieval engine, no model call. It cannot say
