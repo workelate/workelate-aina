@@ -217,13 +217,22 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .ask-log { display: none; margin-top: 22px; max-height: 300px; overflow-y: auto; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 18px; }
 #ask.open .ask-log { display: block; }
 #ask.open .ask-chips { display: none; }
-.ask-msg { font-size: 15px; line-height: 1.62; margin-bottom: 16px; max-width: 92%; }
+.ask-msg { font-size: 15.5px; line-height: 1.65; margin-bottom: 22px; max-width: 92%; }
 .ask-msg.me { margin-left: auto; text-align: right; color: #7FB0FF; font-family: var(--mono); font-size: 14px; }
-.ask-msg.bot { color: rgba(255,255,255,0.94); border-left: 2px solid var(--blue); padding-left: 16px; }
-.ask-follow { margin-top: 10px; color: rgba(255,255,255,0.72); }
-.ask-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 18px; }
-.ask-links a { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #7FB0FF; text-decoration: none; }
-.ask-links a:hover { color: #FFFFFF; text-decoration: underline; }
+.ask-msg.bot { color: rgba(255,255,255,0.94); border-left: 2px solid var(--blue); padding-left: 18px; }
+.ask-msg.bot p { margin: 0 0 10px; }
+.ask-msg.bot p:last-of-type { margin-bottom: 0; }
+/* small sender tag so the reply reads as a voice, not a data dump */
+.ask-who { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #7FB0FF; margin-bottom: 8px; }
+/* list-shaped answers: a lead line, then real bullets */
+.ask-lead { margin: 0 0 10px; }
+.ask-list { list-style: none; margin: 0; padding: 0; }
+.ask-list li { position: relative; padding: 5px 0 5px 20px; font-size: 15px; }
+.ask-list li::before { content: ""; position: absolute; left: 0; top: 13px; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+.ask-follow { margin-top: 14px !important; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.72); font-style: italic; }
+.ask-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+.ask-pill { font-family: var(--mono); font-size: 12.5px; font-weight: 700; color: #7FB0FF; text-decoration: none; border: 1px solid rgba(127,176,255,0.45); border-radius: 999px; padding: 7px 14px; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.ask-pill:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
 .ask-cta { margin-top: 30px; text-align: center; }
 
 /* inline lead capture inside the chat */

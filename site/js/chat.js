@@ -153,6 +153,28 @@ if (root) {
 
   const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+  // Presentation only. A "Label: a, b, c and d." answer reads as a wall of
+  // prose; render it as a lead line plus bullets. Anything that is not clearly
+  // a short-label list stays as plain paragraphs. Never changes the words.
+  function formatAnswer(text) {
+    // "Label: a, b, c and d. <rest>"  — the list is only up to the first
+    // period; anything after it stays as a trailing paragraph so no words move.
+    const m = text.match(/^(.{3,46}?):\s+([^.]+)\.(.*)$/s);
+    if (m && !m[1].includes(",")) {
+      const parts = m[2]
+        .replace(/,?\s+and\s+/g, "|").split(/,\s*|\|/)
+        .map(s => s.trim()).filter(Boolean);
+      const rest = m[3].trim();
+      if (parts.length >= 3 && parts.every(p => p.length <= 90)) {
+        return `<p class="ask-lead">${esc(m[1])}</p><ul class="ask-list">` +
+          parts.map(p => `<li>${esc(p)}</li>`).join("") + `</ul>` +
+          (rest ? `<p>${esc(rest)}</p>` : "");
+      }
+    }
+    // otherwise a single paragraph; never split or drop, the words are the words
+    return `<p>${esc(text)}</p>`;
+  }
+
   async function ensureCorpus() {
     if (CORPUS) return;
     const r = await fetch("/data/corpus.json");
@@ -175,11 +197,11 @@ if (root) {
       await ensureCorpus();
       const a = answer(text);
       await new Promise(r => setTimeout(r, 260));
-      let html = `<p>${esc(a.text)}</p>`;
+      let html = `<span class="ask-who">WE_AINA</span>` + formatAnswer(a.text);
       if (a.followup) html += `<p class="ask-follow">${esc(a.followup)}</p>`;
       if (a.links && a.links.length) {
-        html += `<p class="ask-links">` +
-          a.links.map(l => `<a href="${esc(l.href)}">${esc(l.label)} →</a>`).join("") + `</p>`;
+        html += `<div class="ask-links">` +
+          a.links.map(l => `<a class="ask-pill" href="${esc(l.href)}">${esc(l.label)} →</a>`).join("") + `</div>`;
       }
       thinking.innerHTML = html;
       transcript.push("WE_AINA: " + a.text);

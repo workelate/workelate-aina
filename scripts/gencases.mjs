@@ -51,8 +51,8 @@ const html = `<!doctype html>
 <section class="page-hero">
   <div class="wrap">
     <span class="label">Case studies</span>
-    <h1>Work with numbers<br><span class="accent">we can defend.</span></h1>
-    <p class="sub dim">Every case here follows the same rule as our systems: receipts over adjectives. Where a client prefers their edge quiet, the work appears without the name, and we walk qualified prospects through the details in the Sprint.</p>
+    <h1>We have built the hard version.<br><span class="accent">Hand us yours.</span></h1>
+    <p class="sub dim">A hundred-plus products across sixteen sectors, web, mobile, platforms, AI. Pick the problem you think is the hardest one you have. We will build a working proof of concept, not a slide about it, and let the result decide whether we earn the long-term build. The numbers below are what came out the last time someone did.</p>
   </div>
 </section>
 
