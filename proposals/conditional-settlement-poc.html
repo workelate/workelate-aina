@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WE_AINA · Conditional Settlement Platform — PoC Proposal</title>
+<style>
+  :root{
+    --paper:#FAFCFF; --ink:#0A1830; --blue:#0B5FFF; --deep:#0A1F44;
+    --green:#0ACF6B; --amber:#FF6A1A; --line:rgba(10,24,48,.12);
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:#0A1526;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .deck{scroll-snap-type:y mandatory;height:100vh;overflow-y:scroll}
+  .slide{scroll-snap-align:start;min-height:100vh;display:flex;flex-direction:column;
+    justify-content:center;padding:64px min(9vw,110px);position:relative;background:var(--paper)}
+  .slide.dark{background:var(--deep);color:#fff}
+  .slide+.slide{border-top:1px solid rgba(255,255,255,.08)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+  .dark .eyebrow{color:#7FB0FF}
+  h1{font-size:clamp(30px,4.6vw,56px);line-height:1.05;letter-spacing:-.02em;font-weight:800}
+  h2{font-size:clamp(24px,3.2vw,40px);line-height:1.1;letter-spacing:-.015em;font-weight:800;margin-bottom:14px}
+  h3{font-size:16px;font-weight:800}
+  p.sub{font-size:clamp(16px,1.5vw,20px);color:rgba(10,24,48,.66);max-width:760px;margin-top:18px;line-height:1.5}
+  .dark p.sub{color:rgba(255,255,255,.78)}
+  .accent{color:var(--blue)} .dark .accent{color:#7FB0FF}
+  .mono{font-family:var(--mono)}
+  .badges{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+  .badge{font-family:var(--mono);font-size:13px;font-weight:700;border:1px solid var(--blue);color:var(--blue);
+    border-radius:999px;padding:9px 16px}
+  .dark .badge{border-color:#7FB0FF;color:#7FB0FF}
+  .callout{margin-top:34px;border-left:3px solid var(--green);padding:16px 22px;background:rgba(10,207,107,.07);
+    max-width:820px;font-size:17px;line-height:1.5}
+  .dark .callout{background:rgba(10,207,107,.12)}
+  .foot{position:absolute;left:min(9vw,110px);right:min(9vw,110px);bottom:34px;display:flex;justify-content:space-between;
+    align-items:baseline;font-family:var(--mono);font-size:12px;color:rgba(10,24,48,.5);border-top:1px solid var(--line);padding-top:14px}
+  .dark .foot{color:rgba(255,255,255,.5);border-top-color:rgba(255,255,255,.14)}
+  .foot b{color:var(--ink)} .dark .foot b{color:#fff}
+  .logo{font-family:var(--mono);font-weight:700;letter-spacing:.02em}
+  .logo span{color:var(--blue)} .dark .logo span{color:#7FB0FF}
+
+  /* layout helpers */
+  .grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  .grid-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px}
+  .card{border:1px solid var(--line);border-radius:14px;padding:18px}
+  .dark .card{border-color:rgba(255,255,255,.16)}
+  .card h3{color:var(--blue);margin-bottom:8px} .dark .card h3{color:#7FB0FF}
+  .card ul{list-style:none;font-size:13px;line-height:1.9;color:rgba(10,24,48,.7)}
+  .dark .card ul{color:rgba(255,255,255,.72)}
+  .card ul li::before{content:"– ";color:var(--blue)}
+  .flow-img{width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;display:block}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
+  .step{border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.4}
+  .dark .step{border-color:rgba(255,255,255,.16)}
+  .step .n{font-family:var(--mono);color:var(--blue);font-weight:800;font-size:12px}
+  .dark .step .n{color:#7FB0FF}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:rgba(10,24,48,.72)}
+  .dark .chip{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8)}
+
+  /* tables */
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-size:15px}
+  th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+  .dark th,.dark td{border-bottom-color:rgba(255,255,255,.14)}
+  th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(10,24,48,.55)}
+  .dark th{color:rgba(255,255,255,.6)}
+  td.amt{text-align:right;font-family:var(--mono);font-weight:700;white-space:nowrap}
+  tr.total td{border-bottom:none;border-top:2px solid var(--blue);font-weight:800;font-size:18px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:8px}
+  .note{margin-top:22px;border:1px dashed var(--amber);border-radius:12px;padding:16px 20px;font-size:14px;line-height:1.55;background:rgba(255,106,26,.05)}
+  .note b{color:var(--amber)}
+
+  /* API groups */
+  .apis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+  .apigrp{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:14px}
+  .apigrp .h{font-family:var(--mono);font-size:12px;font-weight:800;color:#7FB0FF;letter-spacing:.04em;margin-bottom:8px}
+  .apigrp code{display:block;font-family:var(--mono);font-size:11.5px;color:rgba(255,255,255,.82);line-height:1.85}
+  .apigrp .m{color:var(--green);font-weight:700}
+
+  svg{width:100%;height:auto;display:block}
+  .diagram-cap{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.55);margin-top:14px;text-align:center}
+
+  /* nav dots */
+  .dots{position:fixed;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:50}
+  .dots a{width:9px;height:9px;border-radius:50%;background:rgba(120,140,180,.45);display:block;transition:.2s}
+  .dots a:hover{background:var(--blue);transform:scale(1.3)}
+  .pageno{position:fixed;left:22px;bottom:18px;font-family:var(--mono);font-size:12px;color:rgba(120,140,180,.7);z-index:50}
+
+  @media (max-width:820px){
+    .grid2,.two-col{grid-template-columns:1fr;gap:26px}
+    .grid-cards,.steps,.apis{grid-template-columns:1fr 1fr}
+    .slide{padding:48px 24px}
+    .dots{display:none}
+  }
+  @media print{
+    body{background:#fff}.deck{height:auto;overflow:visible;display:block}
+    .slide{min-height:auto;page-break-after:always;padding:40px}
+    .dots,.pageno{display:none}
+    @page{size:A4 landscape;margin:0}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ============ SLIDE 1 · COVER ============ -->
+  <section class="slide dark" id="s1">
+    <div class="eyebrow">Proposal · Proof of Concept</div>
+    <h1>Secure UPI Payment &amp;<br><span class="accent">Conditional Settlement</span> Platform</h1>
+    <p class="sub">Customer pays over UPI. Funds are held, not released, and reach the merchant only after a verified, OTP-confirmed delivery. Return and refund handled in the same flow.</p>
+    <div class="badges">
+      <span class="badge">₹1,20,000 + GST</span>
+      <span class="badge">2–3 weeks</span>
+      <span class="badge">2 developers</span>
+      <span class="badge">End-to-end live demo</span>
+    </div>
+    <div class="callout">
+      This is not a payment app. Payments are already solved by GPay, Razorpay and PhonePe. What we build is the <b>transaction-orchestration layer</b>: conditional settlement based on delivery confirmation, the part banks, aggregators and marketplaces actually value.
+    </div>
+    <div class="foot">
+      <span class="logo">WE_<span>AINA</span> · AI-native product studio</span>
+      <span>Prepared for the client · 2026</span>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 2 · INSIGHT + IMAGE ============ -->
+  <section class="slide" id="s2">
+    <div class="eyebrow">The idea · How it works</div>
+    <div class="grid2">
+      <div>
+        <h2>Payments are solved.<br><span class="accent">Trust is not.</span></h2>
+        <p class="sub">The money rail already exists. The gap is settlement <em>conditioned</em> on delivery: the customer's money sits with a holding partner until the product is confirmed received, then releases to the merchant automatically, or refunds on a return.</p>
+        <p class="sub">Our platform is the <b>authorised API caller</b> that orchestrates that: it creates the payment request through the gateway, tracks the order and delivery, and instructs release or refund to the holding partner.</p>
+        <div class="chips">
+          <span class="chip">UPI collection: GPay / Razorpay</span>
+          <span class="chip">Funds held by holding partner</span>
+          <span class="chip">Release on OTP-verified delivery</span>
+          <span class="chip">Refund on return</span>
+        </div>
+      </div>
+      <div>
+        <img class="flow-img" src="assets/secure-upi-flow.png" alt="Secure UPI payment flow: customer pays via UPI, funds held by holding partner, released to merchant only after delivery confirmation">
+      </div>
+    </div>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Secure UPI Payment &amp; Conditional Settlement · PoC</span></div>
+  </section>
+
+  <!-- ============ SLIDE 3 · FUNCTIONAL ARCHITECTURE ============ -->
+  <section class="slide dark" id="s3">
+    <div class="eyebrow">Functional architecture</div>
+    <h2>Seven modules, <span class="accent">one brain.</span></h2>
+    <p class="sub">Every action passes through the orchestration engine. The four portals are what people see; the three services are what make the settlement conditional.</p>
+    <svg viewBox="0 0 1000 430" role="img" aria-label="Functional architecture: four portals and a gateway adapter connect to a central orchestration engine, which drives a holding-partner simulator">
+      <defs>
+        <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 z" fill="#7FB0FF"/>
+        </marker>
+        <style>
+          .box{fill:rgba(255,255,255,.04);stroke:rgba(127,176,255,.5);stroke-width:1.4;rx:12}
+          .hub{fill:#0B5FFF;stroke:#7FB0FF;stroke-width:1.6}
+          .svc{fill:rgba(10,207,107,.10);stroke:rgba(10,207,107,.55);stroke-width:1.4}
+          .t{fill:#fff;font-family:var(--sans);font-size:15px;font-weight:700}
+          .st{fill:rgba(255,255,255,.62);font-family:var(--mono);font-size:11px}
+          .ln{stroke:rgba(127,176,255,.5);stroke-width:1.4;fill:none}
+        </style>
+      </defs>
+      <!-- hub -->
+      <rect class="hub" x="400" y="175" width="200" height="80" rx="14"/>
+      <text class="t" x="500" y="205" text-anchor="middle" fill="#fff">Orchestration Engine</text>
+      <text class="st" x="500" y="226" text-anchor="middle" fill="rgba(255,255,255,.8)">state machine · events · audit</text>
+      <!-- top portals -->
+      <rect class="box" x="70"  y="40" width="180" height="66" rx="12"/><text class="t" x="160" y="70" text-anchor="middle">Merchant Portal</text><text class="st" x="160" y="90" text-anchor="middle">orders · AWB · payouts</text>
+      <rect class="box" x="290" y="40" width="180" height="66" rx="12"/><text class="t" x="380" y="70" text-anchor="middle">Customer Portal</text><text class="st" x="380" y="90" text-anchor="middle">checkout · OTP · return</text>
+      <rect class="box" x="530" y="40" width="180" height="66" rx="12"/><text class="t" x="620" y="70" text-anchor="middle">Courier Portal</text><text class="st" x="620" y="90" text-anchor="middle">deliver · OTP · confirm</text>
+      <rect class="box" x="750" y="40" width="180" height="66" rx="12"/><text class="t" x="840" y="70" text-anchor="middle">Admin Portal</text><text class="st" x="840" y="90" text-anchor="middle">monitor · approve · disputes</text>
+      <!-- bottom services -->
+      <rect class="box" x="70"  y="330" width="200" height="66" rx="12"/><text class="t" x="170" y="360" text-anchor="middle">Payment Gateway Adapter</text><text class="st" x="170" y="380" text-anchor="middle">Razorpay / GPay UPI</text>
+      <rect class="svc" x="400" y="330" width="200" height="66" rx="12"/><text class="t" x="500" y="360" text-anchor="middle">Holding-Partner Sim</text><text class="st" x="500" y="380" text-anchor="middle">held · released · refund</text>
+      <rect class="svc" x="730" y="330" width="200" height="66" rx="12"/><text class="t" x="830" y="360" text-anchor="middle">Settlement Simulator</text><text class="st" x="830" y="380" text-anchor="middle">manual approve → payout</text>
+      <!-- links to hub -->
+      <path class="ln" marker-end="url(#ar)" d="M160,106 L160,150 Q160,215 395,215"/>
+      <path class="ln" marker-end="url(#ar)" d="M380,106 L380,175"/>
+      <path class="ln" marker-end="url(#ar)" d="M620,106 L620,175"/>
+      <path class="ln" marker-end="url(#ar)" d="M840,106 L840,150 Q840,215 605,215"/>
+      <path class="ln" marker-end="url(#ar)" d="M170,330 L170,290 Q170,215 395,215"/>
+      <path class="ln" marker-end="url(#ar)" d="M500,330 L500,255"/>
+      <path class="ln" marker-end="url(#ar)" d="M830,330 L830,290 Q830,215 605,215"/>
+    </svg>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Functional architecture</span></div>
+  </section>
+
+  <!-- ============ SLIDE 4 · INFO FLOW / STATE MACHINE + APIs ============ -->
+  <section class="slide dark" id="s4">
+    <div class="eyebrow">Information flow · Event-driven</div>
+    <h2>The lifecycle is <span class="accent">the product.</span></h2>
+    <p class="sub">Every transition emits an event shown on a live timeline during the demo, so the audience watches each component react. It reads as an orchestration layer, not a status field in a database.</p>
+    <div class="grid2" style="align-items:start;margin-top:8px">
+      <svg viewBox="0 0 460 360" role="img" aria-label="Transaction state machine from Created through Funds Held, Delivered, OTP Verified, Settlement Released to Completed, with a Return-Refund branch">
+        <defs><style>
+          .s{fill:rgba(255,255,255,.05);stroke:rgba(127,176,255,.5);stroke-width:1.3;rx:8}
+          .sg{fill:rgba(10,207,107,.12);stroke:rgba(10,207,107,.6)}
+          .sa{fill:rgba(255,106,26,.12);stroke:rgba(255,106,26,.6)}
+          .lt{fill:#fff;font-family:var(--mono);font-size:12px;font-weight:700}
+          .fl{stroke:rgba(127,176,255,.55);stroke-width:1.3;fill:none}
+        </style>
+        <marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7FB0FF"/></marker></defs>
+        <g text-anchor="middle">
+          <rect class="s" x="130" y="10"  width="200" height="34" rx="8"/><text class="lt" x="230" y="32">Created</text>
+          <rect class="s" x="130" y="62"  width="200" height="34" rx="8"/><text class="lt" x="230" y="84">Payment Success</text>
+          <rect class="s" x="130" y="114" width="200" height="34" rx="8"/><text class="lt" x="230" y="136">Funds Held</text>
+          <rect class="s" x="130" y="166" width="200" height="34" rx="8"/><text class="lt" x="230" y="188">Shipped · In Transit</text>
+          <rect class="s" x="130" y="218" width="200" height="34" rx="8"/><text class="lt" x="230" y="240">Delivered</text>
+          <rect class="s sg" x="130" y="270" width="200" height="34" rx="8"/><text class="lt" x="230" y="292">OTP Verified · Accepted</text>
+          <rect class="s sg" x="130" y="322" width="200" height="34" rx="8"/><text class="lt" x="230" y="344">Settlement Released</text>
+          <!-- branch -->
+          <rect class="s sa" x="352" y="218" width="100" height="34" rx="8"/><text class="lt" x="402" y="240" font-size="11">Rejected</text>
+          <rect class="s sa" x="352" y="270" width="100" height="34" rx="8"/><text class="lt" x="402" y="292" font-size="11">Refund</text>
+        </g>
+        <g>
+          <path class="fl" marker-end="url(#ar2)" d="M230,44 L230,60"/>
+          <path class="fl" marker-end="url(#ar2)" d="M230,96 L230,112"/>
+          <path class="fl" marker-end="url(#ar2)" d="M230,148 L230,164"/>
+          <path class="fl" marker-end="url(#ar2)" d="M230,200 L230,216"/>
+          <path class="fl" marker-end="url(#ar2)" d="M230,252 L230,268"/>
+          <path class="fl" marker-end="url(#ar2)" d="M230,304 L230,320"/>
+          <path class="fl" marker-end="url(#ar2)" d="M330,235 L350,235"/>
+          <path class="fl" marker-end="url(#ar2)" d="M402,252 L402,268"/>
+        </g>
+      </svg>
+      <div>
+        <h3 style="color:#7FB0FF;font-family:var(--mono);letter-spacing:.06em;margin-bottom:10px">EVENT STREAM</h3>
+        <div class="chips" style="margin-top:0">
+          <span class="chip">PaymentReceived</span><span class="chip">FundsHeld</span>
+          <span class="chip">ShipmentCreated</span><span class="chip">Delivered</span>
+          <span class="chip">OTPVerified</span><span class="chip">SettlementReleased</span>
+          <span class="chip">RefundProcessed</span>
+        </div>
+        <h3 style="color:#7FB0FF;font-family:var(--mono);letter-spacing:.06em;margin:22px 0 10px">API SURFACE · ~30 endpoints</h3>
+        <div class="apis" style="grid-template-columns:1fr 1fr">
+          <div class="apigrp"><div class="h">PAYMENT</div><code><span class="m">POST</span> /payment/create</code><code><span class="m">POST</span> /payment/webhook</code><code><span class="m">GET</span> /payment/:id</code></div>
+          <div class="apigrp"><div class="h">SETTLEMENT</div><code><span class="m">POST</span> /settlement/hold</code><code><span class="m">POST</span> /settlement/release</code><code><span class="m">POST</span> /settlement/refund</code></div>
+          <div class="apigrp"><div class="h">LOGISTICS</div><code><span class="m">POST</span> /shipment/create</code><code><span class="m">POST</span> /shipment/update</code><code><span class="m">POST</span> /shipment/delivered</code></div>
+          <div class="apigrp"><div class="h">DELIVERY</div><code><span class="m">POST</span> /delivery/generate-otp</code><code><span class="m">POST</span> /delivery/verify-otp</code><code><span class="m">POST</span> /delivery/accept</code></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Information &amp; tech architecture</span></div>
+  </section>
+
+  <!-- ============ SLIDE 5 · SCOPE, MODULES, DEMO, STACK ============ -->
+  <section class="slide" id="s5">
+    <div class="eyebrow">Scope · What we build</div>
+    <h2>Four portals, three services, <span class="accent">one demo.</span></h2>
+    <div class="grid-cards">
+      <div class="card"><h3>1 · Merchant Portal</h3><ul><li>Login &amp; products</li><li>Create order</li><li>Secure payment QR</li><li>Enter AWB, ship</li><li>Settlement status</li></ul></div>
+      <div class="card"><h3>2 · Customer Portal</h3><ul><li>Checkout &amp; pay</li><li>Scan UPI QR</li><li>Track order</li><li>Accept via OTP</li><li>Return &amp; refund</li></ul></div>
+      <div class="card"><h3>3 · Courier Portal</h3><ul><li>Assigned deliveries</li><li>Update status</li><li>Trigger OTP</li><li>Confirm delivered</li></ul></div>
+      <div class="card"><h3>4 · Admin Portal</h3><ul><li>Transactions</li><li>Settlement queue</li><li>Refund queue</li><li>Manual approval</li><li>Audit logs</li></ul></div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">01</span> Merchant creates product &amp; order</div>
+      <div class="step"><span class="n">02</span> Platform generates UPI QR</div>
+      <div class="step"><span class="n">03</span> Customer pays on GPay → funds held</div>
+      <div class="step"><span class="n">04</span> Merchant ships with AWB</div>
+      <div class="step"><span class="n">05</span> Courier marks delivered</div>
+      <div class="step"><span class="n">06</span> Customer accepts with OTP</div>
+      <div class="step"><span class="n">07</span> Platform validates delivery</div>
+      <div class="step"><span class="n">08</span> Admin approves → settlement</div>
+    </div>
+    <div class="chips">
+      <span class="chip">React + Vite</span><span class="chip">Tailwind</span>
+      <span class="chip">Node · Express</span><span class="chip">PostgreSQL</span>
+      <span class="chip">JWT</span><span class="chip">Socket.IO events</span>
+      <span class="chip">Razorpay / GPay UPI test</span><span class="chip">Google Cloud Run</span>
+    </div>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Scope &amp; deliverables</span></div>
+  </section>
+
+  <!-- ============ SLIDE 6 · COMMERCIAL ============ -->
+  <section class="slide dark" id="s6">
+    <div class="eyebrow">Commercial</div>
+    <h2>Fixed price. <span class="accent">Two milestones.</span></h2>
+    <div class="two-col">
+      <div>
+        <table>
+          <tr><th>Line item</th><th style="text-align:right">Amount</th></tr>
+          <tr><td>UI development (4 portals)</td><td class="amt">₹30,000</td></tr>
+          <tr><td>Backend APIs &amp; orchestration</td><td class="amt">₹40,000</td></tr>
+          <tr><td>Google Pay (UPI) integration</td><td class="amt">₹15,000</td></tr>
+          <tr><td>Logistics &amp; settlement simulation</td><td class="amt">₹20,000</td></tr>
+          <tr><td>Testing, deployment &amp; docs</td><td class="amt">₹15,000</td></tr>
+          <tr class="total"><td>Total</td><td class="amt">₹1,20,000 + GST</td></tr>
+        </table>
+        <table style="margin-top:26px">
+          <tr><th>Milestone</th><th style="text-align:right">Amount</th></tr>
+          <tr><td>1 · Kick-off — design, setup, dev start</td><td class="amt">₹60,000 · 50%</td></tr>
+          <tr><td>2 · Final demo, deploy &amp; handover</td><td class="amt">₹60,000 · 50%</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th>Week</th><th>Deliverable</th></tr>
+          <tr><td class="mono">1</td><td>Merchant &amp; Customer portals, order &amp; QR generation</td></tr>
+          <tr><td class="mono">2</td><td>GPay integration, holding ledger, courier portal, OTP, admin</td></tr>
+          <tr><td class="mono">3</td><td>Refund flow, event timeline, end-to-end test, deploy, demo</td></tr>
+        </table>
+        <div class="note">
+          <b>Scope, stated plainly.</b> This is a functional Proof of Concept, not production infrastructure. Settlement is <b>demonstrated manually</b> by an admin; it does not integrate a licensed holding institution or automated settlement APIs. UPI collection uses a client-provided GPay/UPI account in test mode. Aggregator licensing, bank holding partners and automated settlement are a subsequent production phase.
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <span class="logo">WE_<span>AINA</span> · you talk to Chitransh or Pratik</span>
+      <span>₹1,20,000 + GST · 2–3 weeks · 2 developers</span>
+    </div>
+  </section>
+
+  <!-- ============ APPENDIX A · FULL API REFERENCE ============ -->
+  <section class="slide dark" id="a1">
+    <div class="eyebrow">Appendix A · API reference</div>
+    <h2>The full surface.</h2>
+    <p class="sub">Roughly thirty endpoints across seven groups. One initially wired to Razorpay/GPay test mode; the rest simulated.</p>
+    <div class="apis" style="grid-template-columns:repeat(4,1fr);margin-top:26px">
+      <div class="apigrp"><div class="h">MERCHANT</div><code><span class="m">POST</span> /merchant/login</code><code><span class="m">POST</span> /merchant/product</code><code><span class="m">GET</span> /merchant/products</code><code><span class="m">POST</span> /merchant/order</code><code><span class="m">GET</span> /merchant/orders</code></div>
+      <div class="apigrp"><div class="h">PAYMENT</div><code><span class="m">POST</span> /payment/create</code><code><span class="m">POST</span> /payment/webhook</code><code><span class="m">GET</span> /payment/:id</code><code><span class="m">GET</span> /payment/status</code></div>
+      <div class="apigrp"><div class="h">LOGISTICS</div><code><span class="m">POST</span> /shipment/create</code><code><span class="m">POST</span> /shipment/update</code><code><span class="m">GET</span> /shipment/:awb</code><code><span class="m">POST</span> /shipment/delivered</code></div>
+      <div class="apigrp"><div class="h">DELIVERY</div><code><span class="m">POST</span> /delivery/generate-otp</code><code><span class="m">POST</span> /delivery/verify-otp</code><code><span class="m">POST</span> /delivery/accept</code><code><span class="m">POST</span> /delivery/reject</code></div>
+      <div class="apigrp"><div class="h">SETTLEMENT</div><code><span class="m">POST</span> /settlement/hold</code><code><span class="m">POST</span> /settlement/release</code><code><span class="m">POST</span> /settlement/refund</code><code><span class="m">GET</span> /settlement/status</code></div>
+      <div class="apigrp"><div class="h">CUSTOMER</div><code><span class="m">POST</span> /customer/login</code><code><span class="m">GET</span> /customer/orders</code><code><span class="m">POST</span> /customer/return</code><code><span class="m">POST</span> /customer/dispute</code></div>
+      <div class="apigrp"><div class="h">ADMIN</div><code><span class="m">GET</span> /transactions</code><code><span class="m">GET</span> /events</code><code><span class="m">GET</span> /audit</code><code><span class="m">GET</span> /dashboard</code></div>
+      <div class="apigrp" style="border-style:dashed"><div class="h" style="color:var(--green)">EVENTS EMITTED</div><code>PaymentReceived</code><code>FundsHeld · ShipmentCreated</code><code>Delivered · OTPVerified</code><code>SettlementReleased · Refund</code></div>
+    </div>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Appendix · API reference</span></div>
+  </section>
+
+  <!-- ============ APPENDIX B · DATA MODEL ============ -->
+  <section class="slide" id="a2">
+    <div class="eyebrow">Appendix B · Data model</div>
+    <h2>Five core tables.</h2>
+    <p class="sub">Every row is an auditable fact. The event table is the source of truth the live timeline reads from.</p>
+    <div class="grid-cards" style="grid-template-columns:repeat(5,1fr)">
+      <div class="card"><h3>orders</h3><ul><li>id</li><li>merchant</li><li>customer</li><li>amount</li><li>status</li><li>awb</li><li>payment_id</li><li>otp</li></ul></div>
+      <div class="card"><h3>payments</h3><ul><li>payment_id</li><li>gateway</li><li>amount</li><li>status</li><li>held</li><li>released</li><li>refunded</li></ul></div>
+      <div class="card"><h3>settlement</h3><ul><li>settlement_id</li><li>payment_id</li><li>status</li><li>release_time</li><li>approved_by</li></ul></div>
+      <div class="card"><h3>logistics</h3><ul><li>awb</li><li>carrier</li><li>status</li><li>otp</li><li>delivery_time</li></ul></div>
+      <div class="card"><h3>events</h3><ul><li>type</li><li>ref_id</li><li>payload</li><li>ts</li><li>actor</li></ul></div>
+    </div>
+    <p class="sub" style="margin-top:30px">Stack: <span class="mono">PostgreSQL</span> (SQLite for the fastest MVP), Prisma ORM, Node/Express, Socket.IO for the live event stream. Optional Redis + BullMQ if the settlement queue is made asynchronous.</p>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Appendix · Data model</span></div>
+  </section>
+
+  <!-- ============ APPENDIX C · RETURN / REFUND + WHY IT MATTERS ============ -->
+  <section class="slide dark" id="a3">
+    <div class="eyebrow">Appendix C · The other path</div>
+    <h2>Return &amp; refund, <span class="accent">same rail.</span></h2>
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div class="steps" style="grid-template-columns:1fr">
+          <div class="step"><span class="n">01</span> Customer presses <b>Return</b> and picks a reason</div>
+          <div class="step"><span class="n">02</span> Settlement stays <b>Held</b>, never released</div>
+          <div class="step"><span class="n">03</span> Merchant approves the return</div>
+          <div class="step"><span class="n">04</span> Platform calls <span class="mono">/settlement/refund</span></div>
+          <div class="step"><span class="n">05</span> Holding partner refunds the customer</div>
+          <div class="step"><span class="n">06</span> Timeline shows <b>Refund Completed</b></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="color:#7FB0FF;font-family:var(--mono);letter-spacing:.06em;margin-bottom:12px">WHY THIS WINS THE ROOM</h3>
+        <p class="sub" style="margin-top:0">The payment is not the pitch, the <b>conditional hold</b> is. This is exactly what a bank, a payment aggregator or a marketplace escrow product needs to see working before they fund the licensed version.</p>
+        <div class="callout" style="margin-top:24px">The demo proves the orchestration layer end to end. The production phase swaps the simulator for a licensed holding partner and automated settlement APIs, and the same state machine carries real money.</div>
+      </div>
+    </div>
+    <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Appendix · Return, refund &amp; positioning</span></div>
+  </section>
+
+  <!-- ============ APPENDIX D · CLOSE ============ -->
+  <section class="slide dark" id="a4">
+    <div class="eyebrow">Next step</div>
+    <h1>Approve, and we <span class="accent">kick off this week.</span></h1>
+    <p class="sub">Milestone 1 starts the build. In two to three weeks you have a working, end-to-end conditional-settlement demo you can put in front of a bank or an aggregator, and decide the production phase from something real instead of a slide.</p>
+    <div class="badges">
+      <span class="badge">₹60,000 to start</span>
+      <span class="badge">Live demo in 2–3 weeks</span>
+      <span class="badge">Source, DB &amp; deploy handed over</span>
+    </div>
+    <div class="callout" style="margin-top:40px">
+      We do not sell you a team and a steering committee. It is two accountable partners and an agent fleet, a fixed number, and a working system. That is the whole offer.
+    </div>
+    <div class="foot">
+      <span class="logo">WE_<span>AINA</span> · AI-native product studio</span>
+      <span>chitransh@workelate.com</span>
+    </div>
+  </section>
+
+</div>
+
+<nav class="dots" aria-label="slides">
+  <a href="#s1" title="Cover"></a><a href="#s2" title="How it works"></a>
+  <a href="#s3" title="Functional architecture"></a><a href="#s4" title="Information flow"></a>
+  <a href="#s5" title="Scope"></a><a href="#s6" title="Commercial"></a>
+  <a href="#a1" title="API reference"></a><a href="#a2" title="Data model"></a>
+  <a href="#a3" title="Return & refund"></a><a href="#a4" title="Next step"></a>
+</nav>
+<div class="pageno" id="pageno">01 / 10</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')], no=document.getElementById('pageno');
+  const total=String(slides.length).padStart(2,'0');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+    const i=slides.indexOf(e.target)+1; no.textContent=String(i).padStart(2,'0')+' / '+total;
+  }}),{threshold:.6});
+  slides.forEach(s=>io.observe(s));
+  addEventListener('keydown',e=>{
+    const cur=slides.findIndex(s=>{const r=s.getBoundingClientRect();return r.top>=-5&&r.top<innerHeight/2});
+    if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' '){e.preventDefault();slides[Math.min(cur+1,slides.length-1)]?.scrollIntoView()}
+    if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();slides[Math.max(cur-1,0)]?.scrollIntoView()}
+  });
+</script>
+</body>
+</html>
