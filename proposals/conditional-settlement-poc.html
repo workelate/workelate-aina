@@ -51,7 +51,7 @@
   .card ul{list-style:none;font-size:13px;line-height:1.9;color:rgba(10,24,48,.7)}
   .dark .card ul{color:rgba(255,255,255,.72)}
   .card ul li::before{content:"– ";color:var(--blue)}
-  .flow-img{width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;display:block}
+  .flow-img{width:auto;max-width:100%;max-height:64vh;object-fit:contain;border:1px solid var(--line);border-radius:14px;background:#fff;display:block;margin:0 auto}
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}
   .step{border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.4}
   .dark .step{border-color:rgba(255,255,255,.16)}
@@ -238,12 +238,11 @@
           <span class="chip">OTPVerified</span><span class="chip">SettlementReleased</span>
           <span class="chip">RefundProcessed</span>
         </div>
-        <h3 style="color:#7FB0FF;font-family:var(--mono);letter-spacing:.06em;margin:22px 0 10px">API SURFACE · ~30 endpoints</h3>
-        <div class="apis" style="grid-template-columns:1fr 1fr">
-          <div class="apigrp"><div class="h">PAYMENT</div><code><span class="m">POST</span> /payment/create</code><code><span class="m">POST</span> /payment/webhook</code><code><span class="m">GET</span> /payment/:id</code></div>
-          <div class="apigrp"><div class="h">SETTLEMENT</div><code><span class="m">POST</span> /settlement/hold</code><code><span class="m">POST</span> /settlement/release</code><code><span class="m">POST</span> /settlement/refund</code></div>
-          <div class="apigrp"><div class="h">LOGISTICS</div><code><span class="m">POST</span> /shipment/create</code><code><span class="m">POST</span> /shipment/update</code><code><span class="m">POST</span> /shipment/delivered</code></div>
-          <div class="apigrp"><div class="h">DELIVERY</div><code><span class="m">POST</span> /delivery/generate-otp</code><code><span class="m">POST</span> /delivery/verify-otp</code><code><span class="m">POST</span> /delivery/accept</code></div>
+        <h3 style="color:#7FB0FF;font-family:var(--mono);letter-spacing:.06em;margin:22px 0 10px">API SURFACE</h3>
+        <p class="sub" style="margin-top:0;font-size:15px">Roughly thirty endpoints across seven groups, one wired to a live gateway and the rest simulated. The full reference is in Appendix A.</p>
+        <div class="chips" style="margin-top:14px">
+          <span class="chip">Merchant</span><span class="chip">Payment</span><span class="chip">Logistics</span>
+          <span class="chip">Delivery</span><span class="chip">Settlement</span><span class="chip">Customer</span><span class="chip">Admin</span>
         </div>
       </div>
     </div>
@@ -331,7 +330,6 @@
       <div class="apigrp"><div class="h">SETTLEMENT</div><code><span class="m">POST</span> /settlement/hold</code><code><span class="m">POST</span> /settlement/release</code><code><span class="m">POST</span> /settlement/refund</code><code><span class="m">GET</span> /settlement/status</code></div>
       <div class="apigrp"><div class="h">CUSTOMER</div><code><span class="m">POST</span> /customer/login</code><code><span class="m">GET</span> /customer/orders</code><code><span class="m">POST</span> /customer/return</code><code><span class="m">POST</span> /customer/dispute</code></div>
       <div class="apigrp"><div class="h">ADMIN</div><code><span class="m">GET</span> /transactions</code><code><span class="m">GET</span> /events</code><code><span class="m">GET</span> /audit</code><code><span class="m">GET</span> /dashboard</code></div>
-      <div class="apigrp" style="border-style:dashed"><div class="h" style="color:var(--green)">EVENTS EMITTED</div><code>PaymentReceived</code><code>FundsHeld · ShipmentCreated</code><code>Delivered · OTPVerified</code><code>SettlementReleased · Refund</code></div>
     </div>
     <div class="foot"><span class="logo">WE_<span>AINA</span></span><span>Appendix · API reference</span></div>
   </section>

@@ -4,3 +4,4 @@ leads.db
 .DS_Store
 .next/
 next-env.d.ts
+proposals/build/*.png
