@@ -38,6 +38,7 @@ function toSlug(base, filePath) {
 
 function walk(dir, base, out) {
   for (const name of readdirSync(dir)) {
+    if (name.startsWith(".")) continue; // never publish dotfiles (agent receipts, .DS_Store)
     const p = path.join(dir, name);
     if (statSync(p).isDirectory()) walk(p, base, out);
     else out.push(toSlug(base, p));
@@ -55,6 +56,10 @@ export function generateStaticParams() {
 function resolve(slug = []) {
   let base = SITE, parts = slug;
   if (parts[0] === "assets") { base = ASSETS; parts = parts.slice(1); }
+
+  // A dot-prefixed segment is never a public URL. Blocks /img/.verify-live/*
+  // (internal agent receipts) being served even though the file is on disk.
+  if (parts.some(seg => seg.startsWith("."))) return null;
 
   let p = path.normalize(path.join(base, ...parts));
   if (!p.startsWith(base)) return null; // path traversal guard
