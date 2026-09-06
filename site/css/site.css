@@ -60,6 +60,12 @@ a { color: var(--ink); text-decoration-color: var(--blue); text-underline-offset
 a:hover { color: var(--blue); }
 ::selection { background: var(--blue); color: var(--paper); }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+/* on navy, #0B5FFF measures 3.16:1 against #0A1F44 — a dark ring on a dark
+   ground. Inverted contexts get a white ring instead (17.4:1). */
+section.deep :focus-visible,
+#hero :focus-visible,
+.band-dark :focus-visible,
+footer.mega :focus-visible { outline-color: #FFFFFF; }
 body { font-variant-numeric: tabular-nums; }
 
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
@@ -92,6 +98,12 @@ section.deep ::selection { background: #FFFFFF; color: var(--deep); }
 .rise > span:nth-child(3) { animation-delay: 0.24s; }
 @keyframes rise { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
+  .rv, .rise > span { opacity: 1; transform: none; animation: none; }
+}
+/* .in is added by /js/reveal.js. With scripting off, every .rv block would
+   otherwise stay at opacity 0 forever — 87 invisible text blocks on the home
+   page alone, measured by the verify gate's JS-disabled pass. */
+@media (scripting: none) {
   .rv, .rise > span { opacity: 1; transform: none; animation: none; }
 }
 
@@ -141,8 +153,8 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 
 /* ---- shift ---- */
 #shift .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-#shift .col h3 { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(10,24,48,0.14); }
-#shift .col.now h3 { border-bottom-color: var(--blue); }
+#shift .col :is(h2,h3) { font-size: 18px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(10,24,48,0.14); }
+#shift .col.now :is(h2,h3) { border-bottom-color: var(--blue); }
 #shift li { list-style: none; padding: 10px 0; font-size: 15px; }
 #shift li::before { content: "– "; color: var(--blue); }
 
@@ -150,9 +162,9 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .svc { display: block; padding: 28px 0; border-top: 1px solid rgba(10,24,48,0.1); text-decoration: none; }
 .svc:first-of-type { border-top: none; }
 .svc .num { color: var(--blue); font-size: 13px; margin-right: 20px; font-weight: 700; font-family: var(--mono); }
-.svc h3 { display: inline; }
+.svc :is(h2,h3) { display: inline; font-size: 18px; margin: 0; }
 .svc p { margin-top: 8px; padding-left: 44px; font-size: 14px; }
-.svc:hover h3 { color: var(--blue); }
+.svc:hover :is(h2,h3) { color: var(--blue); }
 
 /* ---- banner band: a 4-shot crossfade of real delivery work.
    Founder call 2026-07-22: the single stock team photo was cut outright
@@ -204,7 +216,11 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .ask-form:focus-within { border-color: #FFFFFF; }
 .ask-input { flex: 1; background: none; border: none; color: #FFFFFF; font-family: var(--sans); font-size: 16px; padding: 14px 0; min-width: 0; }
 .ask-input::placeholder { color: rgba(255,255,255,0.7); }
+/* the site's most important control: it sits on navy, so the ring is WHITE.
+   :focus-visible must come after :focus — equal specificity, source order wins. */
 .ask-input:focus { outline: none; }
+.ask-input:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 5px; border-radius: 999px; }
+.ask-form:has(.ask-input:focus-visible) { border-color: #FFFFFF; }
 .ask-send { flex: none; width: 46px; height: 46px; border-radius: 999px; border: none; background: var(--blue); color: #FFFFFF; font-family: var(--mono); font-size: 19px; cursor: pointer; transition: background 0.15s; }
 .ask-send:hover { background: #FFFFFF; color: var(--blue); }
 
@@ -242,6 +258,7 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .cap-input { flex: 1; min-width: 0; background: rgba(255,255,255,0.06); border: 1px solid rgba(127,176,255,0.55); border-radius: 999px; color: #fff; font-family: var(--sans); font-size: 15px; padding: 12px 18px; }
 .cap-input::placeholder { color: rgba(255,255,255,0.55); }
 .cap-input:focus { outline: none; border-color: #fff; }
+.cap-input:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; border-color: #FFFFFF; }
 .cap-send { flex: none; border: none; border-radius: 999px; background: var(--blue); color: #fff; font-family: var(--mono); font-size: 14px; font-weight: 700; padding: 0 20px; cursor: pointer; transition: background 0.15s; }
 .cap-send:hover { background: #fff; color: var(--blue); }
 .cap-msg { margin-top: 10px; font-size: 13px; color: #7FB0FF; }
@@ -262,7 +279,7 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
    whitespace only, no cards. ---- */
 #portfolio .tens { margin-bottom: 72px; }
 .pf-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; border-top: 1px solid rgba(10,24,48,0.14); padding-top: 44px; }
-.pf-col h3 { font-size: 20px; margin-bottom: 22px; }
+.pf-col :is(h2,h3) { font-size: 20px; margin-bottom: 22px; }
 .pf-list { list-style: none; columns: 2; column-gap: 28px; }
 .pf-list li { font-size: 14.5px; padding: 7px 0; break-inside: avoid; border-bottom: 1px solid rgba(10,24,48,0.08); }
 .pf-note { font-size: 13px; margin-top: 22px; max-width: 460px; }
@@ -324,16 +341,10 @@ h3 { font-family: var(--display); font-size: 18px; font-weight: 700; }
 section.deep .step .k { color: #7FB0FF; }
 .step p { margin-top: 8px; font-size: 15px; }
 
-/* ---- work grid ---- */
-.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid rgba(247,251,247,0.25); }
-section.deep .work-grid { border-color: rgba(247,251,247,0.25); }
-.work { padding: 32px; border: 1px solid rgba(247,251,247,0.25); margin: -1px 0 0 -1px; }
-.work img { width: 100%; display: block; margin-bottom: 20px; border: 1px solid rgba(247,251,247,0.25); }
-.work .tag { color: #7FB0FF; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--mono); }
-.work h3 { margin: 10px 0 6px; }
-.work .receipt { font-size: 26px; font-weight: 700; font-family: var(--mono); }
-.work p { font-size: 14px; margin-top: 6px; }
-@media (max-width: 768px) { .work-grid { grid-template-columns: 1fr; } }
+/* ---- work grid: DELETED 2026-09-07. Zero references to .work-grid or .work
+   anywhere under site/, app/ or scripts/ (class-attribute census + a
+   classList/querySelector scan of every .js). Its rgba(247,251,247,…) rules
+   were also off-palette — a green-tinted white from the rejected v3. ---- */
 
 /* ---- founders ---- */
 .founder { padding: 28px 0; border-top: 1px solid rgba(10,24,48,0.1); display: grid; grid-template-columns: 88px 1fr; gap: 24px; align-items: start; }
@@ -342,40 +353,12 @@ section.deep .work-grid { border-color: rgba(247,251,247,0.25); }
 .founder p { margin-top: 8px; font-size: 15px; max-width: 640px; }
 .founder .cred { font-size: 13px; margin-top: 4px; }
 
-/* ---- score widget ---- */
-#score-widget { max-width: 760px; margin: 56px auto 0; border: 2px solid var(--blue); border-radius: 22px; padding: 48px; background: #FFFFFF; }
-#score-progress { height: 3px; background: rgba(10,24,48,0.1); margin-bottom: 40px; }
-#score-progress i { display: block; height: 100%; width: 0; background: var(--blue); transition: width 0.25s; }
-.q { display: none; }
-.q.on { display: block; }
-.q h3 { margin-bottom: 24px; font-size: 19px; }
-.q .qnum { color: var(--blue); font-size: 12px; display: block; margin-bottom: 12px; }
-.opt {
-  display: block; width: 100%; text-align: left;
-  background: transparent; color: var(--ink);
-  border: 1.5px solid rgba(10,24,48,0.22); border-radius: 12px;
-  font-family: var(--sans); font-size: 15px; font-weight: 600;
-  padding: 15px 20px; margin-bottom: 12px; cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s var(--ease);
-}
-.opt:hover { transform: translateY(-1px); }
-.opt:hover, .opt:focus-visible { border-color: var(--blue); color: var(--blue); outline: none; }
-.opt[aria-pressed="true"] { border-color: var(--blue); background: var(--blue); color: #FFFFFF; }
-.q input[type="text"], .q input[type="email"] {
-  width: 100%; background: transparent; color: var(--ink);
-  border: 1.5px solid rgba(10,24,48,0.22); border-radius: 12px; padding: 15px 20px;
-  font-family: var(--sans); font-size: 15px;
-}
-.q input:focus { border-color: var(--blue); outline: none; }
-.q .next { margin-top: 20px; }
-.q .hint { font-size: 12px; margin-top: 10px; }
-#score-result { display: none; text-align: center; }
-#score-result.on { display: block; }
-#dial { margin: 0 auto 24px; display: block; }
-#dial .track { stroke: rgba(10,24,48,0.12); }
-#dial .arc { stroke: var(--blue); transition: stroke-dashoffset 1.2s ease; }
-#dial text { fill: var(--ink); font-family: var(--mono); font-size: 30px; font-weight: 700; }
-#verdict { font-size: 16px; }
+/* ---- score widget: DELETED 2026-09-07. The readiness widget was removed from
+   the product on 2026-07-23; #score-widget, #score-progress, #score-result,
+   #dial, #verdict, .q and .opt had zero references left under site/, app/ or
+   scripts/ (id/class census + classList/querySelector scan). Its .opt and
+   .q input borders were also rgba(10,24,48,0.22) = 1.63:1, under the 3:1
+   control-boundary floor, so nothing here was worth keeping. ---- */
 
 /* ---- sticky CTA pill ---- */
 #cta-pill {
@@ -384,6 +367,9 @@ section.deep .work-grid { border-color: rgba(247,251,247,0.25); }
   transition: opacity 0.3s, transform 0.3s;
 }
 #cta-pill.show { opacity: 1; transform: none; pointer-events: auto; }
+/* .show is added by /js/main.js on scroll; with scripting off the site's only
+   CTA pill would be permanently invisible */
+@media (scripting: none) { #cta-pill { opacity: 1; transform: none; pointer-events: auto; } }
 #cta-pill:hover { background: var(--deep); border-color: var(--deep); color: #FFFFFF; }
 @media (max-width: 768px) { #cta-pill { right: 12px; bottom: 12px; font-size: 13px; padding: 12px 18px; } }
 
@@ -395,7 +381,6 @@ footer .row { display: flex; justify-content: space-between; flex-wrap: wrap; ga
   section { padding: 72px 0; }
   #shift .grid2 { grid-template-columns: 1fr; }
   .step { grid-template-columns: 1fr; gap: 8px; }
-  #score-widget { padding: 24px; }
 }
 
 /* ---- v3 additions: avatars, founder note, artifact strip ---- */
@@ -438,9 +423,17 @@ footer .row { display: flex; justify-content: space-between; flex-wrap: wrap; ga
 .hero-meta { font-family: var(--mono); }
 .receipt, [data-count] { font-family: var(--mono); }
 
-/* ---- v4.1: top nav + inner pages ---- */
-.nav { border-bottom: 1px solid rgba(10,24,48,0.1); background: var(--paper); position: sticky; top: 0; z-index: 20; }
-.nav .row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+/* ---- v4.1 + v5: the floating pill nav (consolidated 2026-09-07 — v5 used to
+   redeclare .nav / .nav .row / .nav .btn further down the sheet; the two
+   halves are merged here, which is why the "v5" section below no longer
+   carries a nav block). ---- */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 14px 0; background: transparent; border-bottom: none; }
+/* opaque, not rgba(250,252,255,0.97): at 3% transparency the page content
+   ghosted through the pill in screenshots. No shadow (design rule 3) — the
+   separation is a 1px rule, which is what the system prescribes. */
+.nav .row { display: flex; align-items: center; justify-content: space-between;
+  background: #FFFFFF; border: 1px solid rgba(10,24,48,0.12); border-radius: 999px;
+  padding: 10px 12px 10px 24px; position: relative; }
 .nav .logo { font-family: var(--mono); font-weight: 700; font-size: 16px; text-decoration: none; letter-spacing: 0.02em; }
 .nav .logo span { color: var(--blue); }
 .nav nav { display: flex; align-items: center; gap: 26px; }
@@ -448,10 +441,61 @@ footer .row { display: flex; justify-content: space-between; flex-wrap: wrap; ga
 .nav nav a:not(.btn)::after { content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0; background: var(--blue); transition: width 0.25s var(--ease); }
 .nav nav a:not(.btn):hover::after, .nav nav a[aria-current="page"]:not(.btn)::after { width: 100%; }
 .nav nav a:hover, .nav nav a[aria-current="page"] { color: var(--blue); }
-.nav .btn { padding: 10px 18px; font-size: 13px; }
+.nav .btn { padding: 10px 18px; font-size: 13px; border-radius: 999px; }
 .nav nav a.btn { color: #FFFFFF; }
 .nav nav a.btn:hover { color: var(--blue); }
-@media (max-width: 860px) { .nav nav a:not(.btn) { display: none; } }
+
+/* ---- mobile nav (2026-09-07) ----
+   Before this, `@media (max-width:860px){ .nav nav a:not(.btn){display:none} }`
+   hid five links with nothing to replace them: at 390px the only way to reach
+   How-we-work / About / Case studies / Blog / Systems was the footer, ~19,000px
+   down. The header now carries a toggle and the nav becomes a panel.
+   Contract (markup owned elsewhere):
+     <nav id="navmenu"> … </nav>
+     <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu">
+       <span></span><span></span><span></span></button>   (last child of .nav .row)
+   Panel visibility is driven by `.open` on .nav, set by /js/nav.js. */
+.nav-toggle { display: none; }
+
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; flex: none; padding: 0 10px;
+    background: transparent; border: 1px solid rgba(10,24,48,0.12);
+    border-radius: 999px; cursor: pointer;
+  }
+  /* the three bars are the spans that are NOT the sr-only label; counting from
+     the END keeps the X animation correct whether or not a label span leads */
+  .nav-toggle span:not(.sr-only) { display: block; height: 2px; width: 100%; background: var(--ink); transition: transform 0.2s var(--ease), opacity 0.2s; }
+  .nav.open .nav-toggle { border-color: var(--blue); }
+  .nav.open .nav-toggle span:nth-last-child(3) { transform: translateY(7px) rotate(45deg); }
+  .nav.open .nav-toggle span:nth-last-child(2) { opacity: 0; }
+  .nav.open .nav-toggle span:nth-last-child(1) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* the panel: full width of the pill, dropped just below it. Absolute, so
+     opening it costs no layout pass on the page behind. */
+  .nav #navmenu {
+    display: none;
+    position: absolute; top: calc(100% + 10px); left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: #FFFFFF; border: 1px solid rgba(10,24,48,0.12);
+    border-radius: 22px; padding: 8px 0; overflow: hidden;
+  }
+  .nav.open #navmenu { display: flex; }
+  .nav #navmenu a {
+    display: flex; align-items: center; min-height: 48px;
+    padding: 12px 24px; font-size: 16px;
+    border-top: 1px solid rgba(10,24,48,0.12);
+  }
+  .nav #navmenu a:first-child { border-top: none; }
+  /* the underline sweep is a desktop affordance; in the panel it would
+     underline a row that is already a full-width tap target */
+  .nav #navmenu a:not(.btn)::after { content: none; }
+  .nav #navmenu a.btn {
+    margin: 8px 16px 4px; min-height: 48px; justify-content: center;
+    border-top: none; border-radius: 999px;
+  }
+}
 
 .page-hero { padding: 96px 0 72px; }
 .page-hero h1 { max-width: 900px; }
@@ -481,7 +525,7 @@ section.deep .cmp .us { background: rgba(127,176,255,0.08); }
 .bench .role-card:hover { transform: translateY(-4px); border-color: var(--blue); }
 .bench .role-card .ri { font-family: var(--mono); color: var(--blue); font-size: 13px; }
 section.deep .bench .role-card .ri { color: #7FB0FF; }
-.bench .role-card h3 { margin: 8px 0 6px; font-size: 16px; }
+.bench .role-card :is(h2,h3) { margin: 8px 0 6px; font-size: 16px; }
 .bench .role-card p { font-size: 14px; }
 @media (max-width: 860px) { .bench { grid-template-columns: 1fr; } }
 
@@ -489,18 +533,21 @@ section.deep .bench .role-card .ri { color: #7FB0FF; }
 .case { border: 1px solid rgba(10,24,48,0.15); padding: 32px; margin-top: 24px; display: grid; grid-template-columns: 1fr 220px; gap: 24px; transition: transform 0.3s var(--ease), border-color 0.3s; }
 .case:hover { transform: translateY(-4px); border-color: var(--blue); }
 .case .ctag { font-family: var(--mono); color: var(--blue); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
-.case h3 { margin: 10px 0 8px; font-size: 20px; }
+.case :is(h2,h3) { margin: 10px 0 8px; font-size: 20px; }
 .case .cnum { font-family: var(--mono); font-weight: 700; font-size: 24px; text-align: right; color: var(--blue); }
-.case .cnum small { display: block; font-family: var(--sans); font-weight: 400; font-size: 13px; color: rgba(10,24,48,0.6); margin-top: 6px; }
-.case.placeholder { border-style: dashed; opacity: 0.75; }
+.case .cnum small { display: block; font-family: var(--sans); font-weight: 400; font-size: 13px; color: rgba(10,24,48,0.68); margin-top: 6px; }
+/* the 0.75 opacity dropped every child of a placeholder card under 4.5:1
+   (.ctag 3.33, .dim 3.05, .cnum small 2.93 — measured 2026-09-07). The dashed
+   border already says "placeholder"; the fade only said "unreadable". */
+.case.placeholder { border-style: dashed; }
 @media (max-width: 768px) { .case { grid-template-columns: 1fr; } .case .cnum { text-align: left; } }
 
 /* blog list + article */
 .post-item { padding: 32px 0; border-top: 1px solid rgba(10,24,48,0.1); }
 .post-item:first-of-type { border-top: none; }
-.post-item .pdate { font-family: var(--mono); font-size: 13px; color: rgba(10,24,48,0.55); }
-.post-item h3 { margin: 8px 0; font-size: 22px; }
-.post-item h3 a { text-decoration: none; }
+.post-item .pdate { font-family: var(--mono); font-size: 13px; color: rgba(10,24,48,0.68); }
+.post-item :is(h2,h3) { margin: 8px 0; font-size: 22px; }
+.post-item :is(h2,h3) a { text-decoration: none; }
 article.post { max-width: 760px; }
 article.post p { margin: 20px 0; font-size: 17px; line-height: 1.75; }
 article.post h2 { font-size: 26px; margin-top: 48px; }
@@ -514,7 +561,9 @@ article.post blockquote { border-left: 4px solid var(--blue); padding-left: 24px
 .pill-opt {
   font-family: var(--sans); font-size: 15px; font-weight: 600;
   color: var(--blue); background: transparent;
-  border: 1.5px solid rgba(11,95,255,0.45); border-radius: 999px;
+  /* 0.45 measured 1.95:1 — under the 3:1 floor for a control boundary.
+     0.8 measures 3.63:1 and still reads lighter than the solid-blue hover. */
+  border: 1.5px solid rgba(11,95,255,0.8); border-radius: 999px;
   padding: 13px 26px; cursor: pointer;
   transition: background 0.2s var(--ease), color 0.2s, transform 0.2s var(--ease), border-color 0.2s;
 }
@@ -523,11 +572,11 @@ article.post blockquote { border-left: 4px solid var(--blue); padding-left: 24px
 .q-step { display: none; }
 .q-step.on { display: block; animation: qfade 0.45s var(--ease); }
 @keyframes qfade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-#router .q-back { font-family: var(--mono); font-size: 13px; background: none; border: none; color: rgba(10,24,48,0.55); cursor: pointer; margin-top: 28px; padding: 0; }
+#router .q-back { font-family: var(--mono); font-size: 13px; background: none; border: none; color: rgba(10,24,48,0.68); cursor: pointer; margin-top: 28px; padding: 0; }
 #router .q-back:hover { color: var(--blue); }
 .q-result { border: 2px solid var(--blue); padding: 36px; margin-top: 8px; }
 .q-result .qr-tag { font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); }
-.q-result h3 { font-size: 24px; margin: 12px 0 10px; }
+.q-result :is(h2,h3) { font-size: 24px; margin: 12px 0 10px; }
 .q-result p { max-width: 640px; }
 .q-result .qr-links { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
 .q-result .qr-links a.text { font-weight: 600; }
@@ -546,14 +595,13 @@ footer.mega .baseline { border-top: 1px solid rgba(255,255,255,0.15); padding: 2
 
 /* ============ v5: Infosys-pattern layer ============ */
 
-/* floating pill nav */
-.nav { border-bottom: none; background: transparent; padding: 14px 0; position: fixed; left: 0; right: 0; }
-.nav .row { background: rgba(250,252,255,0.97);
-  border: 1px solid rgba(10,24,48,0.08); border-radius: 999px; padding: 10px 12px 10px 24px; }
-.nav[data-shadow-ok] .row { box-shadow: 0 8px 30px rgba(10,24,48,0.10); }
-.nav .btn { border-radius: 999px; }
+/* the floating pill nav now lives in one place, up in the v4.1 block. */
 body { padding-top: 0; }
-main, section:first-of-type { scroll-margin-top: 90px; }
+/* the nav is fixed and 81px tall at its bottom edge; before this, only
+   `main, section:first-of-type` carried the offset, so #work (and every other
+   in-page anchor) measured scroll-margin-top: 0px and buried its heading
+   behind the header. section[id] covers every anchor target there is. */
+main, section[id], section:first-of-type { scroll-margin-top: 96px; }
 
 /* full-bleed cinematic hero */
 #hero { min-height: 100vh; padding: 0; position: relative; overflow: hidden; background: var(--deep); color: #fff; display: flex; align-items: center; }
@@ -576,12 +624,17 @@ main, section:first-of-type { scroll-margin-top: 90px; }
 .center-head .accent2 { color: var(--blue); }
 
 /* rounded card system (Infosys-style) */
-.xcard { background: #FFFFFF; border-radius: 22px; overflow: hidden; border: 1px solid rgba(10,24,48,0.08);
-  display: flex; flex-direction: column; transition: transform 0.35s var(--ease); color: var(--ink); text-decoration: none; }
-[data-shadow-ok] .xcard { box-shadow: 0 10px 34px rgba(10,24,48,0.12); }
-.xcard:hover { transform: translateY(-6px); }
+/* no box-shadow — design rule 3 bans them outright, and the two
+   [data-shadow-ok] escape hatches (here and on .nav .row) were the only two
+   shadow declarations in the sheet. Separation is the 1px rule, lifted from
+   0.08 to 0.12 so it carries the weight the shadow used to. */
+.xcard { background: #FFFFFF; border-radius: 22px; overflow: hidden; border: 1px solid rgba(10,24,48,0.12);
+  display: flex; flex-direction: column; transition: transform 0.35s var(--ease), border-color 0.35s; color: var(--ink); text-decoration: none; }
+.xcard:hover { transform: translateY(-6px); border-color: var(--blue); }
 .xcard img.art { width: 100%; height: 240px; object-fit: cover; display: block; }
-.xcard .body h3 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 44px; }
+/* h3 clamp dropped 2026-09-07: real headlines were being cut mid-phrase.
+   The grid stretches instead; the body paragraph keeps its 3-line clamp so
+   a long card body still cannot run away from its neighbours. */
 .xcard .body p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .xcard .body { padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .xcard .body p { font-size: 14.5px; }
@@ -607,9 +660,7 @@ section:not(.band-dark):not(.deep) .car-btn:hover { color: #fff; }
 /* rounded core buttons */
 .btn { border-radius: 12px; }
 .pill-opt { border-radius: 999px; }
-#score-widget { border-radius: 22px; }
 .q-result { border-radius: 22px; }
-.work, .work-grid { border-radius: 0; }
 .case { border-radius: 22px; }
 .bench .role-card { border-radius: 18px; }
 .budget { border-radius: 18px; }
@@ -617,6 +668,60 @@ section:not(.band-dark):not(.deep) .car-btn:hover { color: #fff; }
 /* stat blocks on light pages */
 section:not(.deep):not(.band-dark) .ten .n { color: var(--blue); }
 
+/* ---- hero action row + receipt band (2026-09-07 restructure: the hero is
+   claim + subhead + two actions, the assistant moved down to #cta) ---- */
+
+/* #hero p / #cta are id-scoped, so these carry an id too or `#hero p`
+   (1,0,1) would keep the 640px column and re-stack the pair. */
+.hero-cta,
+#hero .hero-cta,
+#cta .hero-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 18px 30px; max-width: 820px; margin: 34px auto 42px;
+}
+#hero .hero-cta .btn, #cta .hero-cta .btn { flex: none; }
+
+/* the secondary action sits on navy in BOTH places it is used (#hero and
+   #cta). Left to the global `a` rule it renders #0B5FFF on #0A1F44 = 3.17:1,
+   which is the accent-on-navy rule broken. #7FB0FF measures 7.0:1. */
+.hero-alt {
+  color: #7FB0FF; font-family: var(--mono); font-size: 14.5px; font-weight: 700;
+  text-decoration: underline; text-decoration-color: rgba(127,176,255,0.5);
+  text-underline-offset: 6px; transition: color 0.15s, text-decoration-color 0.15s;
+}
+.hero-alt:hover { color: #FFFFFF; text-decoration-color: #FFFFFF; }
+#hero .hero-alt, #cta .hero-alt, section.deep .hero-alt { color: #7FB0FF; }
+#hero .hero-alt:hover, #cta .hero-alt:hover, section.deep .hero-alt:hover { color: #FFFFFF; }
+/* at 390px the mono line ran one character over and orphaned its arrow */
+@media (max-width: 480px) { .hero-alt { font-size: 13px; } }
+
+/* attribution caption under the four-stat receipt band. Dim, but the link
+   inside it stays a link — white at 16.3:1, underlined so it is findable
+   without colour alone. */
+.receipt-src { margin-top: 40px; font-size: 14px; max-width: 760px; }
+.receipt-src a { color: #FFFFFF; font-weight: 600; text-decoration: underline; text-decoration-color: #7FB0FF; text-underline-offset: 4px; }
+.receipt-src a:hover { color: #7FB0FF; }
+
+/* the framing line above the assistant. Scoped to a DIRECT child of #ask so
+   it cannot touch .ask-lead inside a bot reply, which is left-aligned body
+   copy with its own margin. */
+#ask > .ask-lead { text-align: center; font-size: 14.5px; margin: 0 0 18px; }
+
+/* ---- the four shapes of work (#services, 2026-09-07). Four parallel items a
+   buyer scans to self-identify, so they must read as four, not as prose. Rules
+   and whitespace only — no cards, no shadows (design rule 3). The 2px blue
+   top rule matches .pf-foot and separates these from the six .svc evidence
+   rows below, which keep their 1px hairline. ---- */
+.shapes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 8px; margin-bottom: 8px; }
+.shape { border-top: 2px solid var(--blue); padding-top: 18px; }
+.shape .num { display: block; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.06em; }
+.shape :is(h2,h3) { margin: 10px 0 8px; font-size: 17px; }
+.shape p { font-size: 14.5px; }
+section.deep .shape { border-top-color: #7FB0FF; }
+section.deep .shape .num { color: #7FB0FF; }
+@media (max-width: 1000px) { .shapes { grid-template-columns: repeat(2, 1fr); gap: 28px 32px; } }
+@media (max-width: 640px) { .shapes { grid-template-columns: 1fr; gap: 26px; } }
+
 /* xcard is always white, its text never inherits band colors */
 .xcard .body p, .band-dark .xcard .dim, section.deep .xcard .dim { color: rgba(10, 24, 48, 0.62); }
-.xcard h3 { color: var(--ink); }
+.xcard :is(h2,h3) { color: var(--ink); font-size: 18px; margin: 0; }
