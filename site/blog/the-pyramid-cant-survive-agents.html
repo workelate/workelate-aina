@@ -31,13 +31,14 @@
 
 <header class="nav"><div class="wrap row">
   <a class="logo" href="/">WE_<span>AINA</span></a>
-  <nav>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu"><span class="sr-only">Menu</span><span></span><span></span><span></span></button>
+  <nav id="navmenu">
     <a href="/how-we-work">How we work</a>
     <a href="/about">About</a>
     <a href="/case-studies">Case studies</a>
     <a href="/blog" aria-current="page">Blog</a>
     <a href="/systems/quarry-dispatch-automation">Systems</a>
-    <a class="btn" href="/#ask">Book a Diagnostic Sprint</a>
+    <a class="btn" href="/contact">Book a Diagnostic Sprint</a>
   </nav>
 </div></header>
 
@@ -92,8 +93,9 @@
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/#ask">Book a Diagnostic Sprint</a>
+        <a href="/contact">Book a Diagnostic Sprint</a>
         <a href="/how-we-work">The Diagnostic Sprint</a>
+        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
         <a href="/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
@@ -102,6 +104,7 @@
     </div>
   </div>
 </footer>
+<script src="/js/nav.js" defer></script>
 <script type="module" src="/js/reveal.js"></script>
 </body>
 </html>

@@ -45,15 +45,16 @@
 </head>
 <body>
 
-<header class="nav" data-shadow-ok><div class="wrap row">
+<header class="nav"><div class="wrap row">
   <a class="logo" href="/">WE_<span>AINA</span></a>
-  <nav>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu"><span class="sr-only">Menu</span><span></span><span></span><span></span></button>
+  <nav id="navmenu">
     <a href="/how-we-work">How we work</a>
     <a href="/about">About</a>
     <a href="/case-studies">Case studies</a>
     <a href="/blog">Blog</a>
     <a href="/systems/quarry-dispatch-automation">Systems</a>
-    <a class="btn" href="#ask">Book a Diagnostic Sprint</a>
+    <a class="btn" href="/contact">Book a Diagnostic Sprint</a>
   </nav>
 </div></header>
 
@@ -62,246 +63,49 @@
 <!-- HERO -->
 <section id="hero">
   <div class="wrap">
-    <span class="label">WE_AINA · AI-native product studio</span>
-    <h1 class="rise"><span>You need software built.</span><span>Not a deck about building it.</span><span class="accent" style="color:#7FB0FF">We build.</span></h1>
-    <p>An AI-native product studio and digital engineering partner. We design, build and ship products, platforms and the internal systems a company runs on, in weeks, at $30K–$100K fixed.</p>
-    <div id="ask">
-      <form class="ask-form" autocomplete="off">
-        <label class="sr-only" for="ask-input">Ask what we would build for your business</label>
-        <input class="ask-input" id="ask-input" name="q" type="text" placeholder="Ask what we would build for your business…">
-        <button class="ask-send" type="submit" aria-label="Send">→</button>
-      </form>
-      <div class="ask-chips" aria-label="example questions">
-        <button type="button" data-ask="What do you actually build?">What do you build?</button>
-        <button type="button" data-ask="We need an MVP shipped in weeks, not quarters">Ship an MVP</button>
-        <button type="button" data-ask="Can you add AI features to our existing product?">Add AI to our product</button>
-        <button type="button" data-ask="Our build has stalled, can you take over the codebase?">Take over a stalled build</button>
-        <button type="button" data-ask="Do you build mobile apps?">Mobile apps</button>
-        <button type="button" data-ask="What does a build cost and how long does it take?">Cost and timeline</button>
-      </div>
-      <div class="ask-log" role="log" aria-live="polite"></div>
-      <p class="ask-cta"><a class="btn" href="#ask">Book a Diagnostic Sprint</a></p>
-    </div>
+    <span class="label">WE_AINA · WorkElate's AI-Native Agency</span>
+    <h1 class="rise"><span>We build AI-native software.</span><span>We run our own company</span><span class="accent" style="color:#7FB0FF">on it first.</span></h1>
+    <p>An AI-native product studio for $5&ndash;50M businesses. Products, platforms, mobile apps and the internal systems a company runs on, designed, built and shipped in weeks at $30K&ndash;$100K fixed.</p>
+    <p class="hero-cta">
+      <a class="btn" href="/contact">Book a Diagnostic Sprint</a>
+      <a class="hero-alt" href="/case-studies/rockprosusa">See what we shipped for 13 quarry sites &rarr;</a>
+    </p>
   </div>
 </section>
 
-<!-- ROUTER, Bain-style two questions -->
-<section id="router">
+<!-- RECEIPT BAND: four numbers before any prose. Source: data/cases.json + data/projects.json -->
+<section id="receipts" class="deep">
   <div class="wrap">
-    <div class="center-head">
-      <span class="label">Start with your problem</span>
-      <h2>Answer two questions.<br>Put our <span class="accent2">systems to work</span> on your challenge.</h2>
-      <p class="sub dim">The same intake we run in the Diagnostic Sprint, sixty seconds, no email needed.</p>
-    </div>
-    <div class="q-step on" data-qstep="1">
-      <div class="q-head"><h3>1. What business are you in?</h3><span class="q-count">Question 1 of 2</span></div>
-      <div class="pills"></div>
-    </div>
-    <div class="q-step" data-qstep="2">
-      <div class="q-head"><h3>2. What is your business need?</h3><span class="q-count">Question 2 of 2</span></div>
-      <div class="pills"></div>
-      <button type="button" class="q-back">← back</button>
-    </div>
-    <div class="q-step" data-qstep="3">
-      <div class="q-result" data-shadow-ok>
-        <span class="qr-tag"></span>
-        <h3></h3>
-        <p class="dim"></p>
-        <div class="qr-links">
-          <a class="text" href="#"></a>
-          <a class="text" href="/case-studies"></a>
-          <a class="btn" href="#ask">Book a Diagnostic Sprint</a>
-        </div>
-      </div>
-      <button type="button" class="q-back">← start over</button>
-    </div>
-  </div>
-</section>
-
-<!-- 10X THESIS -->
-<section id="thesis" class="deep">
-  <div class="wrap">
-    <div class="center-head">
-      <span class="label">01 · The 10× thesis</span>
-      <h2>What the big firms do in 18 months,<br>we ship in <span style="color:#7FB0FF">weeks</span>.</h2>
-      <p class="sub dim">The large consultancies built their model when software took armies. Ours is built on agents: senior people plus AI systems doing the work of whole delivery teams. Same governance, same senior accountability, a tenth of the machinery.</p>
-    </div>
-    <div class="tens stagger">
-      <div class="ten rv"><div class="n">10×</div><p class="dim">faster delivery. Diagnostic in 2 weeks, working system in weeks, not a phase-gate program that ships slideware for two quarters.</p></div>
-      <div class="ten rv"><div class="n">1/10</div><p class="dim">the team. Two accountable partners and agents, no pyramid of juniors learning on your invoice.</p></div>
-      <div class="ten rv"><div class="n"><em>3–4×</em></div><p class="dim">lower cost. The savings from removing the pyramid go to you, not to our margin.</p></div>
-    </div>
-    <div class="budget rv">
-      <div class="row2">
-        <span class="dim">A serious product build, for a $5–50M business:</span>
-        <span class="amt">$30K–$100K, fixed</span>
-      </div>
-      <p class="dim" style="margin-top:14px">Scoped in the Diagnostic Sprint, priced before we build, receipts all the way through. Most first systems land in the $30K–$50K band; enterprise-grade multi-site builds run $50K–$100K. No time-and-materials meter running.</p>
-    </div>
-
-    <div class="thennow rv">
-      <div class="tn">
-        <span class="tnk">Before agents</span>
-        <p class="tnv">$100K–$500K</p>
-        <p class="dim">per build, and we could carry two or three serious projects in a year.</p>
-      </div>
-      <div class="tn now">
-        <span class="tnk">Now</span>
-        <p class="tnv">$30K–$100K</p>
-        <p class="dim">for the same scope, shipped in weeks, with five to ten builds running in a year.</p>
-      </div>
-      <p class="tnnote dim">That gap is not a discount. It is what happens when senior people stop doing the volume work and start directing agents that do it, which is the same shift we install inside your business.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SHIFT -->
-<section id="shift">
-  <div class="wrap">
-    <span class="label">02 · The shift</span>
-    <h2>Software used to wait.<br>Now it works.</h2>
-    <div class="grid2">
-      <div class="col">
-        <h3 class="dim">The last 20 years</h3>
-        <ul>
-          <li>ERP that needs 6 clicks per record</li>
-          <li>Dashboards nobody opens after week 2</li>
-          <li>WhatsApp threads as the real dispatch system</li>
-          <li>One person who "knows how the Excel works"</li>
-          <li>Reports written Sunday night, stale by Monday</li>
-        </ul>
-      </div>
-      <div class="col now">
-        <h3>What we install</h3>
-        <ul>
-          <li>Agents that create the record, not forms that request it</li>
-          <li>Reports that write themselves at 6:00 AM, daily</li>
-          <li>Dispatch decisions proposed with the reasoning attached</li>
-          <li>Invoices matched to deliveries without a human pass</li>
-          <li>Receipts instead of status decks, every claim carries a number</li>
-        </ul>
-      </div>
-    </div>
-    <p class="dim rv" style="margin-top:56px; max-width:760px">WE_AINA is an AI-native product studio founded by Chitransh (IIM Mumbai, formerly NITIE) and Pratik (IIT Bombay) that delivers AI and agentic automation systems for $5–50M businesses, industrial operators, marketing and creative agencies, and logistics companies, across India, the US and Mexico, at fixed project budgets of $30K–$100K. At RockProsUSA, WE_AINA's system runs 13 quarries, cut dispatch cycle time 38%, processed 2,140 invoices with zero manual touches, and returned 11,200 operations hours in its first year.</p>
-  </div>
-</section>
-
-<!-- WORK, AI in action carousel band -->
-<section id="work" class="band-dark" data-shadow-ok>
-  <div class="wrap">
-    <div class="center-head">
-      <span class="label">03 · AI in action</span>
-      <h2>Nine years of shipping.<br>Then agents.</h2>
-      <p class="sub dim">A few we can name. The rest run inside businesses that prefer their edge quiet, including enterprises that do not publicise vendors. Ask in the Sprint and we walk you through them.</p>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel" id="work-carousel">
-        <a class="xcard" href="/case-studies">
-          <img class="art" src="/img/photos/rockpros.jpg" alt="Haul trucks and loaders working a RockProsUSA quarry" width="301" height="168" loading="lazy">
-          <div class="body">
-            <span class="tagpill">Case study</span>
-            <h3>RockProsUSA: 13 quarries, one system</h3>
-            <p class="dim">Dispatch, invoicing and reporting on agents. Cycle time −38%; 2,140 invoices, zero manual touches.</p>
-            <span class="go">I'm curious ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/case-studies">
-          <img class="art" src="/img/photos/citisense-sprint.jpg" alt="Agency team planning a campaign sprint at the wall" width="1400" height="933" loading="lazy">
-          <div class="body">
-            <span class="tagpill">Case study</span>
-            <h3>CitiSense: AI campaign &amp; sales ops</h3>
-            <p class="dim">AI-enabled marketing and sales platform for advertising and creative agencies and display teams in Mexico.</p>
-            <span class="go">I'm curious ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/systems/freight-reconciliation">
-          <img class="art" src="/img/photos/logistics.jpg" alt="Container port with logistics data overlaid on a tablet" width="678" height="452" loading="lazy">
-          <div class="body">
-            <span class="tagpill">Logistics · NDA</span>
-            <h3>Freight bills that match themselves</h3>
-            <p class="dim">Every carrier bill line matched to weighbridge and delivery data; disputes flagged with evidence attached.</p>
-            <span class="go">I'm curious ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/systems/ar-followup-automation">
-          <img class="art" src="/img/photos/freight-modes.jpg" alt="Air, sea and road freight side by side" width="715" height="375" loading="lazy">
-          <div class="body">
-            <span class="tagpill">Services · NDA</span>
-            <h3>AR follow-up: no account goes quiet</h3>
-            <p class="dim">Receivables chased on cadence, escalated on rules, promises to pay tracked to their date.</p>
-            <span class="go">I'm curious ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/case-studies">
-          <img class="art" src="/img/dispatch-board.png" alt="WE_AINA dispatch board with agent reasoning per truck" width="1400" height="501">
-          <div class="body">
-            <span class="tagpill">Inside the product</span>
-            <h3>The dispatch board, live</h3>
-            <p class="dim">Every assignment proposed with its reasoning attached. Approve it or override it in one click.</p>
-            <span class="go">I'm curious ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/blog/receipts-over-decks">
-          <img class="art" src="/img/agent-log.png" alt="Agent worklist: a representative view of overnight agent actions" width="1400" height="354">
-          <div class="body">
-            <span class="tagpill">Inside the product</span>
-            <h3>The agent worklist, running overnight</h3>
-            <p class="dim">Matching, reporting and receivables worked overnight, so the exceptions were the only thing waiting in the morning.</p>
-            <span class="go">I'm curious ↗</span>
-          </div>
-        </a>
-      </div>
-      <div class="car-btns"><button class="car-btn" data-car="work-carousel" data-dir="-1" aria-label="previous">←</button><button class="car-btn" data-car="work-carousel" data-dir="1" aria-label="next">→</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="wrap">
-    <span class="label">04 · What we transform</span>
-    <h2>Every business leaks in its own dialect.<br>The systems rhyme.</h2>
-    <p class="dim rv" style="margin-bottom:40px">Below are six we run in production for building-materials operators, your industry has its own versions of these, and the Sprint finds them.</p>
-    <a class="svc" href="/systems/quarry-dispatch-automation">
-      <span class="num">S1</span><h3>Quarry dispatch automation</h3>
-      <p class="dim">Truck assignment, cycle tracking, exception alerts. The system that cut dispatch cycle 38% across 13 quarries.</p>
-    </a>
-    <a class="svc" href="/systems/plant-production-reporting">
-      <span class="num">S2</span><h3>Plant production reporting</h3>
-      <p class="dim">Shift logs to daily P&amp;L-grade reports, written by 6:00 AM without a human in the loop.</p>
-    </a>
-    <a class="svc" href="/systems/dealer-order-management">
-      <span class="num">S3</span><h3>Dealer order management</h3>
-      <p class="dim">Orders arriving on WhatsApp, phone and email become one queue with confirmations sent back automatically.</p>
-    </a>
-    <a class="svc" href="/systems/freight-reconciliation">
-      <span class="num">S4</span><h3>Freight reconciliation</h3>
-      <p class="dim">Carrier bills matched to weighbridge and delivery data. Disputes flagged with evidence attached.</p>
-    </a>
-    <a class="svc" href="/systems/ar-followup-automation">
-      <span class="num">S5</span><h3>AR follow-up automation</h3>
-      <p class="dim">Receivables chased on schedule, escalated on rules, promises to pay tracked. DSO drops or you see exactly why not.</p>
-    </a>
-    <a class="svc" href="/systems/compliance-documentation">
-      <span class="num">S6</span><h3>Compliance documentation</h3>
-      <p class="dim">Royalty, GST, e-way, environmental filings assembled from operating data instead of month-end panic.</p>
-    </a>
-  </div>
-</section>
-
-<!-- CASE STUDY -->
-<section id="casestudy" class="deep" data-shadow-ok>
-  <div class="wrap">
-    <span class="label rv">05 · Case study: RockProsUSA</span>
-    <h2 class="rv cs-h2">One system. Thirteen quarries.<br>Twelve months of <span class="accent">receipts</span>.</h2>
-    <p class="sub dim rv">Aggregates producer running 13 sites in the US. Dispatch, invoicing and daily reporting moved onto agents in one build. The numbers below are their first twelve months on the system.</p>
-
     <div class="tens tens-4 stagger">
       <div class="ten rv"><span class="n">13</span><p>quarry sites on one system, one shared truck fleet moving between them on demand.</p></div>
-      <div class="ten rv"><span class="n"><em>−38%</em></span><p>dispatch cycle time, from order raised to truck assigned and confirmed.</p></div>
+      <div class="ten rv"><span class="n"><em>&minus;38%</em></span><p>dispatch cycle time, from order raised to truck assigned and confirmed.</p></div>
       <div class="ten rv"><span class="n">2,140</span><p>invoices three-way matched and issued with zero manual touches.</p></div>
       <div class="ten rv"><span class="n">11,200</span><p>operations hours returned to the team in the first year on the system.</p></div>
     </div>
+    <p class="receipt-src rv dim">RockProsUSA, an aggregates producer in the United States, first twelve months on the system we built. <a href="/case-studies/rockprosusa">Read the case study &rarr;</a></p>
+  </div>
+</section>
+
+<!-- THE MOAT: the agency runs its own delivery on the product it sells -->
+<section id="dogfood">
+  <div class="wrap">
+    <span class="label rv">01 &middot; The part nobody else can copy</span>
+    <h2 class="rv">Most studios sell you agents.<br>We hand you the ones <span class="accent2">running our own company</span>.</h2>
+    <p class="sub dim rv">WE_AINA is WorkElate's AI-Native Agency. WorkElate is the AI-native work platform we build and sell: mail, calendar, tasks, forms, boards, docs, data, presentations, a hub, an authentication service, an admin console and a public SDK. Our own delivery runs on it. Every engagement in this studio is scoped, built and run inside the product we would sell you.</p>
+    <p class="rv">That is not a philosophy, it is exposure. If the agents cannot carry real work at commercial stakes, we are the first to lose money on it, and we lose it before you do. A studio that only sells the platform finds out from a support ticket. We find out from our own week.</p>
+    <!-- FOUNDER-BLOCKED: this section needs one real operating number from our own
+         WorkElate instance (engagements delivered on it, or a 30-day agent-action
+         count with failures beside it). It is the only major claim on the page with
+         no number behind it. Do not invent one. -->
+  </div>
+</section>
+
+
+<section id="casestudy" class="deep">
+  <div class="wrap">
+    <span class="label rv">02 · Case study: RockProsUSA</span>
+    <h2 class="rv cs-h2">One system. Thirteen quarries.<br>Twelve months of <span class="accent">receipts</span>.</h2>
+    <p class="sub dim rv">Aggregates producer running 13 sites in the US. Dispatch, invoicing and daily reporting moved onto agents in one build. The numbers below are their first twelve months on the system.</p>
 
     <div class="cmp-wrap rv">
       <table class="cmp cs-cmp">
@@ -347,11 +151,10 @@
   </div>
 </section>
 
-<!-- PORTFOLIO DEPTH & WIDTH -->
 <section id="portfolio">
   <div class="wrap">
     <div class="center-head">
-      <span class="label">06 · Depth and width</span>
+      <span class="label">03 · Depth and width</span>
       <h2>100+ projects shipped.<br><span class="accent2">One studio.</span></h2>
       <p class="sub dim">Nine years of shipping, 2018 to 2026. Not one product rebuilt over and over, and not a wall of demos: whole systems, each with the apps, the backend, the admin console and the integrations that make them real.</p>
     </div>
@@ -409,10 +212,86 @@
   </div>
 </section>
 
-<!-- PROCESS -->
-<section id="process" class="deep">
+<section id="services">
   <div class="wrap">
-    <span class="label">07 · How engagement works</span>
+    <span class="label">04 · What we build</span>
+    <h2>Four shapes of work.<br>Yours is <span class="accent2">one of them</span>.</h2>
+    <p class="dim rv" style="margin-bottom:40px">A product built from zero. A platform with several apps on one backend. AI put inside a product you already sell. The internal system your company actually runs on. Web, mobile, and the backend under them.</p>
+
+    <div class="shapes rv">
+      <div class="shape"><span class="num">01</span><h3>A product from zero</h3><p class="dim">Idea to a working product your customers use. Design, build, ship, then iterate on what they actually do with it.</p></div>
+      <div class="shape"><span class="num">02</span><h3>A platform, several apps</h3><p class="dim">Multiple surfaces on one backend with the admin console over the top. RockProsUSA runs customer, trucker and driver apps against a single dispatch backend.</p></div>
+      <div class="shape"><span class="num">03</span><h3>AI inside what you already sell</h3><p class="dim">Agents added to a product that already has customers, without a rewrite and without breaking the thing that works.</p></div>
+      <div class="shape"><span class="num">04</span><h3>The system you run on</h3><p class="dim">The internal machinery: dispatch, orders, reconciliation, reporting, receivables. The work nobody sees and everybody depends on.</p></div>
+    </div>
+
+    <p class="dim rv" style="margin:56px 0 24px">Six of those internal systems, running in production today. They come from building-materials operators because that is who cleared us to name the work. Your industry has its own versions, and the Sprint is how we find them.</p>
+    <a class="svc" href="/systems/quarry-dispatch-automation">
+      <span class="num">S1</span><h3>Quarry dispatch automation</h3>
+      <p class="dim">Truck assignment, cycle tracking, exception alerts. The system that cut dispatch cycle 38% across 13 quarries.</p>
+    </a>
+    <a class="svc" href="/systems/plant-production-reporting">
+      <span class="num">S2</span><h3>Plant production reporting</h3>
+      <p class="dim">Shift logs to daily P&amp;L-grade reports, written by 6:00 AM without a human in the loop.</p>
+    </a>
+    <a class="svc" href="/systems/dealer-order-management">
+      <span class="num">S3</span><h3>Dealer order management</h3>
+      <p class="dim">Orders arriving on WhatsApp, phone and email become one queue with confirmations sent back automatically.</p>
+    </a>
+    <a class="svc" href="/systems/freight-reconciliation">
+      <span class="num">S4</span><h3>Freight reconciliation</h3>
+      <p class="dim">Carrier bills matched to weighbridge and delivery data. Disputes flagged with evidence attached.</p>
+    </a>
+    <a class="svc" href="/systems/ar-followup-automation">
+      <span class="num">S5</span><h3>AR follow-up automation</h3>
+      <p class="dim">Receivables chased on schedule, escalated on rules, promises to pay tracked. DSO drops or you see exactly why not.</p>
+    </a>
+    <a class="svc" href="/systems/compliance-documentation">
+      <span class="num">S6</span><h3>Compliance documentation</h3>
+      <p class="dim">Royalty, tax and environmental filings assembled from operating data instead of month-end panic.</p>
+    </a>
+  </div>
+</section>
+
+<section id="thesis" class="deep">
+  <div class="wrap">
+    <div class="center-head">
+      <span class="label">05 · Why it costs what it costs</span>
+      <h2>What the big firms do in 18 months,<br>we ship in <span style="color:#7FB0FF">weeks</span>.</h2>
+      <p class="sub dim">The large consultancies built their model when software took armies. Ours is built on agents: senior people plus AI systems doing the work of whole delivery teams. Same governance, same senior accountability, a tenth of the machinery.</p>
+    </div>
+    <div class="tens stagger">
+      <div class="ten rv"><div class="n">10×</div><p class="dim">faster delivery. Diagnostic in 2 weeks, working system in weeks, not a phase-gate program that ships slideware for two quarters.</p></div>
+      <div class="ten rv"><div class="n">1/10</div><p class="dim">the team. Two accountable partners and agents, no pyramid of juniors learning on your invoice.</p></div>
+      <div class="ten rv"><div class="n"><em>3–4×</em></div><p class="dim">lower cost. The savings from removing the pyramid go to you, not to our margin.</p></div>
+    </div>
+    <div class="budget rv">
+      <div class="row2">
+        <span class="dim">A serious product build, for a $5–50M business:</span>
+        <span class="amt">$30K–$100K, fixed</span>
+      </div>
+      <p class="dim" style="margin-top:14px">Scoped in the Diagnostic Sprint, priced before we build, receipts all the way through. Most first systems land in the $30K–$50K band; enterprise-grade multi-site builds run $50K–$100K. No time-and-materials meter running.</p>
+    </div>
+
+    <div class="thennow rv">
+      <div class="tn">
+        <span class="tnk">Before agents</span>
+        <p class="tnv">$100K–$500K</p>
+        <p class="dim">per build, and we could carry two or three serious projects in a year.</p>
+      </div>
+      <div class="tn now">
+        <span class="tnk">Now</span>
+        <p class="tnv">$30K–$100K</p>
+        <p class="dim">for the same scope, shipped in weeks, with five to ten builds running in a year.</p>
+      </div>
+      <p class="tnnote dim">That gap is not a discount. It is what happens when senior people stop doing the volume work and start directing agents that do it, which is the same shift we install inside your business.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <span class="label">06 · How the engagement works</span>
     <h2>Three phases. Fixed scope. Receipts at every step.</h2>
     <div class="step">
       <span class="k">Weeks 1–2</span>
@@ -432,10 +311,9 @@
   </div>
 </section>
 
-<!-- FOUNDERS -->
 <section id="founders">
   <div class="wrap">
-    <span class="label">08 · Who builds this</span>
+    <span class="label">07 · Who builds this</span>
     <h2>Partners first. Vendors never.</h2>
     <div class="founder rv">
       <div class="avatar" aria-hidden="true">C</div>
@@ -468,51 +346,39 @@
       <p style="margin-top:12px">You will never be handed to an account manager. It's the two of us, and we answer our own messages."</p>
       <p class="sig">- Chitransh &amp; Pratik</p>
     </div>
-    <p class="human-promise rv">Leave a contact above and the reply is <b>written and sent by a human</b>. The Sprint call that follows is with <b>Chitransh or Pratik</b>, not a sales team.</p>
+    <p class="human-promise rv">Leave a contact and the reply is <b>written and sent by a human</b>. The Sprint call that follows is with <b>Chitransh or Pratik</b>, not a sales team.</p>
   </div>
 </section>
 
-<!-- INSIGHTS -->
-<section id="insights" data-shadow-ok>
-  <div class="wrap">
-    <div class="center-head">
-      <span class="label">09 · Thinking &amp; field notes</span>
-      <h2>Research, receipts &amp;<br><span class="accent2">thought leadership</span></h2>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel" id="insight-carousel">
-        <a class="xcard" href="/blog/the-pyramid-cant-survive-agents">
-          <img class="art" src="/img/photos/office-modern.jpg" alt="A large modern office floor, the world the pyramid was built for" width="1400" height="934" loading="lazy">
-          <div class="body">
-            <span class="tagpill">Insights</span>
-            <h3>The consulting pyramid can't survive agents</h3>
-            <p class="dim">Agents deleted the volume-labor layer the pyramid was priced on. What that means for your next build quote.</p>
-            <span class="go">Read more ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/blog/receipts-over-decks">
-          <img class="art" src="/img/photos/dev-review.jpg" alt="Two engineers reviewing work across laptops" width="1400" height="933" loading="lazy">
-          <div class="body">
-            <span class="tagpill">Insights</span>
-            <h3>Receipts over decks: what we hand you instead of slides</h3>
-            <p class="dim">Everyone promises responsible AI. Almost nobody shows the log. Here is ours.</p>
-            <span class="go">Read more ↗</span>
-          </div>
-        </a>
-        <a class="xcard" href="/how-we-work">
-          <img class="art" src="/img/photos/team-build.jpg" alt="A small senior team building at one table" width="1400" height="934" loading="lazy">
-          <div class="body">
-            <span class="tagpill">How we work</span>
-            <h3>The honest comparison: SI vs AI-native</h3>
-            <p class="dim">Team, timeline, commercials, ownership, side by side, no marketing fog.</p>
-            <span class="go">Read more ↗</span>
-          </div>
-        </a>
+<!-- CTA + the assistant. It answers only from our own delivery history, which is
+     why it sits here and not in the hero: a wrong answer costs less than a wrong
+     first impression, and the hero now leads with a number instead of an input. -->
+<section id="cta" class="deep">
+  <div class="wrap center-head">
+    <h2>Book a Diagnostic Sprint</h2>
+    <p class="sub">Two weeks, fixed fee. You get a build plan with a price on it, and if we find nothing worth building we say so in writing and you keep your money.</p>
+    <p class="hero-cta"><a class="btn" href="/contact">Book a Diagnostic Sprint</a></p>
+
+    <div id="ask">
+      <p class="ask-lead dim">Or ask first. This assistant answers only from what we have actually built, so it will tell you when it does not know.</p>
+      <form class="ask-form" autocomplete="off">
+        <label class="sr-only" for="ask-input">Ask what we would build for your business</label>
+        <input class="ask-input" id="ask-input" name="q" type="text" placeholder="Ask what we would build for your business&hellip;">
+        <button class="ask-send" type="submit" aria-label="Send">&rarr;</button>
+      </form>
+      <div class="ask-chips" aria-label="example questions">
+        <button type="button" data-ask="What do you actually build?">What do you build?</button>
+        <button type="button" data-ask="We need an MVP shipped in weeks, not quarters">Ship an MVP</button>
+        <button type="button" data-ask="Can you add AI features to our existing product?">Add AI to our product</button>
+        <button type="button" data-ask="Our build has stalled, can you take over the codebase?">Take over a stalled build</button>
+        <button type="button" data-ask="Do you build mobile apps?">Mobile apps</button>
+        <button type="button" data-ask="What does a build cost and how long does it take?">Cost and timeline</button>
       </div>
-      <div class="car-btns"><button class="car-btn" data-car="insight-carousel" data-dir="-1" aria-label="previous">←</button><button class="car-btn" data-car="insight-carousel" data-dir="1" aria-label="next">→</button></div>
+      <div class="ask-log" role="log" aria-live="polite"></div>
     </div>
   </div>
 </section>
+
 
 
 <!-- FOOTER -->
@@ -543,8 +409,9 @@
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/#ask">Book a Diagnostic Sprint</a>
+        <a href="/contact">Book a Diagnostic Sprint</a>
         <a href="/how-we-work">The Diagnostic Sprint</a>
+        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
         <a href="/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
@@ -556,8 +423,8 @@
 
 <a id="cta-pill" class="btn" href="#ask">Book a Diagnostic Sprint</a>
 
+<script src="/js/nav.js" defer></script>
 <script type="module" src="/js/chat.js"></script>
 <script type="module" src="/js/main.js"></script>
-<script type="module" src="/js/router.js"></script>
 </body>
 </html>
