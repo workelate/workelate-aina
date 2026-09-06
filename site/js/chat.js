@@ -32,14 +32,77 @@ const INDUSTRY_HINTS = {
 
 let CORPUS = null;
 
+// --- typo tolerance -------------------------------------------------------
+// Buyers type "whats the pricng" and "how mcuh does a bild cost". The old
+// fallback was a PREFIX test: any term over 4 chars matched anything sharing
+// its first 4 letters, so "whats" matched every chunk containing "what" and
+// typo questions were answered by a random project, while the correct fact
+// (worth +1) never reached the >= 4 threshold. Replaced with whole-word
+// matching inside one or two edits (Damerau-Levenshtein, so transpositions
+// like "mcuh"/"much" count), which is both tighter and stronger.
+function editDistance(a, b, tol) {
+  const la = a.length, lb = b.length;
+  let prev2 = new Array(lb + 1).fill(0);
+  let prev = new Array(lb + 1);
+  let cur = new Array(lb + 1);
+  for (let j = 0; j <= lb; j++) prev[j] = j;
+  for (let i = 1; i <= la; i++) {
+    cur[0] = i;
+    let best = i;
+    for (let j = 1; j <= lb; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      let v = Math.min(cur[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+        v = Math.min(v, prev2[j - 2] + 1);
+      }
+      cur[j] = v;
+      if (v < best) best = v;
+    }
+    if (best > tol) return tol + 1;      // no row can recover, bail early
+    const spare = prev2; prev2 = prev; prev = cur; cur = spare;
+  }
+  return prev[lb];
+}
+
+// Only words long enough that one edit is a typo rather than a different
+// word: "code"/"cost" are two edits apart, "own"/"one" would be one.
+const near = (a, b) => {
+  if (a === b) return true;
+  const min = Math.min(a.length, b.length);
+  if (min < 5) return false;
+  const tol = min >= 8 ? 2 : 1;
+  if (Math.abs(a.length - b.length) > tol) return false;
+  return editDistance(a, b, tol) <= tol;
+};
+
+const tokCache = new Map();
+const hayTokens = hay => {
+  let t = tokCache.get(hay);
+  if (!t) {
+    t = [...new Set(hay.split(/[^a-z0-9]+/).filter(w => w.length >= 5))];
+    tokCache.set(hay, t);
+  }
+  return t;
+};
+
 const score = (queryTerms, hay) => {
   let s = 0;
   for (const t of queryTerms) {
-    if (hay.includes(t)) s += 2;
-    else if (t.length > 4 && hay.includes(t.slice(0, Math.max(4, t.length - 2)))) s += 1;
+    if (hay.includes(t)) { s += 2; continue; }
+    if (t.length >= 5 && hayTokens(hay).some(w => near(t, w))) s += 1;
   }
   return s;
 };
+
+// A visitor calling us liars is not asking about the team. Measured: "you
+// people are frauds and your numbers are fake" matched the trigger "people"
+// and got the partners blurb. Hostility routes to the honest fallback.
+const HOSTILE = /\b(fraud|frauds|fraudulent|fake|faked|scam|scams|scammer|liar|liars|lying|bullshit|bullsh|crooks?|con artists?|useless|garbage|rubbish|nonsense|shit|bogus)\b/;
+
+const INJECTION = /\b(ignore (all |your |the )?(previous|prior|above|earlier)|disregard (all |your |the )?(previous|prior|above)|system prompt|you are now|pretend (you|to be)|act as if|repeat after me|say that you (charge|cost))\b/;
+
+// Negation cues, apostrophes already stripped.
+const NEG = new Set(["not", "no", "dont", "doesnt", "didnt", "cant", "cannot", "wont", "isnt", "arent", "never", "without", "nor", "neither", "avoid", "except"]);
 
 function detectIndustry(text) {
   const t = text.toLowerCase();
@@ -58,27 +121,83 @@ const FOLLOWUPS = [
   { key: "timeline", q: "Is this something you want live this quarter, or are you still scoping?" }
 ];
 
+// The one thing to say when we cannot answer. It used to be 44 words in a
+// single sentence, emitted exactly when the visitor is already lost. Short,
+// honest, and it points at the two places that do answer: the work, and the
+// two people whose names are on it.
+const fallback = () => ({
+  text: "I only answer from what we have actually built, so I do not have that one. The case studies are the work itself, and for anything else Chitransh or Pratik answer their own messages.",
+  links: [
+    { label: "Case studies", href: "/case-studies" },
+    { label: "Talk to Chitransh or Pratik", href: "/contact" }
+  ],
+  followup: null,
+  factId: null
+});
+
+// "we do not want mobile apps" used to return "Yes. At RockProsUSA we shipped
+// three separate React Native apps..." — the exact opposite of what was asked.
+// If a negation cue sits within three words before a matched single-word
+// trigger, we do not assert the positive. A cue that is part of a matched
+// multi-word trigger ("what if it doesnt work") is the question, not a
+// negation, so it is ignored.
+function isNegated(hits, words) {
+  const multi = hits.filter(p => p.includes(" ")).map(p => p.split(" "));
+  for (const p of hits) {
+    if (p.includes(" ")) continue;
+    for (let i = 0; i < words.length; i++) {
+      if (words[i] !== p && !near(words[i], p)) continue;
+      for (let d = 1; d <= 3 && i - d >= 0; d++) {
+        const cue = words[i - d];
+        if (!NEG.has(cue)) continue;
+        if (multi.some(m => m.includes(cue))) continue;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 function answer(text) {
   const q = norm(text);
+  const lower = text.toLowerCase();
+  // apostrophes folded, so "doesn't" is one token and matches "doesnt"
+  const flat = lower.replace(/['‘’ʼ]/g, "");
+  const words = flat.replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+
+  state.turns++;
+  // Neither of these is a question about the firm. The engine has no model to
+  // hijack, so injection was already harmless, but answering it with a random
+  // project reads as if something almost worked. Both go to the fallback.
+  if (HOSTILE.test(flat) || INJECTION.test(flat)) return fallback();
+
   const ind = detectIndustry(text);
   if (ind) state.industry = ind;
 
   // 1. a direct question about the firm beats a portfolio match. An explicit
   // phrase ("how much", "how long") is decisive: someone asking the price
   // wants the price, not the nearest project that happens to say "build".
-  const lower = text.toLowerCase();
+  //
   // Word boundaries, not substrings: "wastage is unknown" contains "own" and
-  // was answering a question about code ownership.
-  const hasPhrase = phrase => phrase.includes(" ")
-    ? lower.includes(phrase)
-    : new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(lower);
+  // was answering a question about code ownership. A near-miss on a single
+  // word ("pricng") is worth 5, just under an exact hit, so a typo still
+  // clears the fact threshold instead of falling through to a random project.
+  const phraseHit = phrase => {
+    if (phrase.includes(" ")) return flat.includes(phrase) ? 6 : 0;
+    if (new RegExp(`\\b${phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(flat)) return 6;
+    return words.some(w => near(w, phrase)) ? 5 : 0;
+  };
 
-  let bestFact = null, bestFactScore = 0;
+  let bestFact = null, bestFactScore = 0, bestHits = [];
   for (const f of CORPUS.facts) {
     let s = 0;
-    for (const phrase of f.q) if (hasPhrase(phrase)) s += 6;
+    const hits = [];
+    for (const phrase of f.q) {
+      const h = phraseHit(phrase);
+      if (h) { s += h; hits.push(phrase); }
+    }
     s += score(q, f.q.join(" "));
-    if (s > bestFactScore) { bestFactScore = s; bestFact = f; }
+    if (s > bestFactScore) { bestFactScore = s; bestFact = f; bestHits = hits; }
   }
 
   // 2. otherwise the closest thing we have actually built
@@ -96,9 +215,19 @@ function answer(text) {
     .sort((a, b) => b.s - a.s);
 
   const useFact = bestFactScore >= 6 || (bestFactScore >= 4 && bestFactScore >= (ranked[0]?.s || 0));
-  state.turns++;
 
   if (useFact) {
+    if (isNegated(bestHits, words)) {
+      return {
+        text: "Understood, we scope that out rather than sell it to you. Tell me what the system does need to do and I will point you at the closest thing we have built.",
+        links: [
+          { label: "Case studies", href: "/case-studies" },
+          { label: "Talk to Chitransh or Pratik", href: "/contact" }
+        ],
+        followup: pickFollowup(),
+        factId: null
+      };
+    }
     return { text: bestFact.a, links: bestFact.links, followup: pickFollowup(), factId: bestFact.id };
   }
   if (ranked.length) {
@@ -114,12 +243,7 @@ function answer(text) {
       matched: true
     };
   }
-  return {
-    text: "I can only speak to what we have actually built, so tell me the industry and the process that hurts, dispatch, orders, collections, reporting, compliance, or a product you need shipped. I will point you at the closest thing we have delivered.",
-    links: [{ label: "Browse the case studies", href: "/case-studies" }],
-    followup: null,
-    factId: null
-  };
+  return fallback();
 }
 
 // buying signals: when one of these facts is the answer, the visitor is asking
