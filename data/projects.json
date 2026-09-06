@@ -10,10 +10,40 @@
       "repos": 30,
       "headline": "A dispatch platform across four apps and 13 quarry sites",
       "what": "Aggregates producer running 13 sites on one system. We built the whole surface: a customer ordering app, a trucker app, a driver app, an admin console and the dispatch backend behind them, plus native React Native builds for the field.",
-      "capabilities": ["multi-app platform", "React Native field apps", "dispatch engine", "order to invoice", "admin console"],
-      "outcomes": ["dispatch cycle time down 38%", "2,140 invoices with zero manual touches", "11,200 operations hours returned in year one"],
-      "links": [{ "label": "Read the case study", "href": "/case-studies" }, { "label": "See the dispatch system", "href": "/systems/quarry-dispatch-automation" }],
-      "tags": ["mining", "building-materials", "freight", "manufacturing", "distribution", "construction", "manual-ops", "orders", "reporting", "leakage"]
+      "capabilities": [
+        "multi-app platform",
+        "React Native field apps",
+        "dispatch engine",
+        "order to invoice",
+        "admin console"
+      ],
+      "outcomes": [
+        "dispatch cycle time down 38%",
+        "2,140 invoices with zero manual touches",
+        "11,200 operations hours returned in year one"
+      ],
+      "links": [
+        {
+          "label": "Read the case study",
+          "href": "/case-studies"
+        },
+        {
+          "label": "See the dispatch system",
+          "href": "/systems/quarry-dispatch-automation"
+        }
+      ],
+      "tags": [
+        "mining",
+        "building-materials",
+        "freight",
+        "manufacturing",
+        "distribution",
+        "construction",
+        "manual-ops",
+        "orders",
+        "reporting",
+        "leakage"
+      ]
     },
     {
       "id": "workelate",
@@ -24,10 +54,31 @@
       "repos": 28,
       "headline": "A full office suite we build on and sell from",
       "what": "Mail, calendar, tasks, forms, boards, docs, data, presentations, a hub, an auth service, an admin console and a public SDK. Our own agency delivery runs on it, which is why we can say what agent systems do at commercial stakes rather than in a demo.",
-      "capabilities": ["multi-tenant SaaS", "auth and accounts", "realtime collaboration", "SDK and integrations", "document and data tooling"],
-      "outcomes": ["28 repositories in active development", "the agency's own delivery runs on it"],
-      "links": [{ "label": "Why we run on our own product", "href": "/about" }],
-      "tags": ["startups", "agencies", "ship-product", "ai-features", "internal-tools", "proserv"]
+      "capabilities": [
+        "multi-tenant SaaS",
+        "auth and accounts",
+        "realtime collaboration",
+        "SDK and integrations",
+        "document and data tooling"
+      ],
+      "outcomes": [
+        "28 repositories in active development",
+        "the agency's own delivery runs on it"
+      ],
+      "links": [
+        {
+          "label": "Why we run on our own product",
+          "href": "/about"
+        }
+      ],
+      "tags": [
+        "startups",
+        "agencies",
+        "ship-product",
+        "ai-features",
+        "internal-tools",
+        "proserv"
+      ]
     },
     {
       "id": "citysense",
@@ -37,11 +88,33 @@
       "years": "2026",
       "repos": 1,
       "headline": "AI marketing and sales platform for agencies",
-      "what": "Campaign operations, sales workflow and reporting carried by agents so that agency teams spend their hours on creative work instead of coordination.",
-      "capabilities": ["campaign operations", "sales workflow", "reporting automation"],
-      "outcomes": ["live with agencies and display teams in Mexico"],
-      "links": [{ "label": "See the case studies", "href": "/case-studies" }],
-      "tags": ["agencies", "startups", "ai-features", "reporting", "manual-ops"]
+      "what": "Campaign operations, sales workflow and reporting carried by agents, including AI-native planning for outdoor and indoor billboards, digital and physical, so that agency teams spend their hours on creative work instead of coordination.",
+      "capabilities": [
+        "OOH and billboard campaign planning",
+        "campaign operations",
+        "sales workflow",
+        "reporting automation"
+      ],
+      "outcomes": [
+        "live with agencies and display teams in Mexico"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "agencies",
+        "startups",
+        "ai-features",
+        "reporting",
+        "manual-ops",
+        "billboard",
+        "ooh",
+        "out-of-home",
+        "media planning"
+      ]
     },
     {
       "id": "deployer",
@@ -52,10 +125,30 @@
       "repos": 25,
       "headline": "A product family: apps, admin, billing and journey mapping",
       "what": "A suite of deployable business apps with a shared React component library, an admin console, subscription billing on Stripe and PayPal, a customer journey mapping module, a blog engine and a programmatic SEO service generating landing pages from templates.",
-      "capabilities": ["shared component library", "subscription billing", "admin consoles", "programmatic SEO", "journey mapping"],
-      "outcomes": ["25 repositories across the programme", "two payment rails live"],
-      "links": [{ "label": "See how we build", "href": "/how-we-work" }],
-      "tags": ["startups", "agencies", "ship-product", "rescue", "proserv"]
+      "capabilities": [
+        "shared component library",
+        "subscription billing",
+        "admin consoles",
+        "programmatic SEO",
+        "journey mapping"
+      ],
+      "outcomes": [
+        "25 repositories across the programme",
+        "two payment rails live"
+      ],
+      "links": [
+        {
+          "label": "See how we build",
+          "href": "/how-we-work"
+        }
+      ],
+      "tags": [
+        "startups",
+        "agencies",
+        "ship-product",
+        "rescue",
+        "proserv"
+      ]
     },
     {
       "id": "edtech",
@@ -66,10 +159,30 @@
       "repos": 22,
       "headline": "A scholarship marketplace and the platform under it",
       "what": "Donors publish scholarships, invite and review applicants and award grants; applicants build profiles, apply and track status. Around it: an accounts service, an admin console, a Next.js web front end and the backend carrying all of them. 33 API endpoints on the marketplace alone.",
-      "capabilities": ["two-sided marketplace", "token auth and accounts", "document upload", "transactional email", "status workflows"],
-      "outcomes": ["22 repositories over five years", "donor, applicant and admin surfaces live"],
-      "links": [{ "label": "See the case studies", "href": "/case-studies" }],
-      "tags": ["startups", "proserv", "ship-product", "internal-tools", "ai-features"]
+      "capabilities": [
+        "two-sided marketplace",
+        "token auth and accounts",
+        "document upload",
+        "transactional email",
+        "status workflows"
+      ],
+      "outcomes": [
+        "22 repositories over five years",
+        "donor, applicant and admin surfaces live"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "startups",
+        "proserv",
+        "ship-product",
+        "internal-tools",
+        "ai-features"
+      ]
     },
     {
       "id": "annotate",
@@ -80,10 +193,27 @@
       "repos": 1,
       "headline": "Human-plus-model labelling, five years before the hype",
       "what": "A labelling platform for machine-learning datasets: polygon and bounding-box tooling on canvas, with a detection model running in the browser to pre-annotate every image before a human touched it. Exports to Pascal-VOC XML and JSON. Four engineers, 117 commits, one quarter.",
-      "capabilities": ["in-browser model inference", "canvas annotation tooling", "dataset management", "ML export formats"],
-      "outcomes": ["model-assisted pre-labelling shipped in 2020"],
-      "links": [{ "label": "See the case studies", "href": "/case-studies" }],
-      "tags": ["startups", "ai-features", "ship-product", "manufacturing"]
+      "capabilities": [
+        "in-browser model inference",
+        "canvas annotation tooling",
+        "dataset management",
+        "ML export formats"
+      ],
+      "outcomes": [
+        "model-assisted pre-labelling shipped in 2020"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "startups",
+        "ai-features",
+        "ship-product",
+        "manufacturing"
+      ]
     },
     {
       "id": "fieldops",
@@ -94,10 +224,29 @@
       "repos": 12,
       "headline": "Storefronts, admin consoles and field apps for owner-run businesses",
       "what": "A recurring shape of work: a customer-facing front end, an admin console for the owner and a mobile app for the people in the field, delivered as one programme rather than three vendors.",
-      "capabilities": ["customer front ends", "owner admin consoles", "mobile field apps", "catalogue and orders"],
-      "outcomes": ["delivered across retail, comfort furnishing and marketplace clients"],
-      "links": [{ "label": "See how we build", "href": "/how-we-work" }],
-      "tags": ["distribution", "building-materials", "food", "orders", "manual-ops", "startups"]
+      "capabilities": [
+        "customer front ends",
+        "owner admin consoles",
+        "mobile field apps",
+        "catalogue and orders"
+      ],
+      "outcomes": [
+        "delivered across retail, comfort furnishing and marketplace clients"
+      ],
+      "links": [
+        {
+          "label": "See how we build",
+          "href": "/how-we-work"
+        }
+      ],
+      "tags": [
+        "distribution",
+        "building-materials",
+        "food",
+        "orders",
+        "manual-ops",
+        "startups"
+      ]
     },
     {
       "id": "riskdata",
@@ -108,10 +257,382 @@
       "repos": 10,
       "headline": "The plumbing that decides whether a dashboard can be trusted",
       "what": "Risk scoring apps, analytics front ends, financial ETL pipelines and reconciliation jobs. Unglamorous work that determines whether every number above it is defensible.",
-      "capabilities": ["ETL and reconciliation", "risk scoring", "analytics dashboards", "data normalisation"],
-      "outcomes": ["ingestion, normalisation and reconciliation running in production"],
-      "links": [{ "label": "See the reconciliation system", "href": "/systems/freight-reconciliation" }],
-      "tags": ["proserv", "freight", "leakage", "reporting", "cash", "startups"]
+      "capabilities": [
+        "ETL and reconciliation",
+        "risk scoring",
+        "analytics dashboards",
+        "data normalisation"
+      ],
+      "outcomes": [
+        "ingestion, normalisation and reconciliation running in production"
+      ],
+      "links": [
+        {
+          "label": "See the reconciliation system",
+          "href": "/systems/freight-reconciliation"
+        }
+      ],
+      "tags": [
+        "proserv",
+        "freight",
+        "leakage",
+        "reporting",
+        "cash",
+        "startups"
+      ]
+    },
+    {
+      "id": "altar-poetry",
+      "name": "Altar poetry project",
+      "named": false,
+      "sourced": "founder-asserted 2026-09-07, not yet matched to a repository",
+      "sector": "Culture and creative, Mexico",
+      "years": "",
+      "repos": 0,
+      "headline": "Poems written from a person's life, for the Mexican altar tradition",
+      "what": "A creative product that turns the details of a person's life into a written poem, made for the Mexican Altar and Day of the Dead tradition of remembering someone by name.",
+      "capabilities": [
+        "generative writing",
+        "cultural product design"
+      ],
+      "outcomes": [],
+      "links": [],
+      "tags": [
+        "creative",
+        "culture",
+        "mexico",
+        "generative",
+        "consumer"
+      ]
+    },
+    {
+      "id": "vc-enrichment",
+      "name": "Data enrichment for a venture firm",
+      "named": false,
+      "sourced": "founder-asserted 2026-09-07, not yet matched to a repository",
+      "sector": "Venture capital",
+      "years": "",
+      "repos": 0,
+      "headline": "Company and deal data enriched for a VC firm's pipeline",
+      "what": "Enrichment of company and deal records for a venture capital firm, so that the investment team works from complete data instead of chasing it.",
+      "capabilities": [
+        "data enrichment",
+        "pipeline tooling"
+      ],
+      "outcomes": [],
+      "links": [],
+      "tags": [
+        "venture",
+        "data",
+        "enrichment",
+        "research"
+      ]
+    },
+    {
+      "id": "recommerce",
+      "name": "Re-commerce marketplace",
+      "named": false,
+      "sector": "Re-commerce",
+      "years": "2020",
+      "repos": 4,
+      "headline": "Photograph an item on your phone, list it straight to eBay",
+      "what": "A re-commerce operation: photograph an item, get it catalogued and priced, then listed to eBay through an authenticated integration service. Native iOS and Android, with payments, reporting and profile flows.",
+      "capabilities": [
+        "native iOS and Android",
+        "eBay integration",
+        "cataloguing and pricing",
+        "payments"
+      ],
+      "outcomes": [
+        "121 Swift files in the iOS app",
+        "a dedicated eBay OAuth integration service"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "recommerce",
+        "marketplace",
+        "mobile",
+        "ecommerce",
+        "integration"
+      ]
+    },
+    {
+      "id": "qms",
+      "name": "Quality management system",
+      "named": false,
+      "sector": "Manufacturing and quality",
+      "years": "2019-2022",
+      "repos": 7,
+      "headline": "Quality management with its own scheduling and notification services",
+      "what": "A quality management system for manufacturing, built with separate cron and notification services beside the main API so that checks fire on schedule rather than when somebody remembers.",
+      "capabilities": [
+        "quality management",
+        "scheduled jobs",
+        "notifications"
+      ],
+      "outcomes": [
+        "separate cron and notification services",
+        "shares an in-house API framework reused across three programmes"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "qms",
+        "quality",
+        "manufacturing",
+        "enterprise"
+      ]
+    },
+    {
+      "id": "innovation",
+      "name": "Innovation management platform",
+      "named": false,
+      "sector": "Corporate innovation",
+      "years": "2021-2024",
+      "repos": 14,
+      "headline": "Staff pitch ideas against company challenges; the good ones reach an execution board",
+      "what": "An innovation platform: employees submit ideas against published challenges, ideas move through review stages with permissions and benefit scoring, and the survivors land on an execution board. Sold to several organisations, each on its own subdomain.",
+      "capabilities": [
+        "idea pipeline",
+        "stage gates and permissions",
+        "execution board",
+        "multi-tenant"
+      ],
+      "outcomes": [
+        "tenant-per-subdomain, so it ran for several organisations at once"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "innovation",
+        "enterprise",
+        "saas",
+        "workflow"
+      ]
+    },
+    {
+      "id": "grc",
+      "name": "Risk and controls platform",
+      "named": false,
+      "sector": "Governance and risk",
+      "years": "2021-2023",
+      "repos": 12,
+      "headline": "A risk register that proves whether the controls actually work",
+      "what": "A governance, risk and controls platform: risk matrix, controls and their effectiveness, objectives, KPIs, business units and remediation actions, with subscription billing on top.",
+      "capabilities": [
+        "risk matrix",
+        "control effectiveness",
+        "KPIs and objectives",
+        "remediation tracking"
+      ],
+      "outcomes": [
+        "a commercial product, billed by subscription"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "risk",
+        "grc",
+        "compliance",
+        "enterprise",
+        "saas"
+      ]
+    },
+    {
+      "id": "crm",
+      "name": "Field-sales CRM, native",
+      "named": false,
+      "sector": "Property and real estate",
+      "years": "2020-2022",
+      "repos": 8,
+      "headline": "A CRM built native for salespeople who live on their phones",
+      "what": "Field-sales CRM for property developers, built native on both platforms: opportunities by site, call dispositions, callbacks, task lists and push notifications. A separate Flutter CRM was built for another client.",
+      "capabilities": [
+        "native iOS and Android",
+        "opportunity and site management",
+        "call dispositions and callbacks",
+        "push notifications"
+      ],
+      "outcomes": [
+        "built in Swift, Kotlin, Java and Flutter across the engagements"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "crm",
+        "sales",
+        "mobile",
+        "property"
+      ]
+    },
+    {
+      "id": "servicemgmt",
+      "name": "Service and maintenance management",
+      "named": false,
+      "sector": "Service operations",
+      "years": "2020-2023",
+      "repos": 4,
+      "headline": "Maintenance and site supervision, tracked instead of remembered",
+      "what": "A service management system covering maintenance work and site supervision, so that jobs, visits and follow-ups are tracked rather than carried in somebody's head.",
+      "capabilities": [
+        "maintenance workflow",
+        "site supervision",
+        "job tracking"
+      ],
+      "outcomes": [],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "service-management",
+        "maintenance",
+        "operations",
+        "enterprise"
+      ]
+    },
+    {
+      "id": "tally",
+      "name": "ERP connector, built many times over",
+      "named": false,
+      "sector": "ERP and finance operations",
+      "years": "2019-2020",
+      "repos": 13,
+      "headline": "The bridge that keeps Tally and the rest of the business in step",
+      "what": "An ERP connector between Tally and the systems around it, running on a schedule. Thirteen repositories over two years: most integrations with Tally are written once and abandoned, and this one was not.",
+      "capabilities": [
+        "ERP integration",
+        "scheduled synchronisation",
+        "finance operations"
+      ],
+      "outcomes": [
+        "13 repositories across the programme, which is repeat demand rather than one build"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "erp",
+        "tally",
+        "integration",
+        "finance"
+      ]
+    },
+    {
+      "id": "marketplace-rental",
+      "name": "Equipment rental marketplace",
+      "named": false,
+      "sector": "Equipment and rental",
+      "years": "2018-2023",
+      "repos": 8,
+      "headline": "Owners list machinery, renters book it",
+      "what": "A two-sided marketplace for equipment rental: owners list machinery, renters find and book it, with the console over the top. One of the oldest programmes in the portfolio and still standing.",
+      "capabilities": [
+        "two-sided marketplace",
+        "listings and bookings",
+        "admin console"
+      ],
+      "outcomes": [
+        "shipped 2018 and iterated through 2023"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "marketplace",
+        "rental",
+        "equipment",
+        "two-sided"
+      ]
+    },
+    {
+      "id": "production",
+      "name": "Plant production and BOM",
+      "named": false,
+      "sector": "Manufacturing",
+      "years": "2019-2023",
+      "repos": 11,
+      "headline": "Production reporting and bills of material, captured on the shop floor",
+      "what": "Production reporting and bill-of-material management for a plant, with shop-floor capture on mobile so the numbers come from where the work happens.",
+      "capabilities": [
+        "production reporting",
+        "bill of materials",
+        "mobile shop-floor capture"
+      ],
+      "outcomes": [
+        "the largest backend in the portfolio by file count"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "manufacturing",
+        "production",
+        "mobile",
+        "operations"
+      ]
+    },
+    {
+      "id": "docai",
+      "name": "Contract clause extraction",
+      "named": false,
+      "sector": "Legal technology",
+      "years": "2021",
+      "repos": 3,
+      "headline": "Upload a contract, get its clauses back as structured fields",
+      "what": "Document AI for contracts: a PDF goes in, structured clause data comes out. Built in 2021, before this became a product category.",
+      "capabilities": [
+        "document AI",
+        "clause extraction",
+        "Python pipeline"
+      ],
+      "outcomes": [
+        "shipped in 2021"
+      ],
+      "links": [
+        {
+          "label": "See the case studies",
+          "href": "/case-studies"
+        }
+      ],
+      "tags": [
+        "legal",
+        "document-ai",
+        "ml",
+        "extraction"
+      ]
     }
   ]
 }
