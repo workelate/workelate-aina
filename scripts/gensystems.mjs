@@ -456,6 +456,7 @@ writeFileSync(path.join(OUT, "index.html"), indexPage());
 // sitemap
 const urls = [
   "https://weaina.com/",
+  "https://weaina.com/work",
   "https://weaina.com/how-we-work",
   "https://weaina.com/about",
   "https://weaina.com/contact",
