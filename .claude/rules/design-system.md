@@ -42,7 +42,8 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    (1px borders), whitespace, inversion, and type scale.
 4. Receipts over adjectives. Every claim carries a real number or it
    gets cut. No "world-class", no "cutting-edge".
-5. One CTA on the whole site: "Get your AI Readiness Score".
+5. One CTA on the whole site: "Book a Diagnostic Sprint" (founder call
+   2026-07-23 retired "Get your AI Readiness Score" with the score widget).
    The phrase "contact us" is banned.
 6. Motion: count-up stats, reveal-on-scroll, hover fills are welcome —
    cheap transforms/opacity only, no layout thrash. Respect

@@ -96,7 +96,8 @@ the next regeneration.
   NUMBER THAT MOVED, not a log line — say what changed, not that it was
   recorded. The leads/audit DB tables in lib/db.js stay untouched; this
   is a copy ban, not an architecture change.
-- One CTA phrase sitewide: "Get your AI Readiness Score".
+- One CTA phrase sitewide: "Book a Diagnostic Sprint" (the score widget and
+  its phrase were retired 2026-07-23; verify enforces the live phrase).
   "contact us" is banned (verify enforces both).
 - NEVER fabricate customer quotes, testimonials, or project numbers.
   Missing number → ask the founder, or ship without the claim.
