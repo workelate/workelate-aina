@@ -2,6 +2,11 @@
 // v2: 900-1100 words/page, handwritten meta descriptions (≤155 chars),
 // Service JSON-LD with category serviceType, rotated sibling links so every
 // page receives internal links, CTA above the FAQ block.
+// v3 (2026-09-07): the six pages were mutual dead ends and /systems itself
+// 404'd, so the main nav pointed at one quarry page and a buyer landed on
+// "Trucks that stop waiting" instead of a catalogue. This file now also emits
+// site/systems/index.html, and every page carries an "all systems" sibling
+// link in its breadcrumb and its related-systems line.
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
@@ -192,24 +197,26 @@ ${JSON.stringify({
   url: `https://weaina.com/systems/${p.slug}`
 }, null, 1)}
 </script>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 <header class="nav"><div class="wrap row">
   <a class="logo" href="/">WE_<span>AINA</span></a>
-  <nav>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu"><span class="sr-only">Menu</span><span></span><span></span><span></span></button>
+  <nav id="navmenu">
     <a href="/how-we-work">How we work</a>
     <a href="/about">About</a>
     <a href="/case-studies">Case studies</a>
     <a href="/blog">Blog</a>
     <a href="/systems/${p.slug}" aria-current="page">Systems</a>
-    <a class="btn" href="/#ask">Book a Diagnostic Sprint</a>
+    <a class="btn" href="/contact">Book a Diagnostic Sprint</a>
   </nav>
 </div></header>
 
 <main id="main">
 <section id="hero" style="min-height:auto">
   <div class="wrap">
-    <span class="label"><a href="/">WE_AINA</a> / systems</span>
+    <span class="label"><a href="/">WE_AINA</a> / <a href="/systems">systems</a></span>
     <h1>${p.h1}</h1>
   </div>
 </section>
@@ -234,7 +241,7 @@ ${JSON.stringify({
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
     <p>${p.landing}</p>
-    <h3 style="margin-top:48px">Signs you need this</h3>
+    <h2 style="margin-top:48px">Signs you need this</h2>
     ${p.signs.map(s => `<p class="dim" style="margin-top:12px">- ${s}</p>`).join("\n    ")}
   </div>
 </section>
@@ -243,7 +250,7 @@ ${JSON.stringify({
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
     <p class="dim">Five questions. Your report, three automation opportunities with conservative numbers, arrives in 10 minutes.</p>
-    <p style="margin-top:24px"><a class="btn" href="/#ask">Book a Diagnostic Sprint</a></p>
+    <p style="margin-top:24px"><a class="btn" href="/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
 
@@ -252,7 +259,7 @@ ${JSON.stringify({
     <span class="label">Questions operators ask</span>
     ${p.faq.map(([q, a]) => `<div class="step"><span class="k">Q</span><div><h3>${q}</h3><p class="dim">${a}</p></div></div>`).join("\n    ")}
     <p class="dim" style="margin-top:48px">Related systems: ${siblings.map(x =>
-      `<a href="/systems/${x.slug}">${x.cat.toLowerCase()}</a>`).join(" · ")}</p>
+      `<a href="/systems/${x.slug}">${x.cat.toLowerCase()}</a>`).join(" · ")} · <a href="/systems">all six systems</a></p>
   </div>
 </section>
 
@@ -283,32 +290,181 @@ ${JSON.stringify({
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/#ask">Book a Diagnostic Sprint</a>
+        <a href="/contact">Book a Diagnostic Sprint</a>
         <a href="/how-we-work">The Diagnostic Sprint</a>
+        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
         <a href="/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
     <div class="baseline">
       <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh & Pratik</span>
+      <span><a href="mailto:chitransh@workelate.com" style="display:inline;padding:0">chitransh@workelate.com</a> · <a href="/contact" style="display:inline;padding:0">Contact</a></span>
+      <!-- FOUNDER-BLOCKED: phone number, registered address and LinkedIn URLs. -->
     </div>
   </div>
 </footer>
+<script src="/js/nav.js" defer></script>
 <script type="module" src="/js/reveal.js"></script>
 </body>
 </html>`;
 };
 
+// ---- /systems index: the catalogue the main nav should have pointed at ----
+const INDEX_DESC = "Six systems we build and run: quarry dispatch, plant production reporting, dealer order management, freight reconciliation, AR follow-up, compliance filings.";
+
+const indexPage = () => `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Systems we build, WE_AINA</title>
+<meta name="description" content="${INDEX_DESC}">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://weaina.com/systems">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Systems we build, WE_AINA">
+<meta property="og:description" content="${INDEX_DESC}">
+<meta property="og:image" content="https://weaina.com/og.png">
+<meta property="og:url" content="https://weaina.com/systems">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Systems we build, WE_AINA",
+  description: INDEX_DESC,
+  url: "https://weaina.com/systems"
+}, null, 1)}
+</script>
+<script type="application/ld+json">
+${JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Systems WE_AINA builds",
+  itemListElement: PAGES.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.cat,
+    url: `https://weaina.com/systems/${p.slug}`
+  }))
+}, null, 1)}
+</script>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<header class="nav"><div class="wrap row">
+  <a class="logo" href="/">WE_<span>AINA</span></a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu"><span class="sr-only">Menu</span><span></span><span></span><span></span></button>
+  <nav id="navmenu">
+    <a href="/how-we-work">How we work</a>
+    <a href="/about">About</a>
+    <a href="/case-studies">Case studies</a>
+    <a href="/blog">Blog</a>
+    <a href="/systems" aria-current="page">Systems</a>
+    <a class="btn" href="/contact">Book a Diagnostic Sprint</a>
+  </nav>
+</div></header>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="label">Systems</span>
+    <h1>Six systems we have already built.<br><span class="accent">Yours is the seventh.</span></h1>
+    <p class="sub dim">These are not product tiers. Each one is a system we have designed, shipped and run on real operating data, written up so you can judge the fit before you talk to us. Every page names what the problem costs today, how the system lands in an operation, and what it does not do.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 style="margin-bottom:40px">The six, written up</h2>
+    ${PAGES.map((p, i) => `<a class="svc rv" href="/systems/${p.slug}">
+      <span class="num">${String(i + 1).padStart(2, "0")}</span><h3>${p.cat}</h3>
+      <p class="dim">${p.metaDesc}</p>
+    </a>`).join("\n    ")}
+  </div>
+</section>
+
+<section class="deep">
+  <div class="wrap">
+    <span class="label">Not on this list</span>
+    <h2>The list is where we have been, not where we stop.</h2>
+    <p class="dim">Six write-ups is what we have documented, not the boundary of what we build. The delivery history behind them runs to 100+ projects across 16 sectors, dispatch and reporting are simply the ones with the cleanest receipts. If your problem is not on this page, that is the normal case: the Diagnostic Sprint exists to size it.</p>
+    <p style="margin-top:24px"><a href="/case-studies">See the case studies</a> · <a href="/how-we-work">How we work</a> · <a href="/contact">Talk to us</a></p>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="wrap">
+    <h2>Book a Diagnostic Sprint</h2>
+    <p class="dim">Two weeks, fixed fee. You get a build plan with a price on it, and if we find nothing worth building we say so in writing.</p>
+    <p style="margin-top:24px"><a class="btn" href="/contact">Book a Diagnostic Sprint</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="mega">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand">
+        <a class="logo" href="/">WE_<span>AINA</span></a>
+        <p>An AI-native product studio. WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
+      </div>
+      <div>
+        <div class="fh">Company</div>
+        <a href="/about">About us</a>
+        <a href="/how-we-work">How we work</a>
+        <a href="/case-studies">Case studies</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div>
+        <div class="fh">Systems</div>
+        <a href="/systems/quarry-dispatch-automation">Dispatch automation</a>
+        <a href="/systems/plant-production-reporting">Production reporting</a>
+        <a href="/systems/dealer-order-management">Order management</a>
+        <a href="/systems/freight-reconciliation">Freight reconciliation</a>
+        <a href="/systems/ar-followup-automation">AR follow-up</a>
+        <a href="/systems/compliance-documentation">Compliance documentation</a>
+      </div>
+      <div>
+        <div class="fh">Engage</div>
+        <a href="/contact">Book a Diagnostic Sprint</a>
+        <a href="/how-we-work">The Diagnostic Sprint</a>
+        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
+        <a href="/blog/receipts-over-decks">Receipts over decks</a>
+      </div>
+    </div>
+    <div class="baseline">
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh & Pratik</span>
+      <span><a href="mailto:chitransh@workelate.com" style="display:inline;padding:0">chitransh@workelate.com</a> · <a href="/contact" style="display:inline;padding:0">Contact</a></span>
+      <!-- FOUNDER-BLOCKED: phone number, registered address and LinkedIn URLs. -->
+    </div>
+  </div>
+</footer>
+<script src="/js/nav.js" defer></script>
+<script type="module" src="/js/reveal.js"></script>
+</body>
+</html>`;
+
 PAGES.forEach((p, i) => writeFileSync(path.join(OUT, `${p.slug}.html`), page(p, i)));
+writeFileSync(path.join(OUT, "index.html"), indexPage());
 
 // sitemap
 const urls = [
   "https://weaina.com/",
   "https://weaina.com/how-we-work",
   "https://weaina.com/about",
+  "https://weaina.com/contact",
   "https://weaina.com/case-studies",
+  "https://weaina.com/case-studies/rockprosusa",
   "https://weaina.com/blog",
   "https://weaina.com/blog/the-pyramid-cant-survive-agents",
   "https://weaina.com/blog/receipts-over-decks",
+  "https://weaina.com/systems",
   ...PAGES.map(p => `https://weaina.com/systems/${p.slug}`)
 ];
 writeFileSync(path.join(OUT, "..", "sitemap.xml"),
@@ -322,4 +478,4 @@ writeFileSync(path.join(OUT, "..", "robots.txt"),
 Allow: /
 Sitemap: https://weaina.com/sitemap.xml
 `);
-console.log(`wrote ${PAGES.length} system pages + sitemap.xml + robots.txt`);
+console.log(`wrote ${PAGES.length} system pages + systems/index.html + sitemap.xml + robots.txt`);
