@@ -22,22 +22,50 @@ businesses"): WHITE + BLUE, corporate-grade. Green survives only as a
 pinch on positive deltas. Voice talks like a transformation partner —
 speed, team size, fixed budgets ($30K–$100K) stated on the page.
 
-1. Typefaces (founder-amended 2026-07-13): self-hosted DISPLAY font
-   for headings — "Bricolage Grotesque" (replaced Space Grotesk;
-   founder call: "heading font looks robotic"). Self-hosted Inter for
-   prose, MONO for data — numbers, labels, receipts, tickers, code
-   (`ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas`).
-   Never mono prose paragraphs, never sans numbers. Fonts self-hosted
-   only — no runtime external font requests.
-   Also founder-amended 2026-07-13: no backdrop-filter/blur on the
-   sticky header (perf + founder taste); em dashes banned in copy.
-2. Palette: `#FAFCFF` (paper, default bg), `#0A1830` (ink, text),
-   `#0B5FFF` (brand blue — CTAs, labels, structure), `#0A1F44` (navy,
-   inverted `.deep` sections; `#7FB0FF` is the accent on navy),
-   `#0ACF6B` (green — PINCH: positive deltas only), `#FF6A1A`
-   (orange — micro-accent only, near-retired). Opacity variants
-   allowed. Default sections LIGHT; `.deep` inverts to navy —
-   alternation stays the rhythm mechanism.
+1. Typefaces (founder-amended 2026-09-07, v5): self-hosted DISPLAY
+   serif — **Instrument Serif** (400 + italic), which carries the
+   argument. Self-hosted **Inter** for prose. **JetBrains Mono** for
+   ALL data — numbers, labels, receipts, sector tags, IDs, years.
+   Never mono prose paragraphs, never sans numerals. Fonts self-hosted
+   only — no runtime external font requests, ever.
+   Why the serif: a display serif against a grotesque is the single
+   clearest taste signal in the category. Measured 2026-09-07 across 25
+   fetched studio sites: 8 of them pair a display serif with a
+   grotesque (Metalab/PP Eiko, Unseen/Saol, Work & Co/Garamond,
+   Hello Monday/Clarendon, Raycast/Instrument Serif, Ink & Switch,
+   Stripe Press/Ivar). The other elite move is single-family rigour
+   (Antinomy ships only ABC Diatype). What reads cheap is three
+   unrelated sans faces.
+   Bricolage Grotesque is RETIRED as the display face (kept only if a
+   page still references it during migration).
+   Still binding from 2026-07-13: no backdrop-filter/blur on the sticky
+   header; em dashes banned in copy.
+
+2. Palette (founder call 2026-09-07 — v5, "this blue colour is
+   fucking bad ... bring some taste, purity of design and direction of
+   future"). WHITE + BLUE IS RETIRED. The new system is warm paper,
+   true near-black ink, and ONE accent:
+   - `#F6F3EC` paper (warm, the default canvas)
+   - `#FFFDF8` sheet (raised surfaces, receipt bands, table zebra)
+   - `#16130F` ink (text, and inverted sections)
+   - `#6E675C` muted (labels, mono metadata)
+   - `#D9D2C4` rule (1px borders — warm, never grey)
+   - `#8A2B1E` oxblood — THE accent. CTAs, links, emphasis, positive
+     deltas. It is the only chromatic hue on the page.
+   - `#F0E4DF` oxblood tint (row hover, the only tinted background)
+   - `#1F3D34` deep green, reserved for ONE inverted band per page.
+   Retired: `#0B5FFF`, `#0A1F44`, `#FAFCFF`, `#7FB0FF`, `#0ACF6B`,
+   `#FF6A1A`.
+   THE ONE-ACCENT TEST, and it is enforceable: grep the stylesheet; if
+   two chromatic hues each exceed 15 occurrences, you have a palette,
+   not an accent. Measured across 25 studio sites 2026-09-07, the best
+   have exactly one (Metalab #584dff, basement #ff4d00, Raycast
+   #ff6363, AE Studio one orange); corporate blue was THE brand colour
+   on only 2 of 25, both the weakest sites in the survey. `#0B5FFF`
+   was within 2% of one of them.
+   Also retired: the blue-tinted "white". `#FAFCFF` is a screen colour;
+   every studio with taste used a warm off-white.
+
 3. No cards, no box-shadows, no gradients. Structure comes from rules
    (1px borders), whitespace, inversion, and type scale.
 4. Receipts over adjectives. Every claim carries a real number or it
