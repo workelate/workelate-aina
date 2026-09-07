@@ -169,12 +169,12 @@ const page = (p, idx) => {
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="https://weaina.com/systems/${p.slug}">
+<link rel="canonical" href="https://aina.workelate.com/systems/${p.slug}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="${p.h1}, WE_AINA">
 <meta property="og:description" content="${p.metaDesc}">
-<meta property="og:image" content="https://weaina.com/og.png">
-<meta property="og:url" content="https://weaina.com/systems/${p.slug}">
+<meta property="og:image" content="https://aina.workelate.com/og.png">
+<meta property="og:url" content="https://aina.workelate.com/systems/${p.slug}">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 ${JSON.stringify({
@@ -193,8 +193,8 @@ ${JSON.stringify({
   name: p.h1,
   serviceType: p.cat,
   description: p.metaDesc,
-  provider: { "@type": "Organization", name: "WE_AINA", url: "https://weaina.com/" },
-  url: `https://weaina.com/systems/${p.slug}`
+  provider: { "@type": "Organization", name: "WE_AINA", url: "https://aina.workelate.com/" },
+  url: `https://aina.workelate.com/systems/${p.slug}`
 }, null, 1)}
 </script>
 <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
@@ -323,12 +323,12 @@ const indexPage = () => `<!doctype html>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="https://weaina.com/systems">
+<link rel="canonical" href="https://aina.workelate.com/systems">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Systems we build, WE_AINA">
 <meta property="og:description" content="${INDEX_DESC}">
-<meta property="og:image" content="https://weaina.com/og.png">
-<meta property="og:url" content="https://weaina.com/systems">
+<meta property="og:image" content="https://aina.workelate.com/og.png">
+<meta property="og:url" content="https://aina.workelate.com/systems">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 ${JSON.stringify({
@@ -336,7 +336,7 @@ ${JSON.stringify({
   "@type": "CollectionPage",
   name: "Systems we build, WE_AINA",
   description: INDEX_DESC,
-  url: "https://weaina.com/systems"
+  url: "https://aina.workelate.com/systems"
 }, null, 1)}
 </script>
 <script type="application/ld+json">
@@ -348,7 +348,7 @@ ${JSON.stringify({
     "@type": "ListItem",
     position: i + 1,
     name: p.cat,
-    url: `https://weaina.com/systems/${p.slug}`
+    url: `https://aina.workelate.com/systems/${p.slug}`
   }))
 }, null, 1)}
 </script>
@@ -455,18 +455,18 @@ writeFileSync(path.join(OUT, "index.html"), indexPage());
 
 // sitemap
 const urls = [
-  "https://weaina.com/",
-  "https://weaina.com/work",
-  "https://weaina.com/how-we-work",
-  "https://weaina.com/about",
-  "https://weaina.com/contact",
-  "https://weaina.com/case-studies",
-  "https://weaina.com/case-studies/rockprosusa",
-  "https://weaina.com/blog",
-  "https://weaina.com/blog/the-pyramid-cant-survive-agents",
-  "https://weaina.com/blog/receipts-over-decks",
-  "https://weaina.com/systems",
-  ...PAGES.map(p => `https://weaina.com/systems/${p.slug}`)
+  "https://aina.workelate.com/",
+  "https://aina.workelate.com/work",
+  "https://aina.workelate.com/how-we-work",
+  "https://aina.workelate.com/about",
+  "https://aina.workelate.com/contact",
+  "https://aina.workelate.com/case-studies",
+  "https://aina.workelate.com/case-studies/rockprosusa",
+  "https://aina.workelate.com/blog",
+  "https://aina.workelate.com/blog/the-pyramid-cant-survive-agents",
+  "https://aina.workelate.com/blog/receipts-over-decks",
+  "https://aina.workelate.com/systems",
+  ...PAGES.map(p => `https://aina.workelate.com/systems/${p.slug}`)
 ];
 writeFileSync(path.join(OUT, "..", "sitemap.xml"),
 `<?xml version="1.0" encoding="UTF-8"?>
@@ -477,6 +477,6 @@ ${urls.map(u => `  <url><loc>${u}</loc></url>`).join("\n")}
 writeFileSync(path.join(OUT, "..", "robots.txt"),
 `User-agent: *
 Allow: /
-Sitemap: https://weaina.com/sitemap.xml
+Sitemap: https://aina.workelate.com/sitemap.xml
 `);
 console.log(`wrote ${PAGES.length} system pages + systems/index.html + sitemap.xml + robots.txt`);

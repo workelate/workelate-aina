@@ -114,4 +114,6 @@ the next regeneration.
 4. Founder-blocked items tracked, not silently dropped: real visuals
    (hero video), founder photos, CitiSense number,
    LinkedIn URLs, Sprint fee band, SMTP + Anthropic creds, real domain
-   (weaina.com in canonicals is a placeholder), git init + deploy.
+   git init + deploy. (Domain settled 2026-09-07: the site ships as
+   aina.workelate.com, a subdomain — WE_AINA owns no domain of its own, so
+   WorkElate is the brand and the agency is a division of it.)

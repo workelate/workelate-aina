@@ -255,7 +255,7 @@ const itemList = {
   "@type": "CollectionPage",
   name: "The index of work, WE_AINA",
   description: "One line per build: 374 repositories and 41 programmes shipped between 2018 and 2026, by sector and product type.",
-  url: "https://weaina.com/work",
+  url: "https://aina.workelate.com/work",
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: ROWS.length,
@@ -280,12 +280,12 @@ const html = `<!doctype html>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="https://weaina.com/work">
+<link rel="canonical" href="https://aina.workelate.com/work">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The index of work, WE_AINA">
 <meta property="og:description" content="One line per build. ${ROWS.length} programmes drawn from 374 repositories shipped between 2018 and 2026.">
-<meta property="og:image" content="https://weaina.com/og.png">
-<meta property="og:url" content="https://weaina.com/work">
+<meta property="og:image" content="https://aina.workelate.com/og.png">
+<meta property="og:url" content="https://aina.workelate.com/work">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 ${JSON.stringify(itemList, null, 2)}
@@ -492,8 +492,8 @@ writeFileSync(path.join(ROOT, "site", "work.html"), html);
 const smPath = path.join(ROOT, "site", "sitemap.xml");
 if (existsSync(smPath)) {
   const sm = readFileSync(smPath, "utf8");
-  if (!sm.includes("https://weaina.com/work<")) {
-    writeFileSync(smPath, sm.replace("</urlset>", "  <url><loc>https://weaina.com/work</loc></url>\n</urlset>"));
+  if (!sm.includes("https://aina.workelate.com/work<")) {
+    writeFileSync(smPath, sm.replace("</urlset>", "  <url><loc>https://aina.workelate.com/work</loc></url>\n</urlset>"));
     console.log("sitemap.xml: added /work");
   }
 }

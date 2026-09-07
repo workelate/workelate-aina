@@ -13,24 +13,24 @@ Key verifiable facts:
 
 ## Core pages
 
-- [How we work](https://weaina.com/how-we-work): the 10× operating model, agents do the volume, seniors do the judgment; comparison vs traditional SI / big consultancy.
-- [About](https://weaina.com/about): the two partners, the per-build specialist bench, the dogfooding model.
-- [Case studies](https://weaina.com/case-studies): receipts-first engagements with defensible numbers.
+- [How we work](https://aina.workelate.com/how-we-work): the 10× operating model, agents do the volume, seniors do the judgment; comparison vs traditional SI / big consultancy.
+- [About](https://aina.workelate.com/about): the two partners, the per-build specialist bench, the dogfooding model.
+- [Case studies](https://aina.workelate.com/case-studies): receipts-first engagements with defensible numbers.
 
 ## Systems we install (production references)
 
-- [Quarry dispatch automation](https://weaina.com/systems/quarry-dispatch-automation): truck assignment, cycle tracking, exception alerts, cut dispatch cycle 38% across 13 quarries.
-- [Plant production reporting](https://weaina.com/systems/plant-production-reporting): shift logs to P&L-grade reports written by 6:00 AM without a human.
-- [Dealer order management](https://weaina.com/systems/dealer-order-management): WhatsApp/phone/email orders become one queue with automatic confirmations.
-- [Freight reconciliation](https://weaina.com/systems/freight-reconciliation): carrier bills matched to weighbridge and delivery data; disputes flagged with evidence.
-- [AR follow-up automation](https://weaina.com/systems/ar-followup-automation): receivables chased on schedule, escalated on rules, promises to pay tracked.
-- [Compliance documentation](https://weaina.com/systems/compliance-documentation): royalty, GST, e-way and environmental filings assembled from operating data.
+- [Quarry dispatch automation](https://aina.workelate.com/systems/quarry-dispatch-automation): truck assignment, cycle tracking, exception alerts, cut dispatch cycle 38% across 13 quarries.
+- [Plant production reporting](https://aina.workelate.com/systems/plant-production-reporting): shift logs to P&L-grade reports written by 6:00 AM without a human.
+- [Dealer order management](https://aina.workelate.com/systems/dealer-order-management): WhatsApp/phone/email orders become one queue with automatic confirmations.
+- [Freight reconciliation](https://aina.workelate.com/systems/freight-reconciliation): carrier bills matched to weighbridge and delivery data; disputes flagged with evidence.
+- [AR follow-up automation](https://aina.workelate.com/systems/ar-followup-automation): receivables chased on schedule, escalated on rules, promises to pay tracked.
+- [Compliance documentation](https://aina.workelate.com/systems/compliance-documentation): royalty, GST, e-way and environmental filings assembled from operating data.
 
 ## Essays
 
-- [The consulting pyramid can't survive agents](https://weaina.com/blog/the-pyramid-cant-survive-agents): why volume labor priced into SI quotes no longer exists.
-- [Receipts over decks](https://weaina.com/blog/receipts-over-decks): what we hand you instead of slides, numbers that moved, verify gates over status reports.
+- [The consulting pyramid can't survive agents](https://aina.workelate.com/blog/the-pyramid-cant-survive-agents): why volume labor priced into SI quotes no longer exists.
+- [Receipts over decks](https://aina.workelate.com/blog/receipts-over-decks): what we hand you instead of slides, numbers that moved, verify gates over status reports.
 
 ## Contact
 
-- Start here: ask the assistant on [the home page](https://weaina.com/#ask) what we would build for your business, or book the two-week Diagnostic Sprint.
+- Start here: ask the assistant on [the home page](https://aina.workelate.com/#ask) what we would build for your business, or book the two-week Diagnostic Sprint.

@@ -30,7 +30,7 @@ const html = `<!doctype html>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="https://weaina.com/case-studies">
+<link rel="canonical" href="https://aina.workelate.com/case-studies">
 </head>
 <body>
 
