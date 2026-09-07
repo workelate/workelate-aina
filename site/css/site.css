@@ -991,19 +991,14 @@ footer.mega .baseline { border-top: 1px solid var(--rule-inv); padding: 22px 0; 
 .ix-row .ix-sector { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ix-row .ix-note { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-/* ── the actual WorkElate mark in the header ─────────────────────────────────
-   The site shipped with a text logotype and no logo file anywhere; the brand
-   the page keeps claiming ("WorkElate's AI-Native Agency") was never shown.
-   Source: ~/Desktop/workelate-logo.svg — the wide 1764x373 lockup, not the
-   square one in workelate-xnetic-app/public. */
-.nav .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
-.nav .logo img { display: block; height: 30px; width: auto; }
-.nav .logo .logo-aina {
-  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted); white-space: nowrap;
-  padding-left: 12px; border-left: 1px solid var(--rule);
-}
-@media (max-width: 700px) {
-  .nav .logo img { height: 26px; }
+/* ── identity: WE_AINA is the site, WorkElate is the endorsement ─────────────
+   The first pass replaced the agency's own logotype with the parent's wordmark,
+   which is wrong: this is WE_AINA's site. WE_AINA leads; the WorkElate mark
+   rides behind it as "an agency of", the way a subsidiary lockup should. */
+.nav .row .logo { text-decoration: none; }
+.nav .endorse { display: inline-flex; align-items: center; gap: 9px; margin-left: 16px; padding-left: 16px; border-left: 1px solid var(--rule); }
+.nav .endorse-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.nav .endorse img { display: block; height: 19px; width: auto; }
+@media (max-width: 860px) { .nav .endorse { display: none; } }
   .nav .logo .logo-aina { display: none; }
 }
