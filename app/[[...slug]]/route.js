@@ -72,6 +72,11 @@ function resolve(slug = []) {
 
 function cacheFor(p) {
   if (/[\\/](frames|fonts)[\\/]/.test(p)) return "public, max-age=31536000, immutable";
+  // 7d was wrong for generated artifacts: regenerating a mockup left returning
+  // visitors on a week-old copy of the OLD palette. Photos are stable, the
+  // generated PNGs are not, so they revalidate.
+  if (/[\\/]img[\\/](?:dispatch-board|invoice-match|agent-log|order-extract)\.png$/.test(p))
+    return "public, max-age=0, must-revalidate";
   if (/[\\/]img[\\/]/.test(p)) return "public, max-age=604800";       // 7d — photos are stable
   if (/\.(css|js|mjs)$/.test(p)) return "public, max-age=3600";       // rev on deploy, keep short
   if (p.endsWith(".html")) return "public, max-age=0, must-revalidate";

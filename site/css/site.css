@@ -939,3 +939,54 @@ footer.mega .baseline { border-top: 1px solid var(--rule-inv); padding: 22px 0; 
    to clamp(32px,4.2vw,54px). Pinned here at the size they already render,
    level-agnostic. */
 .step :is(h2,h3), .founder :is(h2,h3), .principle :is(h2,h3) { font-size: 21px; margin: 0; }
+
+/* ── v5.1 · studio hero: the work is IN screen one ───────────────────────────
+   Research move, measured across 25 studio homepages 2026-09-07: the good ones
+   put work in the first screen as an object, never behind a paragraph. Metalab
+   ships a 24-item drag strip in the hero; basement.studio leads with featured
+   projects; nobody makes you scroll past prose to reach the work. Colour is
+   per-project DATA (Stripe Press's move), not brand chrome, so range reads as
+   chromatic variety before a word is read. */
+#hero .hero-split {
+  display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 64px; align-items: start; padding-bottom: 96px;
+}
+#hero .hero-say h1 { max-width: 15ch; }
+#hero .hero-say h1 em { color: var(--accent); }
+#hero .hero-say > p { max-width: 46ch; margin-top: 28px; }
+#hero .hero-cta { margin-top: 34px; }
+
+/* the strip: six builds, ruled, each carrying its own pigment */
+.hero-work { list-style: none; margin: 6px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.hero-work li {
+  display: grid; grid-template-columns: 10px minmax(0, 1fr) auto;
+  grid-template-areas: "dot name years" "dot sector years";
+  column-gap: 14px; align-items: center;
+  padding: 15px 2px; border-bottom: 1px solid var(--rule);
+  transition: background 0.18s var(--ease), padding-left 0.18s var(--ease);
+}
+.hero-work li:hover { background: var(--accent-tint); padding-left: 8px; }
+.hero-work li i { grid-area: dot; width: 9px; height: 9px; border-radius: 50%; background: var(--pig, var(--accent)); }
+.hero-work li b { grid-area: name; font-weight: 600; font-size: 15.5px; letter-spacing: -0.005em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hero-work li span { grid-area: sector; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+.hero-work li em { grid-area: years; font-family: var(--mono); font-size: 11.5px; font-style: normal; color: var(--muted); }
+.hero-work-foot { margin-top: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; white-space: nowrap; }
+.hero-work-foot a { text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+/* pigment dot on the full index rows */
+.ix-row .ix-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--pig, var(--accent)); margin-right: 9px; vertical-align: 1px; }
+
+/* counts in the furniture: basement.studio's nav literally reads "Showcase (26)" */
+/* Nav count removed: it wrapped under the link in the flex row, and the
+   count already appears in the hero strip footer and the index footer. */
+
+
+@media (max-width: 1000px) {
+  #hero .hero-split { grid-template-columns: 1fr; gap: 44px; padding-bottom: 64px; }
+  #hero .hero-say h1 { max-width: none; }
+  .hero-work li { padding: 13px 2px; }
+}
+
+/* index rows: sector stays on one line so the pigment dots align down the column */
+.ix-row .ix-sector { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ix-row .ix-note { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

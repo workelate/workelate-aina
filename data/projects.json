@@ -43,7 +43,9 @@
         "orders",
         "reporting",
         "leakage"
-      ]
+      ],
+      "pigment": "#B4472A",
+      "family": "Industrial & operations"
     },
     {
       "id": "workelate",
@@ -78,7 +80,9 @@
         "ai-features",
         "internal-tools",
         "proserv"
-      ]
+      ],
+      "pigment": "#1F3D34",
+      "family": "Our own platform"
     },
     {
       "id": "citysense",
@@ -114,7 +118,9 @@
         "ooh",
         "out-of-home",
         "media planning"
-      ]
+      ],
+      "pigment": "#8C5A3B",
+      "family": "Media & culture"
     },
     {
       "id": "deployer",
@@ -148,7 +154,9 @@
         "ship-product",
         "rescue",
         "proserv"
-      ]
+      ],
+      "pigment": "#3C4C8A",
+      "family": "Enterprise systems"
     },
     {
       "id": "edtech",
@@ -182,7 +190,9 @@
         "ship-product",
         "internal-tools",
         "ai-features"
-      ]
+      ],
+      "pigment": "#1F6F72",
+      "family": "Education"
     },
     {
       "id": "annotate",
@@ -213,7 +223,9 @@
         "ai-features",
         "ship-product",
         "manufacturing"
-      ]
+      ],
+      "pigment": "#3C4C8A",
+      "family": "AI & data"
     },
     {
       "id": "fieldops",
@@ -246,7 +258,9 @@
         "orders",
         "manual-ops",
         "startups"
-      ]
+      ],
+      "pigment": "#C08A2E",
+      "family": "Field & service ops"
     },
     {
       "id": "riskdata",
@@ -279,7 +293,9 @@
         "reporting",
         "cash",
         "startups"
-      ]
+      ],
+      "pigment": "#5A5F66",
+      "family": "AI & data"
     },
     {
       "id": "altar-poetry",
@@ -303,7 +319,9 @@
         "mexico",
         "generative",
         "consumer"
-      ]
+      ],
+      "pigment": "#6E3F72",
+      "family": "Media & culture"
     },
     {
       "id": "vc-enrichment",
@@ -326,7 +344,9 @@
         "data",
         "enrichment",
         "research"
-      ]
+      ],
+      "pigment": "#4C6B3C",
+      "family": "AI & data"
     },
     {
       "id": "recommerce",
@@ -359,7 +379,9 @@
         "mobile",
         "ecommerce",
         "integration"
-      ]
+      ],
+      "pigment": "#C08A2E",
+      "family": "Commerce & marketplaces"
     },
     {
       "id": "qms",
@@ -390,7 +412,9 @@
         "quality",
         "manufacturing",
         "enterprise"
-      ]
+      ],
+      "pigment": "#4C6B3C",
+      "family": "Enterprise systems"
     },
     {
       "id": "innovation",
@@ -421,7 +445,9 @@
         "enterprise",
         "saas",
         "workflow"
-      ]
+      ],
+      "pigment": "#6E3F72",
+      "family": "Enterprise systems"
     },
     {
       "id": "grc",
@@ -453,7 +479,9 @@
         "compliance",
         "enterprise",
         "saas"
-      ]
+      ],
+      "pigment": "#5A5F66",
+      "family": "Enterprise systems"
     },
     {
       "id": "crm",
@@ -484,7 +512,9 @@
         "sales",
         "mobile",
         "property"
-      ]
+      ],
+      "pigment": "#B4472A",
+      "family": "Property & real estate"
     },
     {
       "id": "servicemgmt",
@@ -512,7 +542,9 @@
         "maintenance",
         "operations",
         "enterprise"
-      ]
+      ],
+      "pigment": "#8C5A3B",
+      "family": "Field & service ops"
     },
     {
       "id": "tally",
@@ -542,7 +574,9 @@
         "tally",
         "integration",
         "finance"
-      ]
+      ],
+      "pigment": "#3C4C8A",
+      "family": "Enterprise systems"
     },
     {
       "id": "marketplace-rental",
@@ -572,7 +606,9 @@
         "rental",
         "equipment",
         "two-sided"
-      ]
+      ],
+      "pigment": "#C08A2E",
+      "family": "Commerce & marketplaces"
     },
     {
       "id": "production",
@@ -602,7 +638,9 @@
         "production",
         "mobile",
         "operations"
-      ]
+      ],
+      "pigment": "#4C6B3C",
+      "family": "Industrial & operations"
     },
     {
       "id": "docai",
@@ -632,7 +670,9 @@
         "document-ai",
         "ml",
         "extraction"
-      ]
+      ],
+      "pigment": "#1F6F72",
+      "family": "AI & data"
     }
   ]
 }
