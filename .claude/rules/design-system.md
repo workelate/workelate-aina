@@ -41,30 +41,31 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    Still binding from 2026-07-13: no backdrop-filter/blur on the sticky
    header; em dashes banned in copy.
 
-2. Palette (founder call 2026-09-07 — v5, "this blue colour is
-   fucking bad ... bring some taste, purity of design and direction of
-   future"). WHITE + BLUE IS RETIRED. The new system is warm paper,
-   true near-black ink, and ONE accent:
-   - `#F6F3EC` paper (warm, the default canvas)
-   - `#FFFDF8` sheet (raised surfaces, receipt bands, table zebra)
-   - `#16130F` ink (text, and inverted sections)
-   - `#6E675C` muted (labels, mono metadata)
-   - `#D9D2C4` rule (1px borders — warm, never grey)
-   - `#8A2B1E` oxblood — THE accent. CTAs, links, emphasis, positive
-     deltas. It is the only chromatic hue on the page.
-   - `#F0E4DF` oxblood tint (row hover, the only tinted background)
-   - `#1F3D34` deep green, reserved for ONE inverted band per page.
-   Retired: `#0B5FFF`, `#0A1F44`, `#FAFCFF`, `#7FB0FF`, `#0ACF6B`,
-   `#FF6A1A`.
-   THE ONE-ACCENT TEST, and it is enforceable: grep the stylesheet; if
-   two chromatic hues each exceed 15 occurrences, you have a palette,
-   not an accent. Measured across 25 studio sites 2026-09-07, the best
-   have exactly one (Metalab #584dff, basement #ff4d00, Raycast
-   #ff6363, AE Studio one orange); corporate blue was THE brand colour
-   on only 2 of 25, both the weakest sites in the survey. `#0B5FFF`
-   was within 2% of one of them.
-   Also retired: the blue-tinted "white". `#FAFCFF` is a screen colour;
-   every studio with taste used a warm off-white.
+2. Palette (founder call 2026-09-07, v6 — supersedes the v5 warm-paper
+   system below). His instruction, with screenshots: "make background white
+   ... the fonts in black and blue and green", and pointing at the inverted
+   band, "here as navy glossy blue".
+   - `#FFFFFF` paper. True white, not off-white and not warm.
+   - `#0A0A0A` ink. Black.
+   - `#5A6470` muted.
+   - `#E2E6EA` rule; a stronger neutral bounds any CONTROL, to clear the 3:1
+     that WCAG 1.4.11 asks of a control boundary.
+   - TWO accents, both taken from the WorkElate logo: `#0F8083` green (teal)
+     and `#001372` blue (deep indigo), with `#349ED0` cyan available for data
+     and highlights.
+   - The `#cta` band is navy `#001372` and MAY carry a gradient sheen. It is
+     the single gradient permitted on the site; `scripts/verify.mjs` keys the
+     exemption to that one element id, not to an attribute a page can stamp on
+     itself. The old `data-shadow-ok` attribute let shadows return sitewide
+     while the gate reported green, and that failure must not repeat.
+   Retired: the v5 warm system (`#F6F3EC`, `#FFFDF8`, `#16130F`, `#6E675C`,
+   `#D9D2C4`, `#8A2B1E`, `#F0E4DF`, `#1F3D34`) and, still, the original
+   corporate blue system (`#0B5FFF`, `#0A1F44`, `#FAFCFF`, `#7FB0FF`,
+   `#0ACF6B`, `#FF6A1A`).
+   Why the change: the warm cream and serif read as a generic assistant-made
+   site ("why a normal claude code design"), and the palette must align with
+   the WorkElate logo because the agency ships as aina.workelate.com, a
+   subdomain — WorkElate is the brand.
 
 3. No cards, no box-shadows, no gradients. Structure comes from rules
    (1px borders), whitespace, inversion, and type scale.

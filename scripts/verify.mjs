@@ -142,14 +142,22 @@ for (const route of PAGES) {
     const body = txt(document.body).toLowerCase();
     const hits = banned.filter(b => body.includes(b));
 
-    // banned styles — no exemption, anywhere
+    // Banned styles. Box-shadow has no exemption anywhere. Gradient has exactly
+    // one, added on a founder call 2026-09-07 ("here as navy glossy blue"): the
+    // #cta band may carry a navy sheen. The exemption is deliberately keyed to
+    // that ONE element id rather than to an attribute a page can stamp on
+    // itself — the previous data-shadow-ok escape hatch let shadows return
+    // sitewide while the gate reported green, and that must not repeat.
+    const GRADIENT_OK = new Set(["cta"]);
     const styleHits = [];
     for (const el of document.querySelectorAll("*")) {
       const s = getComputedStyle(el);
       const sel = el.tagName.toLowerCase() +
         (el.id ? "#" + el.id : "") +
         (el.className && typeof el.className === "string" ? "." + el.className.trim().split(/\s+/).join(".") : "");
-      if (s.backgroundImage.includes("gradient")) styleHits.push(`gradient on ${sel}: ${s.backgroundImage.slice(0, 60)}`);
+      if (s.backgroundImage.includes("gradient") && !GRADIENT_OK.has(el.id)) {
+        styleHits.push(`gradient on ${sel}: ${s.backgroundImage.slice(0, 60)}`);
+      }
       if (s.boxShadow && s.boxShadow !== "none") styleHits.push(`box-shadow on ${sel}: ${s.boxShadow.slice(0, 60)}`);
     }
 
