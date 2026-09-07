@@ -78,7 +78,11 @@ function cacheFor(p) {
   if (/[\\/]img[\\/](?:dispatch-board|invoice-match|agent-log|order-extract)\.png$/.test(p))
     return "public, max-age=0, must-revalidate";
   if (/[\\/]img[\\/]/.test(p)) return "public, max-age=604800";       // 7d — photos are stable
-  if (/\.(css|js|mjs)$/.test(p)) return "public, max-age=3600";       // rev on deploy, keep short
+  // Was max-age=3600. A palette change therefore did not reach anyone who had
+  // loaded the page in the last hour — the founder reviewed a cream site while
+  // the server was serving white. Stylesheets and scripts now revalidate; the
+  // fingerprinted assets above still cache hard.
+  if (/\.(css|js|mjs)$/.test(p)) return "public, max-age=0, must-revalidate";
   if (p.endsWith(".html")) return "public, max-age=0, must-revalidate";
   return "public, max-age=3600";
 }
