@@ -276,7 +276,7 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The index of work, WE_AINA</title>
 <meta name="description" content="One line per build. ${ROWS.length} programmes drawn from 374 repositories shipped between 2018 and 2026: marketplaces, dispatch systems, ERP connectors, annotation tools, risk registers.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/instrumentserif-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/familjengrotesk-var-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">

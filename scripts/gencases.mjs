@@ -26,7 +26,7 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Case studies, WE_AINA</title>
 <meta name="description" content="Receipts-first case studies: 13 quarries on agentic dispatch, AI campaign ops for agencies in Mexico, freight reconciliation, AR automation, numbers we can defend.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/instrumentserif-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/familjengrotesk-var-latin.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">

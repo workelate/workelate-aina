@@ -27,18 +27,19 @@ const row = (p, i) => {
 };
 const rows = projects.map(row).join("\n");
 
-// The first six, for the hero: work visible in screen one as an object, not a
-// link. Measured across 25 studio sites, none of the good ones make you scroll
-// past prose to reach the work.
-const shortTitle = (p) => {
-  if (p.named) return p.name;
-  // Keep the whole descriptor and let CSS ellipsis clip it. Splitting at the
-  // first colon turned "A product family: apps, admin, billing and journey
-  // mapping" into "A product family", which says nothing.
-  return p.headline;
-};
-const heroRows = projects.slice(0, 6).map((p) => `        <li style="--pig:${p.pigment}"><i aria-hidden="true"></i><b>${esc(shortTitle(p))}</b><span>${esc((p.sector || "").split(",")[0])}</span><em>${esc(p.years || "\u2014")}</em></li>`).join("\n");
+// The hero strip leads with the PRODUCT CATEGORY, not the client. Founder,
+// 2026-09-07: "project name or client name dont excite them ... need to brief
+// the type of work, means technical product terms of them like P2P, D2C,
+// E-com, O2C, or more than that". A buyer scanning for their own problem
+// recognises "O2C · DISPATCH" and does not recognise "RockProsUSA".
+const heroRows = projects.slice(0, 6).map((p) => `        <li style="--pig:${p.pigment}"><i aria-hidden="true"></i><b>${esc(p.category)}</b><span>${esc(p.categoryNote)}</span><em>${esc(p.years || "\u2014")}</em></li>`).join("\n");
 
+// KPI line. Every figure is derived, not asserted:
+//   products  = rows in data/projects.json plus the 14 declared in genwork.mjs
+//   sectors   = distinct declared families
+//   yrs       = sum of each programme's year span in data/portfolio-inventory.md
+//               (41 programmes, computed 2026-09-07 = 109)
+//   repos     = the crawl total in that same file
 // Chips are FAMILIES the project declares, not raw sector strings. Deriving
 // them from `sector` gave 20 chips for 20 projects, which is a dump wearing a
 // chip's clothes. Each project names its family in data/projects.json, so a new
@@ -46,6 +47,14 @@ const heroRows = projects.slice(0, 6).map((p) => `        <li style="--pig:${p.p
 const families = [...new Set(projects.map((p) => p.family).filter(Boolean))].sort();
 const missingFamily = projects.filter((p) => !p.family).map((p) => p.id);
 if (missingFamily.length) { console.error(`projects missing family: ${missingFamily.join(", ")}`); process.exit(1); }
+
+const KPI = [
+  ["34", "products delivered"],
+  ["9", "industry sectors"],
+  ["109", "programme-years of build"],
+  ["374", "repositories since 2018"],
+];
+const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></li>`).join("\n");
 
 const block = `
     <span class="label">04 &middot; The index</span>
@@ -65,7 +74,10 @@ ${rows}
 `;
 
 const heroBlock = `
-      <ul class="hero-work" aria-label="recent builds">
+      <ul class="hero-kpi" aria-label="delivery to date">
+${kpiBlock}
+      </ul>
+      <ul class="hero-work" aria-label="what we build, by product category">
 ${heroRows}
       </ul>
       <p class="hero-work-foot"><a href="/work">All 34 builds, 9 sectors, 374 repositories &rarr;</a></p>

@@ -45,7 +45,9 @@
         "leakage"
       ],
       "pigment": "#0F8083",
-      "family": "Industrial & operations"
+      "family": "Industrial & operations",
+      "category": "O2C · DISPATCH & FULFILMENT",
+      "categoryNote": "13 sites, four apps, one dispatch backend"
     },
     {
       "id": "workelate",
@@ -82,7 +84,9 @@
         "proserv"
       ],
       "pigment": "#001372",
-      "family": "Our own platform"
+      "family": "Our own platform",
+      "category": "WORK OS · COLLABORATION SUITE",
+      "categoryNote": "mail, docs, boards, tasks, data, SDK"
     },
     {
       "id": "citysense",
@@ -120,7 +124,9 @@
         "media planning"
       ],
       "pigment": "#061F80",
-      "family": "Media & culture"
+      "family": "Media & culture",
+      "category": "MARKETING AUTOMATION · OOH",
+      "categoryNote": "campaign ops, sales workflow, billboard planning"
     },
     {
       "id": "deployer",
@@ -156,7 +162,9 @@
         "proserv"
       ],
       "pigment": "#14479B",
-      "family": "Enterprise systems"
+      "family": "Enterprise systems",
+      "category": "SaaS PLATFORM · BILLING & ADMIN",
+      "categoryNote": "multi-app suite, Stripe and PayPal, journey mapping"
     },
     {
       "id": "edtech",
@@ -192,7 +200,9 @@
         "ai-features"
       ],
       "pigment": "#186A9B",
-      "family": "Education"
+      "family": "Education",
+      "category": "MARKETPLACE · D2C",
+      "categoryNote": "two-sided: donors, applicants, awards"
     },
     {
       "id": "annotate",
@@ -225,7 +235,9 @@
         "manufacturing"
       ],
       "pigment": "#1C5FA8",
-      "family": "AI & data"
+      "family": "AI & data",
+      "category": "ML DATA TOOLING",
+      "categoryNote": "in-browser model pre-annotates, human corrects"
     },
     {
       "id": "fieldops",
@@ -260,7 +272,9 @@
         "startups"
       ],
       "pigment": "#0C6C6F",
-      "family": "Field & service ops"
+      "family": "Field & service ops",
+      "category": "FIELD SERVICE · D2C STOREFRONT",
+      "categoryNote": "storefront, admin console, field app"
     },
     {
       "id": "riskdata",
@@ -295,7 +309,9 @@
         "startups"
       ],
       "pigment": "#1C5FA8",
-      "family": "AI & data"
+      "family": "AI & data",
+      "category": "DATA PIPELINE · ETL & RECON",
+      "categoryNote": "the plumbing under the dashboard"
     },
     {
       "id": "altar-poetry",
@@ -321,7 +337,9 @@
         "consumer"
       ],
       "pigment": "#061F80",
-      "family": "Media & culture"
+      "family": "Media & culture",
+      "category": "GENERATIVE CONTENT · D2C",
+      "categoryNote": "a cultural archive, written and read in public"
     },
     {
       "id": "vc-enrichment",
@@ -346,7 +364,9 @@
         "research"
       ],
       "pigment": "#1C5FA8",
-      "family": "AI & data"
+      "family": "AI & data",
+      "category": "DATA ENRICHMENT · RESEARCH OPS",
+      "categoryNote": "company and deal records for a VC pipeline"
     },
     {
       "id": "recommerce",
@@ -381,7 +401,9 @@
         "integration"
       ],
       "pigment": "#146F86",
-      "family": "Commerce & marketplaces"
+      "family": "Commerce & marketplaces",
+      "category": "RE-COMMERCE · D2C MARKETPLACE",
+      "categoryNote": "phone intake to eBay listing, iOS and Android"
     },
     {
       "id": "qms",
@@ -414,7 +436,9 @@
         "enterprise"
       ],
       "pigment": "#14479B",
-      "family": "Enterprise systems"
+      "family": "Enterprise systems",
+      "category": "QMS · QUALITY MANAGEMENT",
+      "categoryNote": "inspections, non-conformance, corrective action"
     },
     {
       "id": "innovation",
@@ -447,7 +471,9 @@
         "workflow"
       ],
       "pigment": "#14479B",
-      "family": "Enterprise systems"
+      "family": "Enterprise systems",
+      "category": "INNOVATION MGMT · ENTERPRISE SaaS",
+      "categoryNote": "challenges, stage gates, execution board"
     },
     {
       "id": "grc",
@@ -481,7 +507,9 @@
         "saas"
       ],
       "pigment": "#14479B",
-      "family": "Enterprise systems"
+      "family": "Enterprise systems",
+      "category": "GRC · RISK & CONTROLS",
+      "categoryNote": "risk matrix, control effectiveness, KPIs"
     },
     {
       "id": "crm",
@@ -514,7 +542,9 @@
         "property"
       ],
       "pigment": "#0E3390",
-      "family": "Property & real estate"
+      "family": "Property & real estate",
+      "category": "CRM · FIELD SALES",
+      "categoryNote": "native iOS and Android, dispositions, callbacks"
     },
     {
       "id": "servicemgmt",
@@ -544,7 +574,9 @@
         "enterprise"
       ],
       "pigment": "#0C6C6F",
-      "family": "Field & service ops"
+      "family": "Field & service ops",
+      "category": "ITSM · SERVICE MANAGEMENT",
+      "categoryNote": "jobs, technicians, parts, closure"
     },
     {
       "id": "tally",
@@ -576,7 +608,9 @@
         "finance"
       ],
       "pigment": "#14479B",
-      "family": "Enterprise systems"
+      "family": "Enterprise systems",
+      "category": "ERP INTEGRATION · P2P",
+      "categoryNote": "Tally to the rest of the business, on a schedule"
     },
     {
       "id": "marketplace-rental",
@@ -608,7 +642,9 @@
         "two-sided"
       ],
       "pigment": "#146F86",
-      "family": "Commerce & marketplaces"
+      "family": "Commerce & marketplaces",
+      "category": "P2P MARKETPLACE · RENTAL",
+      "categoryNote": "owners list machinery, renters book it"
     },
     {
       "id": "production",
@@ -640,7 +676,9 @@
         "operations"
       ],
       "pigment": "#0F8083",
-      "family": "Industrial & operations"
+      "family": "Industrial & operations",
+      "category": "MES · PRODUCTION & BOM",
+      "categoryNote": "shop-floor capture, bills of material"
     },
     {
       "id": "docai",
@@ -672,7 +710,9 @@
         "extraction"
       ],
       "pigment": "#1C5FA8",
-      "family": "AI & data"
+      "family": "AI & data",
+      "category": "DOCUMENT AI · CONTRACT OPS",
+      "categoryNote": "PDF in, structured clauses out"
     }
   ]
 }
