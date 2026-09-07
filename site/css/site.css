@@ -1,90 +1,125 @@
-/* WE_AINA · design system v5 — "The Index" (founder call 2026-09-07:
-   "this blue colour is fucking bad ... bring some taste, purity of design and
-   direction of future"). White/blue is RETIRED. The system is warm paper, warm
-   near-black ink, ONE chromatic accent (oxblood), and a single deep-green band
-   per page. Structure is 1px rules, whitespace, inversion and type scale —
-   no cards, no shadows, no gradients (design rule 3, enforced by the gate).
+/* WE_AINA · design system v6.1 (founder call 2026-09-07, with screenshots).
+   v4's corporate blue on blue-white was rejected ("this blue colour is fucking
+   bad"); v5's warm cream + oxblood + Instrument Serif was rejected as
+   indistinguishable from Claude Code's own chrome. v6 is drawn from
+   site/img/workelate-logo.svg instead, and the founder set the ground himself:
+   "make background white ... the fonts in black and blue and green", and of the
+   closing band, "here as navy glossy blue".
 
-   Type: Instrument Serif carries the argument, Inter carries the prose,
-   JetBrains Mono carries the data. All three self-hosted; the sheet must never
-   cause a request to fonts.googleapis.com or fonts.gstatic.com. */
+   So: WHITE ground, BLACK ink, and the logo's own GREEN (teal) and BLUE
+   (indigo) as the two accents. One dark band per page, in navy.
+
+   Structure is still 1px rules, whitespace, inversion and type scale —
+   no cards, no shadows, no gradients (design rule 3, enforced by the gate).
+   The band's "glossy" sheen is a GRADIENT and therefore currently BLOCKED by
+   that gate; it ships flat until the founder call is recorded in verify.mjs
+   and .claude/rules/design-system.md as an explicit #cta-only exemption.
+
+   Type: Familjen Grotesk 600 carries the argument, Public Sans carries the
+   prose, IBM Plex Mono carries the data — and, new in v6, every NUMERAL.
+   All three self-hosted; the sheet must never cause a request to
+   fonts.googleapis.com or fonts.gstatic.com. */
 
 /* ------------------------------------------------------------ typefaces -- */
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("/fonts/instrumentserif-latin.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Familjen Grotesk";
+  src: url("/fonts/familjengrotesk-var-latin.woff2") format("woff2");
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Instrument Serif";
-  src: url("/fonts/instrumentserif-italic-latin.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("/fonts/jetbrainsmono-var-latin.woff2") format("woff2");
-  font-weight: 100 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "InterVar";
-  src: url("/fonts/inter-var-latin.woff2") format("woff2");
+  font-family: "Public Sans";
+  src: url("/fonts/publicsans-var-latin.woff2") format("woff2");
   font-weight: 100 900;
-  /* optional: no late swap repaint, kills the font-driven LCP penalty;
-     slow connections keep the metric-compatible fallback below */
-  font-display: optional;
+  font-style: normal;
+  font-display: swap;
 }
-/* fallback tuned to Inter metrics so optional-miss causes no layout shift */
 @font-face {
-  font-family: "InterFallback";
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibmplexmono-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibmplexmono-500-latin.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/ibmplexmono-600-latin.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* fallback tuned to Public Sans metrics, so a swap repaint costs no layout shift */
+@font-face {
+  font-family: "PublicSansFallback";
   src: local("Helvetica Neue"), local("Arial");
-  ascent-override: 96%;
+  ascent-override: 95%;
   descent-override: 24%;
   line-gap-override: 0%;
 }
-/* Bricolage Grotesque is RETIRED as the display face (design-system v5 §1) and
-   its @font-face is gone: nothing under site/ names the family any more (checked
-   by grep across site/, app/ and scripts/). NOTE for whoever owns the markup —
-   every page still carries `<link rel=preload href="/fonts/bricolage-var-latin.woff2">`
-   on line 8, which now downloads 77 KB nothing renders with. Repoint those
-   preloads at /fonts/instrumentserif-latin.woff2 (the LCP face) in the pages and
-   in scripts/gencases.mjs, gensystems.mjs and genwork.mjs. */
+/* RETIRED and no longer declared anywhere in this sheet: Instrument Serif
+   (v5 display), Bricolage Grotesque (v4 display), Inter (v4/v5 prose),
+   JetBrains Mono (v4/v5 data), Space Grotesk (v3).
+   NOTE for whoever owns the markup — every page still carries
+   `<link rel=preload href="/fonts/bricolage-var-latin.woff2">`, which downloads
+   77 KB nothing renders with. Repoint those preloads at
+   /fonts/familjengrotesk-var-latin.woff2 (the LCP face) in the pages and in
+   scripts/gencases.mjs, gensystems.mjs and genwork.mjs. */
 
 /* --------------------------------------------------------------- tokens -- */
+/* v6.1 — founder call 2026-09-07 with screenshots: "make background white ...
+   the fonts in black and blue and green", and of the #cta band, "here as navy
+   glossy blue". The cool grey-green ground of the first v6 pass is retired.
+   Ground is WHITE; ink is BLACK; the two accents are the WorkElate logo's own
+   green (teal) and blue (indigo). Every ratio below is measured, not guessed. */
 :root {
-  --paper: #F6F3EC;        /* warm paper, the default canvas */
-  --sheet: #FFFDF8;        /* raised surface: receipt band, table zebra, panels */
-  --ink: #16130F;          /* text, and the inverted sections */
-  --muted: #6E675C;        /* labels, metadata — 5.04:1 on paper */
-  --rule: #D9D2C4;         /* decorative 1px hairlines, warm, never grey */
-  --rule-strong: #8A8175;  /* CONTROL boundaries — 3.46:1 on paper, clears 1.4.11 */
-  --accent: #8A2B1E;       /* oxblood. THE accent. 7.75:1 on paper */
-  --accent-tint: #F0E4DF;  /* the only tinted background: row hover, marks */
-  --deep: #1F3D34;         /* deep green — ONE inverted band per page (#cta) */
+  --paper: #FFFFFF;        /* true white, the ground */
+  --sheet: #F7FAFB;        /* raised surface — 1.05:1 on white, deliberately
+                              almost invisible so accent text stays legible on it */
+  --ink: #0A0A0A;          /* black. 19.80:1 on white. Also the dark band ground. */
+  --muted: #5A6470;        /* labels, metadata — 6.01:1 on white, 5.73:1 on sheet */
+  --rule: #E2E6EA;         /* decorative 1px hairlines */
+  --rule-soft: #EDF0F3;    /* the lighter hairline, inside dense lists */
+  --rule-strong: #7A858F;  /* CONTROL boundaries — 3.76:1 on white, clears 1.4.11 */
 
-  /* inverted-surface tokens. Oxblood measures 2.16:1 on ink and 1.38:1 on the
-     deep green, so it CANNOT be the accent on a dark ground. The clay below is
-     the same hue family, lightened: 8.44:1 on ink, 5.39:1 on deep green. */
-  --accent-inv: #E0A08C;
-  --muted-inv: #C9C1B4;    /* 10.38:1 on ink, 6.63:1 on deep green */
-  --rule-inv: rgba(255, 253, 248, 0.22);
-  --rule-inv-strong: rgba(255, 253, 248, 0.5);
+  /* THE TWO ACCENTS, both lifted from site/img/workelate-logo.svg.
+     GREEN is the working accent (labels, links, marks); BLUE is the structural
+     one (the inverted band, headline emphasis) and is used sparingly on purpose
+     so the sheet never carries two competing chromatic hues. */
+  --accent: #0C6C6F;       /* logo teal, one shade down. 6.19:1 white / 5.81:1
+                              sheet / 5.52:1 tint. The logo's own #0F8083 measures
+                              4.73:1 on white but only 4.44:1 on --sheet and
+                              4.22:1 on --accent-tint, so it cannot carry TEXT. */
+  --green: #0F8083;        /* the logo green, exact. Non-text marks only. */
+  --blue: #001372;         /* the logo indigo. 15.72:1 on white. */
+  --cyan: #349ED0;         /* the logo cyan. 3.02:1 on white — GRAPHICAL ONLY
+                              (dots, bars, rules); never text on a light ground. */
+  --accent-tint: #EDF3F5;  /* the only tinted background: row hover, marks */
+  --deep: #001372;         /* the inverted band ground (#cta) — navy */
 
-  --display: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --sans: "InterVar", "InterFallback", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  /* inverted-surface tokens. The paper teal measures 1.05:1 on the navy band,
+     so on dark grounds the accent lifts to the logo's bright teal. */
+  --accent-inv: #5CE0D6;   /* 9.80:1 on --deep navy, 12.34:1 on --ink black */
+  --accent-inv2: #7FC9F0;  /* 8.62:1 / 10.86:1 — positive-delta numerals only */
+  --muted-inv: #B4C2E0;    /* 8.78:1 / 11.06:1 */
+  --rule-inv: rgba(255, 255, 255, 0.22);
+  --rule-inv-strong: rgba(255, 255, 255, 0.5);
+
+  --display: "Familjen Grotesk", "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sans: "Public Sans", "PublicSansFallback", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* legacy aliases kept so nothing silently breaks during the repaint */
-  --bone: #F6F3EC;
-  --blue: #8A2B1E;
-  --green: #8A2B1E;
-  --orange: #8A2B1E;
+  --bone: #FFFFFF;
+  --orange: #0C6C6F;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -110,8 +145,9 @@ a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offs
 a:hover { color: var(--accent); }
 ::selection { background: var(--accent); color: var(--sheet); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-/* On an inverted ground the oxblood ring measures 2.16:1 — a dark ring on a
-   dark surface. Inverted contexts get a sheet-white ring instead (18.2:1). */
+/* On an inverted ground the teal ring measures 1.05:1 on navy — a dark ring on
+   a dark surface. Inverted contexts get a sheet-white ring instead: 14.94:1 on
+   the navy band, 18.8:1 on the black one. */
 section.deep :focus-visible,
 #cta :focus-visible,
 .band-dark :focus-visible,
@@ -125,15 +161,19 @@ section:first-of-type { border-top: none; }
 /* the nav is sticky and 65px tall; every in-page anchor clears it */
 main, section[id], section:first-of-type { scroll-margin-top: 88px; }
 
-/* ---- inversion: ink is the inverted ground, deep green is the one band ---- */
+/* ---- inversion: black is the inverted ground, navy is the closing band ---- */
 section.deep,
 .band-dark {
   background: var(--ink);
   color: var(--sheet);
   border-top: 1px solid var(--ink);
 }
-/* THE one deep-green band per page. #cta is the last section on every page in
-   the site, so this is exactly one band per page, everywhere. */
+/* THE one navy band per page. #cta is the last section on every page in the
+   site, so this is exactly one band per page, everywhere.
+   FOUNDER ASK, NOT YET SHIPPABLE — "here as navy glossy blue". The sheen is
+   `background: linear-gradient(180deg, #06207F 0%, #000E52 100%)`, which the
+   verify gate rejects on every one of 17 pages ("no box-shadow / gradient", no
+   exemption). Ships flat until that gate is amended by founder call. */
 #cta,
 section#cta.deep {
   background: var(--deep);
@@ -154,10 +194,9 @@ section.deep .step, section.deep .founder, section.deep .svc,
 section.deep .principle, section.deep .post-item,
 .band-dark .step, .band-dark .founder, .band-dark .svc { border-top-color: var(--rule-inv); }
 
-/* The retired blue survives as an inline `style="color:#7FB0FF"` in markup this
-   sheet does not own (site/index.html #thesis). Palette purity is the point of
-   v5, so it is overridden here rather than left to leak. Delete this block once
-   the inline style is gone. */
+/* Belt and braces for inline `style="color:#…"` on a heading span inside a dark
+   band — markup this sheet does not own. Any such colour was picked for a light
+   ground and will be unreadable on navy; it is forced to the inverted accent. */
 section.deep :is(h1,h2,h3) span[style], .band-dark :is(h1,h2,h3) span[style],
 #cta :is(h1,h2,h3) span[style] { color: var(--accent-inv) !important; }
 
@@ -197,15 +236,15 @@ section.deep :is(h1,h2,h3) span[style], .band-dark :is(h1,h2,h3) span[style],
 }
 
 h1 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(44px, 6.2vw, 88px); line-height: 1.0; letter-spacing: -0.015em;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(38px, 5.6vw, 66px); line-height: 1.04; letter-spacing: -0.022em;
 }
 h2 {
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(32px, 4.2vw, 54px); line-height: 1.04; letter-spacing: -0.01em;
-  margin-bottom: 26px;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(27px, 3vw, 38px); line-height: 1.08; letter-spacing: -0.018em;
+  margin-bottom: 24px;
 }
-h3 { font-family: var(--display); font-size: 22px; font-weight: 400; line-height: 1.2; }
+h3 { font-family: var(--display); font-size: 21px; font-weight: 600; line-height: 1.22; letter-spacing: -0.014em; }
 /* Heading LEVEL is a document-structure decision (axe `heading-order`);
    heading SIZE is a component decision. Coupling them means every accessibility
    fix that promotes an h3 to an h2 silently detonates a layout — a blog list
@@ -215,11 +254,15 @@ h3 { font-family: var(--display); font-size: 22px; font-weight: 400; line-height
    above. Promote a heading freely; the component keeps its size. */
 
 .dim { color: var(--muted); }
-.accent, .accent2 { color: var(--accent); }
-/* the second hero line: italic serif in the accent, the mockup's one flourish */
-.accent-serif, .accent-serif em, h1 em { font-style: italic; color: var(--accent); }
+/* the two accents, as asked: green does the work, blue does the structure */
+.accent { color: var(--accent); }
+.accent2 { color: var(--blue); }
+/* v5's italic-serif flourish is retired with the serif. The emphasised phrase
+   in a headline is upright and BLUE — the logo indigo at 15.72:1 on white,
+   which reads as a deliberate second voice rather than a highlighter. */
+.accent-serif, .accent-serif em, h1 em, h2 em { font-style: normal; color: var(--blue); }
 
-.sub { font-size: 19px; line-height: 1.55; }
+.sub { font-size: 17.5px; line-height: 1.6; color: var(--muted); }
 /* `* { margin: 0 }` leaves consecutive body paragraphs touching. Scoped to a
    direct child of .wrap so it can never reach .hero-cta (which is a <p> inside
    .hero-split) or a paragraph inside a component that sets its own rhythm. */
@@ -338,8 +381,8 @@ section.deep .btn:hover, .band-dark .btn:hover, #cta .btn:hover {
 }
 
 /* ---------------------------------------------------------------- hero -- */
-/* Light. The v4 hero was flat navy carrying white type; v5's reference puts the
-   claim on paper in the serif, which is the whole taste argument. */
+/* Light, and now literally white. The claim sits in Familjen Grotesk 600 at
+   black, with the turn of the sentence in the logo blue. */
 #hero {
   background: var(--paper); color: var(--ink);
   min-height: 0; padding: 0; border-top: none;
@@ -351,7 +394,7 @@ section.deep .btn:hover, .band-dark .btn:hover, #cta .btn:hover {
 #hero h1 { max-width: 21ch; margin: 0; color: var(--ink); }
 #hero .label { color: var(--accent); margin-bottom: 42px; }
 #hero .label a { color: inherit; }
-#hero p { max-width: 46ch; margin: 0; font-size: 19px; line-height: 1.55; color: var(--ink); }
+#hero p { max-width: 52ch; margin: 0; font-size: 17.5px; line-height: 1.6; color: var(--muted); }
 
 .hero-split {
   display: grid; grid-template-columns: 1fr 340px; gap: 64px;
@@ -378,7 +421,7 @@ section.deep .btn:hover, .band-dark .btn:hover, #cta .btn:hover {
 #hero .hero-cta .btn, #cta .hero-cta .btn { flex: none; }
 
 /* the secondary action. On paper it is muted with a hairline underline that
-   fills to oxblood; inside #cta it sits on the deep green band instead. */
+   fills to the accent green; inside #cta it sits on the navy band instead. */
 .hero-alt {
   color: var(--muted); font-family: var(--sans); font-size: 15px; font-weight: 500;
   text-decoration: none; border-bottom: 1px solid var(--rule-strong); padding-bottom: 3px;
@@ -418,7 +461,7 @@ section.deep .btn:hover, .band-dark .btn:hover, #cta .btn:hover {
 #receipts .tens, #receipts .tens.tens-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 0; }
 #receipts .ten { border-top: none; border-right: 1px solid var(--rule); padding: 34px 30px 34px 0; }
 #receipts .ten:last-child { border-right: none; }
-#receipts .ten .n { font-family: var(--display); font-size: clamp(34px, 4vw, 46px); font-weight: 400; line-height: 1; color: var(--ink); display: block; }
+#receipts .ten .n { font-family: var(--mono); font-size: clamp(30px, 3.4vw, 42px); font-weight: 600; letter-spacing: -0.035em; line-height: 1; color: var(--ink); display: block; }
 #receipts .ten .n em { font-style: normal; color: var(--accent); }
 #receipts .ten p { margin-top: 10px; font-size: 13.5px; line-height: 1.5; color: var(--muted); max-width: 28ch; }
 #receipts .dim { color: var(--muted); }
@@ -450,12 +493,12 @@ section.deep .btn:hover, .band-dark .btn:hover, #cta .btn:hover {
    rather than relying on source order */
 .tens.tens-4 { grid-template-columns: repeat(4, 1fr); gap: 28px; }
 .ten { border-top: 1px solid var(--rule); padding-top: 20px; }
-.ten .n { font-family: var(--display); font-size: clamp(40px, 5vw, 62px); font-weight: 400; color: var(--ink); line-height: 1; }
+.ten .n { font-family: var(--mono); font-size: clamp(32px, 3.8vw, 46px); font-weight: 600; letter-spacing: -0.035em; color: var(--ink); line-height: 1; }
 .ten .n em { font-style: normal; color: var(--accent); }
 .ten p { margin-top: 10px; font-size: 14.5px; }
 section.deep .ten, .band-dark .ten, #cta .ten { border-top-color: var(--rule-inv); }
 section.deep .ten .n, .band-dark .ten .n, #cta .ten .n { color: var(--sheet); }
-section.deep .ten .n em, .band-dark .ten .n em, #cta .ten .n em { color: var(--accent-inv); }
+section.deep .ten .n em, .band-dark .ten .n em, #cta .ten .n em { color: var(--accent-inv2); }
 @media (max-width: 1000px) { .tens.tens-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) { .tens, .tens.tens-4 { grid-template-columns: 1fr; } }
 
@@ -544,7 +587,7 @@ section.deep .shape .num, .band-dark .shape .num { color: var(--muted-inv); }
 .svc :is(h2,h3) { display: inline; font-size: 19px; margin: 0; }
 .svc p { margin-top: 6px; padding-left: 46px; font-size: 14px; }
 .svc:hover :is(h2,h3) { color: var(--accent); }
-section.deep .svc:hover, .band-dark .svc:hover { background: rgba(255, 253, 248, 0.06); }
+section.deep .svc:hover, .band-dark .svc:hover { background: rgba(255, 255, 255, 0.06); }
 section.deep .svc .num, .band-dark .svc .num { color: var(--muted-inv); }
 section.deep .svc:hover :is(h2,h3), .band-dark .svc:hover :is(h2,h3) { color: var(--sheet); }
 @media (max-width: 600px) { .svc p { padding-left: 0; } }
@@ -568,9 +611,9 @@ section.deep .svc:hover :is(h2,h3), .band-dark .svc:hover :is(h2,h3) { color: va
 /* ------------------------------------------------------ then vs now ----- */
 .thennow { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule-inv); }
 .thennow .tn { padding: 30px; border-right: 1px solid var(--rule-inv); }
-.thennow .tn.now { border-right: none; background: rgba(255, 253, 248, 0.05); }
+.thennow .tn.now { border-right: none; background: rgba(255, 255, 255, 0.05); }
 .thennow .tnk { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-inv); }
-.thennow .tnv { font-family: var(--display); font-size: clamp(30px, 3.6vw, 44px); font-weight: 400; line-height: 1.1; margin: 10px 0 8px; }
+.thennow .tnv { font-family: var(--mono); font-size: clamp(26px, 3.1vw, 38px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; margin: 10px 0 8px; }
 .thennow .tn.now .tnv { color: var(--accent-inv); }
 .thennow .tn p.dim { font-size: 14px; }
 .thennow .tnnote { grid-column: 1 / -1; padding: 22px 30px; border-top: 1px solid var(--rule-inv); font-size: 14px; }
@@ -581,7 +624,7 @@ section.deep .svc:hover :is(h2,h3), .band-dark .svc:hover :is(h2,h3) { color: va
 
 .budget { margin-top: 52px; border: 1px solid var(--rule-inv); padding: 30px; }
 .budget .row2 { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; align-items: baseline; }
-.budget .amt { font-family: var(--display); font-size: clamp(28px, 3.2vw, 40px); font-weight: 400; color: var(--sheet); }
+.budget .amt { font-family: var(--mono); font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; letter-spacing: -0.03em; color: var(--sheet); }
 
 /* ------------------------------------------------------- case study ----- */
 .cs-h2 { max-width: 900px; margin-top: 20px; }
@@ -617,7 +660,7 @@ section.deep .svc:hover :is(h2,h3), .band-dark .svc:hover :is(h2,h3) { color: va
 section.deep .cmp th, .band-dark .cmp th { color: var(--muted-inv); border-bottom-color: var(--rule-inv-strong); }
 section.deep .cmp td, .band-dark .cmp td { border-bottom-color: var(--rule-inv); }
 section.deep .cmp td:first-child, .band-dark .cmp td:first-child { color: var(--muted-inv); }
-section.deep .cmp .us, .band-dark .cmp .us { background: rgba(255, 253, 248, 0.06); }
+section.deep .cmp .us, .band-dark .cmp .us { background: rgba(255, 255, 255, 0.06); }
 
 /* -------------------------------------------------------------- steps --- */
 .step { display: grid; grid-template-columns: 130px 1fr; gap: 24px; padding: 30px 0; border-top: 1px solid var(--rule); }
@@ -635,8 +678,8 @@ section.deep .step .k, .band-dark .step .k { color: var(--muted-inv); }
 .avatar {
   width: 88px; height: 88px; border: 1px solid var(--ink);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--display); font-size: 34px; font-weight: 400; color: var(--ink);
-  background: var(--sheet);
+  font-family: var(--display); font-size: 30px; font-weight: 600; letter-spacing: -0.02em;
+  color: var(--ink); background: var(--sheet);
 }
 section.deep .avatar, .band-dark .avatar { border-color: var(--rule-inv-strong); background: transparent; color: var(--sheet); }
 .founder-note {
@@ -644,7 +687,7 @@ section.deep .avatar, .band-dark .avatar { border-color: var(--rule-inv-strong);
   padding: 4px 0 4px 28px;
   margin-top: 54px;
   max-width: 740px;
-  font-family: var(--display); font-size: 22px; line-height: 1.4;
+  font-family: var(--display); font-weight: 500; font-size: 20px; line-height: 1.45;
 }
 .founder-note .sig { margin-top: 18px; color: var(--accent); font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
 .human-promise { margin-top: 40px; font-size: 15px; }
@@ -655,7 +698,7 @@ section.deep .founder-note .sig, section.deep .human-promise b { color: var(--ac
 /* --------------------------------------------------------- principles --- */
 .principle { display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 34px 0; border-top: 1px solid var(--rule); }
 .principle:first-of-type { border-top: none; }
-.principle .pn { font-family: var(--display); font-size: 34px; font-weight: 400; color: var(--accent); line-height: 1; }
+.principle .pn { font-family: var(--mono); font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--accent); line-height: 1.15; }
 .principle p { margin-top: 8px; max-width: 720px; }
 section.deep .principle .pn, .band-dark .principle .pn { color: var(--sheet); }
 
@@ -669,7 +712,7 @@ section.deep .principle .pn, .band-dark .principle .pn { color: var(--sheet); }
 .bench .role-card p { font-size: 14px; }
 section.deep .bench, .band-dark .bench { border-top-color: var(--rule-inv-strong); }
 section.deep .bench .role-card, .band-dark .bench .role-card { border-color: var(--rule-inv); }
-section.deep .bench .role-card:hover, .band-dark .bench .role-card:hover { background: rgba(255, 253, 248, 0.06); }
+section.deep .bench .role-card:hover, .band-dark .bench .role-card:hover { background: rgba(255, 255, 255, 0.06); }
 section.deep .bench .role-card .ri, .band-dark .bench .role-card .ri { color: var(--muted-inv); }
 @media (max-width: 860px) {
   .bench { grid-template-columns: 1fr; }
@@ -677,7 +720,7 @@ section.deep .bench .role-card .ri, .band-dark .bench .role-card .ri { color: va
 }
 
 /* -------------------------------------------------------- case blocks --- */
-/* index rows, not cards: a hairline above, oxblood tint on hover. */
+/* index rows, not cards: a hairline above, a cool tint on hover. */
 .case {
   border: none; border-top: 1px solid var(--rule); border-radius: 0;
   padding: 30px 0; margin-top: 0;
@@ -688,7 +731,7 @@ section.deep .bench .role-card .ri, .band-dark .bench .role-card .ri { color: va
 .case:hover { background: var(--accent-tint); }
 .case .ctag { font-family: var(--mono); color: var(--accent); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
 .case :is(h2,h3) { margin: 10px 0 8px; font-size: 22px; }
-.case .cnum { font-family: var(--display); font-size: 34px; font-weight: 400; text-align: right; color: var(--accent); line-height: 1; }
+.case .cnum { font-family: var(--mono); font-size: 28px; font-weight: 600; letter-spacing: -0.03em; text-align: right; color: var(--accent); line-height: 1.05; }
 .case .cnum small { display: block; font-family: var(--sans); font-weight: 400; font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
 /* the 0.75 opacity dropped every child of a placeholder card under 4.5:1
    (.ctag 3.33, .dim 3.05, .cnum small 2.93 — measured 2026-09-07). The dashed
@@ -707,9 +750,9 @@ section.deep .case .cnum { color: var(--accent-inv); }
 .post-item :is(h2,h3) a { text-decoration: none; }
 .post-item :is(h2,h3) a:hover { color: var(--accent); }
 article.post { max-width: 720px; }
-article.post p { margin: 20px 0; font-size: 17px; line-height: 1.75; }
-article.post h2 { font-size: 34px; margin-top: 48px; }
-article.post blockquote { border-left: 1px solid var(--accent); padding-left: 24px; color: var(--muted); margin: 28px 0; font-family: var(--display); font-size: 22px; line-height: 1.4; }
+article.post p { margin: 20px 0; font-size: 16.5px; line-height: 1.75; }
+article.post h2 { font-size: 30px; margin-top: 48px; }
+article.post blockquote { border-left: 1px solid var(--accent); padding-left: 24px; color: var(--muted); margin: 28px 0; font-family: var(--display); font-weight: 500; font-size: 20px; line-height: 1.45; }
 
 /* -------------------------------------------------- two-question router -- */
 #router { background: var(--sheet); }
@@ -742,13 +785,13 @@ article.post blockquote { border-left: 1px solid var(--accent); padding-left: 24
 /* --------------------------------------------------- the hero assistant -- */
 /* Rules and inversion only. No shadow, no gradient (design rule 3, and the
    verify gate fails the build on either). It lives inside #cta, on the one
-   deep-green band, so every colour here is an inverted-surface colour. */
+   navy band, so every colour here is an inverted-surface colour. */
 #ask { max-width: 720px; margin: 42px auto 0; text-align: left; }
 #ask > .ask-lead { text-align: center; font-size: 14px; margin: 0 0 18px; }
 .ask-form {
   display: flex; align-items: center; gap: 8px;
   border: 1px solid var(--rule-inv-strong); border-radius: 2px;
-  background: rgba(255, 253, 248, 0.05); padding: 5px 5px 5px 18px;
+  background: rgba(255, 255, 255, 0.05); padding: 5px 5px 5px 18px;
 }
 .ask-form:focus-within { border-color: var(--sheet); }
 .ask-input { flex: 1; background: none; border: none; color: var(--sheet); font-family: var(--sans); font-size: 16px; padding: 14px 0; min-width: 0; }
@@ -795,7 +838,7 @@ article.post blockquote { border-left: 1px solid var(--accent); padding-left: 24
 .ask-msg.cap { border-left-color: var(--sheet); }
 .cap-form { display: flex; gap: 8px; margin-top: 12px; }
 .cap-website { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-.cap-input { flex: 1; min-width: 0; background: rgba(255, 253, 248, 0.06); border: 1px solid var(--rule-inv-strong); border-radius: 2px; color: var(--sheet); font-family: var(--sans); font-size: 15px; padding: 12px 16px; }
+.cap-input { flex: 1; min-width: 0; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--rule-inv-strong); border-radius: 2px; color: var(--sheet); font-family: var(--sans); font-size: 15px; padding: 12px 16px; }
 .cap-input::placeholder { color: var(--muted-inv); }
 .cap-input:focus { outline: none; border-color: var(--sheet); }
 .cap-input:focus-visible { outline: 2px solid var(--sheet); outline-offset: 3px; border-color: var(--sheet); }

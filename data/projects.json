@@ -44,7 +44,7 @@
         "reporting",
         "leakage"
       ],
-      "pigment": "#B4472A",
+      "pigment": "#0F8083",
       "family": "Industrial & operations"
     },
     {
@@ -81,7 +81,7 @@
         "internal-tools",
         "proserv"
       ],
-      "pigment": "#1F3D34",
+      "pigment": "#001372",
       "family": "Our own platform"
     },
     {
@@ -119,7 +119,7 @@
         "out-of-home",
         "media planning"
       ],
-      "pigment": "#8C5A3B",
+      "pigment": "#061F80",
       "family": "Media & culture"
     },
     {
@@ -155,7 +155,7 @@
         "rescue",
         "proserv"
       ],
-      "pigment": "#3C4C8A",
+      "pigment": "#14479B",
       "family": "Enterprise systems"
     },
     {
@@ -191,7 +191,7 @@
         "internal-tools",
         "ai-features"
       ],
-      "pigment": "#1F6F72",
+      "pigment": "#186A9B",
       "family": "Education"
     },
     {
@@ -224,7 +224,7 @@
         "ship-product",
         "manufacturing"
       ],
-      "pigment": "#3C4C8A",
+      "pigment": "#1C5FA8",
       "family": "AI & data"
     },
     {
@@ -259,7 +259,7 @@
         "manual-ops",
         "startups"
       ],
-      "pigment": "#C08A2E",
+      "pigment": "#0C6C6F",
       "family": "Field & service ops"
     },
     {
@@ -294,7 +294,7 @@
         "cash",
         "startups"
       ],
-      "pigment": "#5A5F66",
+      "pigment": "#1C5FA8",
       "family": "AI & data"
     },
     {
@@ -320,7 +320,7 @@
         "generative",
         "consumer"
       ],
-      "pigment": "#6E3F72",
+      "pigment": "#061F80",
       "family": "Media & culture"
     },
     {
@@ -345,7 +345,7 @@
         "enrichment",
         "research"
       ],
-      "pigment": "#4C6B3C",
+      "pigment": "#1C5FA8",
       "family": "AI & data"
     },
     {
@@ -380,7 +380,7 @@
         "ecommerce",
         "integration"
       ],
-      "pigment": "#C08A2E",
+      "pigment": "#146F86",
       "family": "Commerce & marketplaces"
     },
     {
@@ -413,7 +413,7 @@
         "manufacturing",
         "enterprise"
       ],
-      "pigment": "#4C6B3C",
+      "pigment": "#14479B",
       "family": "Enterprise systems"
     },
     {
@@ -446,7 +446,7 @@
         "saas",
         "workflow"
       ],
-      "pigment": "#6E3F72",
+      "pigment": "#14479B",
       "family": "Enterprise systems"
     },
     {
@@ -480,7 +480,7 @@
         "enterprise",
         "saas"
       ],
-      "pigment": "#5A5F66",
+      "pigment": "#14479B",
       "family": "Enterprise systems"
     },
     {
@@ -513,7 +513,7 @@
         "mobile",
         "property"
       ],
-      "pigment": "#B4472A",
+      "pigment": "#0E3390",
       "family": "Property & real estate"
     },
     {
@@ -543,7 +543,7 @@
         "operations",
         "enterprise"
       ],
-      "pigment": "#8C5A3B",
+      "pigment": "#0C6C6F",
       "family": "Field & service ops"
     },
     {
@@ -575,7 +575,7 @@
         "integration",
         "finance"
       ],
-      "pigment": "#3C4C8A",
+      "pigment": "#14479B",
       "family": "Enterprise systems"
     },
     {
@@ -607,7 +607,7 @@
         "equipment",
         "two-sided"
       ],
-      "pigment": "#C08A2E",
+      "pigment": "#146F86",
       "family": "Commerce & marketplaces"
     },
     {
@@ -639,7 +639,7 @@
         "mobile",
         "operations"
       ],
-      "pigment": "#4C6B3C",
+      "pigment": "#0F8083",
       "family": "Industrial & operations"
     },
     {
@@ -671,7 +671,7 @@
         "ml",
         "extraction"
       ],
-      "pigment": "#1F6F72",
+      "pigment": "#1C5FA8",
       "family": "AI & data"
     }
   ]
