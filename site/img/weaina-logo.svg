@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 230" width="1010" height="230" role="img" aria-label="WE_AINA">
+  <title>WE_AINA</title>
+  <!--
+    WE_AINA wordmark, built to sit in the WorkElate system without borrowing it.
+
+    Construction is inherited from the parent mark rather than imitated: rounded
+    stroke terminals, the same teal -> cyan -> indigo ramp read left to right,
+    the three detached bars for E, and the pixel square as the terminal glyph.
+    Every letter in WE_AINA is straight-line only, so the whole mark is stroked
+    geometry with round caps and joins. No font dependency, nothing to re-cut if
+    a typeface changes.
+
+    Metrics: cap height 130 (y 45 -> 175), stroke 30, minimum 44 between
+    letters. An earlier cut at stroke 34 with 36 gaps collided W into E and
+    merged the underscore with E's bottom bar.
+
+    Colours sampled from workelate-logo.svg: #0F8083 teal, #349ED0 cyan,
+    #001372 indigo.
+  -->
+  <defs>
+    <linearGradient id="wa" x1="40" y1="0" x2="900" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F8083"/>
+      <stop offset="0.28" stop-color="#12938F"/>
+      <stop offset="0.52" stop-color="#349ED0"/>
+      <stop offset="0.79" stop-color="#1B4FA8"/>
+      <stop offset="1" stop-color="#001372"/>
+    </linearGradient>
+  </defs>
+
+  <g fill="none" stroke="url(#wa)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <!-- W -->
+    <path d="M40 45 L74 175 L108 88 L142 175 L176 45"/>
+    <!-- E as three detached bars, the parent mark's signature move -->
+    <path d="M222 45 H310"/>
+    <path d="M222 110 H292"/>
+    <path d="M222 175 H310"/>
+    <!-- underscore, clear of the E -->
+    <path d="M356 175 H424"/>
+    <!-- A -->
+    <path d="M468 175 L507 45 L546 175"/>
+    <path d="M485 141 H529"/>
+    <!-- I -->
+    <path d="M592 45 V175"/>
+    <!-- N -->
+    <path d="M638 175 V45 L716 175 V45"/>
+    <!-- A -->
+    <path d="M762 175 L801 45 L840 175"/>
+    <path d="M779 141 H823"/>
+  </g>
+
+  <!-- terminal pixel square, carried over from the parent mark -->
+  <g fill="#001372">
+    <rect x="886" y="145" width="30" height="30" rx="3"/>
+    <rect x="886" y="145" width="13" height="13" fill="#F6F3EC" opacity="0"/>
+  </g>
+</svg>

@@ -1,5 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#F6F3EC"/>
-  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#8A2B1E" stroke-width="4"/>
-  <text x="32" y="44" text-anchor="middle" font-family="Menlo, monospace" font-size="34" font-weight="700" fill="#16130F">A_</text>
+  <!-- Derived from site/img/weaina-logo.svg: the three-bar E motif inherited
+       from the WorkElate mark, on the parent's indigo. Replaces an "A_" glyph
+       that was still painted in the retired #0B5FFF system. -->
+  <defs>
+    <linearGradient id="f" x1="14" y1="0" x2="50" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F8083"/><stop offset="0.55" stop-color="#349ED0"/><stop offset="1" stop-color="#001372"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#001372"/>
+  <g stroke="url(#f)" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M16 20 H48"/><path d="M16 32 H40"/><path d="M16 44 H48"/>
+  </g>
 </svg>
