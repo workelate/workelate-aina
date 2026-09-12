@@ -484,17 +484,6 @@ ${rows}
 
 writeFileSync(path.join(ROOT, "site", "studio", "work.html"), html);
 
-/* ────────────────────────────────────────────────────────────────  sitemap --
-   site/sitemap.xml is owned by scripts/gensystems.mjs, which rewrites it whole.
-   This generator only ensures /work is present, idempotently, so re-running
-   either generator in either order is safe. */
-const smPath = path.join(ROOT, "site", "sitemap.xml");
-if (existsSync(smPath)) {
-  const sm = readFileSync(smPath, "utf8");
-  if (!sm.includes("https://aina.workelate.com/studio/work<")) {
-    writeFileSync(smPath, sm.replace("</urlset>", "  <url><loc>https://aina.workelate.com/studio/work</loc></url>\n</urlset>"));
-    console.log("sitemap.xml: added /work");
-  }
-}
+// sitemap.xml is derived from site/ by scripts/gensitemap.mjs; nothing to add here.
 
 console.log(`wrote site/work.html — ${ROWS.length} rows (${curated.length} from data/projects.json, ${EXTRA.length} from data/programme-briefs.md + data/portfolio-inventory.md), ${GROUPS.length} sector chips`);

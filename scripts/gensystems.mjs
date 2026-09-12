@@ -451,30 +451,6 @@ ${JSON.stringify({
 PAGES.forEach((p, i) => writeFileSync(path.join(OUT, `${p.slug}.html`), page(p, i)));
 writeFileSync(path.join(OUT, "index.html"), indexPage());
 
-// sitemap
-const urls = [
-  "https://aina.workelate.com/",
-  "https://aina.workelate.com/studio/work",
-  "https://aina.workelate.com/studio/how-we-work",
-  "https://aina.workelate.com/studio/about",
-  "https://aina.workelate.com/studio/contact",
-  "https://aina.workelate.com/studio/case-studies",
-  "https://aina.workelate.com/studio/case-studies/rockprosusa",
-  "https://aina.workelate.com/studio/blog",
-  "https://aina.workelate.com/studio/blog/the-pyramid-cant-survive-agents",
-  "https://aina.workelate.com/studio/blog/receipts-over-decks",
-  "https://aina.workelate.com/studio/systems",
-  ...PAGES.map(p => `https://aina.workelate.com/studio/systems/${p.slug}`)
-];
-writeFileSync(path.join(OUT, "..", "..", "sitemap.xml"),
-`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(u => `  <url><loc>${u}</loc></url>`).join("\n")}
-</urlset>
-`);
-writeFileSync(path.join(OUT, "..", "..", "robots.txt"),
-`User-agent: *
-Allow: /
-Sitemap: https://aina.workelate.com/sitemap.xml
-`);
-console.log(`wrote ${PAGES.length} system pages + systems/index.html + sitemap.xml + robots.txt`);
+// sitemap.xml and robots.txt are written by scripts/gensitemap.mjs, derived
+// from site/ itself. Run it after this generator.
+console.log(`wrote ${PAGES.length} system pages + systems/index.html`);

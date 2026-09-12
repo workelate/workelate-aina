@@ -43,6 +43,8 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
   `<!-- FOOTER:start -->` markers it rewrites. Never hand-edit a nav or footer
   in a page: footer parity is a gate assertion and a hand edit dies on the
   next run.
+- `node scripts/gensitemap.mjs` — sitemap.xml + robots.txt derived from site/.
+  RUN IT LAST. gensystems no longer writes a hand-listed sitemap.
 - `node scripts/gencapindex.mjs` — regenerate the capability index rows in
   site/brain/capabilities/index.html from the capability pages themselves.
 - `node scripts/genbrain.mjs` — regenerate the /brain product mockups (being

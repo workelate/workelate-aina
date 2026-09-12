@@ -15,7 +15,20 @@ const nextConfig = {
     return [
       // Kill duplicate-content: legacy .html paths 301 to the clean URL.
       { source: "/index.html", destination: "/", permanent: true },
-      { source: "/:path*.html", destination: "/:path*", permanent: true }
+      { source: "/:path*.html", destination: "/:path*", permanent: true },
+      // 2026-09-12: the agency moved under /studio when the site became the
+      // Excellence Studio umbrella. Every URL that was ever public for it 301s
+      // to its new home so inbound links and the old sitemap keep resolving.
+      { source: "/about", destination: "/studio/about", permanent: true },
+      { source: "/contact", destination: "/studio/contact", permanent: true },
+      { source: "/work", destination: "/studio/work", permanent: true },
+      { source: "/how-we-work", destination: "/studio/how-we-work", permanent: true },
+      { source: "/blog", destination: "/studio/blog", permanent: true },
+      { source: "/blog/:path*", destination: "/studio/blog/:path*", permanent: true },
+      { source: "/case-studies", destination: "/studio/case-studies", permanent: true },
+      { source: "/case-studies/:path*", destination: "/studio/case-studies/:path*", permanent: true },
+      { source: "/systems", destination: "/studio/systems", permanent: true },
+      { source: "/systems/:path*", destination: "/studio/systems/:path*", permanent: true }
     ];
   },
 
