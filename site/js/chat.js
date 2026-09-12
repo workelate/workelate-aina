@@ -335,7 +335,7 @@ if (root) {
       const signal = BUYING.has(a.factId);
       if (!cap.done && !cap.shown && (signal || state.turns >= 2)) showCapture(signal);
     } catch (err) {
-      thinking.innerHTML = `<p>That did not load. The case studies cover the same ground: <a href="/case-studies">browse them here →</a></p>`;
+      thinking.innerHTML = `<p>That did not load. The case studies cover the same ground: <a href="/studio/case-studies">browse them here →</a></p>`;
     }
   }
 

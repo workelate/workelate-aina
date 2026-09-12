@@ -4,7 +4,7 @@ import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 const ROOT = path.join(import.meta.dirname, "..");
-const OUT = path.join(ROOT, "site", "case-studies");
+const OUT = path.join(ROOT, "site", "studio", "case-studies");
 mkdirSync(OUT, { recursive: true });
 
 const { cases } = JSON.parse(readFileSync(path.join(ROOT, "data", "cases.json"), "utf8"));
@@ -26,22 +26,21 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Case studies, WE_AINA</title>
 <meta name="description" content="Receipts-first case studies: 13 quarries on agentic dispatch, AI campaign ops for agencies in Mexico, freight reconciliation, AR automation, numbers we can defend.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/familjengrotesk-var-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="https://aina.workelate.com/case-studies">
+<link rel="canonical" href="https://aina.workelate.com/studio/case-studies">
 </head>
 <body>
 
 <header class="nav"><div class="wrap row">
   <a class="logo" href="/">WE_<span>AINA</span></a>
   <nav>
-    <a href="/how-we-work">How we work</a>
-    <a href="/about">About</a>
-    <a href="/case-studies" aria-current="page">Case studies</a>
-    <a href="/blog">Blog</a>
-    <a href="/systems/quarry-dispatch-automation">Systems</a>
+    <a href="/studio/how-we-work">How we work</a>
+    <a href="/studio/about">About</a>
+    <a href="/studio/case-studies" aria-current="page">Case studies</a>
+    <a href="/studio/blog">Blog</a>
+    <a href="/studio/systems/quarry-dispatch-automation">Systems</a>
     <a class="btn" href="/#ask">Book a Diagnostic Sprint</a>
   </nav>
 </div></header>
@@ -81,25 +80,25 @@ ${cases.map(card).join("\n")}
       </div>
       <div>
         <div class="fh">Company</div>
-        <a href="/about">About us</a>
-        <a href="/how-we-work">How we work</a>
-        <a href="/case-studies">Case studies</a>
-        <a href="/blog">Blog</a>
+        <a href="/studio/about">About us</a>
+        <a href="/studio/how-we-work">How we work</a>
+        <a href="/studio/case-studies">Case studies</a>
+        <a href="/studio/blog">Blog</a>
       </div>
       <div>
         <div class="fh">Systems</div>
-        <a href="/systems/quarry-dispatch-automation">Dispatch automation</a>
-        <a href="/systems/plant-production-reporting">Production reporting</a>
-        <a href="/systems/dealer-order-management">Order management</a>
-        <a href="/systems/freight-reconciliation">Freight reconciliation</a>
-        <a href="/systems/ar-followup-automation">AR follow-up</a>
-        <a href="/systems/compliance-documentation">Compliance documentation</a>
+        <a href="/studio/systems/quarry-dispatch-automation">Dispatch automation</a>
+        <a href="/studio/systems/plant-production-reporting">Production reporting</a>
+        <a href="/studio/systems/dealer-order-management">Order management</a>
+        <a href="/studio/systems/freight-reconciliation">Freight reconciliation</a>
+        <a href="/studio/systems/ar-followup-automation">AR follow-up</a>
+        <a href="/studio/systems/compliance-documentation">Compliance documentation</a>
       </div>
       <div>
         <div class="fh">Engage</div>
         <a href="/#ask">Book a Diagnostic Sprint</a>
-        <a href="/how-we-work">The Diagnostic Sprint</a>
-        <a href="/blog/receipts-over-decks">Receipts over decks</a>
+        <a href="/studio/how-we-work">The Diagnostic Sprint</a>
+        <a href="/studio/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
     <div class="baseline">

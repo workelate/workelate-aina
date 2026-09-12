@@ -1,4 +1,8 @@
 {
-  "when": "2026-07-13T12:30:42.890Z",
-  "actionables": []
+  "when": "2026-09-12T16:04:14.956Z",
+  "actionables": [
+    "vague: \"**Done for this pass.\" — restate with exact file paths / commands, or drop it",
+    "vague: \"Not deployed, not committed, not founder-accepted.**\" — restate with exact file paths / commands, or drop it",
+    "vague: \"Long form is in your hands: `data/brain-reading-pack.md` (82k words, 5\" — restate with exact file paths / commands, or drop it"
+  ]
 }

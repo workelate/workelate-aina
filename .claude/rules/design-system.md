@@ -1,3 +1,48 @@
+# WE_AINA design system — v7 (founder call 2026-09-12: match workelate.com)
+
+## v7 SUPERSEDES the white system below. Read this section first.
+
+Founder, 2026-09-12: *"color, font css and more is not giving fun make the entire
+website looks consistent as per workelate.com"*.
+
+The agency ships as aina.workelate.com, a subdomain of the product. So the product's
+system is the brand, and this site adopts it rather than running a second one:
+
+- **Ground is DARK.** `#07070c` page, `#0c0c14` raised. The white/off-white v6 ground
+  is retired.
+- **Type is Work Sans**, self-hosted (no runtime request to Google Fonts, that part of
+  the old law stands). Instrument Serif / Familjen Grotesk / Inter / JetBrains Mono are
+  retired as the display and data faces.
+- **Accents are the product's**: cyan `#00d4ff`, purple `#8b5cf6`, blue `#2563eb`,
+  with emerald `#34d399`, amber `#fbbf24` and red `#f87171` as state colours.
+- **Gradients and glass are the language, not a violation.** `linear-gradient(90deg,
+  #00d4ff, #8b5cf6)` and `linear-gradient(135deg, #2563eb, #8b5cf6)` are brand
+  assets. Glass surfaces are `hsla(0,0%,100%,.035)` over the dark ground with
+  `hsla(0,0%,100%,.09)` borders.
+- **Rule 3 of the old system ("no cards, no box-shadows, no gradients") is RETIRED**,
+  and with it the verify gate's blanket `no box-shadow / gradient` assertion.
+
+What replaces that gate, so the rebrand cannot half-land: `scripts/verify.mjs` now
+asserts **"on the brand system (ground + family)"** on every page, measuring the
+ground the body actually paints and the family it actually renders in. A page left on
+the white system fails. A partial rebrand is invisible to a copy gate, which is
+exactly why this one is measured.
+
+Unchanged and still binding from the old system: fonts are self-hosted only; no
+backdrop-filter on the sticky header; em dashes banned in copy; receipts over
+adjectives; the single CTA phrase "Book a Diagnostic Sprint"; "contact us" banned;
+never fabricate a customer quote, a number or a testimonial; founders visible and
+accountable. Contrast still has to clear WCAG on the dark ground, and dark grounds
+make that harder, not easier: check every accent used as text, and note that the
+product's own `--ws-text-dim` `#6b7280` measures under 4.5:1 on `#07070c`.
+
+The exact token set, type scale, component specs and the measured contrast table live
+in `data/workelate-design.md`, taken from the live site and the Chief product page.
+
+---
+
+# The retired white system (v4 to v6), kept for history
+
 # WE_AINA design system — v4 (founder-amended 2026-07-08, third pass)
 
 POSITIONING (founder call 2026-07-22): WE_AINA is an **AI-native product

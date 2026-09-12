@@ -255,7 +255,7 @@ const itemList = {
   "@type": "CollectionPage",
   name: "The index of work, WE_AINA",
   description: "One line per build: 374 repositories and 41 programmes shipped between 2018 and 2026, by sector and product type.",
-  url: "https://aina.workelate.com/work",
+  url: "https://aina.workelate.com/studio/work",
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: ROWS.length,
@@ -276,16 +276,15 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The index of work, WE_AINA</title>
 <meta name="description" content="One line per build. ${ROWS.length} programmes drawn from 374 repositories shipped between 2018 and 2026: marketplaces, dispatch systems, ERP connectors, annotation tools, risk registers.">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/familjengrotesk-var-latin.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-var-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="canonical" href="https://aina.workelate.com/work">
+<link rel="canonical" href="https://aina.workelate.com/studio/work">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The index of work, WE_AINA">
 <meta property="og:description" content="One line per build. ${ROWS.length} programmes drawn from 374 repositories shipped between 2018 and 2026.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
-<meta property="og:url" content="https://aina.workelate.com/work">
+<meta property="og:url" content="https://aina.workelate.com/studio/work">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 ${JSON.stringify(itemList, null, 2)}
@@ -368,12 +367,12 @@ td.wk-yr{font-family:var(--mono);font-size:11.5px;color:var(--muted,rgba(10,24,4
   <a class="logo" href="/">WE_<span>AINA</span></a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="navmenu"><span class="sr-only">Menu</span><span></span><span></span><span></span></button>
   <nav id="navmenu">
-    <a href="/how-we-work">How we work</a>
-    <a href="/about">About</a>
-    <a href="/case-studies">Case studies</a>
-    <a href="/blog">Blog</a>
-    <a href="/systems/quarry-dispatch-automation">Systems</a>
-    <a class="btn" href="/contact">Book a Diagnostic Sprint</a>
+    <a href="/studio/how-we-work">How we work</a>
+    <a href="/studio/about">About</a>
+    <a href="/studio/case-studies">Case studies</a>
+    <a href="/studio/blog">Blog</a>
+    <a href="/studio/systems/quarry-dispatch-automation">Systems</a>
+    <a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a>
   </nav>
 </div></header>
 
@@ -386,7 +385,7 @@ td.wk-yr{font-family:var(--mono);font-size:11.5px;color:var(--muted,rgba(10,24,4
       <div>
         <h1>We have probably already built <span class="accent">the thing you are about to describe.</span></h1>
         <p class="sub dim wk-lede">Dispatch systems, marketplaces, ERP connectors, annotation tooling, risk registers, production floors, a home-buyer portal and a poetry project. 374 repositories across 41 programmes since 2018, and one work platform of our own that this studio's delivery runs on.</p>
-        <p style="margin-top:28px"><a class="btn" href="/contact">Book a Diagnostic Sprint</a></p>
+        <p style="margin-top:28px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
       </div>
       <dl class="wk-facts">
         <dt>Span</dt><dd>2018 to 2026</dd>
@@ -450,26 +449,26 @@ ${rows}
       </div>
       <div>
         <div class="fh">Company</div>
-        <a href="/about">About us</a>
-        <a href="/how-we-work">How we work</a>
-        <a href="/case-studies">Case studies</a>
-        <a href="/blog">Blog</a>
+        <a href="/studio/about">About us</a>
+        <a href="/studio/how-we-work">How we work</a>
+        <a href="/studio/case-studies">Case studies</a>
+        <a href="/studio/blog">Blog</a>
       </div>
       <div>
         <div class="fh">Systems</div>
-        <a href="/systems/quarry-dispatch-automation">Dispatch automation</a>
-        <a href="/systems/plant-production-reporting">Production reporting</a>
-        <a href="/systems/dealer-order-management">Order management</a>
-        <a href="/systems/freight-reconciliation">Freight reconciliation</a>
-        <a href="/systems/ar-followup-automation">AR follow-up</a>
-        <a href="/systems/compliance-documentation">Compliance documentation</a>
+        <a href="/studio/systems/quarry-dispatch-automation">Dispatch automation</a>
+        <a href="/studio/systems/plant-production-reporting">Production reporting</a>
+        <a href="/studio/systems/dealer-order-management">Order management</a>
+        <a href="/studio/systems/freight-reconciliation">Freight reconciliation</a>
+        <a href="/studio/systems/ar-followup-automation">AR follow-up</a>
+        <a href="/studio/systems/compliance-documentation">Compliance documentation</a>
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/contact">Book a Diagnostic Sprint</a>
-        <a href="/how-we-work">The Diagnostic Sprint</a>
+        <a href="/studio/contact">Book a Diagnostic Sprint</a>
+        <a href="/studio/how-we-work">The Diagnostic Sprint</a>
         <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
-        <a href="/blog/receipts-over-decks">Receipts over decks</a>
+        <a href="/studio/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
     <div class="baseline">
@@ -483,7 +482,7 @@ ${rows}
 </html>
 `;
 
-writeFileSync(path.join(ROOT, "site", "work.html"), html);
+writeFileSync(path.join(ROOT, "site", "studio", "work.html"), html);
 
 /* ────────────────────────────────────────────────────────────────  sitemap --
    site/sitemap.xml is owned by scripts/gensystems.mjs, which rewrites it whole.
@@ -492,8 +491,8 @@ writeFileSync(path.join(ROOT, "site", "work.html"), html);
 const smPath = path.join(ROOT, "site", "sitemap.xml");
 if (existsSync(smPath)) {
   const sm = readFileSync(smPath, "utf8");
-  if (!sm.includes("https://aina.workelate.com/work<")) {
-    writeFileSync(smPath, sm.replace("</urlset>", "  <url><loc>https://aina.workelate.com/work</loc></url>\n</urlset>"));
+  if (!sm.includes("https://aina.workelate.com/studio/work<")) {
+    writeFileSync(smPath, sm.replace("</urlset>", "  <url><loc>https://aina.workelate.com/studio/work</loc></url>\n</urlset>"));
     console.log("sitemap.xml: added /work");
   }
 }

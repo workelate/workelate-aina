@@ -5,3 +5,21 @@ leads.db
 .next/
 next-env.d.ts
 proposals/build/*.png
+
+# INTERNAL, never in this public repo (founder rule 2026-09-12, "IP stays internal"):
+# the backend measurement, the sales reading pack, review notes, capture notes,
+# and the work-graph source table with file paths.
+data/brain-facts.md
+data/brain-reading-pack.md
+data/brain-qa.md
+data/brain-narrative.md
+data/real-captures.md
+data/workgraph-embed.md
+data/workelate-design.md
+# Real product captures: only the two seeded-data crops a page references are
+# published. The rest carry internal names and stay on this machine.
+site/img/real/*
+!site/img/real/briefing-needs-you.png
+!site/img/real/tasks-board-rockcross-ops-portal.png
+.agents/
+.codex/
