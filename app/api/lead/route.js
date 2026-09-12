@@ -47,7 +47,10 @@ function rateLimited(ip) {
   return false;
 }
 
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Character-class allowlist, not "anything without a space": the old pattern
+// accepted a@b.c<script> and stored it verbatim, which then went into Resend's
+// reply_to and made the send fail silently.
+const EMAIL = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,24}$/;
 // permissive international phone: 7-15 digits, optional +, spaces/dashes/parens
 const PHONE = /^\+?[\d][\d\s\-()]{6,18}\d$/;
 
@@ -62,8 +65,11 @@ const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { "content-type": "application/json" } });
 
 export async function POST(req) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "?";
-  if (rateLimited(ip)) return json({ error: "rate limited" }, 429);
+  // A missing x-forwarded-for used to collapse every visitor into one bucket
+  // keyed "?", so eight anonymous requests rate-limited the entire site. With
+  // no usable IP we fail OPEN: spam protection is not worth dropping leads.
+  const fwd = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  const ip = fwd || req.headers.get("x-real-ip")?.trim() || null;
 
   const body = await req.text();
   if (body.length > 12_000) return json({ error: "too large" }, 413);
@@ -77,6 +83,10 @@ export async function POST(req) {
   const kind = classify(p.contact);
   if (!kind) return json({ error: "need a valid email or phone" }, 400);
 
+  // Rate-limit AFTER validation so rejected junk (oversize, honeypot, bad
+  // contact) cannot burn a real visitor's quota for the hour.
+  if (ip && rateLimited(ip)) return json({ error: "rate limited" }, 429);
+
   const lead = {
     contact: String(p.contact).trim().slice(0, 254),
     kind,
@@ -87,23 +97,34 @@ export async function POST(req) {
     ts: new Date().toISOString()
   };
 
-  // Same degradation contract as the score route: on Vercel's ephemeral FS the
-  // store returns null and we still hand back a receipt. Wire a hosted store
-  // (Turso/libSQL) to persist in prod.
+  // On Vercel's ephemeral FS the SQLite store returns null. That used to return
+  // early, BEFORE the notify below — so on the documented deploy target every
+  // lead was discarded and never emailed while the visitor was told a founder
+  // would call. The email is now the primary delivery path and always runs;
+  // the database is the durable copy when one is configured.
   const id = await insertChatLead(lead);
-  if (id == null) return json({ ok: true, persisted: false, note: "lead store not configured" });
+  const persisted = id != null;
+  if (persisted) {
+    await audit(id, "chat_lead_captured", `${kind} · ${lead.industry || "no-industry"}`);
+  }
 
-  await audit(id, "chat_lead_captured", `${kind} · ${lead.industry || "no-industry"}`);
-  // email chitransh@workelate.com after the response is sent; lead is stored
+  // email chitransh@workelate.com after the response is sent, stored or not
   after(async () => {
     try {
       const r = await notify(lead);
-      await audit(id, r.sent ? "notify_sent" : "notify_skipped",
-        r.sent ? `to ${NOTIFY_TO}` : r.reason);
+      if (persisted) {
+        await audit(id, r.sent ? "notify_sent" : "notify_skipped",
+          r.sent ? `to ${NOTIFY_TO}` : r.reason);
+      } else if (!r.sent) {
+        // Nowhere left to record it: say so loudly in the server log so a lost
+        // lead is visible in `vercel logs` instead of vanishing silently.
+        console.error("[lead] NOT STORED AND NOT EMAILED", r.reason, lead.contact);
+      }
     } catch (e) {
-      await audit(id, "notify_failed", e.message);
+      if (persisted) await audit(id, "notify_failed", e.message);
+      else console.error("[lead] NOT STORED, notify threw", e.message, lead.contact);
     }
   });
 
-  return json({ ok: true, persisted: true, id });
+  return json({ ok: true, persisted, ...(persisted ? { id } : { note: "lead store not configured" }) });
 }

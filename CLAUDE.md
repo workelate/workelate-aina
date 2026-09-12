@@ -37,6 +37,17 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
   knowledge base the hero assistant answers from.
 - `node scripts/genartifacts.mjs` — regenerate product mockup PNGs.
 - `node scripts/genog.mjs` — regenerate the OG image.
+- `node scripts/genchrome.mjs` — rewrite the header nav and the mega footer
+  into EVERY page under site/. RUN IT LAST, after gensystems/gencases/genwork.
+  The chrome lives in that one file; pages carry `<!-- NAV:start -->` /
+  `<!-- FOOTER:start -->` markers it rewrites. Never hand-edit a nav or footer
+  in a page: footer parity is a gate assertion and a hand edit dies on the
+  next run.
+- `node scripts/gencapindex.mjs` — regenerate the capability index rows in
+  site/brain/capabilities/index.html from the capability pages themselves.
+- `node scripts/genbrain.mjs` — regenerate the /brain product mockups (being
+  replaced by real product captures under site/img/real/)
+  (site/img/brain-verbs, -honesty, -ladder, -adoption.png).
 
 ## Generated files — never hand-edit
 site/systems/*.html, site/data/corpus.json, site/sitemap.xml,
@@ -87,6 +98,50 @@ the next regeneration.
   share .next/ and the production build corrupts the dev server (module not
   found on every route). Kill dev, or build, then `rm -rf .next`.
 
+## Zones (founder call 2026-09-12: "WorkElate Excellence Studio, two offerings")
+- `/` is the umbrella landing (site/index.html): Excellence Studio, two doors.
+- `/brain/*` plus `/book-a-demo` is the PRODUCT site for WorkElate Chief, the Brain.
+- `/studio/*` is the agency, WE_AINA: everything that used to sit at the root
+  (about, contact, work, how-we-work, blog, case-studies, systems). The CTA
+  target sitewide is now `/studio/contact`.
+- `scripts/genchrome.mjs` writes a different nav and footer per zone
+  (`zoneOf(route)`), and `scripts/verify.mjs` asserts footer parity PER ZONE.
+- Generators write into `site/studio/…` now (gensystems, gencases, genwork,
+  genbreadth); sitemap and robots still land at `site/`.
+- Nothing under `site/` is deployed or committed yet. The repo is untracked.
+
+## IP stays internal (founder, 2026-09-12)
+"kya unify or glean ne ip share kiya hai?" Public pages carry OUTCOMES and
+buyer-facing numbers only. Never on a page: a commit sha, file / emit-site /
+model / identity-field / evaluation counts, internal module or service names,
+or any sentence about how the code is structured. Public set: 15 verbs, 287
+actions, the Brain's own 12 application surfaces, 190 business objects, 71
+confirm-gated, 40 per organization and 5 per person per hour, the RockProsUSA
+receipts, $30K to $100K, the 2-week Sprint, 34 / 9 / 374. The full measurement
+and the long form live in `data/brain-facts.md` and `data/brain-reading-pack.md`
+(section 13 is the redaction checklist). Pages run 250 to 400 words. Visuals
+must be the real product (local stack, seeded org), never a mockup.
+
+## The brain lane (2026-09-12)
+- /brain, /brain/capabilities, /brain/compare/*, /brain/roadmap,
+  /brain/changelog and /book-a-demo sell THE BRAIN: WE_AINA installs WorkElate
+  Chief on top of the systems a 200 to 2,000 person, $50M to $1B company
+  already runs. No rip-and-replace. The argument is DEPTH of work, never the
+  number of apps (founder, 2026-09-12).
+- Every number on those pages is MEASURED from workelate-backend at
+  origin/main commit 518e750e, written up in data/brain-facts.md with the
+  grep that produced it. That file also carries a DO NOT PUBLISH list
+  (tenancy is NOT enforced by default, endpoint and line totals are not a
+  quality claim, appHomes covers 7 of 11 apps). Read it before writing a
+  number, and never publish from the marketing deck instead: the "167 actions"
+  claim on the Chief product page is not what the code says (15 verbs, 287
+  actions, 71 of them confirm-gated).
+- The mega menu and the FAQ panels have a NO-JS CONTRACT. Panels ship visible
+  and `site/js/nav.js` stamps `js` on <html> to turn them into dropdowns;
+  `<details>` ship `open` and JS collapses all but the first. The gate
+  assertion "renders with JS disabled" fails on any hidden text over 20
+  characters, an SVG `<title>` included.
+
 ## Copy rules
 - Receipts over adjectives; every claim carries a real number.
 - BANNED sitewide (founder call 2026-07-22): audit/logging as a selling
@@ -96,7 +151,8 @@ the next regeneration.
   NUMBER THAT MOVED, not a log line — say what changed, not that it was
   recorded. The leads/audit DB tables in lib/db.js stay untouched; this
   is a copy ban, not an architecture change.
-- One CTA phrase sitewide: "Get your AI Readiness Score".
+- One CTA phrase sitewide: "Book a Diagnostic Sprint" (the score widget and
+  its phrase were retired 2026-07-23; verify enforces the live phrase).
   "contact us" is banned (verify enforces both).
 - NEVER fabricate customer quotes, testimonials, or project numbers.
   Missing number → ask the founder, or ship without the claim.
@@ -113,4 +169,6 @@ the next regeneration.
 4. Founder-blocked items tracked, not silently dropped: real visuals
    (hero video), founder photos, CitiSense number,
    LinkedIn URLs, Sprint fee band, SMTP + Anthropic creds, real domain
-   (weaina.com in canonicals is a placeholder), git init + deploy.
+   git init + deploy. (Domain settled 2026-09-07: the site ships as
+   aina.workelate.com, a subdomain — WE_AINA owns no domain of its own, so
+   WorkElate is the brand and the agency is a division of it.)

@@ -38,6 +38,7 @@ function toSlug(base, filePath) {
 
 function walk(dir, base, out) {
   for (const name of readdirSync(dir)) {
+    if (name.startsWith(".")) continue; // never publish dotfiles (agent receipts, .DS_Store)
     const p = path.join(dir, name);
     if (statSync(p).isDirectory()) walk(p, base, out);
     else out.push(toSlug(base, p));
@@ -56,6 +57,10 @@ function resolve(slug = []) {
   let base = SITE, parts = slug;
   if (parts[0] === "assets") { base = ASSETS; parts = parts.slice(1); }
 
+  // A dot-prefixed segment is never a public URL. Blocks /img/.verify-live/*
+  // (internal agent receipts) being served even though the file is on disk.
+  if (parts.some(seg => seg.startsWith("."))) return null;
+
   let p = path.normalize(path.join(base, ...parts));
   if (!p.startsWith(base)) return null; // path traversal guard
 
@@ -67,8 +72,17 @@ function resolve(slug = []) {
 
 function cacheFor(p) {
   if (/[\\/](frames|fonts)[\\/]/.test(p)) return "public, max-age=31536000, immutable";
+  // 7d was wrong for generated artifacts: regenerating a mockup left returning
+  // visitors on a week-old copy of the OLD palette. Photos are stable, the
+  // generated PNGs are not, so they revalidate.
+  if (/[\\/]img[\\/](?:dispatch-board|invoice-match|agent-log|order-extract)\.png$/.test(p))
+    return "public, max-age=0, must-revalidate";
   if (/[\\/]img[\\/]/.test(p)) return "public, max-age=604800";       // 7d — photos are stable
-  if (/\.(css|js|mjs)$/.test(p)) return "public, max-age=3600";       // rev on deploy, keep short
+  // Was max-age=3600. A palette change therefore did not reach anyone who had
+  // loaded the page in the last hour — the founder reviewed a cream site while
+  // the server was serving white. Stylesheets and scripts now revalidate; the
+  // fingerprinted assets above still cache hard.
+  if (/\.(css|js|mjs)$/.test(p)) return "public, max-age=0, must-revalidate";
   if (p.endsWith(".html")) return "public, max-age=0, must-revalidate";
   return "public, max-age=3600";
 }

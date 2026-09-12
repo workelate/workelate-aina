@@ -5,7 +5,17 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"/Users/chitransh/Desktop/WE_CL/Workelate/verify-live/bin/cli.js\" gate"
+            "command": "node \"/Users/chitransh/code/verify-live/bin/cli.js\" gate"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"/Users/chitransh/code/verify-live/bin/cli.js\" coach"
           }
         ]
       }

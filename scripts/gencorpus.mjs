@@ -16,7 +16,61 @@ const { cases } = read("data/cases.json");
 
 // Firm facts the assistant must be able to answer without hedging. Every
 // number here has to be defensible; no aspirational figures.
+// Order matters: on a tie the FIRST fact wins (the scorer keeps the incumbent
+// unless a later fact scores strictly higher). The buyer-anxiety facts below
+// are deliberately first, because their questions ("can I talk to a customer",
+// "where are you") share generic words with the older facts ("call", "talk",
+// "people") and were losing the tie to them.
 const FACTS = [
+  {
+    // Measured miss: "what if it doesn't work" returned the WorkElate product
+    // blurb. Every clause here is on how-we-work.html or about.html already.
+    // Apostrophes are stripped before matching, so triggers are written flat.
+    id: "guarantee",
+    q: ["what if it doesnt work", "doesnt work", "does not work", "dont work", "didnt work", "guarantee", "guarantees", "guaranteed", "refund", "money back", "what if it fails", "it fails", "goes wrong", "go wrong", "worst case", "no results", "doesnt deliver", "over budget", "overrun", "who carries the risk", "our risk", "downside"],
+    a: "Three things carry that risk instead of you. The price is fixed before we start, so an overrun is our problem and not a change order. Every build runs a deterministic verify gate plus weekly demos on your real data from week 3, so you watch it work long before you sign anything off. And if the Diagnostic Sprint finds nothing worth building, we say so in writing and you keep your money. Beyond that we do not publish a money-back guarantee, and I am not going to invent one: ask Chitransh or Pratik and you get a straight answer rather than a clause.",
+    links: [{ label: "How engagement works", href: "/how-we-work" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+  },
+  {
+    // Measured miss: "what happens if you disappear halfway like our last dev
+    // shop" returned the WorkElate blurb, while the site's own answer sat in
+    // how-we-work.html ("Documented handover; you can fire us and keep
+    // everything") and about.html ("You own everything").
+    id: "exit",
+    q: ["disappear", "disappears", "disappeared", "walk away", "walks away", "walked away", "halfway", "half way", "hit by a bus", "bus factor", "if you quit", "if you stop", "stop working", "go away", "handover", "hand over", "handoff", "transition out", "continuity", "fire you", "fire us", "sack you", "drop us", "last dev shop", "last agency", "last vendor", "previous shop", "ghosted", "vanish", "vanished", "only two of you", "two of you", "what if you leave"],
+    a: "You own the code and the data from day one, the handover is documented, and nothing requires us to stay for the system to keep running. You can fire us and keep everything, which is the point of a fixed price with two named partners against it rather than a maintenance contract. That is also why the build ships in weeks with demos on your data every week: there is no long stretch where you are holding nothing.",
+    links: [{ label: "How we work", href: "/how-we-work" }, { label: "About us", href: "/about" }]
+  },
+  {
+    // Measured miss: "can I talk to one of your customers" and "do you have
+    // references I can call" both returned the same deflection twice. The
+    // honest answer is that we do not publish a reference list.
+    id: "references",
+    q: ["reference", "references", "referenceable", "reference call", "talk to a customer", "talk to a client", "talk to one of your customers", "your customers", "customers", "speak to a client", "speak to a customer", "call a client", "call one of your clients", "testimonial", "testimonials", "referee", "introduce me", "past client", "existing client", "existing clients", "vouch", "someone i can call", "backchannel"],
+    // No "Label: a, b, c." opening, the renderer turns that shape into
+    // bullets and these clauses read as fragments when it does.
+    a: "We do not publish a reference list, and most client names are held under NDA, so I cannot hand you a contact from this page. Ask Chitransh or Pratik and you will get a straight answer on which clients can be approached and which cannot. What is public without asking anyone is the case studies, where each number is tied to a system we shipped.",
+    links: [{ label: "Case studies", href: "/case-studies" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+  },
+  {
+    // Measured miss: "where are you located" hit the generic fallback. The
+    // site publishes no office address, so this says that rather than
+    // inventing one. FOUNDER-BLOCKED: registered entity, city, time zone.
+    id: "location",
+    q: ["where are you", "where are you located", "where are you based", "located", "location", "based", "office", "offices", "headquarters", "head office", "hq", "address", "which city", "which country", "what country", "time zone", "timezone", "onsite", "on site", "in person", "remote team", "near me", "visit us", "come to our office"],
+    a: "We have not published an office address on this site and I am not going to make one up. What is on record: the work has been delivered across India, the US and Mexico, and diagnosis happens inside your operation rather than in an offshore delivery centre, we sit in your dispatch office, your studio, your finance room. For the registered entity, the city and who signs the contract, ask Chitransh or Pratik.",
+    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+  },
+  {
+    // Measured miss: "do you have SOC2 / how do you handle our data security"
+    // returned the WorkElate product blurb. The site states no security
+    // posture; claiming one would be the exact lie the local engine exists to
+    // prevent. FOUNDER-BLOCKED: certifications, data residency, DPA/NDA.
+    id: "security",
+    q: ["soc2", "soc 2", "iso 27001", "iso27001", "iso certification", "gdpr", "hipaa", "security", "secure", "data security", "infosec", "information security", "penetration test", "pentest", "vulnerability", "privacy", "privacy policy", "confidential", "confidentiality", "nda", "dpa", "data processing agreement", "data residency", "where is our data", "who sees our data", "data protection", "certification", "certifications", "vendor security", "security questionnaire", "encryption"],
+    a: "We have not published a security posture, a SOC 2 or an ISO certificate on this site, and I will not claim a badge we have not shown you. What is true and on record: you own the code and the data, there is no lock-in clause and nothing requires us to stay for the system to keep running, and client names are held under NDA unless the client clears them. For certifications, data residency and an NDA or DPA, put it to Chitransh or Pratik before the Sprint and you get a straight answer instead of a logo wall.",
+    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+  },
   {
     id: "price",
     q: ["price", "cost", "budget", "fee", "how much", "expensive", "rate", "pricing", "afford"],
@@ -78,7 +132,9 @@ const FACTS = [
   },
   {
     id: "own",
-    q: ["own", "ownership", "code", "lock in", "lockin", "ip", "source", "leave"],
+    // "we don't want to be locked in to you" used to return a scholarship
+    // marketplace: the triggers only covered "lock in", never "locked in".
+    q: ["own", "ownership", "code", "lock in", "lockin", "lock-in", "locked in", "locked into", "vendor lock", "tied in", "ip", "source", "leave"],
     a: "You own the code and the data. No lock-in clause buried on page 14, and nothing that requires us to stay for the system to keep running.",
     links: [{ label: "How we work", href: "/how-we-work" }]
   },
