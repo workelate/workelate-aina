@@ -1,36 +1,57 @@
-# WE_AINA · WorkElate's AI-Native Agency
+# WorkElate Chief, the Brain · aina.workelate.com
 
-> AI-native product studio and digital engineering partner for $5–50M businesses: two accountable partners plus specialist bench plus agent fleets, instead of a consulting pyramid. Delivers working systems in weeks (not 6–18 months) at fixed budgets of $30K–$100K per build. Every claim carries the number that moved, receipts, not status decks.
+> WorkElate Chief, the Brain, is one memory across the systems a 200 to 2,000 person company already runs, made by WorkElate and installed by WE_AINA, WorkElate's own studio: it reads what your CRM, mail, tickets and documents already record, judges what needs a person, and asks before it changes anything.
 
-Key verifiable facts:
-- Delivery model: 2 accountable partners (Chitransh, IIM Mumbai; Pratik, IIT Bombay) + senior specialists engaged per build + agent fleet. The people who scope the work build it.
-- Speed: diagnostic in 2 weeks; working system in weeks; demos on the client's real data from week 3.
-- Commercials: fixed $30K–$100K per build, priced before the build starts. No time & materials.
-- Proof (RockProsUSA, building materials, 13 quarries): dispatch cycle time reduced 38%; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
-- Also named: CitiSense, AI marketing & sales platform for advertising and creative agencies and display teams in Mexico.
-- Proof: deterministic verify gates block "done" until the system provably works on client data; every claim carries the number that moved.
-- Dogfooding: WE_AINA is WorkElate's own agency, delivery runs on the WorkElate platform the firm builds.
+This site has three zones. `/` is the WorkElate Excellence Studio umbrella. `/brain/*` and `/book-a-demo` are the product pages for WorkElate Chief. `/studio/*` is WE_AINA, the studio that installs it. The same definition above is the one used on /brain, on /brain/faq, on /brain/compare and in the Organization schema on every page.
 
-## Core pages
+## What it is, in plain terms
 
-- [How we work](https://aina.workelate.com/how-we-work): the 10× operating model, agents do the volume, seniors do the judgment; comparison vs traditional SI / big consultancy.
-- [About](https://aina.workelate.com/about): the two partners, the per-build specialist bench, the dogfooding model.
-- [Case studies](https://aina.workelate.com/case-studies): receipts-first engagements with defensible numbers.
+- Name: WorkElate Chief. On these pages it is also called "the Brain". Both names refer to one product; there is no separate product called "the Brain".
+- Made by: WorkElate (https://www.workelate.com/). Installed and run by WE_AINA, WorkElate's own studio, led by Chitransh (IIM Mumbai) and Pratik (IIT Bombay).
+- For: companies of 200 to 2,000 people ($50M to $1B revenue) that already run a CRM, mail, a ticket or project tool, documents and chat, and want one memory across them without replacing any of them.
+- Not: a new application people have to live in, an enterprise search product, an integration platform (iPaaS/RPA), or a per-app copilot. See the comparison pages below for the named differences.
+- How it acts: fifteen verbs (find, read, research, recall, remember, ask, create, edit, improve, delete, send, share, schedule, assign, judge) resolving to 287 actions across 12 application surfaces and 190 business objects. 71 of those actions send, delete or share, and each stops for a person's yes before it runs.
+- Interruptions are budgeted: at most 40 per organization per hour and 5 per person per hour by default, changeable by saying so in plain language.
+- Honesty: when it says it did something, the record is re-read to prove it exists, and the sentence it wrote is checked against what the tools returned.
+- Commercials: a two-week Diagnostic Sprint at a fixed fee quoted after a short call, then a build at a fixed price of $30K to $100K, scoped before work starts. The customer owns the code, the data and the system at handover. No seat licence.
+- Proof on record (RockProsUSA, building materials, 13 quarries): dispatch cycle time 38% lower; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
+- Contact: chitransh@workelate.com. The one call to action across the site is "Book a Diagnostic Sprint".
 
-## Systems we install (production references)
+## Product pages (the Brain)
 
-- [Quarry dispatch automation](https://aina.workelate.com/systems/quarry-dispatch-automation): truck assignment, cycle tracking, exception alerts, cut dispatch cycle 38% across 13 quarries.
-- [Plant production reporting](https://aina.workelate.com/systems/plant-production-reporting): shift logs to P&L-grade reports written by 6:00 AM without a human.
-- [Dealer order management](https://aina.workelate.com/systems/dealer-order-management): WhatsApp/phone/email orders become one queue with automatic confirmations.
-- [Freight reconciliation](https://aina.workelate.com/systems/freight-reconciliation): carrier bills matched to weighbridge and delivery data; disputes flagged with evidence.
-- [AR follow-up automation](https://aina.workelate.com/systems/ar-followup-automation): receivables chased on schedule, escalated on rules, promises to pay tracked.
-- [Compliance documentation](https://aina.workelate.com/systems/compliance-documentation): royalty, GST, e-way and environmental filings assembled from operating data.
+- [Overview](https://aina.workelate.com/brain): what is installed, the four numbers, depth over app count, what it will not do.
+- [Capabilities](https://aina.workelate.com/brain/capabilities): every capability in plain language, one page each (signal capture, work graph, ranked briefing, confirm gate, read after write, claim check, honest refusal, interruption budget, and more).
+- [Architecture](https://aina.workelate.com/brain/architecture): one process for every change, no hand-written rules per app.
+- [Use cases](https://aina.workelate.com/brain/use-cases): client delivery, order to cash, mail triage and board reporting, each walked end to end.
+- [Questions](https://aina.workelate.com/brain/faq): twelve buyer questions with short answers, including what it is and what it does when nobody types.
+- [Objections](https://aina.workelate.com/brain/objections): the eight objections that decide a deal, and the four situations where the Brain is the wrong buy.
+- [Proof and limits](https://aina.workelate.com/brain/proof): what is claimed and what is not.
+- [Security review](https://aina.workelate.com/brain/security): it acts only as the person who signed in; nothing it reads can change what it is allowed to do.
+- [Pricing](https://aina.workelate.com/brain/pricing): the Sprint, the build, ownership at handover.
+- [Getting started](https://aina.workelate.com/brain/getting-started): one system connected read only, a real week replayed, one workflow live by week ten.
+- [For the CIO](https://aina.workelate.com/brain/for/cio), [For the COO](https://aina.workelate.com/brain/for/coo), [For revenue](https://aina.workelate.com/brain/for/revenue): the same product from three seats.
+- [Glossary](https://aina.workelate.com/brain/glossary): work graph, signal, judgment, interruption budget, confirm gate, defined once.
+- [Roadmap](https://aina.workelate.com/brain/roadmap) and [Changelog](https://aina.workelate.com/brain/changelog): shipped, building, next.
+- [Book a demo](https://aina.workelate.com/book-a-demo): 45 minutes, a real week replayed, no slideware.
 
-## Essays
+## Comparisons (by name)
 
-- [The consulting pyramid can't survive agents](https://aina.workelate.com/blog/the-pyramid-cant-survive-agents): why volume labor priced into SI quotes no longer exists.
-- [Receipts over decks](https://aina.workelate.com/blog/receipts-over-decks): what we hand you instead of slides, numbers that moved, verify gates over status reports.
+- [Compare](https://aina.workelate.com/brain/compare): the four categories and where the Brain is not the right buy.
+- [vs Glean](https://aina.workelate.com/brain/compare/glean) · [vs Microsoft 365 Copilot](https://aina.workelate.com/brain/compare/microsoft-365-copilot) · [vs Gemini for Google Workspace](https://aina.workelate.com/brain/compare/google-gemini-workspace) · [vs Notion AI](https://aina.workelate.com/brain/compare/notion-ai) · [vs Moveworks](https://aina.workelate.com/brain/compare/moveworks) · [vs Coveo](https://aina.workelate.com/brain/compare/coveo) · [vs Guru](https://aina.workelate.com/brain/compare/guru) · [vs Dust](https://aina.workelate.com/brain/compare/dust) · [vs UnifyApps](https://aina.workelate.com/brain/compare/unifyapps) · [vs Workato](https://aina.workelate.com/brain/compare/workato)
+- By category: [enterprise search](https://aina.workelate.com/brain/compare/enterprise-search) · [per-app copilots](https://aina.workelate.com/brain/compare/per-app-copilots) · [iPaaS and RPA](https://aina.workelate.com/brain/compare/ipaas-and-rpa) · [building your own](https://aina.workelate.com/brain/compare/build-your-own)
 
-## Contact
+## The studio (WE_AINA)
 
-- Start here: ask the assistant on [the home page](https://aina.workelate.com/#ask) what we would build for your business, or book the two-week Diagnostic Sprint.
+- [WE_AINA](https://aina.workelate.com/studio): the studio that installs the Brain; two partners, fixed price, weeks not quarters.
+- [About](https://aina.workelate.com/studio/about): Chitransh and Pratik, the specialist bench, delivery run on WorkElate itself.
+- [How we work](https://aina.workelate.com/studio/how-we-work): the Brain does the volume work, a person approves.
+- [The index of work](https://aina.workelate.com/studio/work): one line per build, 34 products across 9 sectors from 374 repositories, 2018 to 2026.
+- [Case studies](https://aina.workelate.com/studio/case-studies) · [RockProsUSA](https://aina.workelate.com/studio/case-studies/rockprosusa): 13 quarries on one dispatch system, with the numbers above.
+- [Systems we build](https://aina.workelate.com/studio/systems): quarry dispatch, plant production reporting, dealer order management, freight reconciliation, AR follow-up, compliance documentation.
+- [Blog](https://aina.workelate.com/studio/blog): [The consulting pyramid can't survive agents](https://aina.workelate.com/studio/blog/the-pyramid-cant-survive-agents) · [Receipts over decks](https://aina.workelate.com/studio/blog/receipts-over-decks)
+- [Contact](https://aina.workelate.com/studio/contact): write to Chitransh or Pratik directly.
+
+## Optional
+
+- [Sitemap](https://aina.workelate.com/sitemap.xml): every public route, derived from what is served.
+- Legacy routes (/about, /work, /how-we-work, /blog/*, /case-studies/*, /systems/*) redirect permanently to their /studio/* homes.

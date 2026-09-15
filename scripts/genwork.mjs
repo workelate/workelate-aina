@@ -26,10 +26,11 @@
 // 3. NO INVENTED NUMBERS. Per-row repository counts are deliberately NOT
 //    rendered. The only hard numbers on the page are the ones already cleared
 //    for the site: 13 quarry sites, -38% dispatch cycle, 2,140 invoices,
-//    11,200 hours, 374 repositories, 41 programmes, 2018-2026, $30K-$100K.
+//    11,200 hours, 374 repositories, 34 products, 9 sectors, 2018-2026,
+//    $30K-$100K. The one count set sitewide is 34 / 9 / 374 (brain-narrative §5).
 // 4. Entries carrying `sourced: "founder-asserted..."` have no year and no
-//    repository. They render with an em-dash in the Years column, never a
-//    guessed date.
+//    repository. They render as "undated" in the Years column, never a
+//    guessed date (em dashes are banned in copy).
 //
 // ── Filter chips without JavaScript ─────────────────────────────────────────
 // The chips are <label>s driving hidden radio inputs; the filtering is a CSS
@@ -185,7 +186,7 @@ const EXTRA = [
 /* ──────────────────────────────────────────────────────────── row assembly -- */
 const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 // The site's copy rules use a hyphen where a keyboard would; en-dash the spans.
-const span = y => (y && y.trim()) ? esc(y).replace(/-/g, "–") : "—";
+const span = y => (y && y.trim()) ? esc(y).replace(/-/g, "–") : "undated";
 // projects.json names are written as sentence fragments ("an AI annotation
 // platform"); an index column wants them capitalised. Never touch anything but
 // the first character, so "eBay" and "iOS" inside a title stay correct.
@@ -254,7 +255,7 @@ const itemList = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "The index of work, WE_AINA",
-  description: "One line per build: 374 repositories and 41 programmes shipped between 2018 and 2026, by sector and product type.",
+  description: `One line per build. ${ROWS.length} products across 9 sectors, drawn from 374 repositories shipped between 2018 and 2026.`,
   url: "https://aina.workelate.com/studio/work",
   mainEntity: {
     "@type": "ItemList",
@@ -274,15 +275,15 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The index of work, WE_AINA</title>
-<meta name="description" content="One line per build. ${ROWS.length} programmes drawn from 374 repositories shipped between 2018 and 2026: marketplaces, dispatch systems, ERP connectors, annotation tools, risk registers.">
+<title>The index of work, every build since 2018, WE_AINA</title>
+<meta name="description" content="One line per build. ${ROWS.length} products across 9 sectors, drawn from 374 repositories shipped between 2018 and 2026.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/work">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The index of work, WE_AINA">
-<meta property="og:description" content="One line per build. ${ROWS.length} programmes drawn from 374 repositories shipped between 2018 and 2026.">
+<meta property="og:title" content="The index of work, every build since 2018, WE_AINA">
+<meta property="og:description" content="One line per build. ${ROWS.length} products across 9 sectors, drawn from 374 repositories shipped between 2018 and 2026.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/studio/work">
 <meta name="twitter:card" content="summary_large_image">
@@ -290,7 +291,7 @@ const html = `<!doctype html>
 ${JSON.stringify(itemList, null, 2)}
 </script>
 <style>
-/* /work — page-scoped. Colours are tokens only: var(--x, <existing token>) so
+/* /work, page-scoped. Colours are tokens only: var(--x, <existing token>) so
    the page is correct before and after the palette port lands in site.css. */
 .wk-lede{max-width:56ch;font-size:19px;line-height:1.55}
 .wk-facts{display:grid;grid-template-columns:auto 1fr;gap:7px 20px;font-family:var(--mono);font-size:12.5px;margin-top:10px;border-left:1px solid var(--rule,rgba(10,24,48,.14));padding-left:26px}
@@ -383,14 +384,15 @@ td.wk-yr{font-family:var(--mono);font-size:11.5px;color:var(--muted,rgba(10,24,4
     <span class="label">The index of work, 2018 to 2026</span>
     <div class="wk-head">
       <div>
-        <h1>We have probably already built <span class="accent">the thing you are about to describe.</span></h1>
-        <p class="sub dim wk-lede">Dispatch systems, marketplaces, ERP connectors, annotation tooling, risk registers, production floors, a home-buyer portal and a poetry project. 374 repositories across 41 programmes since 2018, and one work platform of our own that this studio's delivery runs on.</p>
-        <p style="margin-top:28px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+        <h1>Your next build is<br>probably <span class="accent">already built.</span></h1>
+        <p class="sub dim wk-lede">Dispatch systems, marketplaces, ERP connectors, annotation tooling, risk registers, production floors, a home-buyer portal and a poetry project: 34 products across 9 sectors, drawn from 374 repositories since 2018.</p>
+        <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+        <p class="dim" style="margin-top:12px; font-size:14px">A two-week, fixed-fee look at one workflow that ends in a build plan with a price on it.</p>
       </div>
       <dl class="wk-facts">
         <dt>Span</dt><dd>2018 to 2026</dd>
         <dt>Shipped</dt><dd>374 repositories</dd>
-        <dt>Programmes</dt><dd>41 crawled</dd>
+        <dt>Products</dt><dd>34, across 9 sectors</dd>
         <dt>Engagement</dt><dd>$30K to $100K fixed</dd>
         <dt>Platform</dt><dd>WorkElate</dd>
       </dl>
@@ -402,7 +404,7 @@ td.wk-yr{font-family:var(--mono);font-size:11.5px;color:var(--muted,rgba(10,24,4
   <div class="wrap">
     <div class="wk-rc"><b>13</b><p>quarry sites running dispatch on one system and one shared truck fleet.</p></div>
     <div class="wk-rc"><b class="wk-delta">-38%</b><p>dispatch cycle time, from order raised to truck assigned and confirmed.</p></div>
-    <div class="wk-rc"><b>2,140</b><p>invoices matched and issued with zero manual touches.</p></div>
+    <div class="wk-rc"><b>2,140</b><p>invoices matched against the delivery and the order, issued with zero manual touches.</p></div>
     <div class="wk-rc"><b>11,200</b><p>operations hours returned in the first year on the system.</p></div>
   </div>
 </section>
@@ -411,7 +413,7 @@ td.wk-yr{font-family:var(--mono);font-size:11.5px;color:var(--muted,rgba(10,24,4
   <div class="wrap">
     <div class="wk-sec-head">
       <h2>One line per build</h2>
-      <p>No screenshots and no hero shots. The range is the argument, so the range is what the page shows.</p>
+      <p>No screenshots and no hero shots. The range is the argument, so the range is what the page shows, including the one work platform of our own that this studio's delivery runs on.</p>
     </div>
 
     ${chips}
@@ -432,9 +434,18 @@ ${rows}
       </tbody>
     </table>
 
-    <p class="wk-foot"><span>${ROWS.length} programmes shown, drawn from 374 repositories and 41 programmes, 2018 to 2026.</span><span>Two entries are described by the founder and not yet matched to a repository, so they carry no year.</span></p>
+    <p class="wk-foot"><span>${ROWS.length} products shown, drawn from 374 repositories, 2018 to 2026.</span><span>Two entries are described by the founder and not yet matched to a repository, so they are undated.</span></p>
 
-    <p class="wk-note-clearance">Client names appear here only where the client has cleared them: RockProsUSA, WorkElate, CitiSense and Edunomics. Everything else is the work described without the name, which is the normal state of an engineering portfolio and costs the reader nothing. If you want the detail behind a line, ask us in the Diagnostic Sprint and we will walk you through the code.</p>
+    <p class="wk-note-clearance">Client names appear here only where the client has cleared them: RockProsUSA, WorkElate, CitiSense and Edunomics. Everything else is the work described without the name, which is the normal state of an engineering portfolio and costs the reader nothing. If you want the detail behind a line, ask us in the Sprint and we will walk you through the code.</p>
+    <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
+  </div>
+</section>
+
+<section id="cta" class="deep">
+  <div class="wrap">
+    <h2>Book a Diagnostic Sprint</h2>
+    <p class="dim">Thirty-four builds are on this page; the Sprint is how the thirty-fifth gets scoped and priced.</p>
+    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
 

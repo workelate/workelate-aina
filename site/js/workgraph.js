@@ -165,8 +165,27 @@ function makeSprite(rgb, size, inner = 1) {
   return c;
 }
 
-// card geometry for a box width: narrower boxes get a narrower card and a
-// tighter gap so it still fits beside the Brain. Shared by layout and renderer.
+// Size model: every dimension follows the box's SHORT side, so a wide-and-low
+// box and a narrow-and-tall box both get nodes, labels and rings that fit.
+//   sc        1 at 600px short side, floors at .6 (a 450x400 box gives 14px nodes)
+//   compact   the nine-node set (narrow, or small in both axes)
+//   cardMode  side: card beside the Brain | band: card in a top band the layout
+//             keeps clear | chip: one line above the Brain | none
+function sizing(W, H) {
+  const m = Math.min(W, H);
+  const sc = Math.max(.6, Math.min(1, m / 600));
+  const compact = W < 900 || m < 420;
+  const cardMode = !compact ? "side" : (H >= 480 && W >= 360) ? "band" : H >= 220 ? "chip" : "none";
+  return {
+    sc, m, compact, cardMode,
+    nodeR: Math.round(21 * sc), brainR: Math.round(40 * sc),
+    fs: Math.max(11, +(12.5 * sc).toFixed(1)), brainFs: Math.max(11.5, +(14 * sc).toFixed(1)),
+    minDist: Math.round(118 * sc),
+    padX: Math.max(42, Math.round(64 * sc)), padTop: Math.round(21 * sc) + 12, padBot: Math.round(21 * sc) + 8 + Math.max(11, 12.5 * sc) + 10,
+  };
+}
+// card geometry for a box: the card is narrower than the box, and the gap beside
+// the Brain tightens on mid widths so it still fits. Shared by layout and renderer.
 function cardGeom(W) {
   return { w: W < 640 ? Math.min(W - 16, 300) : 340, gap: W < 1100 ? 30 : 46, h: 118 };
 }
@@ -176,19 +195,23 @@ function cardGeom(W) {
 // into a cluster on one side (measured). Every node owns a seeded slot on its
 // tier's ring; tier 2 is slotted by the mean angle of its parents; relaxation
 // only resolves overlaps and pulls each node back toward its slot.
-function layout(nodes, edges, W, H, seed) {
+function layout(nodes, edges, W, H, seed, sz) {
   const rnd = mulberry32(seed);
-  const phone = W < 640, compact = W < 900; // compact: nine nodes, card in the top band
+  const { compact, cardMode, padX, padTop, padBot, minDist } = sz;
   const cg = cardGeom(W);
-  const band = compact ? 10 + cg.h + 12 : 0;      // top band the card owns
-  const cx = W / 2, cy = compact ? band + (H - band) / 2 : H / 2;
+  const band = cardMode === "band" ? 10 + cg.h + 12 : 0;   // top band the card owns
+  const cx = W / 2, cy = band + (H - band) / 2;
   const m = Math.min(W, H - band);
-  const rx1 = phone ? W * .30 : compact ? Math.min(W * .26, m * .40) : Math.min(W * .19, m * .34);
-  const ry1 = phone ? H * .22 : compact ? m * .30 : m * .25;
-  const rx2 = phone ? W * .42 : compact ? Math.min(W * .42, m * .80) : Math.min(W * .40, m * .70);
-  const ry2 = phone ? H * .36 : compact ? m * .46 : m * .43;
-  const minDist = phone ? 78 : compact ? 100 : 118;
-
+  const availX = W / 2 - padX, availY = (H - band - padTop - padBot) / 2;
+  let rx1, ry1, rx2, ry2;
+  if (!compact) {
+    rx2 = Math.min(W * .40, m * .70, availX); ry2 = Math.min(m * .43, availY);
+    rx1 = Math.min(W * .19, m * .34, rx2 * .55); ry1 = Math.min(m * .25, ry2 * .6);
+  } else {
+    // fill the box in BOTH axes: two rings around the Brain, never one band
+    rx2 = availX; ry2 = availY;
+    rx1 = rx2 * .58; ry1 = ry2 * .58;
+  }
   const byId = Object.fromEntries(nodes.map(n => [n.id, n]));
   const t1 = nodes.filter(n => n.tier === 1), t2 = nodes.filter(n => n.tier === 2);
   byId.brain.x = cx; byId.brain.y = cy; byId.brain.ax = cx; byId.brain.ay = cy;
@@ -230,7 +253,6 @@ function layout(nodes, edges, W, H, seed) {
     n.ax = cx + Math.cos(n.ang) * rx; n.ay = cy + Math.sin(n.ang) * ry;
     n.x = n.ax; n.y = n.ay;
   }
-  const padX = phone ? 50 : 64, padTop = phone ? 30 : 48, padBot = phone ? 46 : 70;
   for (let it = 0; it < 160; it++) {
     for (const n of nodes) { n.fx = 0; n.fy = 0; }
     for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
@@ -246,12 +268,14 @@ function layout(nodes, edges, W, H, seed) {
     for (const n of nodes) {
       if (n.tier === 0) continue;
       n.fx += (n.ax - n.x) * .12; n.fy += (n.ay - n.y) * .12;
-      { // keep the ranked card's slot clear: right of the Brain, or the top band
-        const L = compact ? cx - cg.w / 2 - 44 : cx + 40 + cg.gap - 48;
-        const R = compact ? cx + cg.w / 2 + 44 : cx + 40 + cg.gap + cg.w + 48;
-        const T = compact ? -1e4 : cy - 59 - 78, B = compact ? band + 34 : cy + 59 + 48;
+      if (cardMode === "side" || cardMode === "band") { // keep the card's slot clear
+        const bandMode = cardMode === "band", BR = sz.brainR;
+        const L = bandMode ? cx - cg.w / 2 - 44 : cx + BR + cg.gap - 48;
+        const R = bandMode ? cx + cg.w / 2 + 44 : cx + BR + cg.gap + cg.w + 48;
+        const T = bandMode ? -1e4 : cy - 59 - 78, B = bandMode ? band + 34 : cy + 59 + 48;
         if (n.x > L && n.x < R && n.y > T && n.y < B) {
-          const dl = n.x - L, dr = R - n.x, db = B - n.y, dt = compact ? 1e9 : n.y - T, mn = Math.min(dl, dr, dt, db);
+          const dl = L >= padX ? n.x - L : 1e9, dr = R <= W - padX ? R - n.x : 1e9;
+          const db = B - n.y, dt = bandMode ? 1e9 : n.y - T, mn = Math.min(dl, dr, dt, db);
           if (mn === dt) n.fy -= dt * .5; else if (mn === db) n.fy += db * .5; else if (mn === dl) n.fx -= dl * .5; else n.fx += dr * .5;
         }
       }
@@ -261,6 +285,47 @@ function layout(nodes, edges, W, H, seed) {
     }
   }
   for (const n of nodes) { n.x = Math.round(n.x); n.y = Math.round(n.y); }
+}
+
+// Label collision pass, every size. Labels sit under their node; two labels or a
+// label and a disc must never overlap. Push the lower-priority node (tier 2
+// before tier 1, later before earlier; the Brain never moves), then hide what
+// still collides. Returns the overlap count after the pass (0 by construction)
+// and the number of labels hidden.
+function settleLabels(ctx, nodes, W, H, sz) {
+  ctx.font = `500 ${sz.fs}px ${FONT}`;
+  for (const n of nodes) { n.lw = ctx.measureText(n.label).width; n.hideLabel = false; }
+  ctx.font = `600 ${sz.brainFs}px ${FONT}`;
+  for (const n of nodes) if (n.tier === 0) n.lw = ctx.measureText(n.label).width;
+  const R = n => (n.tier === 0 ? sz.brainR : sz.nodeR);
+  const rect = n => { const off = n.tier === 0 ? 8 + 16 * sz.sc : 8; return [n.x - n.lw / 2 - 3, n.y + R(n) + off - 2, n.x + n.lw / 2 + 3, n.y + R(n) + off + sz.fs + 2]; };
+  const disc = n => { const r = R(n) + 3; return [n.x - r, n.y - r, n.x + r, n.y + r]; };
+  const ov = (a, b) => a[0] < b[2] && b[0] < a[2] && a[1] < b[3] && b[1] < a[3];
+  const lower = (A, B) => (A.tier === 0 ? B : B.tier === 0 ? A : A.tier > B.tier ? A : B.tier > A.tier ? B : B);
+  const clash = (A, B) => ov(rect(A), rect(B)) || ov(rect(A), disc(B)) || ov(disc(A), rect(B));
+  for (let it = 0; it < 60; it++) {
+    let moved = false;
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+      const A = nodes[i], B = nodes[j];
+      if (!clash(A, B)) continue;
+      const mv = lower(A, B), ot = mv === A ? B : A;
+      let dx = mv.x - ot.x, dy = mv.y - ot.y; const d = Math.hypot(dx, dy) || 1;
+      mv.x = Math.round(Math.max(sz.padX, Math.min(W - sz.padX, mv.x + dx / d * 3)));
+      mv.y = Math.round(Math.max(sz.padTop, Math.min(H - sz.padBot, mv.y + dy / d * 3 + (dy >= 0 ? 1 : -1))));
+      moved = true;
+    }
+    if (!moved) break;
+  }
+  let hidden = 0;
+  for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+    const A = nodes[i], B = nodes[j];
+    if (A.hideLabel && B.hideLabel) continue;
+    if (clash(A, B)) { const mv = lower(A, B); if (!mv.hideLabel) { mv.hideLabel = true; hidden++; } }
+  }
+  let overlaps = 0;
+  const vis = nodes.filter(n => !n.hideLabel);
+  for (let i = 0; i < vis.length; i++) for (let j = i + 1; j < vis.length; j++) if (ov(rect(vis[i]), rect(vis[j]))) overlaps++;
+  return { overlaps, hidden };
 }
 
 // shortest path (in hops) from every node to the Brain, for the signal pulses
@@ -297,11 +362,12 @@ export function mountWorkGraph(canvas, opts = {}) {
   let bgGrad = null, brainGrad = null;
 
   function build() {
-    const phone = S.W < 640, compact = S.W < 900;
+    const sz = S.sz = sizing(S.W, S.H), compact = sz.compact;
     S.nodes = NODES.filter(n => !compact || n.phone).map(n => ({ ...n, lift: 0, phase: 0 }));
     const ids = new Set(S.nodes.map(n => n.id));
     S.edges = EDGES.filter(e => ids.has(e[0]) && ids.has(e[1])).map(e => ({ a: e[0], b: e[1], inferred: !!e[2], lit: 0 }));
-    layout(S.nodes, S.edges.map(e => [e.a, e.b]), S.W, S.H, S.seed);
+    layout(S.nodes, S.edges.map(e => [e.a, e.b]), S.W, S.H, S.seed, sz);
+    S.labels = settleLabels(ctx, S.nodes, S.W, S.H, sz);
     const byId = Object.fromEntries(S.nodes.map(n => [n.id, n]));
     S.byId = byId;
     const rnd = mulberry32(S.seed + 11);
@@ -321,7 +387,7 @@ export function mountWorkGraph(canvas, opts = {}) {
       e.cy = (e.from.y + e.to.y) / 2 + dx / L * bow;
       e.hue = e.to.hue || e.from.hue || "cyan";
     });
-    const N = Math.max(24, Math.min(compact ? 40 : 84, S.edges.length * 3));
+    const N = Math.round(Math.max(20, Math.min(compact ? 40 : 84, S.edges.length * 3)) * (sz.sc < .8 ? .7 : 1));
     S.particles = [];
     for (let i = 0; i < N; i++) {
       S.particles.push({ e: i % S.edges.length, t: rnd(), v: .10 + rnd() * .12, r: .9 + rnd() * 1.3 });
@@ -335,12 +401,42 @@ export function mountWorkGraph(canvas, opts = {}) {
     brainGrad.addColorStop(0, C.cyan); brainGrad.addColorStop(1, C.purple);
     S.hover = null; S.pulse = null; S.chip = null;
     S.cardSide = pickCardSide();
+    S.chipPos = sz.cardMode === "chip" ? ITEMS.map(placeChip) : null;
+  }
+  // Chip mode: a one-line chip needs a spot that covers no disc and no label.
+  // Candidates: above the Brain, below its label, then the four corners. If none
+  // is clear the chip is not drawn for that item (the pulse still plays).
+  function placeChip(it) {
+    const sz = S.sz, fs = sz.fs, b = S.byId.brain, BR = sz.brainR;
+    ctx.font = `500 ${fs}px ${FONT}`;
+    const w = ctx.measureText(`${it.lane}: ${it.title}`).width + 34, h = Math.round(fs * 2.3);
+    if (w > S.W - 16) return null;
+    const cands = [
+      [b.x - w / 2, b.y - BR - 19 * sz.sc - 12 - h], [b.x - w / 2, b.y + BR + 8 + 16 * sz.sc + fs + 10],
+      [8, 8], [S.W - w - 8, 8], [8, S.H - h - 8], [S.W - w - 8, S.H - h - 8],
+    ];
+    const boxes = [];
+    for (const n of S.nodes) {
+      const r = (n.tier === 0 ? BR : sz.nodeR) + 4;
+      boxes.push([n.x - r, n.y - r, n.x + r, n.y + r]);
+      const off = n.tier === 0 ? 8 + 16 * sz.sc : 8, lw = (n.lw || 40) / 2 + 4;
+      if (!n.hideLabel) boxes.push([n.x - lw, n.y + r - 4 + off, n.x + lw, n.y + r - 4 + off + fs + 4]);
+    }
+    for (const [x, y] of cands) {
+      if (x < 8 || y < 8 || x + w > S.W - 8 || y + h > S.H - 8) continue;
+      const rect = [x - 6, y - 6, x + w + 6, y + h + 6];
+      if (!boxes.some(bx => bx[0] < rect[2] && rect[0] < bx[2] && bx[1] < rect[3] && rect[1] < bx[3])) return { x: x + w / 2, y };
+    }
+    return null;
   }
   // Where the ranked card sits: right, left, above or below the Brain, whichever
   // rectangle overlaps the fewest nodes. Decided once per layout, never per frame.
   function pickCardSide() {
     const b = S.byId.brain, BR = brainR(), { w, gap, h } = cardGeom(S.W);
-    if (S.W < 900) return "top";
+    const mode = S.sz.cardMode;
+    if (mode === "band") return "top";
+    if (mode !== "side") return mode; // "chip" | "none"
+
     const rects = {
       right: [b.x + BR + gap, b.y - h / 2, w, h],
       left:  [b.x - BR - gap - w, b.y - h / 2, w, h],
@@ -362,8 +458,8 @@ export function mountWorkGraph(canvas, opts = {}) {
     }
     return best;
   }
-  const brainR = () => (S.W < 640 ? 30 : 40);
-  const nodeR = () => (S.W < 640 ? 17 : 21);
+  const brainR = () => (S.sz ? S.sz.brainR : 40);
+  const nodeR = () => (S.sz ? S.sz.nodeR : 21);
 
   // Size from the canvas's ACTUAL rendered box, every time it changes. A
   // ResizeObserver (not only window resize) catches the container settling after
@@ -389,11 +485,10 @@ export function mountWorkGraph(canvas, opts = {}) {
   function edgePath(e) { ctx.moveTo(e.from.x, e.from.y); ctx.quadraticCurveTo(e.cx, e.cy, e.to.x, e.to.y); }
 
   function chip(x, y, text, dot, alpha, above) {
-    const phone = S.W < 640;
-    const fs = phone ? 11.5 : 12.5;
+    const fs = S.sz.fs;
     ctx.font = `500 ${fs}px ${FONT}`;
     const [head, tail] = text.includes(":") ? [text.slice(0, text.indexOf(":") + 1), text.slice(text.indexOf(":") + 1)] : ["", text];
-    const w = ctx.measureText(text).width + 34, h = phone ? 26 : 30;
+    const w = ctx.measureText(text).width + 34, h = Math.round(fs * 2.3);
     let X = Math.round(Math.max(8, Math.min(S.W - w - 8, x - w / 2)));
     let Y = Math.round(above ? y - h : y);
     ctx.globalAlpha = alpha;
@@ -411,9 +506,8 @@ export function mountWorkGraph(canvas, opts = {}) {
   // the ranked briefing item: title, the "Because" line, lane and blocker.
   // Sits beside the Brain on wide canvases, above it on phones.
   function card(bx, by, BR, it, alpha, rise) {
-    const phone = S.W < 640;
     const { w, gap } = cardGeom(S.W), pad = 14;
-    const fs = phone ? 11.5 : 12.5;
+    const fs = S.sz.fs;
     ctx.font = `600 ${fs + 1}px ${FONT}`;
     const titles = wrap(it.title, w - pad * 2, `600 ${fs + 1}px ${FONT}`);
     const lines = wrap(it.because, w - pad * 2, `400 ${fs}px ${FONT}`);
@@ -476,7 +570,6 @@ export function mountWorkGraph(canvas, opts = {}) {
 
   function draw(dt) {
     const { W, H, t, nodes, edges, byId } = S;
-    const phone = W < 640;
     ctx.setTransform(S.dpr, 0, 0, S.dpr, 0, 0);
     ctx.fillStyle = C.ground; ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, H);
@@ -538,7 +631,7 @@ export function mountWorkGraph(canvas, opts = {}) {
         const e = edges[P.path[idx]];
         e.lit = 1;
         const [x, y] = at(e, P.t - idx);
-        const s = phone ? 30 : 38;
+        const s = Math.round(38 * S.sz.sc);
         ctx.drawImage(sprites.cyan, x - s / 2, y - s / 2, s, s);
         ctx.drawImage(sprites.white, x - 8, y - 8, 16, 16);
         // sparse tail
@@ -579,10 +672,10 @@ export function mountWorkGraph(canvas, opts = {}) {
         // slow orbiting dashed ring: the Brain is always working
         ctx.save(); ctx.translate(x, y); ctx.rotate(t * .25);
         ctx.setLineDash([2, 9]); ctx.lineWidth = 1; ctx.strokeStyle = `rgba(${RGB.cyan},.35)`;
-        ctx.beginPath(); ctx.arc(0, 0, r + 11, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+        ctx.beginPath(); ctx.arc(0, 0, r + 11 * S.sz.sc, 0, 7); ctx.stroke(); ctx.setLineDash([]);
         ctx.rotate(-t * .5);
         ctx.setLineDash([1, 6]); ctx.strokeStyle = `rgba(${RGB.purple},.35)`;
-        ctx.beginPath(); ctx.arc(0, 0, r + 19, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+        ctx.beginPath(); ctx.arc(0, 0, r + 19 * S.sz.sc, 0, 7); ctx.stroke(); ctx.setLineDash([]);
         ctx.restore();
         ctx.save(); ctx.translate(x, y);
         ctx.fillStyle = C.raised; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
@@ -609,10 +702,10 @@ export function mountWorkGraph(canvas, opts = {}) {
       // label
       ctx.textAlign = "center"; ctx.textBaseline = "top";
       if (isBrain) {
-        ctx.font = `600 ${phone ? 13 : 14}px ${FONT}`; ctx.fillStyle = C.text;
-        ctx.fillText(n.label, x, y + r + 24);
-      } else {
-        ctx.font = `500 ${phone ? 11.5 : 12.5}px ${FONT}`;
+        ctx.font = `600 ${S.sz.brainFs}px ${FONT}`; ctx.fillStyle = C.text;
+        ctx.fillText(n.label, x, y + r + 8 + 16 * S.sz.sc);
+      } else if (!n.hideLabel || hov === n) {
+        ctx.font = `500 ${S.sz.fs}px ${FONT}`;
         ctx.fillStyle = hov === n ? C.text : C.muted;
         ctx.fillText(n.label, x, y + r + 8);
       }
@@ -629,7 +722,12 @@ export function mountWorkGraph(canvas, opts = {}) {
       const life = 4.2, a = ch.t < .25 ? ch.t / .25 : ch.t > life - .5 ? Math.max(0, (life - ch.t) / .5) : 1;
       const b = byId.brain;
       const rise = (1 - Math.min(1, ch.t / .35)) * 6;
-      card(b.x, b.y, BR, ch.item, a, rise);
+      const mode = S.sz.cardMode;
+      if (mode === "side" || mode === "band") card(b.x, b.y, BR, ch.item, a, rise);
+      else if (mode === "chip") {
+        const pos = S.chipPos && S.chipPos[ITEMS.indexOf(ch.item)];
+        if (pos) chip(pos.x, pos.y + rise, `${ch.item.lane}: ${ch.item.title}`, ch.item.dot, a, false);
+      }
       if (ch.t > life) S.chip = null;
     }
   }
