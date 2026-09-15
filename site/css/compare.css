@@ -189,3 +189,37 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
 @media (max-width: 860px) {
   .page-hero.cmp-hero > .wrap .sub { display: block; -webkit-line-clamp: unset; overflow: visible; }
 }
+
+/* ------------------------------------------------ strengths and limits -- */
+/* four glass blocks: the vendor's strengths and stops, then ours. The glyphs
+   are the table's .gl classes, so a ✓ here is the same ✓ as in the table. */
+.pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+.pc {
+  padding: 24px 26px; border-radius: var(--r-card);
+  background: var(--ws-glass); border: 1px solid var(--border-card);
+}
+.pc.us { background: rgba(139, 92, 246, 0.06); border-color: rgba(139, 92, 246, 0.25); }
+.pc h3 { font-size: 18px; font-weight: 600; margin: 0 0 14px; color: var(--ws-text); }
+.pc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pc li { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; line-height: 1.5; color: var(--ws-text-muted); }
+.pc li .gl { margin-top: 2px; }
+@media (max-width: 640px) { .pc-grid { grid-template-columns: 1fr; gap: 14px; } .pc { padding: 20px; } }
+
+/* ------------------------------------------- alternatives, under the table -- */
+/* /brain/compare/alternatives/<vendor>: one short block per listed option,
+   the Brain first. Reuses .mark, .chip and the token set; nothing per vendor. */
+.alt-list { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.alt-item {
+  display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;
+  border-radius: var(--r-card); background: var(--ws-glass); border: 1px solid var(--border-card);
+}
+.alt-item.alt-pick { background: rgba(139, 92, 246, 0.08); border-color: rgba(139, 92, 246, 0.35); }
+.alt-head { display: grid; grid-template-columns: 36px 1fr; column-gap: 12px; align-items: center; }
+.alt-mark { width: 36px; height: 36px; border-radius: 9px; grid-row: 1 / 3; display: block; object-fit: contain; background: #fff; }
+.alt-head .alt-mark.mark { display: inline-flex; background: var(--ws-grad-2); }
+.alt-head h3 { margin: 0; font-size: 19px; line-height: 1.3; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.alt-for { display: block; font-size: 13.5px; line-height: 1.4; color: var(--ws-text-muted); }
+.alt-item p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ws-text-muted); }
+.alt-item > a { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--ws-cyan); margin-top: auto; }
+.alt-item > a:hover { color: #fff; }
+@media (max-width: 720px) { .alt-list { grid-template-columns: 1fr; } }
