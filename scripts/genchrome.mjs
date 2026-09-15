@@ -22,8 +22,9 @@
 // closing line. The no-JS contract is unchanged: every link is visible on the
 // page with JS off, and site/js/nav.js stamps `js` on <html> before hiding any.
 //
-// RUN IT LAST. gensystems / gencases / genwork write pages from their own
-// templates; this pass is what makes their chrome match everyone else's.
+// RUN AFTER PAGE GENERATORS. gensystems / gencases / genwork write pages from
+// their own templates; this pass makes their chrome match everyone else's.
+// SEO, sitemap, corpus and `npm run assets` follow it.
 //
 //   node scripts/genchrome.mjs
 import { readdirSync, statSync, readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -187,7 +188,7 @@ ${panel("menu-resources", "Resources",
   { k: "Read it in full", t: "The long form lives with us.", p: "Every capability, objection and use case, written out. Ask and we send the reading pack.", href: "/studio/contact", go: "Ask for the pack" },
   { text: "WorkElate Chief is installed by WE_AINA, WorkElate's own studio.", href: "/", go: "The Excellence Studio" })}
     ${F("/brain/pricing", "Pricing")}
-    ${route === "/book-a-demo" ? "" : DEMO}
+${route === "/book-a-demo" ? "" : `    ${DEMO}\n`}
   </nav>
 </div></header>`;
 
