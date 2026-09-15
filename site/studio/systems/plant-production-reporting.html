@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Plant production reporting automation, WE_AINA</title>
-<meta name="description" content="Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, ready to read.">
+<meta name="description" content="Shift logs, weighbridge tickets and downtime entries become a reconciled daily production report by 6 AM, discrepancies flagged.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/plant-production-reporting">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Plant production reporting automation, WE_AINA">
-<meta property="og:description" content="Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, ready to read.">
+<meta property="og:description" content="Shift logs, weighbridge tickets and downtime entries become a reconciled daily production report by 6 AM, discrepancies flagged.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/studio/systems/plant-production-reporting">
 <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +25,7 @@
    "name": "Our data lives in Tally, Excel and the plant control system. Can it read all three?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. The system was built for exactly that mess. Connectors handle accounting exports, spreadsheet drops and control-system feeds; reconciliation happens in the middle."
+    "text": "Yes. Connectors read accounting exports, spreadsheet drops and control-system feeds."
    }
   },
   {
@@ -33,7 +33,7 @@
    "name": "What if the underlying data is wrong?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Then the report says so, with the specific mismatch called out. Bad data flagged at 6 AM is a fixable problem; bad data discovered at month-end is a write-off."
+    "text": "The report says so, mismatch called out. Bad data flagged at 6 AM is fixable; at month-end it is a write-off."
    }
   },
   {
@@ -41,7 +41,7 @@
    "name": "Can it write the monthly report my directors already expect?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. The output template is yours, the same structure your board reads today, produced without the three people who currently assemble it."
+    "text": "Yes. The output template is yours, the same structure your board reads today."
    }
   },
   {
@@ -49,7 +49,7 @@
    "name": "Do operators have to enter data differently?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "No. Changing operator behavior is where reporting projects die, so we refuse to depend on it. The system adapts to your logs as they are; if a specific field would sharpen the report materially, we tell you the trade-off and you decide."
+    "text": "No. The system adapts to your logs as they are; if one field would sharpen the report, you decide."
    }
   },
   {
@@ -57,7 +57,7 @@
    "name": "What about multiple plants?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Each plant gets its own daily report; a group roll-up compares plants on the same definitions, which is usually the first time the definitions have actually matched."
+    "text": "Each plant gets its own daily report; a group roll-up compares plants on the same definitions."
    }
   },
   {
@@ -65,7 +65,7 @@
    "name": "Daily only, or shift-level too?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Both. Shift handover summaries generate at shift close; the daily rolls them up. Weekly and monthly views come from the same data with no extra work."
+    "text": "Both. Shift summaries generate at shift close; daily, weekly and monthly views roll up from the same data."
    }
   }
  ]
@@ -77,7 +77,7 @@
  "@type": "Service",
  "name": "The 6 AM production report nobody had to write",
  "serviceType": "Plant production reporting automation",
- "description": "Shift logs, weighbridge tickets and downtime entries become a daily production report by 6 AM, reconciled, discrepancies flagged, ready to read.",
+ "description": "Shift logs, weighbridge tickets and downtime entries become a reconciled daily production report by 6 AM, discrepancies flagged.",
  "provider": {
   "@type": "Organization",
   "name": "WE_AINA",
@@ -233,7 +233,7 @@
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>The 6 AM production report<br><span class="accent">nobody</span> had to write.</h1>
-    <p class="sub dim">A system we have built before, run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and a person on your team approves it.</p>
+    <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -241,29 +241,28 @@
 <section>
   <div class="wrap">
     <span class="label">What this costs you today</span>
-    <p>In a typical operation of this size, a plant manager spending 90 minutes a day assembling shift data loses about 33 working days a year to copying numbers between systems.</p>
-    <p style="margin-top:16px">Decisions made on day-old production data cost real tonnage: a crusher running 7% under rate for two days before anyone notices is roughly 800 tonnes of lost throughput at a mid-size plant.</p>
+    <p>At a plant this size, a manager spending 90 minutes a day assembling shift data loses about 33 working days a year to copying numbers.</p>
+    <p style="margin-top:16px">A crusher running 7% under rate for two days before anyone notices is roughly 800 tonnes of lost throughput at a mid-size plant.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="label">The system</span>
-    <p>The system pulls shift logs, weighbridge tickets (the weight recorded at the gate scale), downtime entries and energy readings as they happen, reconciles them against each other, and writes the daily production report before the morning meeting. Discrepancies, tonnage that does not match tickets, downtime nobody entered, are flagged in the report, not buried under it. The report reads like your best plant manager wrote it, because it is built from the questions they would ask.</p>
-    <p class="accent" style="margin-top:24px">The same reporting system runs at RockProsUSA, where 11,200 operations hours were returned over the first twelve months, a large share of them reporting hours.</p>
+    <p>The system pulls shift logs, weighbridge tickets, downtime entries and energy readings as they happen, reconciles them, and writes the daily production report before the morning meeting. Tonnage that does not match tickets, and downtime nobody entered, are flagged in the report.</p>
+    <p class="accent" style="margin-top:24px">The same reporting runs at RockProsUSA, where 11,200 operations hours were returned over the first twelve months, a large share of them reporting hours.</p>
   </div>
 </section>
 
 <section class="deep">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
-    <p>The first two weeks are plumbing: connectors to wherever your data actually lives, exports from Tally (the accounting software most Indian mid-size businesses run on), the weighbridge PC, the operator's shift-log spreadsheet, the plant control system's history if you have one. Nothing about how your operators record data changes; the system meets the data where it is. By week three you get a parallel report every morning alongside whatever you produce today.</p>
-    <p style="margin-top:16px">You mark what is wrong or missing, the reconciliation rules tighten, and within a month the parallel report is the report. The person who used to assemble it gets their mornings back, most plants redeploy them onto the discrepancies the report now surfaces.</p>
+    <p>The first two weeks are connectors to wherever your data lives: Tally, the weighbridge PC, the shift-log spreadsheet, the control system. By week three a parallel report arrives every morning; you mark what is wrong, and within a month it is the report.</p>
     <h2 style="margin-top:48px">Signs you need this</h2>
     <p class="dim" style="margin-top:12px">- The morning meeting argues about what happened instead of what to do.</p>
     <p class="dim" style="margin-top:12px">- Downtime totals differ depending on who you ask.</p>
-    <p class="dim" style="margin-top:12px">- Month-end production numbers get 'adjusted' and nobody can say why.</p>
-    <p class="dim" style="margin-top:12px">- Your monthly management report is accurate but ten days late, or timely but wrong.</p>
+    <p class="dim" style="margin-top:12px">- Month-end production numbers get adjusted and nobody can say why.</p>
+    <p class="dim" style="margin-top:12px">- Your monthly report is accurate but ten days late, or timely but wrong.</p>
     <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
@@ -271,7 +270,7 @@
 <section id="cta">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">Two weeks inside your operation to find out what plant production reporting automation would return for you, before a price goes on it.</p>
+    <p class="dim">Two weeks in your operation to size what plant production reporting automation returns, before a price.</p>
     <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -279,12 +278,12 @@
 <section>
   <div class="wrap">
     <span class="label">Questions operators ask</span>
-    <div class="step"><span class="k">Q</span><div><h3>Our data lives in Tally, Excel and the plant control system. Can it read all three?</h3><p class="dim">Yes. The system was built for exactly that mess. Connectors handle accounting exports, spreadsheet drops and control-system feeds; reconciliation happens in the middle.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What if the underlying data is wrong?</h3><p class="dim">Then the report says so, with the specific mismatch called out. Bad data flagged at 6 AM is a fixable problem; bad data discovered at month-end is a write-off.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Can it write the monthly report my directors already expect?</h3><p class="dim">Yes. The output template is yours, the same structure your board reads today, produced without the three people who currently assemble it.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Do operators have to enter data differently?</h3><p class="dim">No. Changing operator behavior is where reporting projects die, so we refuse to depend on it. The system adapts to your logs as they are; if a specific field would sharpen the report materially, we tell you the trade-off and you decide.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What about multiple plants?</h3><p class="dim">Each plant gets its own daily report; a group roll-up compares plants on the same definitions, which is usually the first time the definitions have actually matched.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Daily only, or shift-level too?</h3><p class="dim">Both. Shift handover summaries generate at shift close; the daily rolls them up. Weekly and monthly views come from the same data with no extra work.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Our data lives in Tally, Excel and the plant control system. Can it read all three?</h3><p class="dim">Yes. Connectors read accounting exports, spreadsheet drops and control-system feeds.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What if the underlying data is wrong?</h3><p class="dim">The report says so, mismatch called out. Bad data flagged at 6 AM is fixable; at month-end it is a write-off.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Can it write the monthly report my directors already expect?</h3><p class="dim">Yes. The output template is yours, the same structure your board reads today.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Do operators have to enter data differently?</h3><p class="dim">No. The system adapts to your logs as they are; if one field would sharpen the report, you decide.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What about multiple plants?</h3><p class="dim">Each plant gets its own daily report; a group roll-up compares plants on the same definitions.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Daily only, or shift-level too?</h3><p class="dim">Both. Shift summaries generate at shift close; daily, weekly and monthly views roll up from the same data.</p></div></div>
     <p class="dim" style="margin-top:48px">Related systems: <a href="/studio/systems/dealer-order-management">dealer order management automation</a> · <a href="/studio/systems/freight-reconciliation">freight reconciliation automation</a> · <a href="/studio/systems/ar-followup-automation">accounts receivable follow-up automation</a> · <a href="/studio/systems">all six systems</a></p>
   </div>
 </section>

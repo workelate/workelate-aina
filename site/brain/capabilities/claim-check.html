@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Claim check, the Brain by WorkElate Chief</title>
-<meta name="description" content="Ask for a record to be updated and the natural closing sentence is that it has been updated, whether or not it was.">
+<meta name="description" content="Before a reply reaches you it is compared to what the systems returned, so an update that matched nothing is reported as such.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/brain/capabilities/claim-check">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Claim check, the Brain by WorkElate Chief">
-<meta property="og:description" content="Ask for a record to be updated and the natural closing sentence is that it has been updated, whether or not it was.">
+<meta property="og:description" content="Before a reply reaches you it is compared to what the systems returned, so an update that matched nothing is reported as such.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/brain/capabilities/claim-check">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Claim check",
-  "description": "Ask for a record to be updated and the natural closing sentence is that it has been updated, whether or not it was.",
+  "description": "Before a reply reaches you it is compared to what the systems returned, so an update that matched nothing is reported as such.",
   "url": "https://aina.workelate.com/brain/capabilities/claim-check"
 }
 </script>
@@ -219,8 +219,7 @@
     <p class="crumb"><a href="/brain">The Brain</a> / <a href="/brain/capabilities">Capabilities</a> / Claim check</p>
     <span class="sr-only"><span class="label">PROVE</span></span>
     <h1>What it tells you is checked<br>against <span class="accent">what happened.</span></h1>
-    <p class="sub dim">Ask for a record to be updated and the natural closing sentence is that it has been updated, whether or not it was. Before a reply reaches you, it is compared to what the systems actually returned, never to what you asked for.</p>
-    <p class="lede">What changes on Monday: the phrase &ldquo;I have updated it&rdquo; stops being free. If the update matched no rows, the reply says so, in the same message.</p>
+    <p class="sub dim">Before a reply reaches you, WorkElate Chief, the Brain, compares it to what the systems actually returned, never to what you asked for.</p>
     <p class="hero-cta"><a class="btn" href="/book-a-demo">Book a demo</a> <a href="/book-a-demo">See it running first</a></p>
   </div>
 </section>
@@ -228,29 +227,29 @@
 <section>
   <div class="wrap">
     <span class="label">What it looks like when it fires</span>
-    <h2>A field update that matched nothing, narrated as done</h2>
+    <h2>An update that matched nothing, narrated as done</h2>
 
     <div class="step rv">
       <span class="k">01</span>
       <div>
-        <h3>The update reports success with nothing modified</h3>
-        <p class="dim">The filter picked an account identifier superseded by a merge last quarter. The store answers truthfully: the operation succeeded, and it changed zero records. Both facts sit in the payload.</p>
+        <h3>Success reported, nothing modified</h3>
+        <p class="dim">The filter used an account identifier superseded by a merge. The store answers: operation succeeded, zero records changed.</p>
       </div>
     </div>
 
     <div class="step rv">
       <span class="k">02</span>
       <div>
-        <h3>The draft says the date has been moved</h3>
-        <p class="dim">This is the ordinary failure. The reasoning step saw a success flag and a request to move a date, and wrote the sentence those two facts imply.</p>
+        <h3>The draft says the date moved</h3>
+        <p class="dim">The reasoning step saw a success flag and a request to move a date, and wrote the sentence they imply.</p>
       </div>
     </div>
 
     <div class="step rv">
       <span class="k">03</span>
       <div>
-        <h3>The sentence and the data disagree, so the sentence loses</h3>
-        <p class="dim">The claim asserts a changed date; the payload carries a modified count of zero. The reply the manager reads says the update matched no records and names the identifier it tried.</p>
+        <h3>The sentence loses to the data</h3>
+        <p class="dim">The payload carries a modified count of zero, so the reply says the update matched no records and names the identifier.</p>
       </div>
     </div>
   </div>
@@ -259,13 +258,13 @@
 <section class="deep">
   <div class="wrap">
     <span class="label">How it works</span>
-    <h2>A cheap judge with a narrow question and an exit</h2>
+    <h2>A cheap judge, a narrow question, an exit</h2>
 
     <div class="principle">
       <div class="pn">01</div>
       <div>
-        <h3>It compares to payloads, because payloads cannot be persuaded</h3>
-        <p class="dim">The evidence is the structured result of the calls that ran. Text the AI read earlier, including anything an inbound mail said about itself, is not evidence of what changed.</p>
+        <h3>Payloads cannot be persuaded</h3>
+        <p class="dim">The evidence is the structured result of the calls that ran. Text the AI read earlier, including inbound mail, is not evidence.</p>
       </div>
     </div>
 
@@ -273,15 +272,15 @@
       <div class="pn">02</div>
       <div>
         <h3>Abstaining is a first-class answer</h3>
-        <p class="dim">The judge answers in a fixed shape and is allowed to say it cannot tell. That keeps it from inventing a verdict on a turn where the evidence is genuinely ambiguous.</p>
+        <p class="dim">The judge answers in a fixed shape and may say it cannot tell, so it never invents a verdict on ambiguous evidence.</p>
       </div>
     </div>
 
     <div class="principle">
       <div class="pn">03</div>
       <div>
-        <h3>One re-draft, then a plain correction, never a silent ship</h3>
-        <p class="dim">The AI gets one attempt, holding the data. If that still does not match, a plain correction goes out written by code, not by the AI that just missed twice.</p>
+        <h3>One re-draft, then a plain correction</h3>
+        <p class="dim">The AI gets one attempt holding the data. If that still misses, code writes a plain correction. Nothing ships silently.</p>
       </div>
     </div>
   </div>
@@ -291,9 +290,9 @@
   <div class="wrap">
     <span class="label">What it is not</span>
     <h2>Three honest limits</h2>
-    <p class="lede">It does not grade whether the action was a good idea. A correctly narrated bad decision passes cleanly.</p>
-    <p class="lede">It runs only on turns where something changed and the reply claims completion. A conversational answer is not checked by it.</p>
-    <p class="lede">It is a judge, so it can be wrong, and it is built to err towards letting a true claim through rather than blocking a healthy turn.</p>
+    <p class="lede">It does not grade whether the action was wise.</p>
+    <p class="lede">It runs only when something changed and completion is claimed.</p>
+    <p class="lede">A judge can be wrong; it errs towards letting truth through.</p>
 
     <ul class="conn">
       <li><a href="/brain/capabilities/read-after-write">Read after write</a></li>
@@ -308,7 +307,7 @@
 <section id="cta">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="sub">Bring the update somebody swore was done, and read the reply that would have said otherwise.</p>
+    <p class="sub">Bring the update somebody swore was done.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
