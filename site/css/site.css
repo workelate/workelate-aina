@@ -1861,3 +1861,22 @@ section.closing p { font-size: clamp(22px, 2.6vw, 32px); font-weight: 600; line-
   .page-hero .tens { grid-template-columns: 1fr; }
   .page-hero .ten .n { font-size: clamp(30px, 8vw, 40px); }
 }
+
+/* ---- mega menu, flattened (founder, 2026-09-16: "box k andar box ... ande k
+   andar anda"). One container only: the panel. Rows are plain text with a
+   hover tint, the promo is a soft wash without a border, and its CTA is a text
+   link. `.nav .nav-menu a` used to give EVERY link, including the promo's
+   .nm-go, a bordered 12px card, which is where the nesting came from. ---- */
+.nav .nav-menu a,
+.nav .nav-menu a:hover,
+.nav .nav-menu a[aria-current="page"] {
+  border: 0; background: none; transform: none; border-radius: 8px;
+}
+.nav .nav-menu a { padding: 8px 12px; margin: 0 -12px; }
+.nav .nav-menu a:hover { background: rgba(255, 255, 255, 0.05); }
+.nav .nav-menu .nm-h + a { border-top: 0; }
+.nm-col { gap: 2px; }
+.nm-h { margin-left: 0; }
+.nm-promo { border: 0; background: rgba(255, 255, 255, 0.035); }
+.nav .nm-promo .nm-go,
+.nav .nm-promo .nm-go:hover { padding: 16px 0 0; margin: 0; background: none; border: 0; }
