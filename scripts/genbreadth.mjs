@@ -22,7 +22,7 @@ const row = (p, i) => {
           <span class="ix-n">${String(i + 1).padStart(3, "0")}</span>
           <span class="ix-build"><b>${esc(title)}</b><span class="ix-note">${esc(note)}</span></span>
           <span class="ix-sector"><i class="ix-dot" aria-hidden="true"></i>${esc(p.sector || "")}</span>
-          <span class="ix-years">${esc(p.years || "\u2014")}</span>
+          <span class="ix-years">${esc(p.years || "undated")}</span>
         </li>`;
 };
 const rows = projects.map(row).join("\n");
@@ -32,14 +32,14 @@ const rows = projects.map(row).join("\n");
 // the type of work, means technical product terms of them like P2P, D2C,
 // E-com, O2C, or more than that". A buyer scanning for their own problem
 // recognises "O2C · DISPATCH" and does not recognise "RockProsUSA".
-const heroRows = projects.slice(0, 6).map((p) => `        <li style="--pig:${p.pigment}"><i aria-hidden="true"></i><b>${esc(p.category)}</b><span>${esc(p.categoryNote)}</span><em>${esc(p.years || "\u2014")}</em></li>`).join("\n");
+const heroRows = projects.slice(0, 6).map((p) => `        <li style="--pig:${p.pigment}"><i aria-hidden="true"></i><b>${esc(p.category)}</b><span>${esc(p.categoryNote)}</span><em>${esc(p.years || "undated")}</em></li>`).join("\n");
 
 // KPI line. Every figure is derived, not asserted:
 //   products  = rows in data/projects.json plus the 14 declared in genwork.mjs
 //   sectors   = distinct declared families
-//   yrs       = sum of each programme's year span in data/portfolio-inventory.md
-//               (41 programmes, computed 2026-09-07 = 109)
-//   repos     = the crawl total in that same file
+//   repos     = the crawl total in data/portfolio-inventory.md
+//   partners  = the two accountable partners; the one count set the site uses
+//               everywhere is 34 / 9 / 374 (data/brain-narrative.md §5)
 // Chips are FAMILIES the project declares, not raw sector strings. Deriving
 // them from `sector` gave 20 chips for 20 projects, which is a dump wearing a
 // chip's clothes. Each project names its family in data/projects.json, so a new
@@ -51,26 +51,24 @@ if (missingFamily.length) { console.error(`projects missing family: ${missingFam
 const KPI = [
   ["34", "products delivered"],
   ["9", "industry sectors"],
-  ["109", "programme-years of build"],
   ["374", "repositories since 2018"],
+  ["2", "partners, no juniors"],
 ];
 const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></li>`).join("\n");
 
+// The studio home carries the RANGE, not the index: the 20-row list lives on
+// /studio/work (content audit 2026-09-15, row 15: the home page was 2,400 words
+// of other pages). Chips are derived from the data, so a new family shows up
+// here on the next run without a hand edit.
 const block = `
-    <span class="label">04 &middot; The index</span>
-    <h2>The range is the argument.</h2>
-    <p class="dim rv ix-lede">One line per build. No screenshots, no hero shots. Every one of these was designed, built and shipped by the same two partners and the agents they direct.</p>
+    <span class="label rv">03 &middot; The range</span>
+    <h2 class="rv">34 products, 9 sectors, 374 repositories since 2018.</h2>
+    <p class="dim rv ix-lede">The same two partners designed, built and shipped every one, with the Brain doing the volume work.</p>
 
     <ul class="ix-chips rv" aria-label="sectors we have shipped into">
 ${families.map(f => `      <li>${esc(f)}</li>`).join("\n")}
     </ul>
-
-    <div class="ix-wrap">
-      <ul class="ix">
-${rows}
-      </ul>
-    </div>
-    <p class="ix-foot rv"><span>Showing ${projects.length} of 374 repositories &middot; 41 programmes &middot; 2018&ndash;2026</span> <a href="/studio/work">Open the full index &rarr;</a></p>
+    <p class="ix-foot rv"><span>One line per build, ${projects.length} of them named or described, on the index.</span> <a href="/studio/work">Open the full index &rarr;</a></p>
 `;
 
 const heroBlock = `
@@ -80,7 +78,7 @@ ${kpiBlock}
       <ul class="hero-work" aria-label="what we build, by product category">
 ${heroRows}
       </ul>
-      <p class="hero-work-foot"><a href="/studio/work">All 34 builds, 9 sectors, 374 repositories &rarr;</a></p>
+      <p class="hero-work-foot"><a href="/studio/work">All 34 products, 9 sectors, 374 repositories &rarr;</a></p>
 `;
 
 const idx = path.join(ROOT, "site/studio/index.html");

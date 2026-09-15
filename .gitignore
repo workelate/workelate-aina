@@ -23,3 +23,5 @@ site/img/real/*
 !site/img/real/tasks-board-rockcross-ops-portal.png
 .agents/
 .codex/
+!site/img/real/briefing-needs-you@2x.png
+!site/img/real/tasks-board-rockcross-ops-portal@2x.png

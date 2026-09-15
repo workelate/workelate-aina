@@ -9,10 +9,19 @@
          <span></span><span></span><span></span></button>
      </div></header>
 
-   The CSS owns visibility; this file only owns the `.open` class on .nav and
-   the aria-expanded mirror on the button. Above 860px the panel is irrelevant,
-   so the class is cleared on resize — otherwise a menu left open on a rotated
-   phone would keep .open on a desktop-width layout. */
+   The CSS owns visibility; this file only owns the `.open` class on .nav, the
+   `nav-open` class on <body> (the stylesheet locks scroll and paints the scrim
+   on it) and the aria-expanded mirror on the button. Above 860px the panel is
+   irrelevant, so the class is cleared on resize — otherwise a menu left open
+   on a rotated phone would keep .open on a desktop-width layout.
+
+   ACCORDIONS (2026-09-15, audit-ux #4). Each mega panel ships wrapped in
+   <details class="nav-acc" open>. `open` is the no-JS contract: with script
+   off, and on desktop, the panel is the visible source of every link. Under
+   860px this file removes `open`, so the sheet opens as a short list (Pricing,
+   the primary button, then three closed accordions) instead of 43 links; above
+   860px it puts `open` back, or the desktop dropdown would have nothing to
+   show. Width is re-read on resize, so a rotated phone gets the right state. */
 (function () {
   "use strict";
 
@@ -25,9 +34,20 @@
   var menu = document.getElementById(toggle.getAttribute("aria-controls") || "navmenu");
   if (!header || !menu) return;
 
+  var accs = [].slice.call(menu.querySelectorAll("details.nav-acc"));
+
   function setOpen(open) {
     header.classList.toggle("open", open);
+    document.body.classList.toggle("nav-open", open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    // every sheet open starts folded: a tap on the hamburger should never land
+    // on a wall of links because the last visit left an accordion open
+    if (open) accs.forEach(function (d) { d.open = false; });
+  }
+
+  function syncAccordions() {
+    var desktop = window.innerWidth > BREAKPOINT;
+    accs.forEach(function (d) { d.open = desktop; });
   }
 
   function isOpen() {
@@ -85,8 +105,11 @@
       resizeTimer = null;
       if (window.innerWidth > BREAKPOINT && isOpen()) setOpen(false);
       if (isOpen()) sizeSheet();
+      syncAccordions();
     }, 100);
   });
+
+  syncAccordions();
 })();
 
 /* Mega menus (2026-09-12, interaction pass 2026-09-12 pm).

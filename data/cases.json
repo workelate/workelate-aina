@@ -1,35 +1,41 @@
 {
-  "_howto": "Add one object per project. Required: tag (industry, geography), title, summary, metric, metricLabel. Optional: anonymous:true renders without the client name pressure, status:'placeholder' renders as a dashed coming-soon card. Run `node scripts/gencases.mjs` after editing.",
+  "_howto": "Add one object per project. Required: tag (industry, geography), title, summary, metric, metricLabel. Optional: href (+ hrefLabel) renders the card as a link and puts it in the page's JSON-LD; anonymous:true renders without the client name pressure; status:'placeholder' renders as a dashed coming-soon card. Vocabulary: the Brain (never agents / agentic / autonomous); RockProsUSA numbers are always 'over the first twelve months'; no numbers for any other client (data/brain-narrative.md §5). Run `node scripts/gencases.mjs` after editing.",
   "cases": [
     {
       "tag": "Industrial ops, USA",
-      "title": "RockProsUSA: 13 quarries on one agentic dispatch system",
-      "summary": "Dispatch, invoicing and reporting moved onto agents across 13 quarry sites. Truck assignment proposed with its reasoning attached, invoices 3-way matched without a human pass, daily reports written by 6 AM. Cycle time fell 38% in the first quarter after cutover; 11,200 operations hours returned in year one.",
+      "title": "RockProsUSA: 13 quarries on one dispatch system",
+      "summary": "Dispatch, invoicing and reporting moved onto one system across 13 quarry sites. The Brain proposes each truck assignment with its reasoning and a dispatcher approves it; invoices are matched against the delivery and the order without a manual pass; the daily report is written by 6 AM, ready for a person to read. Over the first twelve months: dispatch cycle time 38% lower, 11,200 operations hours returned.",
       "metric": "−38%",
-      "metricLabel": "dispatch cycle time · 2,140 invoices, zero touches"
+      "metricLabel": "dispatch cycle time · 2,140 invoices, zero touches",
+      "href": "/studio/case-studies/rockprosusa",
+      "hrefLabel": "Read the full case study"
     },
     {
       "tag": "Marketing & creative, Mexico",
       "title": "CitiSense: AI marketing & sales platform for agencies",
-      "summary": "An AI-enabled marketing and sales platform for advertising and creative agencies and display teams, campaign operations, sales workflows and reporting carried by agents so the creative teams do creative work.",
+      "summary": "An AI-enabled marketing and sales platform for advertising and creative agencies and display teams: campaign operations, sales workflows and reporting carried by the Brain, so the creative teams do creative work.",
       "metric": "MX",
       "metricLabel": "agencies & display teams live"
     },
     {
       "tag": "Logistics, India",
-      "title": "Freight reconciliation on agents",
-      "summary": "Every carrier bill line matched against weighbridge, gate and delivery data; clean lines cleared automatically, disputes queued with evidence bundles attached.",
-      "metric": "96%+",
-      "metricLabel": "bill lines auto-cleared",
-      "anonymous": true
+      "title": "Freight reconciliation without the reconciliation week",
+      "summary": "Every carrier bill line matched against the weighbridge ticket (the weight recorded at the gate), gate and delivery data. Clean lines clear automatically; disputed lines queue for a person with the evidence attached.",
+      "metric": "Clean lines",
+      "metricLabel": "clear automatically; disputes carry their evidence",
+      "anonymous": true,
+      "href": "/studio/systems/freight-reconciliation",
+      "hrefLabel": "See the system"
     },
     {
       "tag": "Professional services, India",
       "title": "AR follow-up: no account goes quiet",
-      "summary": "Receivables chased on cadence, escalated on rules; promises to pay tracked to their date and re-chased the morning after they break.",
-      "metric": "DSO ↓",
-      "metricLabel": "measured monthly against the prior baseline",
-      "anonymous": true
+      "summary": "Receivables chased on a cadence you set and escalated on rules. Promises to pay are tracked to their date and re-chased the morning after they break, with every escalation handed to a person.",
+      "metric": "Monthly",
+      "metricLabel": "DSO (days to get paid) measured against the prior baseline",
+      "anonymous": true,
+      "href": "/studio/systems/ar-followup-automation",
+      "hrefLabel": "See the system"
     },
     {
       "tag": "AI tooling, 2020",
@@ -50,9 +56,9 @@
     {
       "tag": "Marketplace, EdTech",
       "title": "Edunomics Scholar: a two-sided scholarship marketplace",
-      "summary": "Donors publish scholarships, invite and review applicants and award grants; applicants build profiles, apply and track status, with a super-admin console over both sides. 33 API endpoints, token auth with password reset, document upload, transactional email and status workflows. Three years of continuous development.",
+      "summary": "Donors publish scholarships, invite and review applicants and award grants; applicants build profiles, apply and track status, with a super-admin console over both. 33 API endpoints, token auth with password reset, document upload, transactional email and status workflows. Three years of continuous development.",
       "metric": "33",
-      "metricLabel": "API endpoints · donor, applicant and admin surfaces"
+      "metricLabel": "API endpoints · donor, applicant and admin consoles"
     },
     {
       "tag": "Fintech, data",
@@ -63,11 +69,11 @@
       "anonymous": true
     },
     {
-      "tag": "Your project here",
-      "title": "33 more programmes being written up",
-      "summary": "The crawl of our own delivery history turned up 100+ projects, 2018 to 2026. We are writing them up in the same receipts-first format, and naming clients only where they have cleared it.",
-      "metric": "8",
-      "metricLabel": "of 100+ projects documented",
+      "tag": "More to come",
+      "title": "More are being written up in the same format",
+      "summary": "34 products across 9 sectors and 374 repositories since 2018. We are writing them up in the same before-and-after format, and naming clients only where they have cleared it.",
+      "metric": "34",
+      "metricLabel": "products · 9 sectors · 374 repositories",
       "status": "placeholder"
     }
   ]

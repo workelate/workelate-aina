@@ -15,6 +15,8 @@ const nextConfig = {
     return [
       // Kill duplicate-content: legacy .html paths 301 to the clean URL.
       { source: "/index.html", destination: "/", permanent: true },
+      // 2026-09-15: /index served the home page as a second URL (200 live and local).
+      { source: "/index", destination: "/", permanent: true },
       { source: "/:path*.html", destination: "/:path*", permanent: true },
       // 2026-09-12: the agency moved under /studio when the site became the
       // Excellence Studio umbrella. Every URL that was ever public for it 301s
@@ -37,7 +39,11 @@ const nextConfig = {
       { key: "X-Content-Type-Options", value: "nosniff" },
       { key: "X-Frame-Options", value: "SAMEORIGIN" },
       { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-      { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" }
+      { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+      // No page uses a camera, a microphone or location; say so. A Content-Security-Policy
+      // is deliberately NOT set here: the pages carry inline scripts and the lead form would
+      // need nonces first (2026-09-15).
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" }
     ];
     return [
       { source: "/:path*", headers: security },

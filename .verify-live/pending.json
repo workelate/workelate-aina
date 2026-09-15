@@ -1,8 +1,4 @@
 {
-  "when": "2026-09-12T16:35:15.376Z",
-  "actionables": [
-    "vague: \"What went in: 123 files, the whole lane (umbrella + `/brain` 60 pages \" — restate with exact file paths / commands, or drop it",
-    "vague: \"What stayed out of the public repo, by `.gitignore`: `data/brain-facts\" — restate with exact file paths / commands, or drop it",
-    "vague: \"Not done: no deploy (this repo's deploy is separate, `DEPLOY.md`), not\" — restate with exact file paths / commands, or drop it"
-  ]
+  "when": "2026-09-15T09:08:50.150Z",
+  "actionables": []
 }
