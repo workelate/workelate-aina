@@ -1,5 +1,12 @@
 # WE_AINA build rules
 
+> **Session handoff, 2026-09-16:** read `HANDOFF-2026-09-16.md` first. It records
+> the three-zone restructure (/ umbrella, /brain product site, /studio agency),
+> the generators and their order, the IP-stays-internal rule, the grounded-only
+> rule, and the open items. `CLAUDE.md` in this repo is the fuller, current
+> rule set; treat it as authoritative where this file lags.
+
+
 WE_AINA = WorkElate's AI-Native Agency. The strategic spine: the agency
 runs its delivery on WorkElate (dogfooding at commercial stakes),
 services revenue bootstraps the company, and the agency itself is the
