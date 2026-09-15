@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quarry dispatch automation, WE_AINA</title>
-<meta name="description" content="Quarry dispatch: truck assignments proposed with their reasoning, approved by a dispatcher. Behind a 38% lower dispatch cycle across 13 quarries.">
+<meta name="description" content="Truck assignments proposed with their reasoning and approved by a dispatcher, behind a 38% lower dispatch cycle across 13 quarries.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/quarry-dispatch-automation">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Quarry dispatch automation, WE_AINA">
-<meta property="og:description" content="Quarry dispatch: truck assignments proposed with their reasoning, approved by a dispatcher. Behind a 38% lower dispatch cycle across 13 quarries.">
+<meta property="og:description" content="Truck assignments proposed with their reasoning and approved by a dispatcher, behind a 38% lower dispatch cycle across 13 quarries.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/studio/systems/quarry-dispatch-automation">
 <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +25,7 @@
    "name": "Does this replace my dispatchers?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "No. It replaces the radio tag and the spreadsheet copying. Every assignment is proposed with its reasoning and a dispatcher approves it. That does not switch off."
+    "text": "No. It replaces the radio tag and the spreadsheet copying. Every assignment is proposed with its reasoning and a dispatcher approves it."
    }
   },
   {
@@ -33,7 +33,7 @@
    "name": "We run mixed fleets, owned and hired trucks. Does that work?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. Hired trucks are tracked from gate-in to gate-out even without telematics, using weighbridge and gate events. Owned trucks with GPS get full cycle tracking."
+    "text": "Yes. Hired trucks are tracked gate-in to gate-out from gate events; owned trucks with GPS get full cycle tracking."
    }
   },
   {
@@ -41,7 +41,7 @@
    "name": "What data does it need on day one?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Orders, truck list, and weighbridge feed. That is enough to start proposing assignments. Telematics and loader status make it sharper but are not prerequisites."
+    "text": "Orders, truck list and weighbridge feed. Telematics and loader status make it sharper but are not prerequisites."
    }
   },
   {
@@ -49,7 +49,7 @@
    "name": "What happens when the internet drops at the pit?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Dispatch falls back to the last approved plan and queues events locally; when the link returns, the system reconciles what actually happened against what was planned and flags the gaps. A connectivity blip never blanks the board."
+    "text": "Dispatch falls back to the last approved plan and queues events locally; when the link returns, the gaps are flagged."
    }
   },
   {
@@ -57,7 +57,7 @@
    "name": "Can it handle multiple sites with shared fleet?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes, that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same reasoning attached as single-site assignments."
+    "text": "Yes, that is the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts."
    }
   },
   {
@@ -65,7 +65,7 @@
    "name": "How long until it pays for itself?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "That depends on your operation, and we will not quote a number we have not measured on it. The Diagnostic Sprint puts conservative numbers on your specific site before you commit, and the build price is fixed before it starts."
+    "text": "We do not quote a number we have not measured on your site. The Sprint measures it; the build price is fixed before it starts."
    }
   }
  ]
@@ -77,7 +77,7 @@
  "@type": "Service",
  "name": "Every truck assignment proposed by the system, approved by a dispatcher",
  "serviceType": "Quarry dispatch automation",
- "description": "Quarry dispatch: truck assignments proposed with their reasoning, approved by a dispatcher. Behind a 38% lower dispatch cycle across 13 quarries.",
+ "description": "Truck assignments proposed with their reasoning and approved by a dispatcher, behind a 38% lower dispatch cycle across 13 quarries.",
  "provider": {
   "@type": "Organization",
   "name": "WE_AINA",
@@ -233,7 +233,7 @@
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>Every truck assignment<br>proposed, <span class="accent">then approved.</span></h1>
-    <p class="sub dim">A system we have built before, run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and a person on your team approves it.</p>
+    <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -241,30 +241,28 @@
 <section>
   <div class="wrap">
     <span class="label">What this costs you today</span>
-    <p>In a typical operation of this size, a 22-minute average wait between the gate and the loader across 40 trucks is roughly 290 driver-hours a month at one site.</p>
-    <p style="margin-top:16px">One mis-assigned haul per shift, at 3 shifts a day, is about 90 wasted cycles a month: fuel, wear and driver pay with no material moved.</p>
+    <p>At a site this size, a 22-minute average wait between gate and loader across 40 trucks is roughly 290 driver-hours a month.</p>
+    <p style="margin-top:16px">One mis-assigned haul per shift, at 3 shifts a day, is about 90 wasted cycles a month: fuel, wear and driver pay, no material moved.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="label">The system</span>
-    <p>The system watches orders, truck positions and weighbridge events (the weight recorded as each truck crosses the gate scale), then proposes the next assignment before the dispatcher asks for it. It tracks every cycle end to end, flags the ones that break pattern, a loader down, a queue forming, a driver stuck at the pit, and escalates only those. Dispatchers stop juggling radios and start approving decisions.</p>
-    <p style="margin-top:16px">Every assignment carries the reasoning it was made with, so a bad call can be traced in one click instead of one argument.</p>
-    <p class="accent" style="margin-top:24px">This is the system running 13 quarries at RockProsUSA today. Dispatch cycle time was 38% lower over the first twelve months.</p>
+    <p>The system watches orders, truck positions and weighbridge events, then proposes the next assignment before the dispatcher asks. It flags the cycles that break pattern, a loader down, a queue forming, and escalates only those. Every assignment carries its reasoning.</p>
+    <p class="accent" style="margin-top:24px">This is the system running 13 quarries at RockProsUSA today: dispatch cycle time 38% lower over the first twelve months.</p>
   </div>
 </section>
 
 <section class="deep">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
-    <p>Week one, the system runs in shadow mode: it watches your dispatch decisions and proposes its own in parallel, and nobody's workflow changes. Week two, you compare its proposals against what your dispatchers actually did, the gaps go both ways, and both are useful. From week three, dispatchers approve assignments from a queue instead of building them from radio calls.</p>
-    <p style="margin-top:16px">The transition is deliberately boring: no big-bang cutover, no retraining week, no consultants standing behind chairs. The dispatch office on day 30 looks like the dispatch office on day 1, minus the shouting.</p>
+    <p>Week one it runs in shadow, proposing assignments in parallel. Week two you compare its proposals against what your dispatchers did. From week three dispatchers approve from a queue instead of radio calls.</p>
     <h2 style="margin-top:48px">Signs you need this</h2>
-    <p class="dim" style="margin-top:12px">- Trucks queue at the gate while a loaded pit sits idle two benches away.</p>
-    <p class="dim" style="margin-top:12px">- Your best dispatcher is unpromotable because nobody else can hold the board in their head.</p>
+    <p class="dim" style="margin-top:12px">- Trucks queue at the gate while a loaded pit sits idle.</p>
+    <p class="dim" style="margin-top:12px">- Your best dispatcher is unpromotable because nobody else can hold the board.</p>
     <p class="dim" style="margin-top:12px">- Cycle counts come from a diary, and the diary disagrees with the weighbridge.</p>
-    <p class="dim" style="margin-top:12px">- Evening reconciliation regularly finds hauls nobody can explain.</p>
+    <p class="dim" style="margin-top:12px">- Evening reconciliation finds hauls nobody can explain.</p>
     <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
@@ -272,7 +270,7 @@
 <section id="cta">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">Two weeks inside your operation to find out what quarry dispatch automation would return for you, before a price goes on it.</p>
+    <p class="dim">Two weeks in your operation to size what quarry dispatch automation returns, before a price.</p>
     <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -280,12 +278,12 @@
 <section>
   <div class="wrap">
     <span class="label">Questions operators ask</span>
-    <div class="step"><span class="k">Q</span><div><h3>Does this replace my dispatchers?</h3><p class="dim">No. It replaces the radio tag and the spreadsheet copying. Every assignment is proposed with its reasoning and a dispatcher approves it. That does not switch off.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>We run mixed fleets, owned and hired trucks. Does that work?</h3><p class="dim">Yes. Hired trucks are tracked from gate-in to gate-out even without telematics, using weighbridge and gate events. Owned trucks with GPS get full cycle tracking.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What data does it need on day one?</h3><p class="dim">Orders, truck list, and weighbridge feed. That is enough to start proposing assignments. Telematics and loader status make it sharper but are not prerequisites.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What happens when the internet drops at the pit?</h3><p class="dim">Dispatch falls back to the last approved plan and queues events locally; when the link returns, the system reconciles what actually happened against what was planned and flags the gaps. A connectivity blip never blanks the board.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Can it handle multiple sites with shared fleet?</h3><p class="dim">Yes, that is precisely the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts. Cross-site allocation is proposed with the same reasoning attached as single-site assignments.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>How long until it pays for itself?</h3><p class="dim">That depends on your operation, and we will not quote a number we have not measured on it. The Diagnostic Sprint puts conservative numbers on your specific site before you commit, and the build price is fixed before it starts.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Does this replace my dispatchers?</h3><p class="dim">No. It replaces the radio tag and the spreadsheet copying. Every assignment is proposed with its reasoning and a dispatcher approves it.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>We run mixed fleets, owned and hired trucks. Does that work?</h3><p class="dim">Yes. Hired trucks are tracked gate-in to gate-out from gate events; owned trucks with GPS get full cycle tracking.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What data does it need on day one?</h3><p class="dim">Orders, truck list and weighbridge feed. Telematics and loader status make it sharper but are not prerequisites.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What happens when the internet drops at the pit?</h3><p class="dim">Dispatch falls back to the last approved plan and queues events locally; when the link returns, the gaps are flagged.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Can it handle multiple sites with shared fleet?</h3><p class="dim">Yes, that is the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>How long until it pays for itself?</h3><p class="dim">We do not quote a number we have not measured on your site. The Sprint measures it; the build price is fixed before it starts.</p></div></div>
     <p class="dim" style="margin-top:48px">Related systems: <a href="/studio/systems/plant-production-reporting">plant production reporting automation</a> · <a href="/studio/systems/dealer-order-management">dealer order management automation</a> · <a href="/studio/systems/freight-reconciliation">freight reconciliation automation</a> · <a href="/studio/systems">all six systems</a></p>
   </div>
 </section>

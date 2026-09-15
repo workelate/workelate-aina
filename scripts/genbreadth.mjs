@@ -63,12 +63,12 @@ const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></
 const block = `
     <span class="label rv">03 &middot; The range</span>
     <h2 class="rv">34 products, 9 sectors, 374 repositories since 2018.</h2>
-    <p class="dim rv ix-lede">The same two partners designed, built and shipped every one, with the Brain doing the volume work.</p>
+    <p class="dim rv ix-lede">The same two partners shipped every one, with the Brain doing the volume work.</p>
 
     <ul class="ix-chips rv" aria-label="sectors we have shipped into">
 ${families.map(f => `      <li>${esc(f)}</li>`).join("\n")}
     </ul>
-    <p class="ix-foot rv"><span>One line per build, ${projects.length} of them named or described, on the index.</span> <a href="/studio/work">Open the full index &rarr;</a></p>
+    <p class="ix-foot rv"><span>One line per build on the index.</span> <a href="/studio/work">Open the full index &rarr;</a></p>
 `;
 
 const heroBlock = `

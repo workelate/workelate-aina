@@ -14,7 +14,7 @@ mkdirSync(OUT, { recursive: true });
 
 const { cases } = JSON.parse(readFileSync(path.join(ROOT, "data", "cases.json"), "utf8"));
 
-const DESC = "Case studies with the operating numbers, before and after: 13 quarries on one dispatch system, AI campaign operations for agencies, freight reconciliation.";
+const DESC = "Case studies with the operating numbers before and after: 13 quarries on one dispatch system, AI campaign operations, freight reconciliation.";
 
 const card = c => {
   const inner = `
@@ -91,15 +91,15 @@ ${JSON.stringify(itemList, null, 2)}
   <div class="wrap">
     <span class="label">Case studies</span>
     <h1>The builds we can put<br><span class="accent">numbers</span> against.</h1>
-    <p class="sub dim">Each card names what the operation looked like before, what the Brain, WorkElate Chief, now does inside it, and the operating number that moved.</p>
+    <p class="sub dim">Each card names the operation before, what the Brain now does inside it, and the number that moved.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2 style="margin-bottom:16px">One card per build: before, after, and the number.</h2>
-    <p class="dim" style="margin-bottom:32px">One engagement, RockProsUSA, is measured over its first twelve months and carries the numbers. The rest are described, and named only where the client has cleared it.</p>
+    <h2 style="margin-bottom:16px">One card per build, with the number.</h2>
+    <p class="dim" style="margin-bottom:32px">RockProsUSA is measured over its first twelve months; the rest are described, and named only where the client has cleared it.</p>
 ${cases.map(card).join("\n")}
     <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
   </div>
@@ -108,7 +108,7 @@ ${cases.map(card).join("\n")}
 <section id="cta" class="deep">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">Every card above began as a two-week Sprint inside the operation; yours starts the same way.</p>
+    <p class="dim">Every card above began as a two-week Sprint; yours starts the same way.</p>
     <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>

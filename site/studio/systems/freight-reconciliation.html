@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freight reconciliation automation, WE_AINA</title>
-<meta name="description" content="Every carrier bill line matched against weighbridge, gate and delivery data. Clean lines clear automatically; disputes get flagged with evidence attached.">
+<meta name="description" content="Every carrier bill line matched against weighbridge, gate and delivery data; clean lines clear, disputes are flagged with evidence attached.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/freight-reconciliation">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Freight reconciliation automation, WE_AINA">
-<meta property="og:description" content="Every carrier bill line matched against weighbridge, gate and delivery data. Clean lines clear automatically; disputes get flagged with evidence attached.">
+<meta property="og:description" content="Every carrier bill line matched against weighbridge, gate and delivery data; clean lines clear, disputes are flagged with evidence attached.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/studio/systems/freight-reconciliation">
 <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +25,7 @@
    "name": "Our carriers bill in every format imaginable. Does that break it?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "No. PDFs, spreadsheets, scanned images, extraction handles all of them. Format chaos is a solved problem; missing source data is the only real blocker, and the system tells you when that is the case."
+    "text": "No. PDFs, spreadsheets and scans are all read. Missing source data is the only real blocker, and the system says when that is so."
    }
   },
   {
@@ -33,15 +33,15 @@
    "name": "What happens to disputed lines?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "They queue for a person with the evidence bundled: the bill line, the matching records, the discrepancy. Nothing is sent to a carrier until your team approves it; the system then tracks the dispute to resolution."
+    "text": "They queue for a person with the bill line, matching records and discrepancy bundled. Nothing goes to a carrier until your team approves it."
    }
   },
   {
    "@type": "Question",
-   "name": "Can it enforce our contracted rate cards?",
+   "name": "Can it check our contracted rate cards?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. Rate cards load once; every bill line checks against them. Rate creep gets caught on the first bill, not at year end."
+    "text": "Yes. Rate cards load once and every bill line checks against them, so rate creep is caught on the first bill."
    }
   },
   {
@@ -49,7 +49,7 @@
    "name": "Will this sour carrier relationships?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "It usually improves them. Good carriers get paid faster because their clean bills clear same-day; only the padding gets disputed, and it gets disputed with evidence rather than suspicion."
+    "text": "It usually improves them. Clean bills clear same-day; only the padding gets disputed, with evidence."
    }
   },
   {
@@ -57,7 +57,7 @@
    "name": "What if our own weighbridge data has gaps?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Then the system reports the gap honestly, a bill line with no matching ticket is flagged as unverifiable, not silently passed. Most operators fix the gate discipline within a month once the gaps have a number on them."
+    "text": "A bill line with no matching ticket is flagged as unverifiable, not silently passed. Most operators fix gate discipline within a month."
    }
   },
   {
@@ -65,7 +65,7 @@
    "name": "We already reconcile in Excel. Why change?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Because Excel reconciles what someone has time to check. This checks everything, every line, every month, and shows its work."
+    "text": "Excel reconciles what someone has time to check. This checks every line, every month, and shows its work."
    }
   }
  ]
@@ -77,7 +77,7 @@
  "@type": "Service",
  "name": "Freight bills that match themselves, or explain why not",
  "serviceType": "Freight reconciliation automation",
- "description": "Every carrier bill line matched against weighbridge, gate and delivery data. Clean lines clear automatically; disputes get flagged with evidence attached.",
+ "description": "Every carrier bill line matched against weighbridge, gate and delivery data; clean lines clear, disputes are flagged with evidence attached.",
  "provider": {
   "@type": "Organization",
   "name": "WE_AINA",
@@ -233,7 +233,7 @@
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>Freight bills that match,<br>or <span class="accent">explain why</span> not.</h1>
-    <p class="sub dim">A system we have built before, run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and a person on your team approves it.</p>
+    <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -241,30 +241,28 @@
 <section>
   <div class="wrap">
     <span class="label">What this costs you today</span>
-    <p>In a typical operation of this size, manual freight reconciliation holds 3 people for the first week of every month; that is 36 person-weeks a year spent matching paper.</p>
-    <p style="margin-top:16px">Unchallenged carrier overbilling, duplicate trips, inflated distances, rate misapplication, runs 1 to 3% of freight spend, and it leaks quietly.</p>
+    <p>Manual freight reconciliation holds 3 people for the first week of every month: 36 person-weeks a year spent matching paper.</p>
+    <p style="margin-top:16px">Unchallenged carrier overbilling, duplicate trips, inflated distances, rate misapplication, runs 1 to 3% of freight spend.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="label">The system</span>
-    <p>The system matches every carrier bill line against weighbridge tickets (the weight recorded at the gate scale), gate records and delivery confirmations. Clean lines clear automatically. Mismatches, a billed trip with no weighbridge record, a distance that grew 15% since last quarter, get flagged with the evidence attached, ready to send back to the carrier.</p>
-    <p style="margin-top:16px">Month-end reconciliation becomes an exception review, not an archaeology project.</p>
-    <p class="accent" style="margin-top:24px">The same matching that runs at RockProsUSA, where 2,140 invoices went out with zero manual touches over the first twelve months, every match carrying the evidence behind it.</p>
+    <p>The system matches every carrier bill line against weighbridge tickets, gate records and delivery confirmations. Clean lines clear automatically. A billed trip with no weighbridge record, or a distance that grew 15% since last quarter, is flagged with the evidence attached.</p>
+    <p class="accent" style="margin-top:24px">The same matching runs at RockProsUSA, where 2,140 invoices went out with zero manual touches over the first twelve months.</p>
   </div>
 </section>
 
 <section class="deep">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
-    <p>The first pass runs on last quarter's already-paid bills, a backtest on money already out the door. That backtest is the sales pitch we do not have to write: it names the duplicate trips, the rate misapplications and the distance creep in your own data, with the evidence bundled per line. From there the system moves to live bills: clean lines clear the day they arrive, exceptions queue with their evidence, and your team's month-end week shrinks to a half-day review.</p>
-    <p style="margin-top:16px">Carriers adjust fast once disputes arrive with weighbridge tickets attached, the arguing stops when the receipts start.</p>
+    <p>The first pass runs on last quarter's paid bills and names the duplicate trips and distance creep in your own data. Then live bills: clean lines clear the day they arrive, exceptions queue with evidence, and month-end shrinks to a half-day review.</p>
     <h2 style="margin-top:48px">Signs you need this</h2>
-    <p class="dim" style="margin-top:12px">- Freight bills get paid on trust in busy months because checking would delay everyone's payment.</p>
-    <p class="dim" style="margin-top:12px">- The same route's billed distance varies 20% between carriers and nobody has asked why.</p>
-    <p class="dim" style="margin-top:12px">- Disputes die because assembling the evidence takes longer than the amount is worth.</p>
-    <p class="dim" style="margin-top:12px">- You have never checked a full month of freight lines, only samples.</p>
+    <p class="dim" style="margin-top:12px">- Freight bills get paid on trust in busy months.</p>
+    <p class="dim" style="margin-top:12px">- The same route's billed distance varies 20% between carriers.</p>
+    <p class="dim" style="margin-top:12px">- Disputes die because assembling the evidence costs more than the amount.</p>
+    <p class="dim" style="margin-top:12px">- You have only ever checked samples, never a full month.</p>
     <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
@@ -272,7 +270,7 @@
 <section id="cta">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">Two weeks inside your operation to find out what freight reconciliation automation would return for you, before a price goes on it.</p>
+    <p class="dim">Two weeks in your operation to size what freight reconciliation automation returns, before a price.</p>
     <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -280,12 +278,12 @@
 <section>
   <div class="wrap">
     <span class="label">Questions operators ask</span>
-    <div class="step"><span class="k">Q</span><div><h3>Our carriers bill in every format imaginable. Does that break it?</h3><p class="dim">No. PDFs, spreadsheets, scanned images, extraction handles all of them. Format chaos is a solved problem; missing source data is the only real blocker, and the system tells you when that is the case.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What happens to disputed lines?</h3><p class="dim">They queue for a person with the evidence bundled: the bill line, the matching records, the discrepancy. Nothing is sent to a carrier until your team approves it; the system then tracks the dispute to resolution.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Can it enforce our contracted rate cards?</h3><p class="dim">Yes. Rate cards load once; every bill line checks against them. Rate creep gets caught on the first bill, not at year end.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Will this sour carrier relationships?</h3><p class="dim">It usually improves them. Good carriers get paid faster because their clean bills clear same-day; only the padding gets disputed, and it gets disputed with evidence rather than suspicion.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What if our own weighbridge data has gaps?</h3><p class="dim">Then the system reports the gap honestly, a bill line with no matching ticket is flagged as unverifiable, not silently passed. Most operators fix the gate discipline within a month once the gaps have a number on them.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>We already reconcile in Excel. Why change?</h3><p class="dim">Because Excel reconciles what someone has time to check. This checks everything, every line, every month, and shows its work.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Our carriers bill in every format imaginable. Does that break it?</h3><p class="dim">No. PDFs, spreadsheets and scans are all read. Missing source data is the only real blocker, and the system says when that is so.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What happens to disputed lines?</h3><p class="dim">They queue for a person with the bill line, matching records and discrepancy bundled. Nothing goes to a carrier until your team approves it.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Can it check our contracted rate cards?</h3><p class="dim">Yes. Rate cards load once and every bill line checks against them, so rate creep is caught on the first bill.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Will this sour carrier relationships?</h3><p class="dim">It usually improves them. Clean bills clear same-day; only the padding gets disputed, with evidence.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What if our own weighbridge data has gaps?</h3><p class="dim">A bill line with no matching ticket is flagged as unverifiable, not silently passed. Most operators fix gate discipline within a month.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>We already reconcile in Excel. Why change?</h3><p class="dim">Excel reconciles what someone has time to check. This checks every line, every month, and shows its work.</p></div></div>
     <p class="dim" style="margin-top:48px">Related systems: <a href="/studio/systems/ar-followup-automation">accounts receivable follow-up automation</a> · <a href="/studio/systems/compliance-documentation">compliance documentation automation</a> · <a href="/studio/systems/quarry-dispatch-automation">quarry dispatch automation</a> · <a href="/studio/systems">all six systems</a></p>
   </div>
 </section>

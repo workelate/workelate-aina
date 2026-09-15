@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compliance documentation automation, WE_AINA</title>
-<meta name="description" content="Royalty, tax, transport-permit and environmental filings built continuously from weighbridge and dispatch data. Month-end becomes a review.">
+<meta name="description" content="Royalty, GST, e-way and environmental filings built continuously from weighbridge and dispatch data, so month-end becomes a review.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/compliance-documentation">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Compliance documentation automation, WE_AINA">
-<meta property="og:description" content="Royalty, tax, transport-permit and environmental filings built continuously from weighbridge and dispatch data. Month-end becomes a review.">
+<meta property="og:description" content="Royalty, GST, e-way and environmental filings built continuously from weighbridge and dispatch data, so month-end becomes a review.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/studio/systems/compliance-documentation">
 <meta name="twitter:card" content="summary_large_image">
@@ -25,7 +25,7 @@
    "name": "Our compliance rules change constantly. How does the system keep up?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Rule changes are configuration, not rebuilds. When a format or threshold changes, the template updates once and every subsequent filing follows it."
+    "text": "Rule changes are configuration. The template updates once and every later filing follows it."
    }
   },
   {
@@ -33,7 +33,7 @@
    "name": "Does it file directly with government portals?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "It prepares filing-ready artifacts and, where portals allow programmatic submission, files them. Where they do not, your team submits a prepared package instead of building one."
+    "text": "Where portals allow it, yes. Otherwise your team submits a prepared package instead of building one."
    }
   },
   {
@@ -41,7 +41,7 @@
    "name": "What about historical gaps, we are behind on documentation?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "The Diagnostic Sprint sizes the backlog first. Back-filling from existing weighbridge and dispatch records is usually possible for 12–18 months of history."
+    "text": "The Sprint sizes the backlog first. Back-filling from weighbridge and dispatch records usually covers 12 to 18 months of history."
    }
   },
   {
@@ -49,7 +49,7 @@
    "name": "Can it handle multi-state GST and different state royalty regimes?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Yes. Each site carries its own regime configuration; the group view shows every site's filing status on one board, which is usually the first time a director has seen that board at all."
+    "text": "Yes. Each site carries its own regime configuration; the group view shows every site's filing status on one board."
    }
   },
   {
@@ -57,7 +57,7 @@
    "name": "What does an inspector see?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "A filing where every number comes straight from the ticket, dispatch record or production entry that produced it. Inspections get shorter when the evidence is already assembled."
+    "text": "A filing where every number traces to the ticket, dispatch record or production entry that produced it."
    }
   },
   {
@@ -65,7 +65,7 @@
    "name": "Who is liable if a filing is wrong?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Same as today: you. What changes is that every number in the filing comes straight from the operating data behind it, so wrong filings become rare and defensible instead of common and mysterious."
+    "text": "Same as today: you. What changes is that wrong filings become rare and defensible."
    }
   }
  ]
@@ -77,7 +77,7 @@
  "@type": "Service",
  "name": "Compliance filings assembled from operating data, not month-end panic",
  "serviceType": "Compliance documentation automation",
- "description": "Royalty, tax, transport-permit and environmental filings built continuously from weighbridge and dispatch data. Month-end becomes a review.",
+ "description": "Royalty, GST, e-way and environmental filings built continuously from weighbridge and dispatch data, so month-end becomes a review.",
  "provider": {
   "@type": "Organization",
   "name": "WE_AINA",
@@ -233,7 +233,7 @@
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>Compliance filings, not<br><span class="accent">month-end panic.</span></h1>
-    <p class="sub dim">A system we have built before, run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and a person on your team approves it.</p>
+    <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -241,30 +241,28 @@
 <section>
   <div class="wrap">
     <span class="label">What this costs you today</span>
-    <p>In a typical operation of this size, royalty, GST (India's goods and services tax) and e-way documentation (the transport permit that travels with every consignment) consumes 8 to 12 person-days per site per month when assembled by hand from operating records.</p>
-    <p style="margin-top:16px">One missed or mismatched royalty filing can freeze dispatches for days, and a single day of stopped dispatch at a mid-size quarry is a day of deferred revenue and a customer queue you will hear about.</p>
+    <p>Royalty, GST and e-way documentation assembled by hand from operating records consumes 8 to 12 person-days per site per month.</p>
+    <p style="margin-top:16px">One missed royalty filing can stop dispatches for days, and each day at a mid-size quarry is deferred revenue.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="label">The system</span>
-    <p>The system builds the filings from the same operating data that runs your business: weighbridge tickets (the weight recorded at the gate scale) become royalty returns, dispatch records become e-way documentation, production logs feed environmental reports. Because the filings are assembled continuously, month-end is a review, not a reconstruction. Mismatches between what was filed and what was weighed surface immediately, while they are still corrections, not violations.</p>
-    <p style="margin-top:16px">Nothing is filed until a person has approved it.</p>
-    <p class="accent" style="margin-top:24px">The same system that runs at RockProsUSA, where every reported number comes straight from the operating data that produced it. Compliance is where that discipline pays twice.</p>
+    <p>The system builds the filings from the operating data that runs your business: weighbridge tickets become royalty returns, dispatch records become e-way documentation, production logs feed environmental reports. Mismatches between filed and weighed surface while they are still corrections. Nothing is filed until a person approves it.</p>
+    <p class="accent" style="margin-top:24px">The same system runs at RockProsUSA, where every reported number comes straight from the operating data that produced it.</p>
   </div>
 </section>
 
 <section class="deep">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
-    <p>Implementation begins with an honest inventory: which filings you owe, where each number in them actually comes from, and where today's process papers over gaps. Most operators discover their royalty return and their weighbridge log have never been systematically compared, the first reconciliation is uncomfortable and valuable in equal measure. Then the assembly goes continuous: every ticket and dispatch event lands in the right filing draft the day it happens.</p>
-    <p style="margin-top:16px">Your compliance person stops being an assembler under deadline and becomes a reviewer with slack, reviewing drafts that carry their evidence, days before they are due.</p>
+    <p>It begins with an inventory: which filings you owe and where each number comes from. Most operators find their royalty return and weighbridge log have never been compared. Then assembly goes continuous, and drafts carry their evidence days before they are due.</p>
     <h2 style="margin-top:48px">Signs you need this</h2>
-    <p class="dim" style="margin-top:12px">- The three days before a filing deadline are the worst three days of the month.</p>
-    <p class="dim" style="margin-top:12px">- Filed numbers and operating numbers are reconciled only when an inspector asks.</p>
-    <p class="dim" style="margin-top:12px">- One person holds the entire filing process, and their notice period is 30 days.</p>
-    <p class="dim" style="margin-top:12px">- You have paid a late fee this year for a filing whose data existed on time.</p>
+    <p class="dim" style="margin-top:12px">- The three days before a filing deadline are the worst of the month.</p>
+    <p class="dim" style="margin-top:12px">- Filed and operating numbers are reconciled only when an inspector asks.</p>
+    <p class="dim" style="margin-top:12px">- One person holds the filing process, and their notice period is 30 days.</p>
+    <p class="dim" style="margin-top:12px">- You paid a late fee this year for a filing whose data existed on time.</p>
     <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
@@ -272,7 +270,7 @@
 <section id="cta">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">Two weeks inside your operation to find out what compliance documentation automation would return for you, before a price goes on it.</p>
+    <p class="dim">Two weeks in your operation to size what compliance documentation automation returns, before a price.</p>
     <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
@@ -280,12 +278,12 @@
 <section>
   <div class="wrap">
     <span class="label">Questions operators ask</span>
-    <div class="step"><span class="k">Q</span><div><h3>Our compliance rules change constantly. How does the system keep up?</h3><p class="dim">Rule changes are configuration, not rebuilds. When a format or threshold changes, the template updates once and every subsequent filing follows it.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Does it file directly with government portals?</h3><p class="dim">It prepares filing-ready artifacts and, where portals allow programmatic submission, files them. Where they do not, your team submits a prepared package instead of building one.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What about historical gaps, we are behind on documentation?</h3><p class="dim">The Diagnostic Sprint sizes the backlog first. Back-filling from existing weighbridge and dispatch records is usually possible for 12–18 months of history.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Can it handle multi-state GST and different state royalty regimes?</h3><p class="dim">Yes. Each site carries its own regime configuration; the group view shows every site's filing status on one board, which is usually the first time a director has seen that board at all.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>What does an inspector see?</h3><p class="dim">A filing where every number comes straight from the ticket, dispatch record or production entry that produced it. Inspections get shorter when the evidence is already assembled.</p></div></div>
-    <div class="step"><span class="k">Q</span><div><h3>Who is liable if a filing is wrong?</h3><p class="dim">Same as today: you. What changes is that every number in the filing comes straight from the operating data behind it, so wrong filings become rare and defensible instead of common and mysterious.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Our compliance rules change constantly. How does the system keep up?</h3><p class="dim">Rule changes are configuration. The template updates once and every later filing follows it.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Does it file directly with government portals?</h3><p class="dim">Where portals allow it, yes. Otherwise your team submits a prepared package instead of building one.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What about historical gaps, we are behind on documentation?</h3><p class="dim">The Sprint sizes the backlog first. Back-filling from weighbridge and dispatch records usually covers 12 to 18 months of history.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Can it handle multi-state GST and different state royalty regimes?</h3><p class="dim">Yes. Each site carries its own regime configuration; the group view shows every site's filing status on one board.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>What does an inspector see?</h3><p class="dim">A filing where every number traces to the ticket, dispatch record or production entry that produced it.</p></div></div>
+    <div class="step"><span class="k">Q</span><div><h3>Who is liable if a filing is wrong?</h3><p class="dim">Same as today: you. What changes is that wrong filings become rare and defensible.</p></div></div>
     <p class="dim" style="margin-top:48px">Related systems: <a href="/studio/systems/quarry-dispatch-automation">quarry dispatch automation</a> · <a href="/studio/systems/plant-production-reporting">plant production reporting automation</a> · <a href="/studio/systems/dealer-order-management">dealer order management automation</a> · <a href="/studio/systems">all six systems</a></p>
   </div>
 </section>

@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Identity and scope, the Brain by WorkElate Chief</title>
-<meta name="description" content="Every action carries who is asking and which company they belong to, and both are read from the sign-in, never from the AI (the model).">
+<meta name="description" content="Every action carries who is asking and which company they belong to, both read from the sign-in, never from the AI.">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/brain/capabilities/identity-and-scope">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Identity and scope, the Brain by WorkElate Chief">
-<meta property="og:description" content="Every action carries who is asking and which company they belong to, and both are read from the sign-in, never from the AI (the model).">
+<meta property="og:description" content="Every action carries who is asking and which company they belong to, both read from the sign-in, never from the AI.">
 <meta property="og:image" content="https://aina.workelate.com/og.png">
 <meta property="og:url" content="https://aina.workelate.com/brain/capabilities/identity-and-scope">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +20,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Identity and scope",
-  "description": "Every action carries who is asking and which company they belong to, and both are read from the sign-in, never from the AI (the model).",
+  "description": "Every action carries who is asking and which company they belong to, both read from the sign-in, never from the AI.",
   "url": "https://aina.workelate.com/brain/capabilities/identity-and-scope"
 }
 </script>
@@ -219,8 +219,7 @@
     <p class="crumb"><a href="/brain">The Brain</a> / <a href="/brain/capabilities">Capabilities</a> / Identity and scope</p>
     <span class="sr-only"><span class="label">CONNECT</span></span>
     <h1>It acts only as<br>the person who <span class="accent">signed in.</span></h1>
-    <p class="sub dim">Every action carries who is asking and which company they belong to, and both are read from the sign-in, never from the AI (the model). Nothing in a document, an email or the AI&rsquo;s own output can change who that is.</p>
-    <p class="lede">What changes on Monday: the first question your security reviewer asks, what this can reach and on whose behalf, has an answer that does not depend on the AI behaving.</p>
+    <p class="sub dim">Who is asking, and which company, is read from the sign-in, never from the AI. No document or email can change that.</p>
     <p class="hero-cta"><a class="btn" href="/book-a-demo">Book a demo</a> <a href="/book-a-demo">See it running first</a></p>
   </div>
 </section>
@@ -233,8 +232,8 @@
     <div class="step rv">
       <span class="k">01</span>
       <div>
-        <h3>An inbound attachment carries an instruction, not just content</h3>
-        <p class="dim">Buried in a supplier document is a line telling the assistant to look up addresses held for a different account. Plain text, nothing malformed, nothing between sender and reader built to notice.</p>
+        <h3>An attachment carries an instruction</h3>
+        <p class="dim">A line in a supplier document tells the assistant to look up addresses held for another account. Plain text, nothing malformed.</p>
       </div>
     </div>
 
@@ -242,15 +241,15 @@
       <span class="k">02</span>
       <div>
         <h3>The AI reads it and is persuaded</h3>
-        <p class="dim">Assume the worst honest case: the AI drafts a request naming a different company. No amount of instruction removes this step reliably, so the design does not rely on the AI declining.</p>
+        <p class="dim">Assume the worst: the AI drafts a request naming a different company. The design does not rely on the AI declining.</p>
       </div>
     </div>
 
     <div class="step rv">
       <span class="k">03</span>
       <div>
-        <h3>The identity is replaced before the call is made</h3>
-        <p class="dim">The company the AI named is discarded and the signed-in person&rsquo;s written in. The read comes back scoped, and the person gets a summary of the document they were sent.</p>
+        <h3>The identity is replaced before the call</h3>
+        <p class="dim">The company the AI named is discarded and the signed-in person&rsquo;s written in. The read comes back scoped, the summary arrives.</p>
       </div>
     </div>
   </div>
@@ -259,29 +258,29 @@
 <section class="deep">
   <div class="wrap">
     <span class="label">How it works</span>
-    <h2>The same rule, applied in three places</h2>
+    <h2>The same rule, in three places</h2>
 
     <div class="principle">
       <div class="pn">01</div>
       <div>
         <h3>Overwrite, rather than validate</h3>
-        <p class="dim">The tool layer does not inspect the identity the AI supplied and decide whether to trust it. It replaces it. Validation can be wrong on an input nobody anticipated; overwriting has no branch.</p>
+        <p class="dim">The tool layer does not judge the identity the AI supplied. It replaces it. Overwriting has no branch to get wrong.</p>
       </div>
     </div>
 
     <div class="principle">
       <div class="pn">02</div>
       <div>
-        <h3>The organization is part of the query, not a filter afterwards</h3>
-        <p class="dim">A read asks for rows belonging to one organization rather than asking for rows and discarding some. Most of the data layer carries that boundary today, and the rest is being brought in.</p>
+        <h3>The organization is part of the query</h3>
+        <p class="dim">A read asks for one organization&rsquo;s rows, never all rows minus some. Most of the data layer carries that boundary today.</p>
       </div>
     </div>
 
     <div class="principle">
       <div class="pn">03</div>
       <div>
-        <h3>Memory keeps the same boundary, and a check with no boundary refuses</h3>
-        <p class="dim">Everything WorkElate Chief, the Brain, remembers names the company it belongs to. Where a check has no company to scope on, it answers unknown rather than passing.</p>
+        <h3>Memory keeps the boundary; no boundary, refuse</h3>
+        <p class="dim">Everything the Brain remembers names its company. A check with no company to scope on answers unknown, never pass.</p>
       </div>
     </div>
   </div>
@@ -291,9 +290,9 @@
   <div class="wrap">
     <span class="label">What it is not</span>
     <h2>Three honest limits</h2>
-    <p class="lede">It is not a certification. No SOC 2, no ISO 27001 is claimed, and data handling terms are agreed per engagement in writing before anything connects.</p>
-    <p class="lede">It does not mirror the permissions of your source systems. Nothing we measure covers permission fidelity, so we do not claim it.</p>
-    <p class="lede">Not all of the data layer carries the boundary yet, and we would rather say so than round it up. A service identity per connected system is what we ask of you.</p>
+    <p class="lede">No SOC 2 or ISO 27001 is claimed; terms agreed per engagement.</p>
+    <p class="lede">It does not mirror your source systems&rsquo; permissions.</p>
+    <p class="lede">Not all of the data layer carries the boundary yet.</p>
 
     <ul class="conn">
       <li><a href="/brain/capabilities/read-after-write">Read after write</a></li>
@@ -308,7 +307,7 @@
 <section id="cta">
   <div class="wrap">
     <h2>Book a Diagnostic Sprint</h2>
-    <p class="sub">Bring your security reviewer&rsquo;s first question, and get an answer that does not depend on the AI behaving.</p>
+    <p class="sub">Bring your security reviewer&rsquo;s first question.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
   </div>
 </section>
