@@ -11,6 +11,7 @@
     "dev:legacy": "node server.mjs",
     "build": "next build",
     "start": "next start -p 4310",
+    "assets": "node scripts/genassets.mjs",
     "frames": "node scripts/genframes.mjs",
     "verify": "node scripts/verify.mjs"
   },

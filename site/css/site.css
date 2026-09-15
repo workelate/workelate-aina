@@ -267,10 +267,10 @@ section.deep ::selection, .band-dark ::selection, #cta ::selection { background:
 :is(h1, h2, h3) span[style*="color"] { color: var(--ws-cyan) !important; }
 
 /* ------------------------------------------------------------- reveals -- */
-/* transform/opacity only, no layout thrash. .rv fades up; .stagger cascades.
-   [HERO] the product's entrance ladder is the same move (slideUpFade,
-   translateY(30–40px) → 0, ease-out). */
-.rv { opacity: 0.02; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); } /* audit #16: 12px rise, 0.5s; floor stays above 0 so the JS-off gate never reads invisible text */
+/* Keep copy fully legible before intersection. Earlier opacity:0.02 made every
+   below-fold reveal fail Lighthouse contrast until somebody scrolled to it.
+   Motion now comes from position only: same entrance, no hidden information. */
+.rv { opacity: 1; transform: translateY(10px); transition: transform 0.45s var(--ease); }
 .rv.in { opacity: 1; transform: none; }
 .stagger > .rv:nth-child(2) { transition-delay: 0.08s; } /* audit #16: stagger stops at three */
 .stagger > .rv:nth-child(n+3) { transition-delay: 0.16s; }
@@ -291,9 +291,8 @@ section.deep ::selection, .band-dark ::selection, #cta ::selection { background:
 @media (prefers-reduced-motion: reduce) {
   .rv, .rise > span { opacity: 1; transform: none; animation: none; }
 }
-/* .in is added by /js/reveal.js. With scripting off, every .rv block would
-   otherwise stay at opacity 0 forever — the verify gate's JS-disabled pass
-   treats computed opacity 0 on text as a blank page. */
+/* .in is added by /js/reveal.js. Keep explicit no-script rule so future reveal
+   changes cannot make content depend on JavaScript. */
 @media (scripting: none) {
   .rv, .rise > span { opacity: 1; transform: none; animation: none; }
 }
@@ -1723,12 +1722,11 @@ section > .wrap > p.hero-cta, #hero .hero-cta { max-width: 820px; }
 .figure.real figcaption { padding: 14px 0 18px; }
 @media (max-width: 620px) { .figure.real { padding: 14px 14px 0; } .figure.real img { border-radius: 8px; } }
 
-/* ---- audit #5 (stopgap, the copy cut is the fix): on a phone the button
-   must clear the fold. The lede clamps to four lines under 640px and the
-   label pill never wraps to a second line. ---- */
+/* ---- audit #5: on a phone the button clears the fold without truncating the
+   product argument. Labels stay on one line; hero copy remains complete. ---- */
 @media (max-width: 640px) {
   .page-hero .sub, #hero .lede, #hero .hero-say > p:not(.hero-cta) {
-    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden;
+    display: block; overflow: visible;
   }
   .page-hero .sub ~ p:not(.hero-cta) { display: none; } /* audit #5: the hero's follow-on paragraphs wait for the copy cut; on a phone they push the button off the fold */
   .label:not(form .label) {

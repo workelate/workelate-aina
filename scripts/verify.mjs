@@ -149,6 +149,13 @@ for (const route of PAGES) {
     const body = txt(document.body).toLowerCase();
     const hits = banned.filter(b => body.includes(b));
 
+    // Content may move into place, but it must never be made unreadable while
+    // waiting for an intersection callback. opacity:0.02 previously passed the
+    // JS-off test while Lighthouse measured near-black text at ~1:1 contrast.
+    const dimReveals = [...document.querySelectorAll(".rv")]
+      .filter(el => Number.parseFloat(getComputedStyle(el).opacity) < 0.99)
+      .map(el => txt(el).slice(0, 60));
+
     // FOUNDER CALL 2026-09-12: the site is being brought onto the workelate.com
     // system, which is dark, and whose whole visual language is gradient and
     // glass. The blanket gradient/box-shadow ban that stood here since
@@ -158,6 +165,14 @@ for (const route of PAGES) {
     // is the failure this now blocks, because that is what a partial rebrand
     // looks like, and it is invisible to a copy gate.
     const styleHits = [];
+
+    // Readable source stays in the repo; pages must ship generated minified
+    // assets. A later page generator can silently restore a raw reference, so
+    // keep this in the same per-page gate as brand and no-JS checks.
+    const rawAssets = [
+      ...document.querySelectorAll('link[rel="stylesheet"][href$=".css"], script[src$=".js"]')
+    ].map(el => el.getAttribute("href") || el.getAttribute("src"))
+      .filter(src => src?.startsWith("/") && !/\.min\.(?:css|js)$/.test(src));
 
     // internal links
     const links = [...document.querySelectorAll("a[href]")]
@@ -185,7 +200,7 @@ for (const route of PAGES) {
       desc: (document.querySelector('meta[name="description"]')?.getAttribute("content") || "").trim(),
       ldCount: ld.length, ldObjects, ldErrors,
       bannedHits: hits,
-      styleHits: [...new Set(styleHits)],
+      styleHits: [...new Set(styleHits)], dimReveals, rawAssets,
       links, footerLinks,
       title: (document.title || "").trim()
     };
@@ -200,6 +215,10 @@ for (const route of PAGES) {
   assert("valid parsed JSON-LD", facts.ldCount >= 1 && facts.ldObjects >= 1 && facts.ldErrors.length === 0,
     route, facts.ldCount === 0 ? "no JSON-LD on page" : facts.ldErrors.join("; "));
   assert("no banned copy", facts.bannedHits.length === 0, route, facts.bannedHits.join(", "));
+  assert("reveal content stays legible before scroll", facts.dimReveals.length === 0,
+    route, facts.dimReveals.join(" | "));
+  assert("uses generated production assets", facts.rawAssets.length === 0,
+    route, facts.rawAssets.join(" | "));
   // The brand ground, as rgb. Anything else means the page missed the rebrand.
   assert("on the brand system (ground + family)",
     facts.ground === BRAND_GROUND && /work sans/i.test(facts.family),

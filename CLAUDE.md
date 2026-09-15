@@ -11,8 +11,8 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
    → FIX until green → only then move to the next section.
 2. Never claim a section is done without pasting verify output.
 3. Design system in .claude/rules/design-system.md is LAW (currently
-   v4/v5: white/blue corporate, Infosys-pattern layout, green only as
-   a positive-delta pinch). If a request conflicts, push back with
+   v7: WorkElate dark ground, Work Sans, cyan/purple gradients and glass).
+   If a request conflicts, push back with
    the compliant alternative.
 4. Section order: hero → ticker → shift → work → services → casestudy
    → process → founders → cta → footer.
@@ -32,19 +32,22 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
 - `npm run frames` — regenerates the 160 procedural scrub frames.
   DEAD as of 2026-07-22: the scrub section was cut, nothing reads
   assets/frames/casestudy/ any more. Kept only as reference.
-- `node scripts/gensystems.mjs` — regenerate /systems pages + sitemap.
+- `node scripts/gensystems.mjs` — regenerate /studio/systems pages.
 - `node scripts/gencorpus.mjs` — rebuild site/data/corpus.json, the
   knowledge base the hero assistant answers from.
+- `npm run assets` — minify live CSS/JS and update all static page refs.
+  Run last, after page, chrome, SEO, sitemap and corpus generators.
 - `node scripts/genartifacts.mjs` — regenerate product mockup PNGs.
 - `node scripts/genog.mjs` — regenerate the OG image.
 - `node scripts/genchrome.mjs` — rewrite the header nav and the mega footer
-  into EVERY page under site/. RUN IT LAST, after gensystems/gencases/genwork.
+  into EVERY page under site/. Run after gensystems/gencases/genwork and
+  before SEO, sitemap, corpus and production assets.
   The chrome lives in that one file; pages carry `<!-- NAV:start -->` /
   `<!-- FOOTER:start -->` markers it rewrites. Never hand-edit a nav or footer
   in a page: footer parity is a gate assertion and a hand edit dies on the
   next run.
 - `node scripts/gensitemap.mjs` — sitemap.xml + robots.txt derived from site/.
-  RUN IT LAST. gensystems no longer writes a hand-listed sitemap.
+  Run after SEO and before corpus/production assets.
 - `node scripts/gencapindex.mjs` — regenerate the capability index rows in
   site/brain/capabilities/index.html from the capability pages themselves.
 - `node scripts/genbrain.mjs` — regenerate the /brain product mockups (being
@@ -52,9 +55,10 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
   (site/img/brain-verbs, -honesty, -ladder, -adoption.png).
 
 ## Generated files — never hand-edit
-site/systems/*.html, site/data/corpus.json, site/sitemap.xml,
+site/studio/systems/*.html, site/data/corpus.json, site/sitemap.xml,
 site/robots.txt, site/og.png,
-site/img/*.png, assets/frames/casestudy/* are ALL generator output.
+site/img/*.png, site/css/*.min.css, site/js/*.min.js,
+assets/frames/casestudy/* are ALL generator output.
 Edit the generator in scripts/, then re-run it. A hand edit dies on
 the next regeneration.
 
@@ -64,12 +68,9 @@ the next regeneration.
   the catch-all app/[[...slug]]/route.js (site/ + assets/). Content
   still comes from generators — do NOT convert pages to JSX without a
   founder call. server.mjs kept as dev:legacy reference.
-- POST /api/score lives in app/api/score/route.js. DB = leads.db via
-  node:sqlite in lib/db.js (leads + audit tables — every step audited,
-  keep it that way). Report generation runs via next/server after().
-- /api/score has a spam guard: 5/hr/IP rate limit, payload validation,
-  honeypot field `website` (returns fake 200). Next dev hot-reloads
-  route handlers; no manual restart needed.
+- POST /api/lead lives in app/api/lead/route.js. It validates email/phone,
+  caps payloads, uses the `website` honeypot (fake 200), and rate-limits
+  valid submissions to 8/hr/IP. Next dev hot-reloads route handlers.
 - The pinned scroll-scrub was CUT on 2026-07-22 (founder: "entirely
   looking pathetic") — 500vh of near-blank navy, because the frames
   were never more than placeholder SVGs. #casestudy is now a static
@@ -110,14 +111,15 @@ the next regeneration.
   (`zoneOf(route)`), and `scripts/verify.mjs` asserts footer parity PER ZONE.
 - Generators write into `site/studio/…` now (gensystems, gencases, genwork,
   genbreadth); sitemap and robots still land at `site/`.
-- Nothing under `site/` is deployed or committed yet. The repo is untracked.
+- `site/` is committed and deployed from `main` through Vercel's GitHub
+  integration; no separate deploy branch.
 
 ## IP stays internal (founder, 2026-09-12)
 "kya unify or glean ne ip share kiya hai?" Public pages carry OUTCOMES and
 buyer-facing numbers only. Never on a page: a commit sha, file / emit-site /
 model / identity-field / evaluation counts, internal module or service names,
 or any sentence about how the code is structured. Public set: 15 verbs, 287
-actions, the Brain's own 12 application surfaces, 190 business objects, 71
+actions, the Brain's own 12 application surfaces, 71
 confirm-gated, 40 per organization and 5 per person per hour, the RockProsUSA
 receipts, $30K to $100K, the 2-week Sprint, 34 / 9 / 374. The full measurement
 and the long form live in `data/brain-facts.md` and `data/brain-reading-pack.md`
