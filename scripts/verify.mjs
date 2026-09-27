@@ -43,6 +43,7 @@ function discoverPages(dir = SITE, out = []) {
     const last = rel[rel.length - 1];
     if (last === "index.html") rel.pop();
     else rel[rel.length - 1] = last.slice(0, -".html".length);
+    if (rel.join("/") === "404") continue; // served by app/not-found.js with status 404; checked below
     out.push("/" + rel.join("/"));
   }
   return out;
@@ -272,6 +273,14 @@ for (const route of PAGES) {
     if (!r.status || r.status >= 400) bad.push(`${href} (${r.status || r.err}) linked from ${from}`);
   }
   assert("zero broken internal links", bad.length === 0, `${internalLinks.size} links`, bad.join(" | "));
+}
+{
+  // An unknown path answers 404 AND shows the designed page (site/404.html via
+  // app/not-found.js), never the framework's bare "This page could not be found".
+  const r = await fetch(URL + "/no-such-page-" + Date.now());
+  const body = await r.text();
+  assert("unknown path is a designed 404", r.status === 404 && body.includes("This page is not here"),
+    "/404", `status ${r.status}`);
 }
 
 /* ------------------------------------------------------ dotfile leak guard -- */

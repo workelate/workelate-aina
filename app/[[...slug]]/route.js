@@ -14,6 +14,7 @@ export const dynamicParams = false;
 
 const SITE = path.join(process.cwd(), "site");
 const ASSETS = path.join(process.cwd(), "assets");
+const NOT_FOUND = path.join(SITE, "404.html");
 
 const MIME = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8",
@@ -41,6 +42,7 @@ function walk(dir, base, out) {
     if (name.startsWith(".")) continue; // never publish dotfiles (agent receipts, .DS_Store)
     const p = path.join(dir, name);
     if (statSync(p).isDirectory()) walk(p, base, out);
+    else if (base === SITE && p === NOT_FOUND) continue; // app/not-found.js renders it, with a real 404 status
     else out.push(toSlug(base, p));
   }
 }
@@ -65,6 +67,7 @@ function resolve(slug = []) {
   if (!p.startsWith(base)) return null; // path traversal guard
 
   if (existsSync(p) && statSync(p).isDirectory()) p = path.join(p, "index.html");
+  if (p === NOT_FOUND || p + ".html" === NOT_FOUND) return null;
   if (existsSync(p)) return p;
   if (existsSync(p + ".html")) return p + ".html"; // extensionless clean URL
   return null;
