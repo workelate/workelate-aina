@@ -179,7 +179,6 @@ const page = (p, idx) => {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${p.cat}, WE_AINA</title>
 <meta name="description" content="${p.metaDesc}">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/${p.slug}">
@@ -335,7 +334,6 @@ const indexPage = () => `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Six systems we build and run, WE_AINA</title>
 <meta name="description" content="${INDEX_DESC}">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems">
