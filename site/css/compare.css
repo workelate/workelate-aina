@@ -1,6 +1,6 @@
 /* compare.css: the /brain/compare pages only, loaded after /css/site.css.
    Shape borrowed from citedspy.com/alternatives/<vendor> and set on the
-   workelate.com dark system: every colour is a var(--ws-*) token from site.css,
+   workelate.com v8 light system: every colour is a var(--ws-*) token from site.css,
    no new font, no shadow beyond the frame's hairline. Sized for the raised type
    scale (body 19px, lede 22px). */
 
@@ -17,7 +17,7 @@
 .pill {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 6px 16px 6px 6px; border-radius: var(--r-pill);
-  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--ws-border-strong);
+  background: var(--v-light); border: 1px solid var(--ws-border-strong);
   font-size: 14px; font-weight: 500; color: var(--ws-text-muted); margin-bottom: 26px;
 }
 .pill .pill-y {
@@ -28,10 +28,10 @@
 /* the product frame: a 20px glass frame with one hairline, the image inside */
 .shot-frame { margin: 0; }
 .shot-frame .frame {
-  padding: 10px; border-radius: var(--r-card);
-  background: var(--ws-glass); border: 1px solid var(--ws-border-strong);
+  padding: 0; border-radius: 18px; overflow: hidden;
+  background: #fff; border: 0; box-shadow: var(--v-window);
 }
-.shot-frame img { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--ws-bg-soft); }
+.shot-frame img { display: block; width: 100%; height: auto; border-radius: 0; background: var(--v-light); }
 .shot-frame figcaption {
   display: flex; align-items: center; gap: 10px; margin-top: 14px; padding-left: 4px;
   font-size: 14px; color: var(--ws-text-muted);
@@ -60,7 +60,7 @@
 .pick-strip {
   display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px;
   margin: 0 0 40px; padding: 18px 22px; border-radius: var(--r-card);
-  background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.35);
+  background: var(--v-teal-soft); border: 1px solid transparent;
 }
 .pick-strip .shot-frame { width: 220px; }
 .pick-strip .shot-frame .frame { padding: 5px; border-radius: 12px; }
@@ -79,8 +79,8 @@ section.deep .glance-wrap { background: var(--ws-bg); }
 table.glance { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 14.5px; line-height: 1.45; table-layout: fixed; min-width: 1040px; }
 .glance th, .glance td { text-align: left; vertical-align: top; padding: 16px 14px; border-bottom: 1px solid var(--ws-border); overflow-wrap: anywhere; }
 .glance thead th {
-  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--ws-text-muted); background: rgba(255, 255, 255, 0.04);
+  font-size: 13px; font-weight: 600; letter-spacing: -0.01em; text-transform: none;
+  color: var(--ws-text-muted); background: var(--v-light);
   border-bottom: 1px solid var(--ws-border-strong); padding-top: 14px; padding-bottom: 14px;
 }
 .glance tbody tr:last-child th, .glance tbody tr:last-child td { border-bottom: none; }
@@ -104,16 +104,16 @@ section.deep .glance th[scope="row"], section.deep .glance thead th:first-child 
 
 /* the PICK chip */
 .chip {
-  display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 6px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5;
+  display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 980px;
+  font-size: 12px; font-weight: 600; letter-spacing: -0.005em; text-transform: none; line-height: 1.5;
   color: #fff; background: var(--ws-grad-2);
 }
 
 /* the highlighted row: our purple wash, the same recipe as .cmp .us */
-.glance tr.is-pick th, .glance tr.is-pick td { background: rgba(139, 92, 246, 0.08); border-bottom-color: rgba(139, 92, 246, 0.35); }
-.glance tr.is-pick th[scope="row"] { background: #12101f; }
-section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
-.glance tr.is-pick td b { color: #fff; }
+.glance tr.is-pick th, .glance tr.is-pick td { background: var(--v-teal-soft); border-bottom-color: transparent; }
+.glance tr.is-pick th[scope="row"] { background: var(--v-teal-soft); }
+section.deep .glance tr.is-pick th[scope="row"] { background: var(--v-teal-soft); }
+.glance tr.is-pick td b { color: var(--v-ink); }
 
 /* cells: a bold value on the first line, a grey qualifier below */
 .glance td b { display: block; color: var(--ws-text); font-weight: 600; }
@@ -126,13 +126,13 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
   width: 20px; height: 20px; margin-top: 1px; border-radius: 6px;
   font-style: normal; font-size: 12.5px; font-weight: 700; line-height: 1;
 }
-.gl-yes { color: var(--ws-emerald); background: rgba(52, 211, 153, 0.14); }
-.gl-part { color: var(--ws-amber); background: rgba(251, 191, 36, 0.14); }
-.gl-no { color: var(--ws-red); background: rgba(248, 113, 113, 0.14); }
+.gl-yes { color: var(--ws-emerald); background: var(--v-ok-soft); }
+.gl-part { color: var(--ws-amber); background: #fdf3e7; }
+.gl-no { color: var(--ws-red); background: #fbeceb; }
 .v-yes { color: var(--ws-emerald); }
 .v-part { color: var(--ws-amber); }
 .v-no { color: var(--ws-red-soft); }
-.glance tr.is-pick .v-yes { color: #6ee7b7; }
+.glance tr.is-pick .v-yes { color: var(--v-ok); }
 .glance-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; font-size: 14px; color: var(--ws-text-muted); }
 .glance-legend span { display: inline-flex; align-items: center; gap: 8px; }
 
@@ -142,7 +142,7 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
 .choose .step { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
 .choose .step :is(h3, h4) { font-size: 18px; margin: 0; font-weight: 600; color: var(--ws-text); }
 .choose .step p { font-size: 16px; }
-.choose .col.us { padding: 4px 26px 0; border-radius: var(--r-card); background: rgba(139, 92, 246, 0.06); border: 1px solid rgba(139, 92, 246, 0.25); }
+.choose .col.us { padding: 4px 26px 0; border-radius: var(--r-card); background: var(--v-teal-soft); border: 1px solid transparent; }
 
 /* the rankings list on the hub keeps site.css .svc; only the mark is new */
 .svc .smark { display: inline-block; width: 26px; height: 26px; border-radius: 7px; vertical-align: -7px; margin-right: 12px; background: #fff; object-fit: contain; }
@@ -167,13 +167,13 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
     margin-bottom: 14px; border: 1px solid var(--border-card); border-radius: var(--r-card);
     background: var(--ws-bg-soft); overflow: hidden;
   }
-  .glance tr.is-pick { border-color: rgba(139, 92, 246, 0.45); }
+  .glance tr.is-pick { border-color: transparent; }
   .glance th[scope="row"] { position: static; width: auto; min-width: 0; border-right: none; padding: 18px 18px 14px; }
   .glance tbody tr th, .glance tbody tr td { border-bottom: 1px solid var(--ws-border); }
   .glance tbody tr td:last-child { border-bottom: none; }
   .glance td, .glance td.wide, .glance td:last-child { width: auto; min-width: 0; display: grid; grid-template-columns: 112px 1fr; column-gap: 12px; padding: 12px 18px; }
   .glance td::before {
-    content: attr(data-label); font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    content: attr(data-label); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; text-transform: none;
     color: var(--ws-text-muted); padding-top: 3px;
   }
   .glance td > * { grid-column: 2; }
@@ -198,7 +198,7 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
   padding: 24px 26px; border-radius: var(--r-card);
   background: var(--ws-glass); border: 1px solid var(--border-card);
 }
-.pc.us { background: rgba(139, 92, 246, 0.06); border-color: rgba(139, 92, 246, 0.25); }
+.pc.us { background: var(--v-teal-soft); border-color: transparent; }
 .pc h3 { font-size: 18px; font-weight: 600; margin: 0 0 14px; color: var(--ws-text); }
 .pc ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
 .pc li { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; line-height: 1.5; color: var(--ws-text-muted); }
@@ -213,7 +213,7 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
   display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;
   border-radius: var(--r-card); background: var(--ws-glass); border: 1px solid var(--border-card);
 }
-.alt-item.alt-pick { background: rgba(139, 92, 246, 0.08); border-color: rgba(139, 92, 246, 0.35); }
+.alt-item.alt-pick { background: var(--v-teal-soft); border-color: transparent; }
 .alt-head { display: grid; grid-template-columns: 36px 1fr; column-gap: 12px; align-items: center; }
 .alt-mark { width: 36px; height: 36px; border-radius: 9px; grid-row: 1 / 3; display: block; object-fit: contain; background: #fff; }
 .alt-head .alt-mark.mark { display: inline-flex; background: var(--ws-grad-2); }
@@ -221,5 +221,5 @@ section.deep .glance tr.is-pick th[scope="row"] { background: #100d1c; }
 .alt-for { display: block; font-size: 13.5px; line-height: 1.4; color: var(--ws-text-muted); }
 .alt-item p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ws-text-muted); }
 .alt-item > a { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--ws-cyan); margin-top: auto; }
-.alt-item > a:hover { color: #fff; }
+.alt-item > a:hover { color: var(--v-teal-2); text-decoration: underline; }
 @media (max-width: 720px) { .alt-list { grid-template-columns: 1fr; } }

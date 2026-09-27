@@ -20,7 +20,7 @@ function pages(dir, out = []) {
     if (name.startsWith(".")) continue;
     const p = path.join(dir, name);
     if (statSync(p).isDirectory()) pages(p, out);
-    else if (name.endsWith(".html")) out.push(p);
+    else if (name.endsWith(".html") && !(dir === SITE && name === "404.html")) out.push(p); // the 404 is noindex
   }
   return out;
 }

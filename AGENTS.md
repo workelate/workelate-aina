@@ -18,7 +18,7 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
    → FIX until green → only then move to the next section.
 2. Never claim a section is done without pasting verify output.
 3. Design system in .claude/rules/design-system.md is LAW (currently
-   v7: WorkElate dark ground, Work Sans, cyan/purple gradients and glass).
+   v8, 2026-09-28: the light workelate.com system, system SF font, teal accent).
    If a request conflicts, push back with
    the compliant alternative.
 4. Section order: hero → ticker → shift → work → services → casestudy

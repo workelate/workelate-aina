@@ -1,4 +1,73 @@
-# WE_AINA design system — v7 (founder call 2026-09-12: match workelate.com)
+# WE_AINA design system — v8 (founder call 2026-09-28: align with the new workelate.com)
+
+## v8 SUPERSEDES v7 and everything below it. Read this section first.
+
+Founder, 2026-09-28: *"align the aina website and its graphics as per the
+workelate-website"*. The product site moved to a light, apple.com-grade system
+(workelate-website, branch messaging/sharp: `src/components/apple/home.css`,
+`src/components/apple/chrome.css`). The agency ships as aina.workelate.com, a
+subdomain of the product, so the product's system is the brand and this site
+follows it. The bar is Apple-grade: flat, decorated, "intern grade" visuals are
+rejected. Render and LOOK at every page you change (desktop 1440 + phone 390).
+
+### Tokens (taken from the product's code, not guessed)
+
+| token | value | use |
+|---|---|---|
+| white | `#ffffff` | page ground |
+| light | `#f5f5f7` | alternate section band, card fill on white, footer |
+| ink | `#1d1d1f` | headings and body |
+| ink-2 | `#424245` | body copy inside cards |
+| grey | `#6e6e73` | secondary copy, captions, footer links (5.07:1 on white) |
+| line / hair | `#d2d2d7` / `#e8e8ed` | control boundary / hairlines |
+| teal | `#0f8083` | THE accent: primary pill, links, one highlighted word |
+| teal-2 | `#0b6366` | teal hover, teal text on teal-soft |
+| teal-soft | `#e6f3f3` | selected / current wash |
+| navy | `#0a1a5c` | only inside product UI (the user's chat bubble) |
+| ui | `#111827` | ink of product UI mockups, dark action pill |
+| ok / amber / red | `#1a8f4c` / `#b45309` / `#c0392b` | state only, never decoration |
+
+- **Font: the system SF stack**, `-apple-system, BlinkMacSystemFont, "SF Pro Display",
+  "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif`. No webfont (no FOUT,
+  no layout shift, no request). Work Sans is retired with v7.
+- **Type:** h1 clamp(40px, 6vw, 80px) / 600 / -0.035em / 1.04; h2 clamp(32px, 4.6vw,
+  56px) / 600 / -0.03em; eyebrow 21px/600 ink, plain text (no pill); sub-line
+  21 to 28px regular; body 19px/1.5; captions 14px grey.
+- **Buttons:** primary = teal pill (radius 980px, 44px tall, 17px), secondary =
+  1px teal outline pill. Nothing else is a button.
+- **Cards:** `#f5f5f7` on white and `#fff` on a `#f5f5f7` band, radius 28px
+  (20px small), no border. Product windows are white with the layered shadow
+  `0 0 0 1px rgba(0,0,0,.05), 0 2px 6px rgba(0,0,0,.04), 0 50px 100px -40px
+  rgba(0,0,0,.32)`. That window shadow is the only shadow on the site.
+- **Header:** sticky, 48px, `rgba(251,251,253,.96)` with a `rgba(0,0,0,.06)` hairline,
+  13px links, a small teal pill CTA. No backdrop-filter (the 2026-07-13 rule stands).
+- **Footer:** the `#f5f5f7` band, 12 to 13px grey links, ink column heads.
+- **Rhythm:** sections separate by ground change (white / `#f5f5f7`) and air, never by
+  rules or glows. The one dark moment allowed is a black chapter (`#000`) for trust.
+- **Graphics:** light cards, teal accent, the suite's own app icons
+  (`site/img/apps/*.webp`, copied from workelate-website `public/app-icons/suite`).
+  Real product captures in `site/img/real/` are never recoloured.
+
+### Banned in v8
+Dark grounds (`#07070c`, `#0c0c14`), cyan `#00d4ff`, purple `#8b5cf6`, every
+gradient on a background or on text, glass (`rgba(255,255,255,.0x)` surfaces),
+glows and coloured box-shadows, aurora blobs and dot grids, the pill-shaped eyebrow.
+
+### The gate
+`scripts/verify.mjs` asserts **"on the brand system (ground + family)"** on every
+page: the body must paint `rgb(255, 255, 255)` and render in the system SF stack.
+It also asserts **"no gradient or glass surface"**: no element may compute a
+`background-image` gradient or a `backdrop-filter`, so a half-migrated block fails.
+
+Unchanged and still binding: fonts self-hosted or system only; no backdrop-filter on
+the sticky header; em dashes banned in copy; receipts over adjectives; the single CTA
+phrase "Book a Diagnostic Sprint"; "contact us" banned; never fabricate a customer
+quote, a number or a testimonial; founders visible and accountable; WCAG AA contrast
+on every text tier (grey `#6e6e73` is the floor, never lighter for text).
+
+---
+
+# (retired) v7 — dark ground, Work Sans, cyan/purple gradients and glass (founder call 2026-09-12: match workelate.com)
 
 ## v7 SUPERSEDES the white system below. Read this section first.
 

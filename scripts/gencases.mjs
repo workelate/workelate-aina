@@ -47,7 +47,6 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Case studies, the numbers that moved, WE_AINA</title>
 <meta name="description" content="${DESC}">
-<link rel="preload" as="font" type="font/woff2" href="/fonts/worksans-var-latin.woff2" crossorigin fetchpriority="high">
 <link rel="stylesheet" href="/css/site.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/case-studies">
