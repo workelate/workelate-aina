@@ -54,8 +54,10 @@ if (!PAGES.length) { console.error("Discovered zero pages under site/ — refusi
 /* ------------------------------------------------------------ banned copy -- */
 // Authoritative list: CLAUDE.md "Copy rules" — audit/logging as a selling
 // point (founder call 2026-07-22) plus the banned CTA phrasing.
-// workelate.com's page ground, #07070c, as a computed rgb string.
-const BRAND_GROUND = "rgb(7, 7, 12)";
+// workelate.com's page ground (design system v8, 2026-09-28), #ffffff, as a
+// computed rgb string, and its family, the system SF stack.
+const BRAND_GROUND = "rgb(255, 255, 255)";
+const BRAND_FAMILY = /-apple-system|SF Pro/i;
 
 const BANNED_COPY = [
   "audit trail", "auditable", "every action logged", "every claim auditable",
@@ -156,15 +158,24 @@ for (const route of PAGES) {
       .filter(el => Number.parseFloat(getComputedStyle(el).opacity) < 0.99)
       .map(el => txt(el).slice(0, 60));
 
-    // FOUNDER CALL 2026-09-12: the site is being brought onto the workelate.com
-    // system, which is dark, and whose whole visual language is gradient and
-    // glass. The blanket gradient/box-shadow ban that stood here since
-    // 2026-07-08 is therefore RETIRED, not suspended. What replaces it is a
-    // ratchet with the same job, catching a half-migrated page: every page must
-    // actually be ON the new system. A page still painting the old white ground
-    // is the failure this now blocks, because that is what a partial rebrand
-    // looks like, and it is invisible to a copy gate.
+    // FOUNDER CALL 2026-09-28 (design system v8): the site follows the light
+    // workelate.com system, which has no gradients and no glass. A v7 block
+    // that survived the migration would paint a gradient or blur behind
+    // itself, so every element and its ::before/::after is measured. Product
+    // captures are <img>, never CSS, so they cannot trip this.
     const styleHits = [];
+    for (const el of document.querySelectorAll("body *")) {
+      for (const pseudo of [null, "::before", "::after"]) {
+        const cs = getComputedStyle(el, pseudo);
+        if (pseudo && (cs.content === "none" || cs.content === "normal")) continue;
+        const bg = cs.backgroundImage || "";
+        const bf = cs.backdropFilter || cs.webkitBackdropFilter || "none";
+        if (/gradient\(/.test(bg) || (bf && bf !== "none")) {
+          const id = el.id ? "#" + el.id : (el.className && typeof el.className === "string" ? "." + el.className.trim().split(/\s+/)[0] : el.tagName.toLowerCase());
+          styleHits.push(id + (pseudo || ""));
+        }
+      }
+    }
 
     // Readable source stays in the repo; pages must ship generated minified
     // assets. A later page generator can silently restore a raw reference, so
@@ -221,8 +232,10 @@ for (const route of PAGES) {
     route, facts.rawAssets.join(" | "));
   // The brand ground, as rgb. Anything else means the page missed the rebrand.
   assert("on the brand system (ground + family)",
-    facts.ground === BRAND_GROUND && /work sans/i.test(facts.family),
+    facts.ground === BRAND_GROUND && BRAND_FAMILY.test(facts.family),
     route, `ground ${facts.ground}, family ${facts.family.slice(0, 40)}`);
+  assert("no gradient or glass surface (v8)", facts.styleHits.length === 0,
+    route, facts.styleHits.slice(0, 8).join(", "));
   assert("title present", facts.title.length > 0, route);
 
   for (const h of facts.links) if (!internalLinks.has(h)) internalLinks.set(h, route);
