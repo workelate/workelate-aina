@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// genbrain.mjs, figures for the /brain pages, on the workelate.com dark system.
+// genbrain.mjs, figures for the /brain pages, on the light workelate.com system (v8).
 //
 // WHAT THESE ARE: explanatory figures rendered in the brand palette and
 // screenshotted to PNG. They are NOT product captures. The only numbers that
@@ -37,21 +37,25 @@ const OUT = path.join(import.meta.dirname, "..", "site", "img");
 mkdirSync(OUT, { recursive: true });
 const FONT = pathToFileURL(path.join(import.meta.dirname, "..", "site", "fonts", "worksans-var-latin.woff2")).href;
 
-const FAM = "'Work Sans', Arial, sans-serif";
+const FAM = "-apple-system, BlinkMacSystemFont, 'SF Pro Text', Inter, 'Helvetica Neue', Arial, sans-serif";
 
-const GROUND = "#07070c";
-const RAISED = "#0c0c14";
-const TEXT = "#ffffff";
-const MUTED = "#9ca3b8";
-const DIM = "#8b93a7";
-const BORDER = "rgba(255,255,255,.22)";
-const FILL = "rgba(255,255,255,.035)";
-const CYAN = "#00d4ff";
-const PURPLE = "#8b5cf6";
-const BLUE = "#2563eb";
-const EMERALD = "#34d399";
-const AMBER = "#fbbf24";
-const RED = "#f87171";
+// v8 (founder, 2026-09-28: "align ... as per the workelate-website"): the light
+// workelate.com system. The old names are kept so every plate below re-palettes
+// without a per-plate edit: one teal accent, ink and grey, state colours only
+// where they mean state. CYAN/BLUE/PURPLE all resolve to the teal family now.
+const GROUND = "#ffffff";
+const RAISED = "#ffffff";
+const TEXT = "#1d1d1f";
+const MUTED = "#6e6e73";
+const DIM = "#6e6e73";
+const BORDER = "#e8e8ed";
+const FILL = "#f5f5f7";
+const CYAN = "#0f8083";
+const PURPLE = "#0b6366";
+const BLUE = "#0a1a5c";
+const EMERALD = "#1a8f4c";
+const AMBER = "#b45309";
+const RED = "#c0392b";
 
 const BASE = `<style>
   @font-face { font-family:"Work Sans"; src:url("${FONT}") format("woff2");
@@ -92,14 +96,14 @@ function arrowD(x, y1, y2, colour, w = 1) {
 }
 // a container: white-alpha fill, hairline border, 20px radius (12 for interactive)
 const box = (x, y, w, h, o = {}) =>
-  `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r ?? 20}" fill="${o.fill ?? FILL}" stroke="${o.stroke ?? BORDER}" stroke-width="${o.sw ?? 1}"></rect>`;
+  `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r ?? 20}" fill="${o.fill ?? FILL}" stroke="${o.stroke ?? "none"}" stroke-width="${o.sw ?? 1}"></rect>`;
 // an accent surface: rgba(accent,.10) fill + rgba(accent,.25) border
 const hex2rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)).join(",");
 const wash = (x, y, w, h, accent, o = {}) =>
   box(x, y, w, h, { fill: `rgba(${hex2rgb(accent)},.10)`, stroke: `rgba(${hex2rgb(accent)},.25)`, ...o });
 const svg = (w, h, inner) =>
   `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${CYAN}"/><stop offset="1" stop-color="${PURPLE}"/></linearGradient></defs>${inner}</svg>`;
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${CYAN}"/><stop offset="1" stop-color="${CYAN}"/></linearGradient></defs>${inner}</svg>`;
 const rule = (y, x1 = 40, x2 = 1320) =>
   `<path d="M${x1} ${y} L${x2} ${y}" stroke="${BORDER}" stroke-width="1" fill="none"></path>`;
 
@@ -224,7 +228,7 @@ const verbRows = VERBS.map((v, i) => {
   const y = VERB_Y0 + i * VERB_STEP;
   return `<circle cx="46" cy="${y - 5}" r="4" fill="${CYAN}"></circle>` +
     t(66, y, 16, TEXT, v, { weight: 500 }) +
-    `<path d="M172 ${y - 5} C 268 ${y - 5}, 330 296, 428 296" stroke="${BORDER}" stroke-width="1" fill="none"></path>`;
+    `<path d="M172 ${y - 5} C 268 ${y - 5}, 330 296, 428 296" stroke="#c7c7cc" stroke-width="1" fill="none"></path>`;
 }).join("");
 
 // 287 squares, one per action; the first 71 are the confirm-gated ones.
@@ -235,7 +239,7 @@ for (let i = 0; i < 287; i++) {
   const cy = GRID_Y + Math.floor(i / COLS) * (CELL + GAP);
   cells += i < 71
     ? `<rect x="${cx}" y="${cy}" width="${CELL}" height="${CELL}" rx="3" fill="${CYAN}"></rect>`
-    : `<rect x="${cx}" y="${cy}" width="${CELL}" height="${CELL}" rx="3" fill="rgba(255,255,255,.14)"></rect>`;
+    : `<rect x="${cx}" y="${cy}" width="${CELL}" height="${CELL}" rx="3" fill="#d2d2d7"></rect>`;
 }
 const GRID_BOTTOM = GRID_Y + 7 * (CELL + GAP) - GAP;
 
@@ -255,6 +259,7 @@ const verbsInner = [
   verbRows,
   t(40, 560, 13, MUTED, "Fifteen verbs is the whole vocabulary."),
   t(40, 581, 13, MUTED, "It does not grow with the suite."),
+  `<rect x="292" y="273" width="132" height="19" rx="4" fill="#ffffff"></rect>`,
   eyebrow(300, 286, "Resolve to"),
   arrowR(428, 296, 500, 296, CYAN, 1.5),
   box(520, 60, 774, 126),
@@ -263,7 +268,7 @@ const verbsInner = [
   cells,
   `<rect x="520" y="${GRID_BOTTOM + 34}" width="14" height="14" rx="3" fill="${CYAN}"></rect>`,
   t(546, GRID_BOTTOM + 46, 13.5, TEXT, "71 are confirm gated. A person approves before they run.", { weight: 500 }),
-  `<rect x="520" y="${GRID_BOTTOM + 64}" width="14" height="14" rx="3" fill="rgba(255,255,255,.14)"></rect>`,
+  `<rect x="520" y="${GRID_BOTTOM + 64}" width="14" height="14" rx="3" fill="#d2d2d7"></rect>`,
   t(546, GRID_BOTTOM + 76, 13.5, MUTED, "The rest run on the model's judgement, then get checked."),
   t(520, GRID_BOTTOM + 118, 13.5, MUTED, "A model can never approve its own action. Approval counts only when it came"),
   t(520, GRID_BOTTOM + 139, 13.5, MUTED, "from a door where a person clicked."),
@@ -362,7 +367,11 @@ for (const [name, html] of Object.entries(MOCKS)) {
   const p = await b.newPage({ viewport: { width: 1400, height: 900 }, deviceScaleFactor: 2 });
   await p.goto("file://" + tmp);
   await p.evaluate(() => document.fonts.ready);
-  const h = await p.evaluate(() => Math.ceil(document.body.getBoundingClientRect().height));
+  // pages declare width/height for the live plates; pin them so a font change never shifts layout
+  const PINNED = { "brain-verbs": 809 };
+  const natural = await p.evaluate(() => Math.ceil(document.body.getBoundingClientRect().height));
+  const h = PINNED[name] || natural;
+  if (h > natural) await p.evaluate((hh) => { document.body.style.height = hh + "px"; }, h);
   const file = path.join(OUT, `${name}.png`);
   await p.screenshot({ path: file, clip: { x: 0, y: 0, width: 1400, height: h } });
   await p.close();

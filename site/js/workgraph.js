@@ -13,16 +13,20 @@
 // Or drop a <canvas data-workgraph> into the page and import the module: it
 // mounts every such canvas on load. See data/workgraph-embed.md.
 //
-// Palette is the workelate.com dark system and nothing else.
+// Palette is the light workelate.com system (design-system v8, 2026-09-28):
+// a #f5f5f7 stage, white node discs on a hairline, one teal accent, ink and
+// grey labels, state colours only on the ranked item's lane. No glow sprites:
+// depth comes from a one-pixel offset shade, as on the product's own cards.
 // ---------------------------------------------------------------------------
 
+// `cyan` and `purple` are the two node families; both resolve to the one teal.
 const C = {
-  ground: "#07070c", raised: "#0c0c14", text: "#ffffff", muted: "#9ca3b8", dim: "#6b7280",
-  cyan: "#00d4ff", purple: "#8b5cf6", blue: "#2563eb", emerald: "#34d399", amber: "#fbbf24",
+  ground: "#f5f5f7", raised: "#ffffff", text: "#1d1d1f", muted: "#6e6e73", dim: "#86868b",
+  cyan: "#0f8083", purple: "#0f8083", blue: "#0a1a5c", emerald: "#1a8f4c", amber: "#b45309",
+  tealSoft: "#e6f3f3", hair: "rgba(0,0,0,.08)",
 };
-const RGB = { cyan: "0,212,255", purple: "139,92,246", blue: "37,99,235", emerald: "52,211,153", amber: "251,191,36", white: "255,255,255" };
-const FONT_URL = "/fonts/worksans-var-latin.woff2";
-const FONT = '"Work Sans", "Helvetica Neue", Arial, sans-serif';
+const RGB = { cyan: "15,128,131", purple: "15,128,131", blue: "10,26,92", emerald: "26,143,76", amber: "180,83,9", ink: "29,29,31" };
+const FONT = '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif';
 
 // --- the graph ---------------------------------------------------------------
 // Every label is one of the product's own object types, in buyer language, and
@@ -149,21 +153,6 @@ const ICONS = {
   refresh(g) { g.beginPath(); g.arc(0, 0, 5.5, -Math.PI * .75, Math.PI * .55); g.stroke(); g.beginPath(); g.moveTo(-5.4, -5.4); g.lineTo(-4.2, -1.5); g.lineTo(-.6, -3.2); g.closePath(); g.fill(); },
 };
 
-// --- glow sprite cache: one radial gradient bitmap per colour, scaled on draw ---
-function makeSprite(rgb, size, inner = 1) {
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const g = c.getContext("2d");
-  const r = size / 2;
-  const grad = g.createRadialGradient(r, r, 0, r, r, r);
-  grad.addColorStop(0, `rgba(${rgb},${inner})`);
-  grad.addColorStop(.25, `rgba(${rgb},${inner * .45})`);
-  grad.addColorStop(.6, `rgba(${rgb},${inner * .1})`);
-  grad.addColorStop(1, `rgba(${rgb},0)`);
-  g.fillStyle = grad;
-  g.fillRect(0, 0, size, size);
-  return c;
-}
 
 // Size model: every dimension follows the box's SHORT side, so a wide-and-low
 // box and a narrow-and-tall box both get nodes, labels and rings that fit.
@@ -355,11 +344,7 @@ export function mountWorkGraph(canvas, opts = {}) {
   const S = { W: 0, H: 0, dpr: 1, nodes: [], edges: [], particles: [], t: opts.time || 7.3,
     hover: null, pulse: null, chip: null, burst: 0, nextPulse: 2.2, paths: {}, running: false, visible: true, seed: 7 };
 
-  const sprites = {
-    cyan: makeSprite(RGB.cyan, 128, .9), purple: makeSprite(RGB.purple, 128, .9),
-    white: makeSprite(RGB.white, 64, 1), amber: makeSprite(RGB.amber, 64, .9),
-  };
-  let bgGrad = null, brainGrad = null;
+  let brainGrad = null;
 
   function build() {
     const sz = S.sz = sizing(S.W, S.H), compact = sz.compact;
@@ -392,13 +377,7 @@ export function mountWorkGraph(canvas, opts = {}) {
     for (let i = 0; i < N; i++) {
       S.particles.push({ e: i % S.edges.length, t: rnd(), v: .10 + rnd() * .12, r: .9 + rnd() * 1.3 });
     }
-    bgGrad = ctx.createRadialGradient(byId.brain.x, byId.brain.y, 0, byId.brain.x, byId.brain.y, Math.max(S.W, S.H) * .55);
-    bgGrad.addColorStop(0, "rgba(139,92,246,.10)");
-    bgGrad.addColorStop(.35, "rgba(0,212,255,.045)");
-    bgGrad.addColorStop(1, "rgba(7,7,12,0)");
-    const R = brainR();
-    brainGrad = ctx.createLinearGradient(-R, -R, R, R);
-    brainGrad.addColorStop(0, C.cyan); brainGrad.addColorStop(1, C.purple);
+    brainGrad = C.cyan;
     S.hover = null; S.pulse = null; S.chip = null;
     S.cardSide = pickCardSide();
     S.chipPos = sz.cardMode === "chip" ? ITEMS.map(placeChip) : null;
@@ -484,6 +463,16 @@ export function mountWorkGraph(canvas, opts = {}) {
   }
   function edgePath(e) { ctx.moveTo(e.from.x, e.from.y); ctx.quadraticCurveTo(e.cx, e.cy, e.to.x, e.to.y); }
 
+  // a white card with a hairline and a two-step offset shade (no shadowBlur)
+  function softCard(X, Y, w, h, r) {
+    ctx.fillStyle = "rgba(0,0,0,.022)";
+    ctx.beginPath(); ctx.roundRect(X + 2, Y + 5, w - 4, h, r); ctx.fill();
+    ctx.fillStyle = "rgba(0,0,0,.035)";
+    ctx.beginPath(); ctx.roundRect(X, Y + 1.5, w, h, r); ctx.fill();
+    ctx.fillStyle = C.raised;
+    ctx.beginPath(); ctx.roundRect(X, Y, w, h, r); ctx.fill();
+    ctx.strokeStyle = C.hair; ctx.lineWidth = 1; ctx.stroke();
+  }
   function chip(x, y, text, dot, alpha, above) {
     const fs = S.sz.fs;
     ctx.font = `500 ${fs}px ${FONT}`;
@@ -492,9 +481,7 @@ export function mountWorkGraph(canvas, opts = {}) {
     let X = Math.round(Math.max(8, Math.min(S.W - w - 8, x - w / 2)));
     let Y = Math.round(above ? y - h : y);
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = "rgba(12,12,20,.94)";
-    ctx.beginPath(); ctx.roundRect(X, Y, w, h, 7); ctx.fill();
-    ctx.strokeStyle = `rgba(${RGB[dot]},.55)`; ctx.lineWidth = 1; ctx.stroke();
+    softCard(X, Y, w, h, h / 2);
     ctx.fillStyle = C[dot]; ctx.beginPath(); ctx.arc(X + 14, Y + h / 2, 3, 0, 7); ctx.fill();
     ctx.textBaseline = "middle"; ctx.textAlign = "left";
     let tx = X + 25;
@@ -527,17 +514,15 @@ export function mountWorkGraph(canvas, opts = {}) {
     else { X = Math.round(bx - w / 2); Y = Math.round(by - BR - 40 - h + rise); }
     X = Math.max(8, Math.min(S.W - w - 8, X)); Y = Math.max(8, Math.min(S.H - h - 8, Y));
     ctx.globalAlpha = alpha;
-    ctx.fillStyle = "rgba(12,12,20,.95)";
-    ctx.beginPath(); ctx.roundRect(X, Y, w, h, 9); ctx.fill();
-    ctx.strokeStyle = `rgba(${RGB[it.dot]},.5)`; ctx.lineWidth = 1; ctx.stroke();
-    // connector to the Brain
-    ctx.strokeStyle = `rgba(${RGB[it.dot]},.35)`;
+    // connector to the Brain, drawn first so the card sits on top of it
+    ctx.strokeStyle = `rgba(${RGB.cyan},.45)`; ctx.lineWidth = 1;
     ctx.beginPath();
     if (side === "above" || side === "top") { ctx.moveTo(bx, Y + h); ctx.lineTo(bx, by - BR - 24); }
     else if (side === "below") { ctx.moveTo(bx, Y); ctx.lineTo(bx, by + BR + 24); }
     else if (side === "right") { ctx.moveTo(X, Y + h / 2); ctx.lineTo(bx + BR + Math.min(26, gap - 4), by); }
     else { ctx.moveTo(X + w, Y + h / 2); ctx.lineTo(bx - BR - Math.min(26, gap - 4), by); }
     ctx.stroke();
+    softCard(X, Y, w, h, 14);
     ctx.textAlign = "left"; ctx.textBaseline = "top";
     let y = Y + pad;
     ctx.font = `600 ${fs + 1}px ${FONT}`; ctx.fillStyle = C.text;
@@ -546,8 +531,7 @@ export function mountWorkGraph(canvas, opts = {}) {
     for (const l of lines) { ctx.fillText(l, X + pad, y); y += fs + 5; }
     y += 8;
     ctx.font = `600 ${fs - 1.5}px ${FONT}`;
-    ctx.fillStyle = `rgba(${RGB[it.dot]},.14)`; ctx.beginPath(); ctx.roundRect(X + pad, y, lw, 20, 5); ctx.fill();
-    ctx.strokeStyle = `rgba(${RGB[it.dot]},.6)`; ctx.stroke();
+    ctx.fillStyle = `rgba(${RGB[it.dot]},.10)`; ctx.beginPath(); ctx.roundRect(X + pad, y, lw, 20, 10); ctx.fill();
     ctx.fillStyle = C[it.dot]; ctx.fillText(lane, X + pad + 9, y + 5);
     ctx.font = `500 ${fs - 1}px ${FONT}`; ctx.fillStyle = C.muted;
     if (stack) blockers.forEach((l, i) => ctx.fillText(l, X + pad, y + 22 + 6 + i * (fs + 4))); else ctx.fillText(it.blocker, X + pad + lw + 10, y + 4.5);
@@ -572,18 +556,14 @@ export function mountWorkGraph(canvas, opts = {}) {
     const { W, H, t, nodes, edges, byId } = S;
     ctx.setTransform(S.dpr, 0, 0, S.dpr, 0, 0);
     ctx.fillStyle = C.ground; ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, H);
 
     const hov = S.hover;
     const hovSet = hov ? new Set(edges.filter(e => e.a === hov.id || e.b === hov.id).map((e) => e)) : null;
 
     // --- edges: batched, two strokes, no shadowBlur
     ctx.lineCap = "round";
-    const baseA = hov ? .05 : .13;
-    // glow stroke (wide, faint), solid + dashed together
-    ctx.lineWidth = 5; ctx.strokeStyle = `rgba(${RGB.cyan},${hov ? .015 : .035})`;
-    ctx.beginPath(); for (const e of edges) if (!hovSet || !hovSet.has(e)) edgePath(e); ctx.stroke();
-    ctx.lineWidth = 1; ctx.strokeStyle = `hsla(0,0%,100%,${baseA})`;
+    const baseA = hov ? .07 : .16;
+    ctx.lineWidth = 1; ctx.strokeStyle = `rgba(${RGB.ink},${baseA})`;
     ctx.beginPath(); for (const e of edges) if (!e.inferred && (!hovSet || !hovSet.has(e))) edgePath(e); ctx.stroke();
     ctx.setLineDash([3, 7]); ctx.lineDashOffset = -(t * 14) % 10;
     ctx.beginPath(); for (const e of edges) if (e.inferred && (!hovSet || !hovSet.has(e))) edgePath(e); ctx.stroke();
@@ -593,9 +573,7 @@ export function mountWorkGraph(canvas, opts = {}) {
       const on = hovSet && hovSet.has(e);
       if (!on && e.lit <= 0.01) continue;
       const a = on ? .75 : e.lit * .8;
-      ctx.lineWidth = 6; ctx.strokeStyle = `rgba(${RGB[e.hue]},${a * .18})`;
-      ctx.beginPath(); edgePath(e); ctx.stroke();
-      ctx.lineWidth = 1.4; ctx.strokeStyle = `rgba(${RGB[e.hue]},${a})`;
+      ctx.lineWidth = 1.6; ctx.strokeStyle = `rgba(${RGB[e.hue]},${a})`;
       if (e.inferred) { ctx.setLineDash([3, 7]); ctx.lineDashOffset = -(t * 14) % 10; }
       ctx.beginPath(); edgePath(e); ctx.stroke();
       ctx.setLineDash([]);
@@ -603,19 +581,16 @@ export function mountWorkGraph(canvas, opts = {}) {
     }
 
     // --- particles
-    const ps = S.particles, sp = sprites.cyan;
+    const ps = S.particles;
     for (const p of ps) {
       const e = edges[p.e];
       p.t += dt * p.v * (160 / Math.max(80, e.len));
       if (p.t > 1) p.t -= 1;
       const [x, y] = at(e, p.t);
       const dim = hovSet && !hovSet.has(e) ? .35 : 1;
-      const s = p.r * 9;
-      ctx.globalAlpha = .55 * dim;
-      ctx.drawImage(sp, x - s / 2, y - s / 2, s, s);
-      ctx.globalAlpha = .95 * dim;
-      ctx.fillStyle = "#c9f4ff";
-      ctx.beginPath(); ctx.arc(x, y, p.r * .75, 0, 7); ctx.fill();
+      ctx.globalAlpha = .5 * dim;
+      ctx.fillStyle = C.cyan;
+      ctx.beginPath(); ctx.arc(x, y, p.r * .8, 0, 7); ctx.fill();
     }
     ctx.globalAlpha = 1;
 
@@ -631,9 +606,10 @@ export function mountWorkGraph(canvas, opts = {}) {
         const e = edges[P.path[idx]];
         e.lit = 1;
         const [x, y] = at(e, P.t - idx);
-        const s = Math.round(38 * S.sz.sc);
-        ctx.drawImage(sprites.cyan, x - s / 2, y - s / 2, s, s);
-        ctx.drawImage(sprites.white, x - 8, y - 8, 16, 16);
+        const s = 4.5 * Math.max(.8, S.sz.sc);
+        ctx.fillStyle = `rgba(${RGB.cyan},.16)`; ctx.beginPath(); ctx.arc(x, y, s * 2.4, 0, 7); ctx.fill();
+        ctx.fillStyle = C.cyan; ctx.beginPath(); ctx.arc(x, y, s, 0, 7); ctx.fill();
+        ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
         // sparse tail
         for (let k = 1; k <= 4; k++) {
           const tt = P.t - idx - k * .045; if (tt < 0) break;
@@ -657,12 +633,9 @@ export function mountWorkGraph(canvas, opts = {}) {
       const x = n.x, y = n.y - n.lift * 4;
       ctx.globalAlpha = dim;
       if (isBrain) {
-        // gradient node: cyan and purple sprites overlapped, flashing on burst
-        const gs = BR * 5.2 * (1 + S.burst * .25);
-        ctx.globalAlpha = (.55 + .2 * breathe + S.burst * .5) * dim;
-        ctx.drawImage(sprites.cyan, x - gs / 2 - BR * .5, y - gs / 2, gs, gs);
-        ctx.drawImage(sprites.purple, x - gs / 2 + BR * .5, y - gs / 2, gs, gs);
-        ctx.globalAlpha = dim;
+        // the Brain: a solid teal disc (the Chief mark's language), a soft halo
+        ctx.fillStyle = `rgba(${RGB.cyan},${.07 + .03 * breathe + S.burst * .08})`;
+        ctx.beginPath(); ctx.arc(x, y, r * 1.9, 0, 7); ctx.fill();
         if (S.burst > 0) { // one expanding ring
           const rr = BR + (1 - S.burst) * BR * 2.2;
           ctx.strokeStyle = `rgba(${RGB.cyan},${S.burst * .6})`; ctx.lineWidth = 1.5;
@@ -678,23 +651,19 @@ export function mountWorkGraph(canvas, opts = {}) {
         ctx.beginPath(); ctx.arc(0, 0, r + 19 * S.sz.sc, 0, 7); ctx.stroke(); ctx.setLineDash([]);
         ctx.restore();
         ctx.save(); ctx.translate(x, y);
-        ctx.fillStyle = C.raised; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
-        ctx.strokeStyle = brainGrad; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = "rgba(0,212,255,.06)"; ctx.fill();
+        ctx.fillStyle = "rgba(0,0,0,.06)"; ctx.beginPath(); ctx.arc(0, 2, r, 0, 7); ctx.fill();
+        ctx.fillStyle = brainGrad; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
         ctx.scale(r / 15, r / 15);
-        ctx.strokeStyle = brainGrad; ctx.fillStyle = C.text; ctx.lineWidth = 1.1;
+        ctx.strokeStyle = "#fff"; ctx.fillStyle = "#fff"; ctx.lineWidth = 1.2;
         ICONS.brain(ctx);
         ctx.restore();
       } else {
-        const hue = n.hue, gs = R * 4.4 * (1 + n.lift * .4);
-        ctx.globalAlpha = (.42 + .22 * breathe + n.lift * .35) * dim;
-        ctx.drawImage(sprites[hue], x - gs / 2, y - gs / 2, gs, gs);
-        ctx.globalAlpha = dim;
-        ctx.fillStyle = C.raised; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
-        ctx.fillStyle = `rgba(${RGB[hue]},${.08 + n.lift * .12})`; ctx.fill();
-        ctx.strokeStyle = `rgba(${RGB[hue]},${.45 + .25 * breathe + n.lift * .3})`; ctx.lineWidth = 1; ctx.stroke();
+        const hue = n.hue;
+        ctx.fillStyle = "rgba(0,0,0,.05)"; ctx.beginPath(); ctx.arc(x, y + 2, r, 0, 7); ctx.fill();
+        ctx.fillStyle = n.lift > .05 ? C.tealSoft : C.raised; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+        ctx.strokeStyle = n.lift > .05 ? `rgba(${RGB[hue]},${.4 + n.lift * .5})` : C.hair; ctx.lineWidth = 1; ctx.stroke();
         ctx.save(); ctx.translate(x, y); ctx.scale(r / 15, r / 15);
-        ctx.strokeStyle = "rgba(255,255,255,.92)"; ctx.fillStyle = "rgba(255,255,255,.92)";
+        ctx.strokeStyle = C[hue]; ctx.fillStyle = C[hue];
         ctx.lineWidth = 1.35; ctx.lineJoin = "round";
         ICONS[n.icon](ctx);
         ctx.restore();
@@ -702,11 +671,16 @@ export function mountWorkGraph(canvas, opts = {}) {
       // label
       ctx.textAlign = "center"; ctx.textBaseline = "top";
       if (isBrain) {
+        // labels carry a ground-coloured halo so an edge never runs through a word
         ctx.font = `600 ${S.sz.brainFs}px ${FONT}`; ctx.fillStyle = C.text;
+        ctx.lineJoin = "round"; ctx.strokeStyle = C.ground; ctx.lineWidth = 5;
+        ctx.strokeText(n.label, x, y + r + 8 + 16 * S.sz.sc);
         ctx.fillText(n.label, x, y + r + 8 + 16 * S.sz.sc);
       } else if (!n.hideLabel || hov === n) {
         ctx.font = `500 ${S.sz.fs}px ${FONT}`;
         ctx.fillStyle = hov === n ? C.text : C.muted;
+        ctx.lineJoin = "round"; ctx.strokeStyle = C.ground; ctx.lineWidth = 5;
+        ctx.strokeText(n.label, x, y + r + 8);
         ctx.fillText(n.label, x, y + r + 8);
       }
       ctx.globalAlpha = 1;
@@ -812,16 +786,8 @@ export function mountWorkGraph(canvas, opts = {}) {
     if (opts.onReady) opts.onReady();
   }
 
-  // Work Sans, self-hosted, same origin. Never a Google Fonts request.
-  const fontUrl = opts.font || canvas.dataset.font || FONT_URL;
-  let ready = false;
-  const go = () => { if (ready) return; ready = true; boot(); };
-  try {
-    const ff = new FontFace("Work Sans", `url(${fontUrl})`, { weight: "100 900", display: "swap" });
-    document.fonts.add(ff);
-    ff.load().then(go, go);
-    setTimeout(go, 1500); // never wait on a font that will not come
-  } catch { go(); }
+  // the system SF stack: nothing to load, boot now
+  boot();
 
   return { stop, start, resize, state: S };
 }
