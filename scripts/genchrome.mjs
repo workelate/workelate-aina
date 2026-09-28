@@ -316,7 +316,7 @@ const studioFooter = footer("studio",
 
 const hubFooter = footer("hub",
   `<a class="logo" href="/">WorkElate <span>Excellence Studio</span></a>`,
-  "Where ROI meets passion. Two offerings from one company: the Brain, WorkElate Chief, and the studio that installs it, WE_AINA.",
+  "We build it, run it and grow it. Chief, the AI brain, and WE_AINA, the AI-native studio behind 25+ products.",
   [ F("/brain", "Chief, the Brain"), F("/brain/capabilities", "Capabilities"), F("/brain/use-cases", "Use cases"),
     F("/brain/compare", "Compare"), F("/brain/pricing", "Pricing"), F("/book-a-demo", "Book a demo") ],
   [ F("/studio", "WE_AINA"), F("/studio/work", "The work index"), F("/studio/case-studies", "Case studies"),

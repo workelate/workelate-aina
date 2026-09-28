@@ -1,0 +1,25 @@
+{
+  "_note": "Founder, 2026-09-28: the studio does marketing, ops, tech and PM; 25+ products shipped in 5 to 6 industries (a niche, not a dump). scripts/genbreadth.mjs renders the studio hero and range from this file. Every proof names a real build in data/projects.json or a product in /Users/chitransh/code.",
+  "kpi": [
+    ["25+", "products shipped"],
+    ["6", "industries"],
+    ["2018", "shipping since"],
+    ["2", "partners on every build"]
+  ],
+  "capabilities": [
+    { "name": "Product management", "note": "Discovery, roadmap and a two-week sprint that prices the build.", "proof": "Every engagement" },
+    { "name": "AI product development", "note": "Web, mobile and AI agents, from first commit to live.", "proof": "WorkElate, RockPros" },
+    { "name": "Operations and automation", "note": "Dispatch, CRM, quality and service systems the business runs on.", "proof": "RockPros, QMS" },
+    { "name": "Performance marketing", "note": "Campaigns planned by AI and scheduled across paid and billboard screens.", "proof": "CitySense" },
+    { "name": "AI-led GTM", "note": "Buyer signals, research and outbound that find the warm door.", "proof": "Signals" },
+    { "name": "SEO and AI search", "note": "Rank in Google and get cited in ChatGPT answers.", "proof": "CitedSpy" }
+  ],
+  "industries": [
+    "Building materials",
+    "Logistics and dispatch",
+    "OOH and digital billboards",
+    "Fintech",
+    "Manufacturing",
+    "Re-commerce and retail"
+  ]
+}

@@ -8,6 +8,9 @@ import path from "node:path";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const { projects } = JSON.parse(readFileSync(path.join(ROOT, "data/projects.json"), "utf8"));
+// The studio's own declaration (founder, 2026-09-28): capabilities, industries
+// and the KPI line. A new capability or industry is a data row, not an edit here.
+const studio = JSON.parse(readFileSync(path.join(ROOT, "data/studio.json"), "utf8"));
 
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
@@ -32,7 +35,7 @@ const rows = projects.map(row).join("\n");
 // the type of work, means technical product terms of them like P2P, D2C,
 // E-com, O2C, or more than that". A buyer scanning for their own problem
 // recognises "O2C · DISPATCH" and does not recognise "RockProsUSA".
-const heroRows = projects.slice(0, 6).map((p) => `        <li style="--pig:${p.pigment}"><i aria-hidden="true"></i><b>${esc(p.category)}</b><span>${esc(p.categoryNote)}</span><em>${esc(p.years || "undated")}</em></li>`).join("\n");
+const heroRows = studio.capabilities.map((c, i) => `        <li style="--pig:${["#0F8083", "#0b6366", "#1d1d1f", "#0F8083", "#0b6366", "#1d1d1f"][i % 6]}"><i aria-hidden="true"></i><b>${esc(c.name)}</b><span>${esc(c.note)}</span><em>${esc(c.proof)}</em></li>`).join("\n");
 
 // KPI line. Every figure is derived, not asserted:
 //   products  = rows in data/projects.json plus the 14 declared in genwork.mjs
@@ -48,12 +51,7 @@ const families = [...new Set(projects.map((p) => p.family).filter(Boolean))].sor
 const missingFamily = projects.filter((p) => !p.family).map((p) => p.id);
 if (missingFamily.length) { console.error(`projects missing family: ${missingFamily.join(", ")}`); process.exit(1); }
 
-const KPI = [
-  ["34", "products delivered"],
-  ["9", "industry sectors"],
-  ["374", "repositories since 2018"],
-  ["2", "partners, no juniors"],
-];
+const KPI = studio.kpi;
 const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></li>`).join("\n");
 
 // The studio home carries the RANGE, not the index: the 20-row list lives on
@@ -62,11 +60,11 @@ const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></
 // here on the next run without a hand edit.
 const block = `
     <span class="label rv">03 &middot; The range</span>
-    <h2 class="rv">34 products, 9 sectors, 374 repositories since 2018.</h2>
-    <p class="dim rv ix-lede">The same two partners shipped every one, with the Brain doing the volume work.</p>
+    <h2 class="rv">25+ products. Six industries we know cold.</h2>
+    <p class="dim rv ix-lede">The same two partners on every build, with AI doing the volume work.</p>
 
-    <ul class="ix-chips rv" aria-label="sectors we have shipped into">
-${families.map(f => `      <li>${esc(f)}</li>`).join("\n")}
+    <ul class="ix-chips rv" aria-label="industries we ship into">
+${studio.industries.map(f => `      <li>${esc(f)}</li>`).join("\n")}
     </ul>
     <p class="ix-foot rv"><span>One line per build on the index.</span> <a href="/studio/work">Open the full index &rarr;</a></p>
 `;
@@ -75,10 +73,10 @@ const heroBlock = `
       <ul class="hero-kpi" aria-label="delivery to date">
 ${kpiBlock}
       </ul>
-      <ul class="hero-work" aria-label="what we build, by product category">
+      <ul class="hero-work" aria-label="what we do">
 ${heroRows}
       </ul>
-      <p class="hero-work-foot"><a href="/studio/work">All 34 products, 9 sectors, 374 repositories &rarr;</a></p>
+      <p class="hero-work-foot"><a href="/studio/work">See the work &rarr;</a></p>
 `;
 
 const idx = path.join(ROOT, "site/studio/index.html");
