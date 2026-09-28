@@ -18,7 +18,7 @@ const PAGES = [
     h1: "Every truck assignment proposed by the system, approved by a dispatcher",
     h1html: 'Every truck assignment<br>proposed, <span class="accent">then approved.</span>',
     cat: "Quarry dispatch automation",
-    metaDesc: "Truck assignments proposed with their reasoning and approved by a dispatcher, behind a 38% lower dispatch cycle across 13 quarries.",
+    metaDesc: "Truck assignments proposed with their reasoning and approved by a dispatcher. The same system runs 13 quarry sites today.",
     costNums: ["At a site this size, a 22-minute average wait between gate and loader across 40 trucks is roughly 290 driver-hours a month.",
       "One mis-assigned haul per shift, at 3 shifts a day, is about 90 wasted cycles a month: fuel, wear and driver pay, no material moved."],
     system: "The system watches orders, truck positions and weighbridge events, then proposes the next assignment before the dispatcher asks. It flags the cycles that break pattern, a loader down, a queue forming, and escalates only those. Every assignment carries its reasoning.",
@@ -27,7 +27,7 @@ const PAGES = [
       "Your best dispatcher is unpromotable because nobody else can hold the board.",
       "Cycle counts come from a diary, and the diary disagrees with the weighbridge.",
       "Evening reconciliation finds hauls nobody can explain."],
-    proof: "This is the system running 13 quarries at RockProsUSA today: dispatch cycle time 38% lower over the first twelve months.",
+    proof: "This is the system running 13 quarry sites at RockProsUSA today, where 11,200 operations hours were returned over the first twelve months.",
     faq: [
       ["Does this replace my dispatchers?", "No. It replaces the radio tag and the spreadsheet copying. Every assignment is proposed with its reasoning and a dispatcher approves it."],
       ["We run mixed fleets, owned and hired trucks. Does that work?", "Yes. Hired trucks are tracked gate-in to gate-out from gate events; owned trucks with GPS get full cycle tracking."],
@@ -159,6 +159,74 @@ const PAGES = [
   }
 ];
 
+// v4 (founder 2026-09-28, "images daalo"): every system page is image-led.
+// Real product screens from site/img/studio/ where one genuinely matches,
+// licensed Unsplash photos (site/img/systems/, credited in
+// data/image-credits.md) for the setting. Per page: hero, one wide band, and a
+// Today / With-the-system pair. `card` is the 4:3 photo on the /systems index.
+// Captions carry no numbers beyond what the page copy already states.
+const S = f => `/img/studio/${f}.webp`;
+const Y = f => `/img/systems/sys-${f}.webp`;
+// Captures in site/img/studio/ are framed on #f6f6f6, except these two, which
+// were captured on white; their stage turns white so no seam shows.
+const WHITE_GROUND = new Set(["workelate-chief-hero", "workelate-checks-work"]);
+const scr = (f, alt, cap) => ({ kind: WHITE_GROUND.has(f) ? "screen is-white" : "screen", src: S(f), alt, cap });
+const pho = (src, alt, cap) => ({ kind: "photo", src, alt, cap });
+const MEDIA = {
+  "quarry-dispatch-automation": {
+    hero: scr("rockpros-dispatch-board", "Open Jobs dispatch board listing delivery dates, customers, truckers and sites", "The dispatch board at RockProsUSA, shown here with demo data."),
+    band: pho(Y("quarry-haul-16x9"), "A loaded haul truck climbing a quarry road", "Every cycle between gate and loader is a decision someone made."),
+    before: pho(Y("quarry-truck-4x3"), "A haul truck on a dusty quarry road", "Assignments go out by radio and live in one dispatcher's head."),
+    after: scr("rockpros-driver-loads-phone", "Driver app on a phone showing an open load with pickup and delivery details", "The approved load lands in the driver app."),
+    card: Y("quarry-haul-4x3")
+  },
+  "plant-production-reporting": {
+    hero: pho(Y("plant-stockpile-16x9"), "Sand and gravel stockpiles under conveyors at a processing plant", "Shift logs, weighbridge tickets and downtime, reconciled before the morning meeting."),
+    band: pho(Y("plant-conveyor-16x9"), "A conveyor dropping crushed stone onto a conical stockpile", "Tonnage that does not match the tickets is flagged in the report."),
+    before: pho(Y("plant-clipboard-4x3"), "A hand writing on a clipboard", "The report is copied together by hand from logs and tickets."),
+    after: scr("rockpros-customer-tracking", "Scheduled deliveries table with truck and loaded tons for each load", "Loaded tons per load, read from the records that produced them. RockProsUSA, demo data."),
+    card: Y("plant-stockpile-4x3")
+  },
+  "dealer-order-management": {
+    hero: scr("rockpros-customer-po", "Customer portal listing active purchase orders with ordered against delivered progress", "The customer portal at RockProsUSA: every active order, ordered against delivered. Demo data."),
+    band: pho(Y("dealer-delivery-16x9"), "A dump truck tipping aggregate at a stockyard", "A mis-keyed order is material moving to the wrong place."),
+    before: pho(Y("dealer-phone-4x3"), "A person typing on a smartphone", "Orders arrive on WhatsApp and get re-typed into the ERP."),
+    after: scr("rockpros-po-progress-admin", "Open jobs table with a progress bar for each order line", "One queue in the office, with progress on every order line."),
+    card: Y("dealer-delivery-4x3")
+  },
+  "freight-reconciliation": {
+    hero: scr("rockpros-dispatched-loads", "Dispatched loads table with trucker, truck, quantity and delivery status", "Dispatched loads with truck, quantity and delivery status at RockProsUSA. Demo data."),
+    band: pho(Y("freight-loading-16x9"), "Crushed stone falling from a conveyor onto a stockpile", "Every billed trip should match a weighbridge record."),
+    before: pho("/img/studio/photo-ind-logistics-4x3.webp", "Aerial view of trailers parked in angled bays at a truck yard", "Bills get paid on trust in busy months."),
+    after: scr("workelate-checks-work", "Before and after: a task marked done, then checked against the board", "Nothing is marked done until it has been checked."),
+    card: Y("freight-loading-4x3")
+  },
+  "ar-followup-automation": {
+    hero: scr("workelate-chief-hero", "WorkElate Chief drafting an email with a pipeline table and waiting for approval to send", "The Brain drafts the follow-up and waits for your yes. WorkElate, sample data."),
+    band: pho(Y("ar-desk-16x9"), "A calculator, notebook and pencil on a white desk", "Follow-up that depends on one person's memory skips accounts."),
+    before: pho(Y("ar-list-4x3"), "A clipboard with an empty checklist next to a laptop", "Promises to pay are remembered, not tracked."),
+    after: scr("workelate-start-my-day", "Start my day card listing what needs you, what is slipping and what was handled", "Every morning: what needs you, what is slipping, what was handled."),
+    card: Y("ar-desk-4x3")
+  },
+  "compliance-documentation": {
+    hero: pho(Y("compliance-folders-16x9"), "A stack of thick white folders on a white surface", "Filings built from operating data, days before they are due."),
+    band: pho("/img/studio/photo-ind-quarry-16x9.webp", "Quarry terraces with a small excavator at the base", "Weighbridge tickets become royalty returns."),
+    before: pho(Y("compliance-paper-4x3"), "Stacks of paper documents and file folders in an office", "The three days before a filing deadline are the worst of the month."),
+    after: scr("rockpros-customer-tracking", "Scheduled deliveries table with truck and loaded tons for each load", "Every number traces to the ticket or dispatch record that produced it. RockProsUSA, demo data."),
+    card: Y("compliance-folders-4x3")
+  }
+};
+
+// The index card reuses the 16:9 photo's alt text for its 4:3 crop.
+const cardAlt = m => [m.hero, m.band].find(x => x.src === m.card.replace("-4x3", "-16x9"))?.alt || "";
+
+// One figure, two kinds. A screen sits on the light stage, uncropped; a photo
+// fills its frame. The hero loads eagerly, everything else lazily.
+const fig = (m, cls, { eager = false, label = "" } = {}) => `<figure class="sys-fig ${cls} is-${m.kind}">
+      <div class="sys-frame"><img src="${m.src}" alt="${m.alt}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'} decoding="async"></div>
+      <figcaption>${label ? `<b>${label}</b> ` : ""}${m.cap}</figcaption>
+    </figure>`;
+
 // Apple rule (content audit 2026-09-15, row 9): paragraphs of two or three
 // sentences. Long prose fields are split on sentence ends and grouped in threes.
 const paras = (text, gap = 16) => {
@@ -172,6 +240,8 @@ const page = (p, idx) => {
   // rotated siblings: each page links the NEXT 3 in circular order, so all 6
   // pages receive exactly 3 inbound internal links
   const siblings = [1, 2, 3].map(k => PAGES[(idx + k) % PAGES.length]);
+  const m = MEDIA[p.slug];
+  if (!m) throw new Error(`gensystems: no MEDIA entry for ${p.slug}`);
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -180,6 +250,7 @@ const page = (p, idx) => {
 <title>${p.cat}, WE_AINA</title>
 <meta name="description" content="${p.metaDesc}">
 <link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/systems.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/${p.slug}">
 <meta property="og:type" content="website">
@@ -226,38 +297,52 @@ ${JSON.stringify({
 </div></header>
 
 <main id="main">
-<section id="hero" style="min-height:auto">
+<section id="hero" class="sys-hero" style="min-height:auto">
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>${p.h1html || p.h1}</h1>
     <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    ${fig(m.hero, "sys-lead", { eager: true })}
   </div>
 </section>
 
-<section>
+<section class="sys-cost">
   <div class="wrap">
     <span class="label">What this costs you today</span>
-    <p>${p.costNums[0]}</p>
-    <p style="margin-top:16px">${p.costNums[1]}</p>
+    <div class="sys-costs">
+      <p>${p.costNums[0]}</p>
+      <p>${p.costNums[1]}</p>
+    </div>
+    ${fig(m.band, "sys-band")}
   </div>
 </section>
 
-<section>
+<section class="sys-system">
   <div class="wrap">
     <span class="label">The system</span>
+    <div class="sys-copy">
     ${paras(p.system)}
-    <p class="accent" style="margin-top:24px">${p.proof}</p>
+    </div>
+    <div class="sys-pair">
+    ${fig(m.before, "sys-before", { label: "Today." })}
+    ${fig(m.after, "sys-after", { label: "With the system." })}
+    </div>
+    <p class="sys-proof">${p.proof}</p>
   </div>
 </section>
 
-<section class="deep">
+<section class="deep sys-landing">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
+    <div class="sys-copy">
     ${paras(p.landing)}
-    <h2 style="margin-top:48px">Signs you need this</h2>
-    ${p.signs.map(s => `<p class="dim" style="margin-top:12px">- ${s}</p>`).join("\n    ")}
-    <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
+    </div>
+    <h2>Signs you need this</h2>
+    <ul class="sys-signs">
+      ${p.signs.map(s => `<li>${s}</li>`).join("\n      ")}
+    </ul>
+    <p class="dim srcnote">Updated 28 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
 
@@ -335,6 +420,7 @@ const indexPage = () => `<!doctype html>
 <title>Six systems we build and run, WE_AINA</title>
 <meta name="description" content="${INDEX_DESC}">
 <link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/systems.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems">
 <meta property="og:type" content="website">
@@ -389,17 +475,21 @@ ${JSON.stringify({
     <h1>Six systems already built.<br>Yours is <span class="accent">the seventh.</span></h1>
     <p class="sub dim">Each one is a system we have designed, shipped and run on operating data, with the Brain proposing and a person approving.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    ${fig(MEDIA["quarry-dispatch-automation"].hero, "sys-lead", { eager: true })}
   </div>
 </section>
 
-<section>
+<section class="sys-index">
   <div class="wrap">
     <h2 style="margin-bottom:16px">The six, written up</h2>
     <p class="dim" style="margin-bottom:40px">Each page names what the problem costs today and how the system lands.</p>
-    ${PAGES.map((p, i) => `<a class="svc rv" href="/studio/systems/${p.slug}">
-      <span class="num">${String(i + 1).padStart(2, "0")}</span><h3>${p.cat}</h3>
-      <p class="dim">${p.metaDesc}</p>
-    </a>`).join("\n    ")}
+    <ul class="sys-cards">
+    ${PAGES.map((p, i) => `<li><a class="sys-card" href="/studio/systems/${p.slug}">
+      <span class="sys-card-img"><img src="${MEDIA[p.slug].card}" alt="${cardAlt(MEDIA[p.slug])}" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">${String(i + 1).padStart(2, "0")}</span><h3>${p.cat}</h3>
+      <span class="sys-card-desc">${p.metaDesc}</span></span>
+    </a></li>`).join("\n    ")}
+    </ul>
   </div>
 </section>
 

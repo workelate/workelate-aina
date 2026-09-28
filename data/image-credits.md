@@ -73,3 +73,24 @@ RockProsUSA is a WE_AINA client and we built the apps below. Their site footer r
 | `rockpros-icon-customer/driver/trucker.webp` | The three apps' App Store icons | same App Store listings (developer page apps.apple.com/us/developer/rockpros/id1785935566) |
 
 Not used, on purpose: the Driver "Open Loads" screenshot (shows a real job-site contact first name and street address) and the Driver map screenshot (shows a test location unrelated to the quarries).
+
+# Image credits: site/img/systems/
+
+For the /studio/systems pages (founder 2026-09-28, "images daalo"). Unsplash License (free for commercial use, attribution not required; credited anyway). Downloaded 2026-09-28 from images.unsplash.com through each photo's download link and self-hosted. Resized with sharp: `-16x9.webp` 2000x1125 (hero and wide band), `-4x3.webp` 1200x900 (pair tiles and index cards), attention crop, saturation 0.92, WebP quality 78. Product screens on these pages are the existing captures in site/img/studio/ (credited above), not recoloured.
+
+| files | what it shows | used on | author | source |
+|---|---|---|---|---|
+| `sys-quarry-haul-16x9.webp`, `-4x3.webp` | Loaded haul truck climbing a quarry road | quarry dispatch band, index card | Lars Portjanow | https://unsplash.com/photos/7qFRRHjfJ6c |
+| `sys-quarry-truck-4x3.webp` | Haul truck on a dusty quarry road, mountains behind | quarry dispatch "Today" tile | omid roshan | https://unsplash.com/photos/Evss0Whf5OI |
+| `sys-plant-stockpile-16x9.webp`, `-4x3.webp` | Sand and gravel stockpiles under conveyors | plant reporting hero, index card | Valentin | https://unsplash.com/photos/HkxPrTZGEl8 |
+| `sys-plant-conveyor-16x9.webp` | Conveyor dropping crushed stone onto a conical pile | plant reporting band | Roger Starnes Sr | https://unsplash.com/photos/dne48obE_2M |
+| `sys-plant-clipboard-4x3.webp` | Hand writing on a blue clipboard | plant reporting "Today" tile | Phil Hearing | https://unsplash.com/photos/eXcF6L9pEug |
+| `sys-dealer-delivery-16x9.webp`, `-4x3.webp` | White dump truck tipping at a stockyard | dealer orders band, index card | Juan Pablo Lara | https://unsplash.com/photos/s-qDIU6-kyM |
+| `sys-dealer-phone-4x3.webp` | Person typing on a smartphone | dealer orders "Today" tile | Kelli McClintock | https://unsplash.com/photos/cr-Gh5A_9Nc |
+| `sys-freight-loading-16x9.webp`, `-4x3.webp` | Gravel falling from a conveyor onto a pile | freight band, index card | Adriano | https://unsplash.com/photos/qCB_-fzt35s |
+| `sys-ar-desk-16x9.webp`, `-4x3.webp` | Calculator, notebook and pencil on a white desk | AR band, index card | Cht Gsml | https://unsplash.com/photos/QfQW294I8sQ |
+| `sys-ar-list-4x3.webp` | Clipboard with an empty "Open Projects" checklist beside a laptop | AR "Today" tile | Markus Winkler | https://unsplash.com/photos/Q2J2qQsoYH8 |
+| `sys-compliance-folders-16x9.webp`, `-4x3.webp` | Stack of thick white folders on white | compliance hero, index card | Beatriz Pérez Moya | https://unsplash.com/photos/XN4T2PVUUgk |
+| `sys-compliance-paper-4x3.webp` | Stacks of paper documents and folders in an office | compliance "Today" tile | Wesley Tingey | https://unsplash.com/photos/snNHKZ-mGfE |
+
+Also reused from site/img/studio/: `photo-ind-logistics-4x3.webp` (freight "Today" tile) and `photo-ind-quarry-16x9.webp` (compliance band).
