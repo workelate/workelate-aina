@@ -71,7 +71,7 @@ function fromProject(id, over = {}) {
 const FEATURED = [
   { ...fromProject("rockpros", { title: "RockProsUSA" }),
     wide: true, tag: "Building materials and dispatch",
-    line: "13 quarries on one dispatch system. Dispatch cycle time down 38% over the first twelve months.",
+    line: "13 quarries on one dispatch system. 2,140 invoices with zero manual touches in the first year.",
     img: "rockpros-dispatch-board.webp", phone: "rockpros-driver-loads-phone.webp",
     phoneAlt: "RockProsUSA driver app on a phone, showing an open load",
     alt: "RockProsUSA dispatch board listing open jobs by delivery date, customer and trucker",

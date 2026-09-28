@@ -14,7 +14,7 @@ This site has three zones. `/` is the WorkElate Excellence Studio umbrella. `/br
 - Interruptions are budgeted: at most 40 per organization per hour and 5 per person per hour by default, changeable by saying so in plain language.
 - Honesty: when it says it did something, the record is re-read to prove it exists, and the sentence it wrote is checked against what the tools returned.
 - Commercials: a two-week Diagnostic Sprint at a fixed fee quoted after a short call, then a build at a fixed price of $30K to $100K, scoped before work starts. The customer owns the code, the data and the system at handover. No seat licence.
-- Proof on record (RockProsUSA, building materials, 13 quarries): dispatch cycle time 38% lower; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
+- Proof on record (RockProsUSA, building materials, 13 quarries): 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
 - Contact: https://aina.workelate.com/studio/contact. The one call to action across the site is "Book a Diagnostic Sprint".
 
 ## Product pages (the Brain)

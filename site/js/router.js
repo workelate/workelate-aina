@@ -69,7 +69,7 @@ const NEEDS = {
   "manual-ops": {
     label: "Cut manual operations", tracks: ["ops", "both"],
     title: "Put the repetitive day on agents",
-    blurb: "Data entry, matching, chasing and coordinating are what agent systems carry best. At RockProsUSA that approach cut dispatch cycle time 38% across 13 sites.",
+    blurb: "Data entry, matching, chasing and coordinating are what agent systems carry best. At RockProsUSA that approach put 13 quarry sites on one dispatch system.",
     link: "/systems/quarry-dispatch-automation", linkText: "See the dispatch automation system"
   },
   "reporting": {
