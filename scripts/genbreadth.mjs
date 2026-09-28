@@ -98,14 +98,14 @@ const indTiles = studio.industries.map((x) => `      <li class="ind rv"><img cla
 
 const block = `
     <span class="label rv">What we do</span>
-    <h2 class="rv">Everything it takes <span class="accent">to ship.</span></h2>
-    <p class="dim rv ix-lede">Strategy, product, engineering, operations and growth. One team, one plan, no hand-offs.</p>
+    <h2 class="rv">Everything you need <span class="accent">to ship.</span></h2>
+    <p class="dim rv ix-lede">Strategy, product, engineering, operations and growth. One team on your side, one plan, no hand-offs.</p>
     <ul class="caps" aria-label="what we do">
 ${capCards}
     </ul>
 
     <span class="label rv ind-label">Where we work</span>
-    <h2 class="rv">Six industries we <span class="accent">know cold.</span></h2>
+    <h2 class="rv">Six industries where <span class="accent">our clients win.</span></h2>
     <ul class="inds" aria-label="industries we ship into">
 ${indTiles}
     </ul>

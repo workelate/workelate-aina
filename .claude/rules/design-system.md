@@ -52,6 +52,7 @@ rejected. Render and LOOK at every page you change (desktop 1440 + phone 390).
 Dark grounds (`#07070c`, `#0c0c14`), cyan `#00d4ff`, purple `#8b5cf6`, every
 gradient on a background or on text, glass (`rgba(255,255,255,.0x)` surfaces),
 glows and coloured box-shadows, aurora blobs and dot grids, the pill-shaped eyebrow.
+Exception (founder call 2026-09-29, "background effect little bit"): the animated /studio hero stage alone may carry soft light behind it, built only from solid discs with `filter: blur()` drifting by transform (site/css/hero.css `.hx-bg`); still no gradient, no backdrop-filter, paused off-screen, still under reduced motion.
 
 ### The gate
 `scripts/verify.mjs` asserts **"on the brand system (ground + family)"** on every
