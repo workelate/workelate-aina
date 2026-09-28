@@ -42,3 +42,6 @@ site/img/real/*
 !site/img/real/drawer-artifact-altitude@2x.png
 !site/img/real/drawer-artifact-altitude@2x.webp
 !site/img/real/tasks-board-rockcross-ops-portal@2x.webp
+
+# verify-live hook receipts: never inside site/
+site/**/.verify-live/

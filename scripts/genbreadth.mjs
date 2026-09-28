@@ -63,12 +63,12 @@ const IMG = (f) => `/img/studio/${f}`;
 // kya ... absorb them in a native way"). Capabilities and industries are the
 // studio's own declaration in data/studio.json; each carries its real image.
 const capCards = studio.capabilities.map((c) => `      <li class="cap rv">
-        <figure class="cap-img"><img src="${IMG(c.img)}" alt="" loading="lazy" decoding="async" width="800" height="600"></figure>
+        <figure class="cap-img"><img src="${IMG(c.img)}" alt="${esc(c.name)}: ${esc(c.proof)}" loading="lazy" decoding="async" width="800" height="600"></figure>
         <h3>${esc(c.name)}</h3>
         <p>${esc(c.note)}</p>
         <span class="cap-proof">${esc(c.proof)}</span>
       </li>`).join("\n");
-const indTiles = studio.industries.map((x) => `      <li class="ind rv"><img src="${IMG(x.img)}" alt="" loading="lazy" decoding="async" width="800" height="600"><span>${esc(x.name)}</span></li>`).join("\n");
+const indTiles = studio.industries.map((x) => `      <li class="ind rv"><img src="${IMG(x.img)}" alt="${esc(x.name)}" loading="lazy" decoding="async" width="800" height="600"><span>${esc(x.name)}</span></li>`).join("\n");
 
 const block = `
     <span class="label rv">What we do</span>
@@ -90,10 +90,10 @@ const H = studio.heroImages;
 // A fixed mosaic, not a free collage: every tile has its own box and crops its
 // image, so no screen can spill into the next section at any width.
 const heroBlock = `
-      <div class="mosaic" aria-hidden="true">
-        <figure class="m-a"><img src="${IMG(H.back)}" alt="" width="1600" height="1000" decoding="async" fetchpriority="high"></figure>
-        <figure class="m-b"><img src="${IMG(H.front)}" alt="" width="1600" height="1000" decoding="async"></figure>
-        <figure class="m-c"><img src="${IMG(H.third)}" alt="" width="1600" height="1000" decoding="async"></figure>
+      <div class="mosaic">
+        <figure class="m-a"><img src="${IMG(H.back)}" alt="CitySense, AI billboard campaign planner" width="1600" height="1000" decoding="async" fetchpriority="high"></figure>
+        <figure class="m-b"><img src="${IMG(H.front)}" alt="CitedSpy, AI search visibility dashboard" width="1600" height="1000" decoding="async"></figure>
+        <figure class="m-c"><img src="${IMG(H.third)}" alt="RockPros, quarry dispatch board" width="1600" height="1000" decoding="async"></figure>
       </div>
 `;
 
