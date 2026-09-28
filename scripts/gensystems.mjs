@@ -307,13 +307,13 @@ ${JSON.stringify({
         <div class="fh">Engage</div>
         <a href="/studio/contact">Book a Diagnostic Sprint</a>
         <a href="/studio/how-we-work">The Diagnostic Sprint</a>
-        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
+        <a href="/studio/contact">Talk to us</a>
         <a href="/studio/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
     <div class="baseline">
-      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh & Pratik</span>
-      <span><a href="mailto:chitransh@workelate.com" style="display:inline;padding:0">chitransh@workelate.com</a> · <a href="/studio/contact" style="display:inline;padding:0">Contact</a></span>
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency</span>
+      <span><a href="/studio/contact" style="display:inline;padding:0">Talk to us</a></span>
       <!-- FOUNDER-BLOCKED: phone number, registered address and LinkedIn URLs. -->
     </div>
   </div>
@@ -450,13 +450,13 @@ ${JSON.stringify({
         <div class="fh">Engage</div>
         <a href="/studio/contact">Book a Diagnostic Sprint</a>
         <a href="/studio/how-we-work">The Diagnostic Sprint</a>
-        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
+        <a href="/studio/contact">Talk to us</a>
         <a href="/studio/blog/receipts-over-decks">Receipts over decks</a>
       </div>
     </div>
     <div class="baseline">
-      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh & Pratik</span>
-      <span><a href="mailto:chitransh@workelate.com" style="display:inline;padding:0">chitransh@workelate.com</a> · <a href="/studio/contact" style="display:inline;padding:0">Contact</a></span>
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency</span>
+      <span><a href="/studio/contact" style="display:inline;padding:0">Talk to us</a></span>
       <!-- FOUNDER-BLOCKED: phone number, registered address and LinkedIn URLs. -->
     </div>
   </div>

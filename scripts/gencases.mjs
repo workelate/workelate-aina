@@ -123,7 +123,7 @@ ${cases.map(card).join("\n")}
       </div>
     </div>
     <div class="baseline">
-      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency · Chitransh &amp; Pratik</span>
+      <span>© 2026 WE_AINA · WorkElate's AI-Native Agency</span>
     </div>
   </div>
 </footer>

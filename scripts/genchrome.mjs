@@ -210,7 +210,7 @@ ${panel("menu-work", "Work",
     L("/studio/systems/ar-followup-automation", "AR follow-up"),
     L("/studio/systems/freight-reconciliation", "Freight reconciliation"),
     L("/studio/systems", "All six systems")),
-  { k: "How we work", t: "Two partners, an agent fleet, a fixed price.", p: "Diagnostic in two weeks, a working system in weeks after it, and the operating numbers themselves as the report.", href: "/studio/how-we-work", go: "Read the operating model" },
+  { k: "How we work", t: "A tier-1 team, an AI fleet, a fixed price.", p: "Diagnostic in two weeks, a working system in weeks after it, and the operating numbers themselves as the report.", href: "/studio/how-we-work", go: "Read the operating model" },
   { text: "Every build scoped, built and run inside the product we would sell you.", href: "/studio/about", go: "Who you talk to" })}
 ${panel("menu-resources", "Resources",
   colOf("Read",
@@ -248,8 +248,8 @@ ${toggle}
 // ENTITY / COUNTRY / PRIVACY (measured 2026-09-15): no page states a legal
 // entity, a registered office or a country; site/studio/contact.html carries a
 // FOUNDER-BLOCKED note for exactly that. Nothing is invented here: the baseline
-// names what the company already says in public (WorkElate, WE_AINA, Chitransh
-// and Pratik). There is no privacy page yet, so "Privacy" points at
+// names what the company already says in public (WorkElate, WE_AINA). No
+// individual names (founder call 2026-09-28). There is no privacy page yet, so "Privacy" points at
 // /studio/contact until one exists. Both are founder inputs, not guesses.
 const PRIVACY = "/studio/contact";
 const legalCol = () => fJoin(rows(
@@ -283,7 +283,7 @@ function footer(zone, brandLogo, blurb, product, studio, company) {
       </div>
     </div>
     <div class="baseline">
-      <span>&copy; 2026 WorkElate &middot; Chitransh &amp; Pratik &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
+      <span>&copy; 2026 WorkElate &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
       <span><a href="/">Excellence Studio</a> &middot; <a href="${PRIVACY}">Privacy</a></span>
     </div>
   </div>
@@ -300,7 +300,7 @@ const brainFooter = footer("brain",
     F("/studio/how-we-work", "How we work"), F("/studio/contact", "Book a Diagnostic Sprint") ],
   [ F("/studio/about", "About"), F("/studio/blog", "Blog"), F("/brain/faq", "FAQ"), F("/brain/glossary", "Glossary"),
     F("/brain/roadmap", "Roadmap"), F("/brain/changelog", "What shipped"),
-    `<a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>` ]);
+    `<a href="/studio/contact">Talk to us</a>` ]);
 
 const studioFooter = footer("studio",
   `<a class="logo" href="/studio">WE_<span>AINA</span></a>`,
@@ -312,7 +312,7 @@ const studioFooter = footer("studio",
     F("/studio/systems/freight-reconciliation", "Freight reconciliation"), F("/studio/how-we-work", "How we work"),
     F("/studio/contact", "Book a Diagnostic Sprint") ],
   [ F("/studio/about", "About us"), F("/studio/blog", "Blog"), F("/brain/faq", "FAQ"),
-    `<a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>` ]);
+    `<a href="/studio/contact">Talk to us</a>` ]);
 
 const hubFooter = footer("hub",
   `<a class="logo" href="/">WorkElate <span>Excellence Studio</span></a>`,
@@ -322,7 +322,7 @@ const hubFooter = footer("hub",
   [ F("/studio", "WE_AINA"), F("/studio/work", "The work index"), F("/studio/case-studies", "Case studies"),
     F("/studio/how-we-work", "How we work"), F("/studio/contact", "Book a Diagnostic Sprint") ],
   [ F("/studio/about", "About"), F("/studio/blog", "Blog"), F("/brain/faq", "FAQ"), F("/brain/objections", "Objections"),
-    `<a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>` ]);
+    `<a href="/studio/contact">Talk to us</a>` ]);
 
 /* ------------------------------------------------ per-page closing line -- */
 // audit-ux #23. The #cta band lives in the pages, not here. A page that wants
