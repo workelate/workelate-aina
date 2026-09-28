@@ -96,6 +96,11 @@
         ],
         "alt": "WorkElate Chief drafting an email from the Q3 pipeline, waiting for a yes",
         "chip": "Asks before sending",
+        "at": [
+          58.6,
+          90.4
+        ],
+        "side": "right",
         "pt": [
           0.075,
           0.83
