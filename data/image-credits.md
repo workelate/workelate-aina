@@ -56,3 +56,20 @@ Each photo ships as `-16x9.webp` (2400x1350, banner) and `-4x3.webp` (1600x1200,
 | `photo-studio-code-16x9.webp`, `photo-studio-code-4x3.webp` | Laptop with code editor on a dark desk in soft window light, large negative space | [Emile Perron](https://unsplash.com/@emilep) | https://unsplash.com/photos/xrVDYZRGdw4 (Unsplash License) |
 
 Caveats: the OOH photo shows a real third-party bank ad on the billboard, partly cropped. The fintech photo is, per its Unsplash caption, a classroom screen of climate charts; it reads as people at dashboards. Apple logos show on laptop lids in studio-review and studio-whiteboard, and a 'MacBook Pro' label under the screen in studio-code.
+
+## C. RockProsUSA case study (client material, name and imagery cleared by the founder; downloaded 2026-09-28)
+
+RockProsUSA is a WE_AINA client and we built the apps below. Their site footer reads "Product images may not be used without permission"; use here rests on that client clearance. Self-hosted as webp, resized, no recolouring. Used only on /studio/case-studies/rockprosusa.
+
+| files | what it shows | source |
+|---|---|---|
+| `rockpros-quarry-red-2400.webp`, `-1200.webp` | Aerial of a red-rock quarry with crushing plant and stockpiles below a desert mountain (hero) | rockprosusa.com home slider, wp-content/uploads/2023/11/rockpros-home-slider-2-1-scaled.jpg |
+| `rockpros-quarry-blue-2400.webp`, `-1200.webp` | Aerial of a terraced blue-grey quarry in a desert valley (numbers section) | rockprosusa.com home page, wp-content/uploads/2024/06/MM-AF-scaled.jpg |
+| `rockpros-truck-2200.webp` | Green tri-axle dump truck outside a depot | rockprosusa.com/trucking header, wp-content/uploads/2023/11/Trucking-Page-header.jpg |
+| `rockpros-stone-gold/red/brown/modern.webp` | Close-ups of four decorative rock colour families | rockprosusa.com home colour tiles (homepage-rock-color-gold.jpg, red-rebelred-, brown-beattybrown-, modern-kinoblue-homepage-featured-2.jpg) |
+| `rockpros-app-customer-stats.webp` | Rock Pros Customer: Quantity Statistics (tons dispatched / received) | App Store screenshot, apps.apple.com/us/app/rock-pros-customer/id6740747257 |
+| `rockpros-app-driver-sign.webp` | Rock Pros Driver: delivery signature pad (test signature) | App Store screenshot, apps.apple.com/us/app/rock-pros-driver/id6742345868 |
+| `rockpros-app-trucker-loads.webp` | Rock Pros Trucker: Dispatched Loads. The real customer company name is BLURRED in both cards | App Store screenshot, apps.apple.com/us/app/rock-pros-trucker/id6742343397 |
+| `rockpros-icon-customer/driver/trucker.webp` | The three apps' App Store icons | same App Store listings (developer page apps.apple.com/us/developer/rockpros/id1785935566) |
+
+Not used, on purpose: the Driver "Open Loads" screenshot (shows a real job-site contact first name and street address) and the Driver map screenshot (shows a test location unrelated to the quarries).

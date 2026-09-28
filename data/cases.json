@@ -4,11 +4,190 @@
     {
       "tag": "Industrial ops, USA",
       "title": "RockProsUSA: 13 quarries on one dispatch system",
-      "summary": "Dispatch, invoicing and reporting moved onto one system across 13 quarry sites. The Brain proposes each truck assignment with its reasoning and a dispatcher approves it; invoices are matched against the delivery and the order without a manual pass; the daily report is written by 6 AM, ready for a person to read. Over the first twelve months: dispatch cycle time 38% lower, 11,200 operations hours returned.",
-      "metric": "−38%",
-      "metricLabel": "dispatch cycle time · 2,140 invoices, zero touches",
+      "summary": "Dispatch, invoicing and reporting moved onto one system across 13 quarry sites, with three native iPhone apps for customers, drivers and haulers. The Brain proposes each truck assignment with its reasoning and a dispatcher approves it; invoices are matched against the delivery and the order without a manual pass; the daily report is written by 6 AM. Over the first twelve months: 2,140 invoices with zero manual touches, 11,200 operations hours returned.",
+      "metric": "13",
+      "metricLabel": "quarry sites on one system · 2,140 invoices, zero touches",
       "href": "/studio/case-studies/rockprosusa",
-      "hrefLabel": "Read the full case study"
+      "hrefLabel": "Read the full case study",
+      "story": {
+        "slug": "rockprosusa",
+        "title": "RockProsUSA: 13 quarries on one dispatch system",
+        "crumb": "RockProsUSA",
+        "description": "RockProsUSA mines decorative rock at 13 quarries in the American Southwest. We built the system that moves it: dispatch, invoicing, reporting and three iPhone apps.",
+        "published": "2026-09-15",
+        "modified": "2026-09-28",
+        "hero": {
+          "eyebrow": "Case study · RockProsUSA",
+          "h1": "Thirteen quarries.<br>One system.",
+          "sub": "RockProsUSA mines decorative rock across the American Southwest. We built what moves it, from the order to the truck to the invoice.",
+          "img": "/img/studio/rockpros-quarry-red",
+          "w": 2400,
+          "h": 1600,
+          "alt": "Aerial view of a red-rock RockProsUSA quarry below a desert mountain, with crushing plant and stockpiles"
+        },
+        "client": {
+          "eyebrow": "The client",
+          "h2": "Family owned since 1998.",
+          "lines": [
+            "RockProsUSA quarries landscape, architectural and boulder rock in 22 colours, and ships it by truck to contractors, landscapers and distributors across the western United States."
+          ],
+          "stones": [
+            {
+              "img": "/img/studio/rockpros-stone-gold.webp",
+              "name": "Gold"
+            },
+            {
+              "img": "/img/studio/rockpros-stone-red.webp",
+              "name": "Red"
+            },
+            {
+              "img": "/img/studio/rockpros-stone-brown.webp",
+              "name": "Brown"
+            },
+            {
+              "img": "/img/studio/rockpros-stone-modern.webp",
+              "name": "Modern"
+            }
+          ]
+        },
+        "before": {
+          "eyebrow": "Before",
+          "h2": "Thirteen quarries ran on phone calls.",
+          "lines": [
+            "Orders came in by phone and text. Trucks went to whoever called first.",
+            "Weighbridge tickets, delivery notes and purchase orders met for the first time at month end."
+          ]
+        },
+        "built": {
+          "eyebrow": "What we built",
+          "h2": "One engine under every screen.",
+          "sub": "A load, an invoice and a production number describe the same event, so nobody reconciles them later.",
+          "main": {
+            "img": "/img/studio/rockpros-dispatch-board.webp",
+            "w": 2400,
+            "h": 1784,
+            "alt": "RockProsUSA admin console: the Open Jobs dispatch board across every quarry site",
+            "cap": "The admin console. Every open job across 13 sites, on one board."
+          },
+          "pair": [
+            {
+              "img": "/img/studio/rockpros-customer-tracking.webp",
+              "w": 1600,
+              "h": 1242,
+              "alt": "RockProsUSA customer portal: scheduled deliveries per load with truck and loaded tons",
+              "cap": "The customer portal. Every load, truck and ton, as it moves."
+            },
+            {
+              "img": "/img/studio/rockpros-po-progress-admin.webp",
+              "w": 1600,
+              "h": 1242,
+              "alt": "RockProsUSA admin console: purchase order progress bars per order line",
+              "cap": "Purchase orders. Ordered against delivered, line by line."
+            }
+          ]
+        },
+        "band": {
+          "img": "/img/studio/rockpros-truck-2200.webp",
+          "w": 2200,
+          "h": 704,
+          "alt": "A green RockProsUSA tri-axle dump truck parked outside a depot",
+          "line": "Pit to job site, one record."
+        },
+        "numbers": {
+          "eyebrow": "The first twelve months",
+          "h2": "The numbers that moved.",
+          "img": "/img/studio/rockpros-quarry-blue",
+          "w": 2400,
+          "h": 1798,
+          "alt": "Aerial view of a terraced RockProsUSA quarry in a desert valley, haul roads winding between blue-grey benches",
+          "items": [
+            {
+              "n": "13",
+              "t": "quarry sites on one system, one shared truck fleet."
+            },
+            {
+              "n": "2,140",
+              "t": "invoices matched and issued with zero manual touches."
+            },
+            {
+              "n": "11,200",
+              "t": "operations hours returned to the team."
+            }
+          ]
+        },
+        "apps": {
+          "eyebrow": "On the App Store",
+          "h2": "Three apps. One for every hand on the load.",
+          "sub": "Native iPhone apps, published by RockProsUSA and built by us.",
+          "items": [
+            {
+              "name": "Rock Pros Customer",
+              "tag": "Track deliveries in real time.",
+              "icon": "/img/studio/rockpros-icon-customer.webp",
+              "shot": "/img/studio/rockpros-app-customer-stats.webp",
+              "alt": "Rock Pros Customer app: dispatched and received tons for today, last week, last month and last year",
+              "href": "https://apps.apple.com/us/app/rock-pros-customer/id6740747257"
+            },
+            {
+              "name": "Rock Pros Driver",
+              "tag": "The load, the route, the signature.",
+              "icon": "/img/studio/rockpros-icon-driver.webp",
+              "shot": "/img/studio/rockpros-app-driver-sign.webp",
+              "alt": "Rock Pros Driver app: the delivery signature pad with Clear and Save",
+              "href": "https://apps.apple.com/us/app/rock-pros-driver/id6742345868"
+            },
+            {
+              "name": "Rock Pros Trucker",
+              "tag": "The hauler's fleet and dispatches.",
+              "icon": "/img/studio/rockpros-icon-trucker.webp",
+              "shot": "/img/studio/rockpros-app-trucker-loads.webp",
+              "alt": "Rock Pros Trucker app: dispatched loads with pickup number, quarry and pending pickup status",
+              "href": "https://apps.apple.com/us/app/rock-pros-trucker/id6742343397"
+            }
+          ]
+        },
+        "steps": {
+          "eyebrow": "How we worked",
+          "h2": "Since 2020. Still running.",
+          "items": [
+            {
+              "k": "01",
+              "h": "Diagnose",
+              "t": "A two-week Sprint mapped every order, truck and ticket across the sites."
+            },
+            {
+              "k": "02",
+              "h": "Build",
+              "t": "One dispatch engine first, then every surface on top of it."
+            },
+            {
+              "k": "03",
+              "h": "Ship",
+              "t": "Web consoles for dispatch and customers. Three iPhone apps for the field."
+            },
+            {
+              "k": "04",
+              "h": "Run",
+              "t": "The Brain proposes each truck with its reasoning. A dispatcher approves."
+            }
+          ]
+        },
+        "related": [
+          {
+            "href": "/studio/systems/quarry-dispatch-automation",
+            "label": "Quarry dispatch automation"
+          },
+          {
+            "href": "/studio/systems/plant-production-reporting",
+            "label": "Plant production reporting"
+          },
+          {
+            "href": "/studio/systems/freight-reconciliation",
+            "label": "Freight reconciliation"
+          }
+        ],
+        "cta": "These numbers started as a two-week Sprint. Yours starts the same way."
+      }
     },
     {
       "tag": "Marketing & creative, Mexico",

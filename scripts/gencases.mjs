@@ -134,3 +134,185 @@ ${cases.map(card).join("\n")}
 
 writeFileSync(path.join(OUT, "index.html"), html);
 console.log(`wrote case-studies index with ${cases.length} entries`);
+
+/* ------------------------------------------------------------ story pages -- */
+// 2026-09-28 (founder: "ek sundar page", image-led, Apple / Metalab grade).
+// A case carrying `story` in data/cases.json gets its own page at
+// /studio/case-studies/<story.slug>, rendered here from that data. The layout
+// is generic: any case that supplies the same fields gets the same page, so a
+// second story is a data change, not a template change. Styles live in
+// site/css/case.css. Photos with a `-2400` / `-1200` pair are served by srcset.
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const photo = (p, cls, sizes, eager) => `<img class="${cls}" src="${p.img}-1200.webp" srcset="${p.img}-1200.webp 1200w, ${p.img}-2400.webp 2400w" sizes="${sizes}" width="${p.w}" height="${p.h}" alt="${esc(p.alt)}"${eager ? ' fetchpriority="high" decoding="async"' : ' loading="lazy" decoding="async"'}>`;
+const shot = (s, cls = "") => `<figure class="cs-shot${cls}">
+        <img src="${s.img}" width="${s.w}" height="${s.h}" alt="${esc(s.alt)}" loading="lazy" decoding="async">
+        <figcaption>${esc(s.cap)}</figcaption>
+      </figure>`;
+
+const storyPage = (c) => {
+  const s = c.story;
+  const url = `https://aina.workelate.com/studio/case-studies/${s.slug}`;
+  const ogImg = `https://aina.workelate.com${s.hero.img}-1200.webp`;
+  const article = {
+    "@context": "https://schema.org", "@type": "Article",
+    headline: s.title, description: s.description,
+    datePublished: s.published, dateModified: s.modified,
+    author: { "@type": "Organization", name: "WE_AINA" },
+    publisher: { "@type": "Organization", name: "WE_AINA", url: "https://aina.workelate.com/" },
+    image: ogImg, mainEntityOfPage: url
+  };
+  const crumbs = {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Case studies", item: "https://aina.workelate.com/studio/case-studies" },
+      { "@type": "ListItem", position: 2, name: s.crumb, item: url }
+    ]
+  };
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(s.title)}, WE_AINA</title>
+<meta name="description" content="${esc(s.description)}">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/case.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="${url}">
+<link rel="preload" as="image" href="${s.hero.img}-1200.webp" imagesrcset="${s.hero.img}-1200.webp 1200w, ${s.hero.img}-2400.webp 2400w" imagesizes="100vw">
+<meta property="og:type" content="article">
+<meta property="og:title" content="${esc(s.title)}">
+<meta property="og:description" content="${esc(s.description)}">
+<meta property="og:image" content="${ogImg}">
+<meta property="og:url" content="${url}">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+${JSON.stringify(article, null, 2)}
+</script>
+<script type="application/ld+json">
+${JSON.stringify(crumbs, null, 2)}
+</script>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="cs-story">
+
+<!-- NAV:start -->
+<header class="nav"></header>
+<!-- NAV:end -->
+
+<main id="main">
+
+<section class="cs-hero">
+  ${photo(s.hero, "cs-hero-img", "100vw", true)}
+  <div class="wrap cs-hero-copy">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/studio/case-studies">Case studies</a> / ${esc(s.crumb)}</nav>
+    <h1>${s.hero.h1}</h1>
+    <p class="cs-hero-sub">${esc(s.hero.sub)}</p>
+    <p class="cs-hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+  </div>
+</section>
+
+<section class="cs-intro">
+  <div class="wrap cs-intro-grid">
+    <div>
+      <span class="label">${esc(s.client.eyebrow)}</span>
+      <h2>${esc(s.client.h2)}</h2>
+      ${s.client.lines.map(l => `<p class="cs-lede">${esc(l)}</p>`).join("\n      ")}
+    </div>
+    <ul class="cs-stones" aria-label="Rock colours">
+      ${s.client.stones.map(t => `<li><img src="${t.img}" width="600" height="400" alt="${esc(t.name)} decorative rock, close up" loading="lazy" decoding="async"><span>${esc(t.name)}</span></li>`).join("\n      ")}
+    </ul>
+  </div>
+</section>
+
+<section class="cs-before">
+  <div class="wrap">
+    <span class="label">${esc(s.before.eyebrow)}</span>
+    <h2>${esc(s.before.h2)}</h2>
+    ${s.before.lines.map(l => `<p class="cs-lede">${esc(l)}</p>`).join("\n    ")}
+  </div>
+</section>
+
+<section class="cs-built">
+  <div class="wrap">
+    <span class="label">${esc(s.built.eyebrow)}</span>
+    <h2>${esc(s.built.h2)}</h2>
+    <p class="cs-lede">${esc(s.built.sub)}</p>
+    <div class="cs-screens">
+      ${shot(s.built.main, " cs-shot-main")}
+      <div class="cs-pair">
+      ${s.built.pair.map(p => shot(p)).join("\n      ")}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-band" aria-label="${esc(s.band.line)}">
+  <img src="${s.band.img}" width="${s.band.w}" height="${s.band.h}" alt="${esc(s.band.alt)}" loading="lazy" decoding="async">
+  <p class="wrap">${esc(s.band.line)}</p>
+</section>
+
+<section class="cs-numbers">
+  ${photo(s.numbers, "cs-numbers-img", "100vw", false)}
+  <div class="wrap cs-numbers-copy">
+    <span class="label">${esc(s.numbers.eyebrow)}</span>
+    <h2>${esc(s.numbers.h2)}</h2>
+    <ul class="cs-stats">
+      ${s.numbers.items.map(i => `<li><span class="cs-n">${esc(i.n)}</span><span class="cs-t">${esc(i.t)}</span></li>`).join("\n      ")}
+    </ul>
+  </div>
+</section>
+
+<section class="cs-apps">
+  <div class="wrap">
+    <span class="label">${esc(s.apps.eyebrow)}</span>
+    <h2>${esc(s.apps.h2)}</h2>
+    <p class="cs-lede">${esc(s.apps.sub)}</p>
+    <ul class="cs-phones">
+      ${s.apps.items.map(a => `<li>
+        <div class="cs-phone"><img src="${a.shot}" width="645" height="1401" alt="${esc(a.alt)}" loading="lazy" decoding="async"></div>
+        <div class="cs-app">
+          <img class="cs-icon" src="${a.icon}" width="160" height="160" alt="" aria-hidden="true" loading="lazy">
+          <div><h3>${esc(a.name)}</h3><p>${esc(a.tag)}</p><a href="${a.href}" rel="noopener" target="_blank">View on the App Store</a></div>
+        </div>
+      </li>`).join("\n      ")}
+    </ul>
+  </div>
+</section>
+
+<section class="cs-steps">
+  <div class="wrap">
+    <span class="label">${esc(s.steps.eyebrow)}</span>
+    <h2>${esc(s.steps.h2)}</h2>
+    <ol class="cs-steplist">
+      ${s.steps.items.map(i => `<li><span class="cs-k">${esc(i.k)}</span><h3>${esc(i.h)}</h3><p>${esc(i.t)}</p></li>`).join("\n      ")}
+    </ol>
+    <p class="cs-related">The same systems, written up: ${s.related.map(r => `<a href="${r.href}">${esc(r.label)}</a>`).join(" · ")}</p>
+  </div>
+</section>
+
+<section id="cta" class="cs-cta">
+  <div class="wrap">
+    <h2>Book a Diagnostic Sprint</h2>
+    <p class="cs-lede">${esc(s.cta)}</p>
+    <p class="cs-cta-row"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a> <a class="cs-back" href="/studio/case-studies">All case studies</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER:start -->
+<footer class="mega"></footer>
+<!-- FOOTER:end -->
+<script src="/js/nav.js" defer></script>
+<script type="module" src="/js/reveal.js"></script>
+</body>
+</html>
+`;
+};
+
+for (const c of cases.filter(c => c.story)) {
+  writeFileSync(path.join(OUT, `${c.story.slug}.html`), storyPage(c));
+  console.log(`wrote case study /studio/case-studies/${c.story.slug}`);
+}
+
