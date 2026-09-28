@@ -15,7 +15,7 @@ const { minify } = require("next/dist/compiled/terser");
 
 const ROOT = path.join(import.meta.dirname, "..");
 const SITE = path.join(ROOT, "site");
-const CSS = ["site", "compare"];
+const CSS = ["site", "compare", "studio", "work"];
 const JS = ["nav", "reveal", "workgraph", "chat", "main"];
 
 function pages(dir, out = []) {
