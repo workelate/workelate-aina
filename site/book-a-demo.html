@@ -97,23 +97,12 @@
  ],
  "url": "https://aina.workelate.com/",
  "logo": "https://aina.workelate.com/img/workelate-logo.svg",
- "email": "chitransh@workelate.com",
  "description": "WorkElate Chief, the Brain, is one memory across the systems a 200 to 2,000 person company already runs, made by WorkElate and installed by WE_AINA, WorkElate's own studio: it reads what your CRM, mail, tickets and documents already record, judges what needs a person, and asks before it changes anything.",
  "parentOrganization": {
   "@type": "Organization",
   "name": "WorkElate",
   "url": "https://www.workelate.com/"
  },
- "founder": [
-  {
-   "@type": "Person",
-   "name": "Chitransh"
-  },
-  {
-   "@type": "Person",
-   "name": "Pratik"
-  }
- ],
  "sameAs": [
   "https://www.workelate.com/"
  ]
@@ -259,8 +248,8 @@
 <section>
   <div class="wrap">
     <span class="label">Ask for a time</span>
-    <h2>Four lines, and a partner replies.</h2>
-    <p class="dim" style="max-width:620px">This goes straight to Chitransh and Pratik, who run the call; one of them replies with times, usually the same day.</p>
+    <h2>Four lines, and the team replies.</h2>
+    <p class="dim" style="max-width:620px">This goes straight to the team that runs the call. They reply with times, usually the same day.</p>
 
     <form id="demo-form" style="display:grid; gap:18px; max-width:560px; margin-top:32px">
       <div>
@@ -286,7 +275,7 @@
       </div>
       <p class="cap-msg" id="d-msg" role="status" aria-live="polite"></p>
     </form>
-    <p class="dim" style="margin-top:24px">Prefer mail? chitransh@workelate.com reaches the same two people, as does the <a href="/studio/contact">contact page</a>.</p>
+    <p class="dim" style="margin-top:24px">Prefer a longer note? The <a href="/studio/contact">contact page</a> reaches the same team.</p>
   </div>
 </section>
 
@@ -312,7 +301,7 @@
           <li>One person who owns it.</li>
           <li>The number you want moved.</li>
         </ul>
-        <p class="dim">Who you meet: Chitransh and Pratik, the two partners who build the system.</p>
+        <p class="dim">Who you meet: the senior team that builds the system, not a sales rep.</p>
       </div>
     </div>
   </div>
@@ -408,7 +397,7 @@
         <a href="/brain/glossary">Glossary</a>
         <a href="/brain/roadmap">Roadmap</a>
         <a href="/brain/changelog">What shipped</a>
-        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
+        <a href="/studio/contact">Talk to us</a>
       </div>
       <div>
         <div class="fh">Legal</div>
@@ -418,7 +407,7 @@
       </div>
     </div>
     <div class="baseline">
-      <span>&copy; 2026 WorkElate &middot; Chitransh &amp; Pratik &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
+      <span>&copy; 2026 WorkElate &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
       <span><a href="/">Excellence Studio</a> &middot; <a href="/studio/contact">Privacy</a></span>
     </div>
   </div>
@@ -456,16 +445,16 @@
       .then(function (res) {
         if (res.ok && res.j.ok) {
           form.reset();
-          msg.textContent = "Got it. Chitransh or Pratik will reply with times, usually the same day.";
+          msg.textContent = "Got it. The team will reply with times, usually the same day.";
         } else {
           btn.disabled = false;
           msg.textContent = (res.j && res.j.error ? res.j.error + ". " : "") +
-            "Email chitransh@workelate.com instead, that always works.";
+            "Try again in a minute, or use the contact page.";
         }
       })
       .catch(function () {
         btn.disabled = false;
-        msg.textContent = "That did not send. Email chitransh@workelate.com instead.";
+        msg.textContent = "That did not send. Try again in a minute, or use the contact page.";
       });
   });
 })();
