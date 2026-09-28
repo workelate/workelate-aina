@@ -79,8 +79,158 @@
     }
   ],
   "heroImages": {
+    "_note": "scripts/genhero.mjs renders both animated heroes from this block and cuts the hero/ derivatives from these crops. Chips describe an action shown in the real screen, never a metric we do not have. pt = where the cursor taps, as fractions of the screen.",
     "back": "citysense-planner-map.webp",
     "front": "citedspy-dashboard.webp",
-    "third": "rockpros-dispatch-board.webp"
+    "third": "rockpros-dispatch-board.webp",
+    "scenes": [
+      {
+        "word": "Product",
+        "name": "WorkElate",
+        "src": "workelate-chief-hero.webp",
+        "crop": [
+          116,
+          58,
+          2168,
+          1317
+        ],
+        "alt": "WorkElate Chief drafting an email from the Q3 pipeline, waiting for a yes",
+        "chip": "Asks before sending",
+        "pt": [
+          0.075,
+          0.83
+        ],
+        "sat": "asks",
+        "photo": "photo-studio-whiteboard-4x3.webp"
+      },
+      {
+        "word": "Tech",
+        "name": "CitedSpy",
+        "src": "citedspy-dashboard.webp",
+        "crop": [
+          166,
+          165,
+          2068,
+          1371
+        ],
+        "alt": "CitedSpy, AI search visibility dashboard",
+        "chip": "Cited in ChatGPT",
+        "pt": [
+          0.2,
+          0.32
+        ],
+        "sat": null,
+        "photo": "photo-studio-code-4x3.webp"
+      },
+      {
+        "word": "Ops",
+        "name": "RockPros",
+        "src": "rockpros-dispatch-board.webp",
+        "crop": [
+          166,
+          165,
+          2068,
+          1371
+        ],
+        "alt": "RockPros, quarry dispatch board",
+        "chip": "Load dispatched",
+        "pt": [
+          0.3,
+          0.33
+        ],
+        "sat": "phone",
+        "photo": "photo-studio-review-4x3.webp"
+      },
+      {
+        "word": "Marketing",
+        "name": "CitySense",
+        "src": "citysense-planner-map.webp",
+        "crop": [
+          166,
+          165,
+          2068,
+          1371
+        ],
+        "alt": "CitySense, AI billboard campaign planner over Mexico City",
+        "chip": "54 billboards picked",
+        "pt": [
+          0.2,
+          0.5
+        ],
+        "sat": null,
+        "photo": "photo-studio-whiteboard-4x3.webp"
+      }
+    ],
+    "sats": {
+      "asks": {
+        "src": "workelate-asks-first.webp",
+        "crop": [
+          125,
+          126,
+          1351,
+          780
+        ],
+        "alt": "Chief asking: Send the Q3 update to Acme?",
+        "w": 900
+      },
+      "phone": {
+        "src": "rockpros-driver-loads-phone.webp",
+        "crop": [
+          451,
+          112,
+          698,
+          1429
+        ],
+        "alt": "RockPros driver app with an open load",
+        "w": 360
+      }
+    },
+    "doors": {
+      "product": [
+        {
+          "src": "workelate-chief-hero.webp",
+          "chip": "Asks before sending",
+          "alt": "Chief drafting an email, waiting for a yes"
+        },
+        {
+          "src": "workelate-start-my-day.webp",
+          "crop": [
+            124,
+            124,
+            1352,
+            1002
+          ],
+          "chip": "Your day, sorted",
+          "alt": "Start my day: what needs you, what is slipping, what is handled"
+        },
+        {
+          "src": "workelate-asks-first.webp",
+          "chip": "Waits for your yes",
+          "alt": "Chief asking before it sends"
+        }
+      ],
+      "studio": [
+        {
+          "src": "photo-studio-whiteboard-4x3.webp",
+          "chip": "Planned with you",
+          "alt": "The team planning a product at a whiteboard"
+        },
+        {
+          "src": "citysense-planner-map.webp",
+          "chip": "54 billboards picked",
+          "alt": "CitySense campaign planner"
+        },
+        {
+          "src": "citedspy-dashboard.webp",
+          "chip": "Cited in ChatGPT",
+          "alt": "CitedSpy visibility dashboard"
+        },
+        {
+          "src": "rockpros-dispatch-board.webp",
+          "chip": "Load dispatched",
+          "alt": "RockPros dispatch board"
+        }
+      ]
+    }
   }
 }

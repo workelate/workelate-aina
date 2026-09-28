@@ -58,17 +58,43 @@ const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></
 // /studio/work (content audit 2026-09-15, row 15: the home page was 2,400 words
 // of other pages). Chips are derived from the data, so a new family shows up
 // here on the next run without a hand edit.
-const IMG = (f) => `/img/studio/${f}`;
+const IMG = (f) => (f.startsWith("/") ? f : `/img/studio/${f}`);
 // The range, as images (founder, 2026-09-28: "internet par images k kami hai
 // kya ... absorb them in a native way"). Capabilities and industries are the
 // studio's own declaration in data/studio.json; each carries its real image.
+// Each card is a LAYERED COMPOSITION, not a flattened bitmap (founder,
+// 2026-09-29: "kuch product k image aur kuch insan k, objects k ... synergy me
+// lao"). A licensed photo of people or place, a real product capture floating
+// over its edge, and one small HTML chip, all declared per row in
+// data/studio.json. The generator knows layer KINDS, never a capability: a new
+// row with its own layers renders with no edit here.
+const pct = (n) => `${+n.toFixed(3)}%`;
+// A capture ships inside its own padded frame. `crop` is the product window's
+// box as fractions of the file, so the layer shows the window edge to edge
+// and CSS scales it crisp at any width (percentages only, no media query).
+const cropped = (l, cls) => {
+  const [W, H] = l.dims, [x0, y0, x1, y1] = l.crop, cw = x1 - x0, ch = y1 - y0;
+  const ar = (cw * W) / (ch * H);
+  const pos = l.x == null ? "" : `--x:${l.x}%;--y:${l.y}%;`;
+  return `<span class="${cls}" style="${pos}--w:${l.w}%;--ar:${+ar.toFixed(4)}"><img src="${IMG(l.src)}" alt="${esc(l.alt)}" style="width:${pct(100 / cw)};left:${pct((-x0 / cw) * 100)};top:${pct((-y0 / ch) * 100)}" loading="lazy" decoding="async" width="${W}" height="${H}"></span>`;
+};
+const ICON = { check: '<i class="ic-check" aria-hidden="true"></i>', dot: '<i class="ic-dot" aria-hidden="true"></i>', note: "" };
+const layer = (l) => {
+  if (l.kind === "photo") return `<span class="c-photo"><img src="${IMG(l.src)}" alt="${esc(l.alt)}" loading="lazy" decoding="async" width="${l.dims[0]}" height="${l.dims[1]}"></span>`;
+  if (l.kind === "win") return cropped(l, "c-win");
+  if (l.kind === "phone") return cropped(l, "c-phone");
+  if (l.kind === "chip") return `<span class="c-chip${l.icon === "note" ? " c-note" : ""}" style="--x:${l.x}%;--y:${l.y}%">${ICON[l.icon] || ""}${esc(l.text)}</span>`;
+  if (l.kind === "card") return `<span class="c-card" style="--x:${l.x}%;--y:${l.y}%;--w:${l.w}%"><em>${esc(l.eyebrow)}</em><b>${esc(l.title)}</b>${l.rows.map((r, i) => `<span class="c-row${i === l.rows.length - 1 ? " c-wait" : ""}"><i aria-hidden="true"></i>${esc(r)}</span>`).join("")}</span>`;
+  console.error(`unknown layer kind: ${l.kind}`); process.exit(1);
+};
 const capCards = studio.capabilities.map((c) => `      <li class="cap rv">
-        <figure class="cap-img"><img src="${IMG(c.img)}" alt="${esc(c.name)}: ${esc(c.proof)}" loading="lazy" decoding="async" width="800" height="600"></figure>
+        <figure class="comp">${c.layers.map(layer).join("")}</figure>
         <h3>${esc(c.name)}</h3>
         <p>${esc(c.note)}</p>
         <span class="cap-proof">${esc(c.proof)}</span>
       </li>`).join("\n");
-const indTiles = studio.industries.map((x) => `      <li class="ind rv"><img src="${IMG(x.img)}" alt="${esc(x.name)}" loading="lazy" decoding="async" width="800" height="600"><span>${esc(x.name)}</span></li>`).join("\n");
+// Industry tiles: the photo, plus a small real screen where we shipped one.
+const indTiles = studio.industries.map((x) => `      <li class="ind rv"><img class="ind-photo" src="${IMG(x.img)}" alt="${esc(x.name)}" loading="lazy" decoding="async" width="800" height="600">${x.thumb ? cropped(x.thumb, "ind-thumb" + (x.thumb.kind === "phone" ? " is-phone" : "")) : ""}<span class="ind-name">${esc(x.name)}</span></li>`).join("\n");
 
 const block = `
     <span class="label rv">What we do</span>
