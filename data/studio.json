@@ -1,25 +1,86 @@
 {
   "_note": "Founder, 2026-09-28: the studio does marketing, ops, tech and PM; 25+ products shipped in 5 to 6 industries (a niche, not a dump). scripts/genbreadth.mjs renders the studio hero and range from this file. Every proof names a real build in data/projects.json or a product in /Users/chitransh/code.",
   "kpi": [
-    ["25+", "products shipped"],
-    ["6", "industries"],
-    ["2018", "shipping since"],
-    ["2", "partners on every build"]
+    [
+      "25+",
+      "products shipped"
+    ],
+    [
+      "6",
+      "industries"
+    ],
+    [
+      "8",
+      "years shipping, since 2018"
+    ]
   ],
   "capabilities": [
-    { "name": "Product management", "note": "Discovery, roadmap and a two-week sprint that prices the build.", "proof": "Every engagement" },
-    { "name": "AI product development", "note": "Web, mobile and AI agents, from first commit to live.", "proof": "WorkElate, RockPros" },
-    { "name": "Operations and automation", "note": "Dispatch, CRM, quality and service systems the business runs on.", "proof": "RockPros, QMS" },
-    { "name": "Performance marketing", "note": "Campaigns planned by AI and scheduled across paid and billboard screens.", "proof": "CitySense" },
-    { "name": "AI-led GTM", "note": "Buyer signals, research and outbound that find the warm door.", "proof": "Signals" },
-    { "name": "SEO and AI search", "note": "Rank in Google and get cited in ChatGPT answers.", "proof": "CitedSpy" }
+    {
+      "name": "Product management",
+      "note": "Discovery, roadmap and a two-week sprint that prices the build.",
+      "proof": "Every engagement",
+      "img": "photo-studio-whiteboard-4x3.webp"
+    },
+    {
+      "name": "AI product development",
+      "note": "Web, mobile and AI agents, from first commit to live.",
+      "proof": "WorkElate, RockPros",
+      "img": "workelate-chief-hero.webp"
+    },
+    {
+      "name": "Operations and automation",
+      "note": "Dispatch, CRM, quality and service systems the business runs on.",
+      "proof": "RockPros, QMS",
+      "img": "rockpros-dispatch-board.webp"
+    },
+    {
+      "name": "Performance marketing",
+      "note": "Campaigns planned by AI and scheduled across paid and billboard screens.",
+      "proof": "CitySense",
+      "img": "citysense-planner-map.webp"
+    },
+    {
+      "name": "AI-led GTM",
+      "note": "Buyer signals, research and outbound that find the warm door.",
+      "proof": "Signals",
+      "img": "photo-studio-review-4x3.webp"
+    },
+    {
+      "name": "SEO and AI search",
+      "note": "Rank in Google and get cited in ChatGPT answers.",
+      "proof": "CitedSpy",
+      "img": "citedspy-dashboard.webp"
+    }
   ],
   "industries": [
-    "Building materials",
-    "Logistics and dispatch",
-    "OOH and digital billboards",
-    "Fintech",
-    "Manufacturing",
-    "Re-commerce and retail"
-  ]
+    {
+      "name": "Building materials",
+      "img": "photo-ind-quarry-4x3.webp"
+    },
+    {
+      "name": "Logistics and dispatch",
+      "img": "photo-ind-logistics-4x3.webp"
+    },
+    {
+      "name": "OOH and digital billboards",
+      "img": "photo-ind-ooh-4x3.webp"
+    },
+    {
+      "name": "Fintech",
+      "img": "photo-ind-fintech-4x3.webp"
+    },
+    {
+      "name": "Manufacturing",
+      "img": "photo-ind-manufacturing-4x3.webp"
+    },
+    {
+      "name": "Re-commerce and retail",
+      "img": "photo-ind-recommerce-4x3.webp"
+    }
+  ],
+  "heroImages": {
+    "back": "citysense-planner-map.webp",
+    "front": "citedspy-dashboard.webp",
+    "third": "rockpros-dispatch-board.webp"
+  }
 }

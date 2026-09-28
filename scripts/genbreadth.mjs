@@ -41,7 +41,7 @@ const heroRows = studio.capabilities.map((c, i) => `        <li style="--pig:${[
 //   products  = rows in data/projects.json plus the 14 declared in genwork.mjs
 //   sectors   = distinct declared families
 //   repos     = the crawl total in data/portfolio-inventory.md
-//   partners  = the two accountable partners; the one count set the site uses
+//   (no people count: the team is not sized in public, founder call 2026-09-28;
 //               everywhere is 34 / 9 / 374 (data/brain-narrative.md §5)
 // Chips are FAMILIES the project declares, not raw sector strings. Deriving
 // them from `sector` gave 20 chips for 20 projects, which is a dump wearing a
@@ -58,25 +58,43 @@ const kpiBlock = KPI.map(([n, l]) => `        <li><b>${n}</b><span>${l}</span></
 // /studio/work (content audit 2026-09-15, row 15: the home page was 2,400 words
 // of other pages). Chips are derived from the data, so a new family shows up
 // here on the next run without a hand edit.
-const block = `
-    <span class="label rv">03 &middot; The range</span>
-    <h2 class="rv">25+ products. Six industries we know cold.</h2>
-    <p class="dim rv ix-lede">The same two partners on every build, with AI doing the volume work.</p>
+const IMG = (f) => `/img/studio/${f}`;
+// The range, as images (founder, 2026-09-28: "internet par images k kami hai
+// kya ... absorb them in a native way"). Capabilities and industries are the
+// studio's own declaration in data/studio.json; each carries its real image.
+const capCards = studio.capabilities.map((c) => `      <li class="cap rv">
+        <figure class="cap-img"><img src="${IMG(c.img)}" alt="" loading="lazy" decoding="async" width="800" height="600"></figure>
+        <h3>${esc(c.name)}</h3>
+        <p>${esc(c.note)}</p>
+        <span class="cap-proof">${esc(c.proof)}</span>
+      </li>`).join("\n");
+const indTiles = studio.industries.map((x) => `      <li class="ind rv"><img src="${IMG(x.img)}" alt="" loading="lazy" decoding="async" width="800" height="600"><span>${esc(x.name)}</span></li>`).join("\n");
 
-    <ul class="ix-chips rv" aria-label="industries we ship into">
-${studio.industries.map(f => `      <li>${esc(f)}</li>`).join("\n")}
+const block = `
+    <span class="label rv">What we do</span>
+    <h2 class="rv">Everything it takes <span class="accent">to ship.</span></h2>
+    <p class="dim rv ix-lede">Strategy, product, engineering, operations and growth. One team, one plan, no hand-offs.</p>
+    <ul class="caps" aria-label="what we do">
+${capCards}
     </ul>
-    <p class="ix-foot rv"><span>One line per build on the index.</span> <a href="/studio/work">Open the full index &rarr;</a></p>
+
+    <span class="label rv ind-label">Where we work</span>
+    <h2 class="rv">Six industries we <span class="accent">know cold.</span></h2>
+    <ul class="inds" aria-label="industries we ship into">
+${indTiles}
+    </ul>
+    <p class="ix-foot rv"><a href="/studio/work">See the work &rarr;</a></p>
 `;
 
+const H = studio.heroImages;
+// A fixed mosaic, not a free collage: every tile has its own box and crops its
+// image, so no screen can spill into the next section at any width.
 const heroBlock = `
-      <ul class="hero-kpi" aria-label="delivery to date">
-${kpiBlock}
-      </ul>
-      <ul class="hero-work" aria-label="what we do">
-${heroRows}
-      </ul>
-      <p class="hero-work-foot"><a href="/studio/work">See the work &rarr;</a></p>
+      <div class="mosaic" aria-hidden="true">
+        <figure class="m-a"><img src="${IMG(H.back)}" alt="" width="1600" height="1000" decoding="async" fetchpriority="high"></figure>
+        <figure class="m-b"><img src="${IMG(H.front)}" alt="" width="1600" height="1000" decoding="async"></figure>
+        <figure class="m-c"><img src="${IMG(H.third)}" alt="" width="1600" height="1000" decoding="async"></figure>
+      </div>
 `;
 
 const idx = path.join(ROOT, "site/studio/index.html");
