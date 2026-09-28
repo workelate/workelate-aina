@@ -135,15 +135,15 @@ const landing = `<section id="hero" class="doors-hero">
     <div class="doors-split">
       <div class="doors-say">
         <span class="label">WorkElate Excellence Studio</span>
-        <h1 class="rise"><span>We build it.</span><span>We run it.</span><span class="accent">We grow it.</span></h1>
-        <p class="lede">One AI-native team for product, engineering, operations and marketing. And Chief, the AI brain we run our own company on. 25+ products shipped across 6 industries since 2018.</p>
+        <h1 class="rise"><span>Ship faster.</span><span>Run smoother.</span><span class="accent">Grow bigger.</span></h1>
+        <p class="lede">Your product, your operations and your marketing, handled by one AI-native team. Teams in six industries have shipped 25+ products with us since 2018.</p>
       </div>
       <div class="doors">
         <a class="door door-product door-live rv" href="/brain">
           <div class="door-txt">
             <span class="door-k">Product</span>
             <span class="door-t">Chief, the Brain</span>
-            <span class="door-p">AI that works across your CRM, mail, tickets and documents, and asks before it changes anything.</span>
+            <span class="door-p">Your CRM, mail, tickets and documents, finally working as one. It asks before it changes anything.</span>
             <span class="door-go">See Chief &rarr;</span>
           </div>
           <div class="dm" data-hx data-ms="3000" data-n="${H.doors.product.length}" aria-hidden="true">${await mini(H.doors.product, true)}</div>
@@ -152,7 +152,7 @@ const landing = `<section id="hero" class="doors-hero">
           <div class="door-txt">
             <span class="door-k">Studio</span>
             <span class="door-t">WE_AINA Studio</span>
-            <span class="door-p">Product, tech, ops and marketing in one team. From the first sprint to a live product to growth.</span>
+            <span class="door-p">Your product, ops and marketing in one team. From the first sprint to launch to growth.</span>
             <span class="door-go">See the studio &rarr;</span>
           </div>
           <div class="dm" data-hx data-ms="3000" data-delay="1500" data-n="${H.doors.studio.length}" aria-hidden="true">${await mini(H.doors.studio, false)}</div>

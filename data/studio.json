@@ -19,37 +19,275 @@
       "name": "Product management",
       "note": "Discovery, roadmap and a two-week sprint that prices the build.",
       "proof": "Every engagement",
-      "img": "photo-studio-whiteboard-4x3.webp"
+      "img": "photo-studio-whiteboard-4x3.webp",
+      "layers": [
+        {
+          "kind": "photo",
+          "src": "photo-studio-whiteboard-4x3.webp",
+          "alt": "Two people planning a product at a whiteboard covered in wireframes",
+          "dims": [
+            1600,
+            1200
+          ]
+        },
+        {
+          "kind": "win",
+          "src": "workelate-start-my-day.webp",
+          "alt": "WorkElate Start my day brief listing what needs a decision today",
+          "dims": [
+            1600,
+            1252
+          ],
+          "crop": [
+            0.0775,
+            0.099,
+            0.9225,
+            0.901
+          ],
+          "w": 56.0,
+          "x": 44.0,
+          "y": 40.0
+        },
+        {
+          "kind": "chip",
+          "x": 6.0,
+          "y": 8.0,
+          "icon": "note",
+          "text": "Sprint plan · 2 weeks"
+        }
+      ]
     },
     {
       "name": "AI product development",
       "note": "Web, mobile and AI agents, from first commit to live.",
       "proof": "WorkElate, RockPros",
-      "img": "workelate-chief-hero.webp"
+      "img": "workelate-chief-hero.webp",
+      "layers": [
+        {
+          "kind": "photo",
+          "src": "photo-studio-review-4x3.webp",
+          "alt": "Hands pointing at a laptop during a product review",
+          "dims": [
+            1600,
+            1200
+          ]
+        },
+        {
+          "kind": "win",
+          "src": "workelate-chief-hero.webp",
+          "alt": "WorkElate Chief drafting an email from a sheet and waiting for a yes",
+          "dims": [
+            2400,
+            1420
+          ],
+          "crop": [
+            0.05,
+            0.041,
+            0.95,
+            0.969
+          ],
+          "w": 66.0,
+          "x": 34.0,
+          "y": 42.0
+        },
+        {
+          "kind": "phone",
+          "src": "workelate-phone.webp",
+          "alt": "WorkElate Chief on a phone",
+          "dims": [
+            1600,
+            1744
+          ],
+          "crop": [
+            0.28,
+            0.07,
+            0.72,
+            0.93
+          ],
+          "w": 17.0,
+          "x": 20.0,
+          "y": 47.0
+        },
+        {
+          "kind": "chip",
+          "x": 6.0,
+          "y": 8.0,
+          "icon": "dot",
+          "text": "Web, mobile and AI agents"
+        }
+      ]
     },
     {
       "name": "Operations and automation",
       "note": "Dispatch, CRM, quality and service systems the business runs on.",
       "proof": "RockPros, QMS",
-      "img": "rockpros-dispatch-board.webp"
+      "img": "rockpros-dispatch-board.webp",
+      "layers": [
+        {
+          "kind": "photo",
+          "src": "/img/systems/sys-quarry-haul-4x3.webp",
+          "alt": "Loaded haul truck climbing a quarry road",
+          "dims": [
+            1600,
+            1200
+          ]
+        },
+        {
+          "kind": "win",
+          "src": "rockpros-dispatch-board.webp",
+          "alt": "RockPros dispatch board of open jobs",
+          "dims": [
+            2400,
+            1784
+          ],
+          "crop": [
+            0.07,
+            0.094,
+            0.93,
+            0.861
+          ],
+          "w": 64.0,
+          "x": 36.0,
+          "y": 43.0
+        },
+        {
+          "kind": "phone",
+          "src": "rockpros-driver-loads-phone.webp",
+          "alt": "RockPros driver app showing an open load",
+          "dims": [
+            1600,
+            1660
+          ],
+          "crop": [
+            0.28,
+            0.07,
+            0.72,
+            0.9301
+          ],
+          "w": 17.0,
+          "x": 22.0,
+          "y": 50.0
+        },
+        {
+          "kind": "chip",
+          "x": 6.0,
+          "y": 8.0,
+          "icon": "check",
+          "text": "Load dispatched"
+        }
+      ]
     },
     {
       "name": "Performance marketing",
       "note": "Campaigns planned by AI and scheduled across paid and billboard screens.",
       "proof": "CitySense",
-      "img": "citysense-planner-map.webp"
+      "img": "citysense-planner-map.webp",
+      "layers": [
+        {
+          "kind": "photo",
+          "src": "photo-cap-billboards-4x3.webp",
+          "alt": "People on a wet city street lined with digital billboards",
+          "dims": [
+            1600,
+            1200
+          ]
+        },
+        {
+          "kind": "win",
+          "src": "citysense-planner-map.webp",
+          "alt": "CitySense AI planner picking billboard screens on a city map",
+          "dims": [
+            2400,
+            1784
+          ],
+          "crop": [
+            0.07,
+            0.094,
+            0.93,
+            0.861
+          ],
+          "w": 64.0,
+          "x": 36.0,
+          "y": 42.0
+        },
+        {
+          "kind": "chip",
+          "x": 5.0,
+          "y": 72.0,
+          "icon": "dot",
+          "text": "54 screens selected"
+        }
+      ]
     },
     {
       "name": "AI-led GTM",
       "note": "Buyer signals, research and outbound that find the warm door.",
       "proof": "Signals",
-      "img": "photo-studio-review-4x3.webp"
+      "img": "photo-studio-review-4x3.webp",
+      "layers": [
+        {
+          "kind": "photo",
+          "src": "/img/systems/sys-dealer-phone-4x3.webp",
+          "alt": "Person reading a message on a smartphone",
+          "dims": [
+            1600,
+            1200
+          ]
+        },
+        {
+          "kind": "card",
+          "x": 46.0,
+          "y": 36.0,
+          "w": 52.0,
+          "eyebrow": "Buyer signal",
+          "title": "Warm door found",
+          "rows": [
+            "Account researched"
+          ]
+        }
+      ]
     },
     {
       "name": "SEO and AI search",
       "note": "Rank in Google and get cited in ChatGPT answers.",
       "proof": "CitedSpy",
-      "img": "citedspy-dashboard.webp"
+      "img": "citedspy-dashboard.webp",
+      "layers": [
+        {
+          "kind": "photo",
+          "src": "photo-studio-code-4x3.webp",
+          "alt": "Laptop on a desk in soft window light",
+          "dims": [
+            1600,
+            1200
+          ]
+        },
+        {
+          "kind": "win",
+          "src": "citedspy-dashboard.webp",
+          "alt": "CitedSpy dashboard scoring a brand's visibility in AI answers",
+          "dims": [
+            2400,
+            1784
+          ],
+          "crop": [
+            0.07,
+            0.094,
+            0.93,
+            0.861
+          ],
+          "w": 64.0,
+          "x": 36.0,
+          "y": 42.0
+        },
+        {
+          "kind": "chip",
+          "x": 5.0,
+          "y": 72.0,
+          "icon": "check",
+          "text": "AI visibility 59/100"
+        }
+      ]
     }
   ],
   "industries": [
