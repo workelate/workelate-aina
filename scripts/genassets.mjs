@@ -15,8 +15,8 @@ const { minify } = require("next/dist/compiled/terser");
 
 const ROOT = path.join(import.meta.dirname, "..");
 const SITE = path.join(ROOT, "site");
-const CSS = ["site", "compare"];
-const JS = ["nav", "reveal", "workgraph", "chat", "main"];
+const CSS = ["site", "compare", "studio", "work", "case", "systems", "hero"];
+const JS = ["nav", "reveal", "workgraph", "chat", "main", "hero"];
 
 function pages(dir, out = []) {
   for (const name of readdirSync(dir)) {

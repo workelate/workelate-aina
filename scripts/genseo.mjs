@@ -34,7 +34,8 @@ const MARK = "SEO";
 
 // ---- the one Organization declaration ------------------------------------
 // sameAs: ONLY what the site states in public. workelate.com is named as the
-// parent on every page; the mail address sits in every footer. No social URLs
+// parent on every page. No personal mailbox and no named person (founder call
+// 2026-09-28: no individual names on the site, the team is the face). No social URLs
 // are invented here: add one only when a page links it.
 const ORGANIZATION = {
   "@context": "https://schema.org",
@@ -43,14 +44,9 @@ const ORGANIZATION = {
   "alternateName": ["WE_AINA", "WorkElate's AI-Native Studio"],
   "url": `${ORIGIN}/`,
   "logo": `${ORIGIN}/img/workelate-logo.svg`,
-  "email": "chitransh@workelate.com",
   // The one product definition, word for word the sentence in site/llms.txt.
   "description": "WorkElate Chief, the Brain, is one memory across the systems a 200 to 2,000 person company already runs, made by WorkElate and installed by WE_AINA, WorkElate's own studio: it reads what your CRM, mail, tickets and documents already record, judges what needs a person, and asks before it changes anything.",
   "parentOrganization": { "@type": "Organization", "name": "WorkElate", "url": "https://www.workelate.com/" },
-  "founder": [
-    { "@type": "Person", "name": "Chitransh" },
-    { "@type": "Person", "name": "Pratik" }
-  ],
   "sameAs": ["https://www.workelate.com/"]
 };
 

@@ -7,15 +7,15 @@ This site has three zones. `/` is the WorkElate Excellence Studio umbrella. `/br
 ## What it is, in plain terms
 
 - Name: WorkElate Chief. On these pages it is also called "the Brain". Both names refer to one product; there is no separate product called "the Brain".
-- Made by: WorkElate (https://www.workelate.com/). Installed and run by WE_AINA, WorkElate's own studio, led by Chitransh (IIM Mumbai) and Pratik (IIT Bombay).
+- Made by: WorkElate (https://www.workelate.com/). Installed and run by WE_AINA, WorkElate's own studio: a tier-1 team of senior engineers, product and growth people who embed with the client and own the outcome until it ships.
 - For: companies of 200 to 2,000 people ($50M to $1B revenue) that already run a CRM, mail, a ticket or project tool, documents and chat, and want one memory across them without replacing any of them.
 - Not: a new application people have to live in, an enterprise search product, an integration platform (iPaaS/RPA), or a per-app copilot. See the comparison pages below for the named differences.
 - How it acts: fifteen verbs (find, read, research, recall, remember, ask, create, edit, improve, delete, send, share, schedule, assign, judge) resolving to 287 actions across 12 application surfaces and 190 business objects. 71 of those actions send, delete or share, and each stops for a person's yes before it runs.
 - Interruptions are budgeted: at most 40 per organization per hour and 5 per person per hour by default, changeable by saying so in plain language.
 - Honesty: when it says it did something, the record is re-read to prove it exists, and the sentence it wrote is checked against what the tools returned.
 - Commercials: a two-week Diagnostic Sprint at a fixed fee quoted after a short call, then a build at a fixed price of $30K to $100K, scoped before work starts. The customer owns the code, the data and the system at handover. No seat licence.
-- Proof on record (RockProsUSA, building materials, 13 quarries): dispatch cycle time 38% lower; 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
-- Contact: chitransh@workelate.com. The one call to action across the site is "Book a Diagnostic Sprint".
+- Proof on record (RockProsUSA, building materials, 13 quarries): 2,140 invoices processed with zero manual touches; 11,200 operations hours returned in the first year.
+- Contact: https://aina.workelate.com/studio/contact. The one call to action across the site is "Book a Diagnostic Sprint".
 
 ## Product pages (the Brain)
 
@@ -42,14 +42,14 @@ This site has three zones. `/` is the WorkElate Excellence Studio umbrella. `/br
 
 ## The studio (WE_AINA)
 
-- [WE_AINA](https://aina.workelate.com/studio): the studio that installs the Brain; two partners, fixed price, weeks not quarters.
-- [About](https://aina.workelate.com/studio/about): Chitransh and Pratik, the specialist bench, delivery run on WorkElate itself.
+- [WE_AINA](https://aina.workelate.com/studio): the studio that installs the Brain; a tier-1 team, fixed price, weeks not quarters.
+- [About](https://aina.workelate.com/studio/about): the team, the specialist bench, delivery run on WorkElate itself.
 - [How we work](https://aina.workelate.com/studio/how-we-work): the Brain does the volume work, a person approves.
 - [The index of work](https://aina.workelate.com/studio/work): one line per build, 34 products across 9 sectors from 374 repositories, 2018 to 2026.
 - [Case studies](https://aina.workelate.com/studio/case-studies) · [RockProsUSA](https://aina.workelate.com/studio/case-studies/rockprosusa): 13 quarries on one dispatch system, with the numbers above.
 - [Systems we build](https://aina.workelate.com/studio/systems): quarry dispatch, plant production reporting, dealer order management, freight reconciliation, AR follow-up, compliance documentation.
 - [Blog](https://aina.workelate.com/studio/blog): [The consulting pyramid can't survive agents](https://aina.workelate.com/studio/blog/the-pyramid-cant-survive-agents) · [Receipts over decks](https://aina.workelate.com/studio/blog/receipts-over-decks)
-- [Contact](https://aina.workelate.com/studio/contact): write to Chitransh or Pratik directly.
+- [Contact](https://aina.workelate.com/studio/contact): write to the team directly.
 
 ## Optional
 

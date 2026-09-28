@@ -28,8 +28,8 @@ const FACTS = [
     // Apostrophes are stripped before matching, so triggers are written flat.
     id: "guarantee",
     q: ["what if it doesnt work", "doesnt work", "does not work", "dont work", "didnt work", "guarantee", "guarantees", "guaranteed", "refund", "money back", "what if it fails", "it fails", "goes wrong", "go wrong", "worst case", "no results", "doesnt deliver", "over budget", "overrun", "who carries the risk", "our risk", "downside"],
-    a: "Three things carry that risk instead of you. The price is fixed before we start, so an overrun is our problem and not a change order. Every build runs a deterministic verify gate plus weekly demos on your real data from week 3, so you watch it work long before you sign anything off. And if the Diagnostic Sprint finds nothing worth building, we say so in writing and you keep your money. Beyond that we do not publish a money-back guarantee, and I am not going to invent one: ask Chitransh or Pratik and you get a straight answer rather than a clause.",
-    links: [{ label: "How engagement works", href: "/how-we-work" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+    a: "Three things carry that risk instead of you. The price is fixed before we start, so an overrun is our problem and not a change order. Every build runs a deterministic verify gate plus weekly demos on your real data from week 3, so you watch it work long before you sign anything off. And if the Diagnostic Sprint finds nothing worth building, we say so in writing and you keep your money. Beyond that we do not publish a money-back guarantee, and I am not going to invent one: ask us directly and you get a straight answer rather than a clause.",
+    links: [{ label: "How engagement works", href: "/how-we-work" }, { label: "Talk to the team", href: "/contact" }]
   },
   {
     // Measured miss: "what happens if you disappear halfway like our last dev
@@ -38,7 +38,7 @@ const FACTS = [
     // everything") and about.html ("You own everything").
     id: "exit",
     q: ["disappear", "disappears", "disappeared", "walk away", "walks away", "walked away", "halfway", "half way", "hit by a bus", "bus factor", "if you quit", "if you stop", "stop working", "go away", "handover", "hand over", "handoff", "transition out", "continuity", "fire you", "fire us", "sack you", "drop us", "last dev shop", "last agency", "last vendor", "previous shop", "ghosted", "vanish", "vanished", "only two of you", "two of you", "what if you leave"],
-    a: "You own the code and the data from day one, the handover is documented, and nothing requires us to stay for the system to keep running. You can fire us and keep everything, which is the point of a fixed price with two named partners against it rather than a maintenance contract. That is also why the build ships in weeks with demos on your data every week: there is no long stretch where you are holding nothing.",
+    a: "You own the code and the data from day one, the handover is documented, and nothing requires us to stay for the system to keep running. You can fire us and keep everything, which is the point of a fixed price with the team that built it accountable for it, rather than a maintenance contract. That is also why the build ships in weeks with demos on your data every week: there is no long stretch where you are holding nothing.",
     links: [{ label: "How we work", href: "/how-we-work" }, { label: "About us", href: "/about" }]
   },
   {
@@ -49,8 +49,8 @@ const FACTS = [
     q: ["reference", "references", "referenceable", "reference call", "talk to a customer", "talk to a client", "talk to one of your customers", "your customers", "customers", "speak to a client", "speak to a customer", "call a client", "call one of your clients", "testimonial", "testimonials", "referee", "introduce me", "past client", "existing client", "existing clients", "vouch", "someone i can call", "backchannel"],
     // No "Label: a, b, c." opening, the renderer turns that shape into
     // bullets and these clauses read as fragments when it does.
-    a: "We do not publish a reference list, and most client names are held under NDA, so I cannot hand you a contact from this page. Ask Chitransh or Pratik and you will get a straight answer on which clients can be approached and which cannot. What is public without asking anyone is the case studies, where each number is tied to a system we shipped.",
-    links: [{ label: "Case studies", href: "/case-studies" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+    a: "We do not publish a reference list, and most client names are held under NDA, so I cannot hand you a contact from this page. Ask us and you will get a straight answer on which clients can be approached and which cannot. What is public without asking anyone is the case studies, where each number is tied to a system we shipped.",
+    links: [{ label: "Case studies", href: "/case-studies" }, { label: "Talk to the team", href: "/contact" }]
   },
   {
     // Measured miss: "where are you located" hit the generic fallback. The
@@ -58,8 +58,8 @@ const FACTS = [
     // inventing one. FOUNDER-BLOCKED: registered entity, city, time zone.
     id: "location",
     q: ["where are you", "where are you located", "where are you based", "located", "location", "based", "office", "offices", "headquarters", "head office", "hq", "address", "which city", "which country", "what country", "time zone", "timezone", "onsite", "on site", "in person", "remote team", "near me", "visit us", "come to our office"],
-    a: "We have not published an office address on this site and I am not going to make one up. What is on record: the work has been delivered across India, the US and Mexico, and diagnosis happens inside your operation rather than in an offshore delivery centre, we sit in your dispatch office, your studio, your finance room. For the registered entity, the city and who signs the contract, ask Chitransh or Pratik.",
-    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+    a: "We have not published an office address on this site and I am not going to make one up. What is on record: the work has been delivered across India, the US and Mexico, and diagnosis happens inside your operation rather than in an offshore delivery centre, we sit in your dispatch office, your studio, your finance room. For the registered entity, the city and who signs the contract, ask us directly.",
+    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to the team", href: "/contact" }]
   },
   {
     // Measured miss: "do you have SOC2 / how do you handle our data security"
@@ -68,8 +68,8 @@ const FACTS = [
     // prevent. FOUNDER-BLOCKED: certifications, data residency, DPA/NDA.
     id: "security",
     q: ["soc2", "soc 2", "iso 27001", "iso27001", "iso certification", "gdpr", "hipaa", "security", "secure", "data security", "infosec", "information security", "penetration test", "pentest", "vulnerability", "privacy", "privacy policy", "confidential", "confidentiality", "nda", "dpa", "data processing agreement", "data residency", "where is our data", "who sees our data", "data protection", "certification", "certifications", "vendor security", "security questionnaire", "encryption"],
-    a: "We have not published a security posture, a SOC 2 or an ISO certificate on this site, and I will not claim a badge we have not shown you. What is true and on record: you own the code and the data, there is no lock-in clause and nothing requires us to stay for the system to keep running, and client names are held under NDA unless the client clears them. For certifications, data residency and an NDA or DPA, put it to Chitransh or Pratik before the Sprint and you get a straight answer instead of a logo wall.",
-    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to Chitransh or Pratik", href: "/contact" }]
+    a: "We have not published a security posture, a SOC 2 or an ISO certificate on this site, and I will not claim a badge we have not shown you. What is true and on record: you own the code and the data, there is no lock-in clause and nothing requires us to stay for the system to keep running, and client names are held under NDA unless the client clears them. For certifications, data residency and an NDA or DPA, put it to us before the Sprint and you get a straight answer instead of a logo wall.",
+    links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to the team", href: "/contact" }]
   },
   {
     id: "price",
@@ -89,7 +89,7 @@ const FACTS = [
   {
     id: "team",
     q: ["who", "team", "size", "people", "partners", "juniors", "account manager", "founders"],
-    a: "Two accountable partners, Chitransh and Pratik, plus senior specialists pulled in per build and an agent fleet doing the volume work. No pyramid of juniors, and no account manager between you and us.",
+    a: "A tier-1 team: senior engineers, product and growth people, with an AI fleet doing the volume work. We sit with you, own the outcome end to end and drive it until it ships. No account manager between you and the people building it.",
     links: [{ label: "About us", href: "/about" }]
   },
   {
@@ -198,13 +198,13 @@ const FACTS = [
   {
     id: "hire",
     q: ["hire", "hiring", "in house", "in-house", "our own team", "recruit", "developers", "freelancer", "agency instead", "why not hire"],
-    a: "Hiring a product team takes months before anyone writes a line, and you carry the salaries whether or not the roadmap needs them. We are two senior partners plus agents at a fixed price, and we go away when it ships.",
+    a: "Hiring a product team takes months before anyone writes a line, and you carry the salaries whether or not the roadmap needs them. We are a senior team plus an AI fleet at a fixed price, embedded with you until it ships.",
     links: [{ label: "How we work", href: "/how-we-work" }]
   },
   {
     id: "agentcode",
     q: ["agents write", "ai write", "who writes the code", "written by ai", "vibe", "generated code", "quality", "is it safe", "reliable"],
-    a: "Yes, agents write most of the volume code, and that is exactly why every build runs inside a deterministic gate: automated checks that block \"done\" until it provably works on your data. Two named partners are accountable for what ships, not a tool.",
+    a: "Yes, agents write most of the volume code, and that is exactly why every build runs inside a deterministic gate: automated checks that block \"done\" until it provably works on your data. The team owns what ships, end to end, not a tool.",
     links: [{ label: "The verify loop", href: "/how-we-work" }]
   },
   {

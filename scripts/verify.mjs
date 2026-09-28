@@ -106,6 +106,12 @@ for (const route of PAGES) {
     continue;
   }
   assert("page loads", true, route);
+  // Founder call 2026-09-28: no individual names anywhere on the site, the team
+  // is the face. Checked over the RAW source, so JSON-LD, meta tags, mailto
+  // links and inline script strings count, not only rendered text.
+  const rawSrc = await res.text().catch(() => "");
+  const nameHits = [...new Set((rawSrc.match(/chitransh|pratik/gi) || []).map(s => s.toLowerCase()))];
+  assert("no individual names (source + JSON-LD)", nameHits.length === 0, route, nameHits.join(", "));
 
   const facts = await page.evaluate((banned) => {
     const txt = el => (el.innerText || "").replace(/\s+/g, " ").trim();

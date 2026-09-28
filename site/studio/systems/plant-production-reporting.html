@@ -6,6 +6,7 @@
 <title>Plant production reporting automation, WE_AINA</title>
 <meta name="description" content="Shift logs, weighbridge tickets and downtime entries become a reconciled daily production report by 6 AM, discrepancies flagged.">
 <link rel="stylesheet" href="/css/site.min.css">
+<link rel="stylesheet" href="/css/systems.min.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems/plant-production-reporting">
 <meta property="og:type" content="website">
@@ -127,23 +128,12 @@
  ],
  "url": "https://aina.workelate.com/",
  "logo": "https://aina.workelate.com/img/workelate-logo.svg",
- "email": "chitransh@workelate.com",
  "description": "WorkElate Chief, the Brain, is one memory across the systems a 200 to 2,000 person company already runs, made by WorkElate and installed by WE_AINA, WorkElate's own studio: it reads what your CRM, mail, tickets and documents already record, judges what needs a person, and asks before it changes anything.",
  "parentOrganization": {
   "@type": "Organization",
   "name": "WorkElate",
   "url": "https://www.workelate.com/"
  },
- "founder": [
-  {
-   "@type": "Person",
-   "name": "Chitransh"
-  },
-  {
-   "@type": "Person",
-   "name": "Pratik"
-  }
- ],
  "sameAs": [
   "https://www.workelate.com/"
  ]
@@ -182,7 +172,7 @@
           </div>
           <div class="nm-promo">
             <span class="nm-k">How we work</span>
-            <p class="nm-t">Two partners, an agent fleet, a fixed price.</p>
+            <p class="nm-t">A tier-1 team, an AI fleet, a fixed price.</p>
             <p class="nm-p">Diagnostic in two weeks, a working system in weeks after it, and the operating numbers themselves as the report.</p>
             <a class="nm-go" href="/studio/how-we-work">Read the operating model &rarr;</a>
           </div>
@@ -227,41 +217,67 @@
 <!-- NAV:end -->
 
 <main id="main">
-<section id="hero" style="min-height:auto">
+<section id="hero" class="sys-hero" style="min-height:auto">
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>The 6 AM production report<br><span class="accent">nobody</span> had to write.</h1>
     <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <figure class="sys-fig sys-lead is-photo">
+      <div class="sys-frame"><img src="/img/systems/sys-plant-stockpile-16x9.webp" alt="Sand and gravel stockpiles under conveyors at a processing plant" fetchpriority="high" decoding="async"></div>
+      <figcaption>Shift logs, weighbridge tickets and downtime, reconciled before the morning meeting.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section>
+<section class="sys-cost">
   <div class="wrap">
     <span class="label">What this costs you today</span>
-    <p>At a plant this size, a manager spending 90 minutes a day assembling shift data loses about 33 working days a year to copying numbers.</p>
-    <p style="margin-top:16px">A crusher running 7% under rate for two days before anyone notices is roughly 800 tonnes of lost throughput at a mid-size plant.</p>
+    <div class="sys-costs">
+      <p>At a plant this size, a manager spending 90 minutes a day assembling shift data loses about 33 working days a year to copying numbers.</p>
+      <p>A crusher running 7% under rate for two days before anyone notices is roughly 800 tonnes of lost throughput at a mid-size plant.</p>
+    </div>
+    <figure class="sys-fig sys-band is-photo">
+      <div class="sys-frame"><img src="/img/systems/sys-plant-conveyor-16x9.webp" alt="A conveyor dropping crushed stone onto a conical stockpile" loading="lazy" decoding="async"></div>
+      <figcaption>Tonnage that does not match the tickets is flagged in the report.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section>
+<section class="sys-system">
   <div class="wrap">
     <span class="label">The system</span>
+    <div class="sys-copy">
     <p>The system pulls shift logs, weighbridge tickets, downtime entries and energy readings as they happen, reconciles them, and writes the daily production report before the morning meeting. Tonnage that does not match tickets, and downtime nobody entered, are flagged in the report.</p>
-    <p class="accent" style="margin-top:24px">The same reporting runs at RockProsUSA, where 11,200 operations hours were returned over the first twelve months, a large share of them reporting hours.</p>
+    </div>
+    <div class="sys-pair">
+    <figure class="sys-fig sys-before is-photo">
+      <div class="sys-frame"><img src="/img/systems/sys-plant-clipboard-4x3.webp" alt="A hand writing on a clipboard" loading="lazy" decoding="async"></div>
+      <figcaption><b>Today.</b> The report is copied together by hand from logs and tickets.</figcaption>
+    </figure>
+    <figure class="sys-fig sys-after is-screen">
+      <div class="sys-frame"><img src="/img/studio/rockpros-customer-tracking.webp" alt="Scheduled deliveries table with truck and loaded tons for each load" loading="lazy" decoding="async"></div>
+      <figcaption><b>With the system.</b> Loaded tons per load, read from the records that produced them. RockProsUSA, demo data.</figcaption>
+    </figure>
+    </div>
+    <p class="sys-proof">The same reporting runs at RockProsUSA, where 11,200 operations hours were returned over the first twelve months, a large share of them reporting hours.</p>
   </div>
 </section>
 
-<section class="deep">
+<section class="deep sys-landing">
   <div class="wrap">
     <span class="label">How it lands in your operation</span>
+    <div class="sys-copy">
     <p>The first two weeks are connectors to wherever your data lives: Tally, the weighbridge PC, the shift-log spreadsheet, the control system. By week three a parallel report arrives every morning; you mark what is wrong, and within a month it is the report.</p>
-    <h2 style="margin-top:48px">Signs you need this</h2>
-    <p class="dim" style="margin-top:12px">- The morning meeting argues about what happened instead of what to do.</p>
-    <p class="dim" style="margin-top:12px">- Downtime totals differ depending on who you ask.</p>
-    <p class="dim" style="margin-top:12px">- Month-end production numbers get adjusted and nobody can say why.</p>
-    <p class="dim" style="margin-top:12px">- Your monthly report is accurate but ten days late, or timely but wrong.</p>
-    <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
+    </div>
+    <h2>Signs you need this</h2>
+    <ul class="sys-signs">
+      <li>The morning meeting argues about what happened instead of what to do.</li>
+      <li>Downtime totals differ depending on who you ask.</li>
+      <li>Month-end production numbers get adjusted and nobody can say why.</li>
+      <li>Your monthly report is accurate but ten days late, or timely but wrong.</li>
+    </ul>
+    <p class="dim srcnote">Updated 28 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
 
@@ -321,7 +337,7 @@
         <a href="/studio/about">About us</a>
         <a href="/studio/blog">Blog</a>
         <a href="/brain/faq">FAQ</a>
-        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
+        <a href="/studio/contact">Talk to us</a>
       </div>
       <div>
         <div class="fh">Legal</div>
@@ -331,7 +347,7 @@
       </div>
     </div>
     <div class="baseline">
-      <span>&copy; 2026 WorkElate &middot; Chitransh &amp; Pratik &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
+      <span>&copy; 2026 WorkElate &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
       <span><a href="/">Excellence Studio</a> &middot; <a href="/studio/contact">Privacy</a></span>
     </div>
   </div>

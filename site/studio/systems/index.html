@@ -6,6 +6,7 @@
 <title>Six systems we build and run, WE_AINA</title>
 <meta name="description" content="Six systems we build and run: quarry dispatch, production reporting, dealer order management, freight reconciliation, AR follow-up, compliance filings.">
 <link rel="stylesheet" href="/css/site.min.css">
+<link rel="stylesheet" href="/css/systems.min.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/studio/systems">
 <meta property="og:type" content="website">
@@ -104,23 +105,12 @@
  ],
  "url": "https://aina.workelate.com/",
  "logo": "https://aina.workelate.com/img/workelate-logo.svg",
- "email": "chitransh@workelate.com",
  "description": "WorkElate Chief, the Brain, is one memory across the systems a 200 to 2,000 person company already runs, made by WorkElate and installed by WE_AINA, WorkElate's own studio: it reads what your CRM, mail, tickets and documents already record, judges what needs a person, and asks before it changes anything.",
  "parentOrganization": {
   "@type": "Organization",
   "name": "WorkElate",
   "url": "https://www.workelate.com/"
  },
- "founder": [
-  {
-   "@type": "Person",
-   "name": "Chitransh"
-  },
-  {
-   "@type": "Person",
-   "name": "Pratik"
-  }
- ],
  "sameAs": [
   "https://www.workelate.com/"
  ]
@@ -159,7 +149,7 @@
           </div>
           <div class="nm-promo">
             <span class="nm-k">How we work</span>
-            <p class="nm-t">Two partners, an agent fleet, a fixed price.</p>
+            <p class="nm-t">A tier-1 team, an AI fleet, a fixed price.</p>
             <p class="nm-p">Diagnostic in two weeks, a working system in weeks after it, and the operating numbers themselves as the report.</p>
             <a class="nm-go" href="/studio/how-we-work">Read the operating model &rarr;</a>
           </div>
@@ -211,37 +201,49 @@
     <h1>Six systems already built.<br>Yours is <span class="accent">the seventh.</span></h1>
     <p class="sub dim">Each one is a system we have designed, shipped and run on operating data, with the Brain proposing and a person approving.</p>
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <figure class="sys-fig sys-lead is-screen">
+      <div class="sys-frame"><img src="/img/studio/rockpros-dispatch-board.webp" alt="Open Jobs dispatch board listing delivery dates, customers, truckers and sites" fetchpriority="high" decoding="async"></div>
+      <figcaption>The dispatch board at RockProsUSA, shown here with demo data.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section>
+<section class="sys-index">
   <div class="wrap">
     <h2 style="margin-bottom:16px">The six, written up</h2>
     <p class="dim" style="margin-bottom:40px">Each page names what the problem costs today and how the system lands.</p>
-    <a class="svc rv" href="/studio/systems/quarry-dispatch-automation">
-      <span class="num">01</span><h3>Quarry dispatch automation</h3>
-      <p class="dim">Truck assignments proposed with their reasoning and approved by a dispatcher, behind a 38% lower dispatch cycle across 13 quarries.</p>
-    </a>
-    <a class="svc rv" href="/studio/systems/plant-production-reporting">
-      <span class="num">02</span><h3>Plant production reporting automation</h3>
-      <p class="dim">Shift logs, weighbridge tickets and downtime entries become a reconciled daily production report by 6 AM, discrepancies flagged.</p>
-    </a>
-    <a class="svc rv" href="/studio/systems/dealer-order-management">
-      <span class="num">03</span><h3>Dealer order management automation</h3>
-      <p class="dim">Orders from WhatsApp, phone and email become one validated queue; clean orders confirm to the dealer in minutes, exceptions route to a person.</p>
-    </a>
-    <a class="svc rv" href="/studio/systems/freight-reconciliation">
-      <span class="num">04</span><h3>Freight reconciliation automation</h3>
-      <p class="dim">Every carrier bill line matched against weighbridge, gate and delivery data; clean lines clear, disputes are flagged with evidence attached.</p>
-    </a>
-    <a class="svc rv" href="/studio/systems/ar-followup-automation">
-      <span class="num">05</span><h3>Accounts receivable follow-up automation</h3>
-      <p class="dim">Every open invoice chased on cadence and escalated by rule; promises to pay are tracked to their date and re-chased the morning after.</p>
-    </a>
-    <a class="svc rv" href="/studio/systems/compliance-documentation">
-      <span class="num">06</span><h3>Compliance documentation automation</h3>
-      <p class="dim">Royalty, GST, e-way and environmental filings built continuously from weighbridge and dispatch data, so month-end becomes a review.</p>
-    </a>
+    <ul class="sys-cards">
+    <li><a class="sys-card" href="/studio/systems/quarry-dispatch-automation">
+      <span class="sys-card-img"><img src="/img/systems/sys-quarry-haul-4x3.webp" alt="A loaded haul truck climbing a quarry road" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">01</span><h3>Quarry dispatch automation</h3>
+      <span class="sys-card-desc">Truck assignments proposed with their reasoning and approved by a dispatcher. The same system runs 13 quarry sites today.</span></span>
+    </a></li>
+    <li><a class="sys-card" href="/studio/systems/plant-production-reporting">
+      <span class="sys-card-img"><img src="/img/systems/sys-plant-stockpile-4x3.webp" alt="Sand and gravel stockpiles under conveyors at a processing plant" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">02</span><h3>Plant production reporting automation</h3>
+      <span class="sys-card-desc">Shift logs, weighbridge tickets and downtime entries become a reconciled daily production report by 6 AM, discrepancies flagged.</span></span>
+    </a></li>
+    <li><a class="sys-card" href="/studio/systems/dealer-order-management">
+      <span class="sys-card-img"><img src="/img/systems/sys-dealer-delivery-4x3.webp" alt="A dump truck tipping aggregate at a stockyard" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">03</span><h3>Dealer order management automation</h3>
+      <span class="sys-card-desc">Orders from WhatsApp, phone and email become one validated queue; clean orders confirm to the dealer in minutes, exceptions route to a person.</span></span>
+    </a></li>
+    <li><a class="sys-card" href="/studio/systems/freight-reconciliation">
+      <span class="sys-card-img"><img src="/img/systems/sys-freight-loading-4x3.webp" alt="Crushed stone falling from a conveyor onto a stockpile" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">04</span><h3>Freight reconciliation automation</h3>
+      <span class="sys-card-desc">Every carrier bill line matched against weighbridge, gate and delivery data; clean lines clear, disputes are flagged with evidence attached.</span></span>
+    </a></li>
+    <li><a class="sys-card" href="/studio/systems/ar-followup-automation">
+      <span class="sys-card-img"><img src="/img/systems/sys-ar-desk-4x3.webp" alt="A calculator, notebook and pencil on a white desk" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">05</span><h3>Accounts receivable follow-up automation</h3>
+      <span class="sys-card-desc">Every open invoice chased on cadence and escalated by rule; promises to pay are tracked to their date and re-chased the morning after.</span></span>
+    </a></li>
+    <li><a class="sys-card" href="/studio/systems/compliance-documentation">
+      <span class="sys-card-img"><img src="/img/systems/sys-compliance-folders-4x3.webp" alt="A stack of thick white folders on a white surface" loading="lazy" decoding="async"></span>
+      <span class="sys-card-body"><span class="num">06</span><h3>Compliance documentation automation</h3>
+      <span class="sys-card-desc">Royalty, GST, e-way and environmental filings built continuously from weighbridge and dispatch data, so month-end becomes a review.</span></span>
+    </a></li>
+    </ul>
   </div>
 </section>
 
@@ -298,7 +300,7 @@
         <a href="/studio/about">About us</a>
         <a href="/studio/blog">Blog</a>
         <a href="/brain/faq">FAQ</a>
-        <a href="mailto:chitransh@workelate.com">chitransh@workelate.com</a>
+        <a href="/studio/contact">Talk to us</a>
       </div>
       <div>
         <div class="fh">Legal</div>
@@ -308,7 +310,7 @@
       </div>
     </div>
     <div class="baseline">
-      <span>&copy; 2026 WorkElate &middot; Chitransh &amp; Pratik &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
+      <span>&copy; 2026 WorkElate &middot; WE_AINA is WorkElate's AI&#8209;Native Studio</span>
       <span><a href="/">Excellence Studio</a> &middot; <a href="/studio/contact">Privacy</a></span>
     </div>
   </div>

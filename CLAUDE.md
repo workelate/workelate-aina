@@ -15,7 +15,7 @@ never strip "WorkElate's AI-Native Agency" from the site narrative.
    If a request conflicts, push back with
    the compliant alternative.
 4. Section order: hero → ticker → shift → work → services → casestudy
-   → process → founders → cta → footer.
+   → process → team → cta → footer.
 5. After touching #casestudy or any JS: run Lighthouse mobile;
    budgets — perf ≥ 95, 0 long tasks >50ms during scroll, CLS 0.
 6. Final summaries must name exact file paths for created/changed
@@ -147,6 +147,12 @@ must be the real product (local stack, seeded org), never a mockup.
   characters, an SVG `<title>` included.
 
 ## Copy rules
+- NO INDIVIDUAL NAMES (founder call 2026-09-28): no founder or staff name,
+  avatar, bio, alumni, signature, byline or personal email on any page, in
+  JSON-LD, llms.txt or the corpus. The site presents a tier-1 team (senior
+  engineers, product and growth people) that sits with the client and owns
+  the outcome until it ships. No headcount. Authors = Organization WE_AINA;
+  contact = /studio/contact. verify.mjs asserts zero names on served pages.
 - Receipts over adjectives; every claim carries a real number.
 - BANNED sitewide (founder call 2026-07-22): audit/logging as a selling
   point. "Every action logged. Every claim auditable.", "audit trail",
@@ -171,7 +177,7 @@ must be the real product (local stack, seeded org), never a mockup.
 3. A lead submitted through the widget lands in leads.db with a full
    audit trail.
 4. Founder-blocked items tracked, not silently dropped: real visuals
-   (hero video), founder photos, CitiSense number,
+   (hero video), CitiSense number,
    LinkedIn URLs, Sprint fee band, SMTP + Anthropic creds, real domain
    git init + deploy. (Domain settled 2026-09-07: the site ships as
    aina.workelate.com, a subdomain — WE_AINA owns no domain of its own, so

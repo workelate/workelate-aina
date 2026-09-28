@@ -96,7 +96,7 @@ const score = (queryTerms, hay) => {
 
 // A visitor calling us liars is not asking about the team. Measured: "you
 // people are frauds and your numbers are fake" matched the trigger "people"
-// and got the partners blurb. Hostility routes to the honest fallback.
+// and got the team blurb. Hostility routes to the honest fallback.
 const HOSTILE = /\b(fraud|frauds|fraudulent|fake|faked|scam|scams|scammer|liar|liars|lying|bullshit|bullsh|crooks?|con artists?|useless|garbage|rubbish|nonsense|shit|bogus)\b/;
 
 const INJECTION = /\b(ignore (all |your |the )?(previous|prior|above|earlier)|disregard (all |your |the )?(previous|prior|above)|system prompt|you are now|pretend (you|to be)|act as if|repeat after me|say that you (charge|cost))\b/;
@@ -124,12 +124,12 @@ const FOLLOWUPS = [
 // The one thing to say when we cannot answer. It used to be 44 words in a
 // single sentence, emitted exactly when the visitor is already lost. Short,
 // honest, and it points at the two places that do answer: the work, and the
-// two people whose names are on it.
+// team that built it.
 const fallback = () => ({
-  text: "I only answer from what we have actually built, so I do not have that one. The case studies are the work itself, and for anything else Chitransh or Pratik answer their own messages.",
+  text: "I only answer from what we have actually built, so I do not have that one. The case studies are the work itself, and for anything else the team that builds it answers your message directly.",
   links: [
     { label: "Case studies", href: "/case-studies" },
-    { label: "Talk to Chitransh or Pratik", href: "/contact" }
+    { label: "Talk to the team", href: "/contact" }
   ],
   followup: null,
   factId: null
@@ -222,7 +222,7 @@ function answer(text) {
         text: "Understood, we scope that out rather than sell it to you. Tell me what the system does need to do and I will point you at the closest thing we have built.",
         links: [
           { label: "Case studies", href: "/case-studies" },
-          { label: "Talk to Chitransh or Pratik", href: "/contact" }
+          { label: "Talk to the team", href: "/contact" }
         ],
         followup: pickFollowup(),
         factId: null
@@ -305,7 +305,7 @@ if (root) {
     CORPUS = await r.json();
   }
 
-  // transcript is sent with the lead so the founders read the intent, not just
+  // transcript is sent with the lead so the team reads the intent, not just
   // an address. capture state gates the ask so it fires once, at the right time.
   const transcript = [];
   const cap = { done: false, shown: false };
@@ -343,8 +343,8 @@ if (root) {
   function showCapture(signal) {
     cap.shown = true;
     const lead = signal
-      ? "If you want this costed, leave an email or phone and Chitransh or Pratik will come back with a build plan, usually same day."
-      : "Want the two of us to look at your specifics? Leave an email or phone and we will come back with where we would start.";
+      ? "If you want this costed, leave an email or phone and the team will come back with a build plan, usually same day."
+      : "Want the team to look at your specifics? Leave an email or phone and we will come back with where we would start.";
     const el = bubble("bot cap", `
       <p>${lead}</p>
       <form class="cap-form" autocomplete="on">
@@ -378,14 +378,14 @@ if (root) {
         if (r.ok && d.ok) {
           cap.done = true;
           f.remove();
-          msg.textContent = "Got it. You will hear from Chitransh or Pratik, not an autoresponder.";
+          msg.textContent = "Got it. You will hear from the team, not an autoresponder.";
         } else {
           msg.textContent = d.error === "need a valid email or phone"
             ? "That does not look like an email or phone, try again?"
-            : "Could not send just now. Email Chitransh directly at chitransh@workelate.com.";
+            : "Could not send just now. Try the form at /studio/contact instead.";
         }
       } catch {
-        msg.textContent = "Could not send just now. Email Chitransh directly at chitransh@workelate.com.";
+        msg.textContent = "Could not send just now. Try the form at /studio/contact instead.";
       }
     });
     log.scrollTop = log.scrollHeight;

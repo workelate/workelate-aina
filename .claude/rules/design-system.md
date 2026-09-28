@@ -62,7 +62,8 @@ It also asserts **"no gradient or glass surface"**: no element may compute a
 Unchanged and still binding: fonts self-hosted or system only; no backdrop-filter on
 the sticky header; em dashes banned in copy; receipts over adjectives; the single CTA
 phrase "Book a Diagnostic Sprint"; "contact us" banned; never fabricate a customer
-quote, a number or a testimonial; founders visible and accountable; WCAG AA contrast
+quote, a number or a testimonial; no individual names on the site, the team is the face
+(founder call 2026-09-28, see §9); WCAG AA contrast
 on every text tier (grey `#6e6e73` is the floor, never lighter for text).
 
 ---
@@ -100,8 +101,8 @@ exactly why this one is measured.
 Unchanged and still binding from the old system: fonts are self-hosted only; no
 backdrop-filter on the sticky header; em dashes banned in copy; receipts over
 adjectives; the single CTA phrase "Book a Diagnostic Sprint"; "contact us" banned;
-never fabricate a customer quote, a number or a testimonial; founders visible and
-accountable. Contrast still has to clear WCAG on the dark ground, and dark grounds
+never fabricate a customer quote, a number or a testimonial; no individual names
+(superseded 2026-09-28, see §9). Contrast still has to clear WCAG on the dark ground, and dark grounds
 make that harder, not easier: check every accent used as text, and note that the
 product's own `--ws-text-dim` `#6b7280` measures under 4.5:1 on `#07070c`.
 
@@ -208,9 +209,18 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    WE_AINA is WorkElate's AI-Native Agency — the dogfooding flywheel
    ("our delivery runs on our own platform") is PUBLIC positioning:
    keep it on About, How-we-work principle 06, and every footer.
-9. Human connection is required: founders visible and accountable
-   (names, note in first person, "you talk to Chitransh or Pratik"),
-   warm micro-copy. NEVER fabricate customer quotes or testimonials.
+9. Human connection is required, as a TEAM, never as named people
+   (founder call 2026-09-28, aina.workelate.com: "entire website se
+   chitransh + pratik hata do ... bolo tier 1 talent"). No founder or
+   staff names, avatars, bios, alumni, signatures, author bylines or
+   personal email addresses anywhere on the site, in JSON-LD, llms.txt
+   or the corpus. Present a tier-1 team (senior engineers, product and
+   growth people) that takes the toughest problems, moves at light
+   speed, sits with the client and owns the outcome until it ships.
+   No invented team size or headcount. Bylines and JSON-LD authors are
+   the Organization "WE_AINA". Contact is /studio/contact, never a
+   personal mailbox. verify.mjs enforces zero names. Warm micro-copy.
+   NEVER fabricate customer quotes or testimonials.
 10. Imagery (founder-amended 2026-07-10): photography is welcome — stock
    or self-made, founder's call is quality, not provenance ("lagao
    dhang k pics"). All images self-hosted (no runtime external image
