@@ -234,3 +234,7 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    hero photo. Source shots must be at least 3:2; a near-square source
    in a 2:1 band loses ~48% of the frame to the crop and turns into a
    wall of face, which is what got team.jpg cut.
+
+
+### Colour option C (founder call 2026-09-29)
+The headline accent word runs teal `#0f8083` to blue `#2f6bff` as TEXT (background-clip: text); primary buttons are ink `#1d1d1f`, secondary buttons ink outline. Gradients as surfaces stay banned; verify.mjs allows a gradient only when clipped to text. Tokens: `--v-accent-a`, `--v-accent-b`, `--v-btn` in site.css.
