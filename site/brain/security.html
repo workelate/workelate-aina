@@ -6,6 +6,7 @@
 <title>Security review, the Brain, WE_AINA</title>
 <meta name="description" content="Nothing in a document, an email, or the AI's own output can change who that is, or approve an action on their behalf.">
 <link rel="stylesheet" href="/css/site.min.css">
+<link rel="stylesheet" href="/css/brain.min.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/brain/security">
 <meta property="og:type" content="website">
@@ -204,6 +205,7 @@
     <h1>It acts only as the person who <span class="accent">signed in.</span></h1>
     <p class="sub dim">Nothing in a document, an email, or the AI's own output can change who that is, or approve an action on their behalf.</p>
     <p class="hero-cta"><a class="btn" href="/book-a-demo">Book a demo</a> <a href="/brain/architecture">How it is built</a></p>
+      <figure class="bx-fig bx-fig-hero"><div class="bx-stage"><img src="/img/brain/sub/permissions.webp" srcset="/img/brain/sub/permissions-800.webp 800w, /img/brain/sub/permissions.webp 1600w" sizes="(max-width: 900px) 92vw, 1000px" alt="Asked to update a view-only sheet, Chief says it can view but not edit it, changes nothing, and names who can grant access." width="1600" height="734" fetchpriority="high" decoding="async"></div><figcaption>It acts as you, so it cannot do what you cannot. Product illustration, sample data.</figcaption></figure>
   </div>
 </section>
 
@@ -212,9 +214,12 @@
     <span class="label">01 &middot; The threat we designed against</span>
     <h2>A hidden instruction cannot change who is asking</h2>
     <p class="lede">The attack that matters is a sentence hidden in a document that talks the AI into naming a different company or user; <a href="/brain/proof">the proof page</a> holds what is not proven.</p>
+    <div class="bx-diagram rv"><div class="bx-stage"><div class="bx-fence"><div class="side"><p class="hd">What reaches it</p><div class="bx-chip yes">A signed-in person<small>Who it acts as comes from here, only</small></div><div class="bx-chip no">A sentence hidden in a document<small>Cannot change who is asking</small></div><div class="bx-chip no">An email that asks it to act<small>Cannot approve an action</small></div><div class="bx-chip no">The AI&rsquo;s own output<small>Cannot approve itself</small></div></div><div class="core"><span class="t">The Brain acts as the person who signed in</span><span class="d">Identity and credentials are taken from the session and stripped from whatever the AI writes.</span><span class="gate">Send, delete, share: waits for a click</span></div><div class="side"><p class="hd">Your data</p><div class="bx-chip">Reads stay inside your company&rsquo;s stamp<small>An uncheckable stamp answers unknown</small></div><div class="bx-chip">71 of 287 actions stop for a person<small>Everything that sends, deletes or shares</small></div><div class="bx-chip">Credentials read at the moment of use<small>A revoked one stops at the next call</small></div></div></div></div><p class="bx-cap">Where identity comes from, and what stops. Diagram.</p></div>
+    <div class="bx-cards">
     <div class="principle rv"><div class="pn">01</div><div><h3>Who it acts as comes from the sign-in</h3><p class="dim">The person, the company and every credential are taken from the signed-in session, and stripped from whatever the AI writes.</p></div></div>
     <div class="principle rv"><div class="pn">02</div><div><h3>It cannot approve its own action</h3><p class="dim">A yes only counts when a person clicked it; an approval written by the AI is not one.</p></div></div>
     <div class="principle rv"><div class="pn">03</div><div><h3>Credentials are read at the moment of use</h3><p class="dim">Never cached at start, so a revoked credential takes effect at the next call, not the next restart.</p></div></div>
+    </div>
   </div>
 </section>
 
@@ -222,10 +227,13 @@
   <div class="wrap">
     <span class="label">02 &middot; Reading and changing</span>
     <h2>What it may read, and what it may change on its own</h2>
+    <div class="bx-flow">
     <div class="step rv"><span class="k">Your data</span><div><h3>Reads stay inside your company's own data</h3><p class="dim">Every record and remembered fact is stamped with the company it belongs to, and a read stays inside that stamp.</p></div></div>
     <div class="step rv"><span class="k">The unknown</span><div><h3>An uncheckable stamp answers unknown, never pass</h3><p class="dim">No query runs without it.</p></div></div>
     <div class="step rv"><span class="k">The stop</span><div><h3>71 of 287 actions stop for a person</h3><p class="dim">Everything that sends, deletes or shares, by category, so a new action of that kind stops from the day it exists.</p></div></div>
     <div class="step rv"><span class="k">The claim</span><div><h3>What it says is checked against what happened</h3><p class="dim">It checks the change landed before telling you, and its reply against what the tools returned.</p></div></div>
+    </div>
+    <div class="bx-row"><figure class="bx-fig"><div class="bx-stage bx-card"><img src="/img/brain/sub/share-confirm.webp" alt="A confirm card: share the proposal, view only, with two buttons, Share and Not now." width="861" height="603" loading="lazy" decoding="async"></div><figcaption>A share stops for a yes. Product illustration, sample data.</figcaption></figure><figure class="bx-fig"><div class="bx-stage bx-card"><img src="/img/brain/sub/reread.webp" srcset="/img/brain/sub/reread-800.webp 800w, /img/brain/sub/reread.webp 1600w" sizes="(max-width: 900px) 92vw, 1000px" alt="Chief reports three rows updated, re-reads the sheet, confirms two changed, and flags the one row that did not change and why." width="1600" height="701" loading="lazy" decoding="async"></div><figcaption>Re-read after the write; the miss is told. Product illustration, sample data.</figcaption></figure></div>
   </div>
 </section>
 

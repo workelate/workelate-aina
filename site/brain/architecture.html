@@ -6,6 +6,7 @@
 <title>How the Brain is built, WorkElate Chief, WE_AINA</title>
 <meta name="description" content="One process for every change, no hand-written rules per case, a stop in front of anything that sends or deletes: how the Brain is built.">
 <link rel="stylesheet" href="/css/site.min.css">
+<link rel="stylesheet" href="/css/brain.min.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/brain/architecture">
 <meta property="og:type" content="website">
@@ -204,6 +205,7 @@
     <h1>Built so a person, not a rule, <span class="accent">decides.</span></h1>
     <p class="sub dim">One process for every change, no hand-written rules per case, a stop in front of anything that sends or deletes.</p>
     <p class="hero-cta"><a class="btn" href="/book-a-demo">Book a demo</a> <a href="/brain/security">The security page</a></p>
+      <div class="bx-diagram"><div class="bx-stage"><ol class="bx-path"><li><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="t">Noticed</span><span class="d">Each app reports what it records</span></li><li><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7.2l7.6.6M7.3 8.2l3.6 7.6M16.8 9.2l-3.6 6.8"/></svg></span><span class="t">Put in context</span><span class="d">One map of how the work connects</span></li><li><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a4 4 0 0 0 6 0L5 7zM19 7l-3 7a4 4 0 0 0 6 0l-3-7z"/></svg></span><span class="t">Judged</span><span class="d">Silence is the default outcome</span></li><li class="stop"><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12V6a1.5 1.5 0 0 1 3 0v5M10 11V4.5a1.5 1.5 0 0 1 3 0V11M13 11V5.5a1.5 1.5 0 0 1 3 0V12M16 12V8.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-2.7L3.5 14a1.5 1.5 0 0 1 2.5-1.7L7 14"/></svg></span><span class="t">Acted on, with a yes</span><span class="d">Send, delete and share wait for a person</span></li><li><span class="i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></span><span class="t">Remembered</span><span class="d">The decision and what happened</span></li></ol><p class="bx-loopback">What it remembers is read the next time something changes.</p></div><p class="bx-cap">One process for every change. Diagram.</p></div>
   </div>
 </section>
 
@@ -212,9 +214,11 @@
     <span class="label">01 &middot; The bet</span>
     <h2>One process, not a rules engine</h2>
     <p class="lede">Every change takes the same path: noticed, put in context, judged, acted on with a yes, remembered; <a href="/brain/capabilities">the capability inventory</a> lists what it can be asked to do.</p>
+    <div class="bx-cards">
     <div class="principle rv"><div class="pn">01</div><div><h3>No outcome is decided by a written rule</h3><p class="dim">The policy lives in your own documents, read at the moment of the decision; the only fixed logic is reflex.</p></div></div>
     <div class="principle rv"><div class="pn">02</div><div><h3>Why that is the whole bet</h3><p class="dim">One rule per scenario is brittle forever; one reasoner over your documents decides the same event differently for two clients.</p></div></div>
     <div class="principle rv"><div class="pn">03</div><div><h3>The twelfth application test</h3><p class="dim">A new application tells the Brain what it records and can do; the Brain keeps no list to update, so nothing is forgotten.</p></div></div>
+    </div>
   </div>
 </section>
 
@@ -222,10 +226,12 @@
   <div class="wrap">
     <span class="label">02 &middot; Noticed, put in context, judged</span>
     <h2>Context is assembled before an opinion is formed</h2>
+    <div class="bx-flow">
     <div class="step rv"><span class="k">Notice</span><div><h3>Each app tells the Brain what it records</h3><p class="dim">A ticket opened, a date moved, an invoice sent; no polling, no scraping.</p></div></div>
     <div class="step rv"><span class="k">Context</span><div><h3>One map of how your work connects</h3><p class="dim">Every remembered fact is stamped with the company it belongs to, and a question about one client reads that client.</p></div></div>
     <div class="step rv"><span class="k">Judge</span><div><h3>Silence is the default outcome</h3><p class="dim">Each change is scored, read against the surrounding work, and judged once; interruptions are capped at 40 an hour company-wide, 5 per person.</p></div></div>
-    <figure class="figure real"><img src="/img/workgraph-poster.webp" alt="The map as the product holds it: documents, mail threads, tasks, meetings, boards, sheets, decks, forms, people, clients and commitments as nodes, linked by the relationships the product writes, with the Brain reasoning across all of them." width="1400" height="800" loading="lazy" decoding="async"><figcaption>The map, drawn from what the product actually holds.</figcaption></figure>
+    </div>
+    <figure class="bx-fig rv"><div class="bx-stage"><img src="/img/brain/sub/workgraph.webp" srcset="/img/brain/sub/workgraph-800.webp 800w, /img/brain/sub/workgraph.webp 1600w" sizes="(max-width: 900px) 92vw, 1000px" alt="The work map: documents, threads, tasks, meetings, sheets, decks, people and clients as nodes, linked by the relationships the product records." width="1600" height="914" loading="lazy" decoding="async"></div><figcaption>How the work connects, as the Brain holds it.</figcaption></figure>
   </div>
 </section>
 
@@ -234,10 +240,12 @@
     <span class="label">03 &middot; Acted on with a yes, then checked</span>
     <h2>A stop in front of anything that sends or deletes</h2>
     <p class="lede">Fifteen things it can be asked to do reach 287 actions inside our own apps, and 71 of them, everything that sends, deletes or shares, stop for a person.</p>
+    <div class="bx-cards">
     <div class="principle rv"><div class="pn">01</div><div><h3>The AI cannot approve its own action</h3><p class="dim">A yes only counts when a person clicked it, and send and delete stop by category.</p></div></div>
     <div class="principle rv"><div class="pn">02</div><div><h3>Doing and saying are two events</h3><p class="dim">It checks the change landed before telling you it did, then compares its reply against what the tools returned.</p></div></div>
     <div class="principle rv"><div class="pn">03</div><div><h3>It acts only as the person who signed in</h3><p class="dim">Identity and credentials are stripped from the AI's output before an action runs; <a href="/brain/security">the security page</a> has the review questions.</p></div></div>
-    <figure class="figure real"><img src="/img/real/briefing-needs-you@2x.png" alt="The real morning briefing in WorkElate hub: ranked items with the reason each surfaced and the action it offers, waiting for a person." width="1141" height="805" loading="lazy" decoding="async"><figcaption>A ranked list with a reason and an action, waiting for a person. Real screen.</figcaption></figure>
+    </div>
+    <figure class="bx-fig rv"><div class="bx-stage bx-mid"><img src="/img/brain/sub/real-briefing.webp" srcset="/img/brain/sub/real-briefing-800.webp 800w, /img/brain/sub/real-briefing.webp 1600w" sizes="(max-width: 900px) 92vw, 1000px" alt="The morning briefing in the hub: ranked items, the reason each surfaced, and the action each offers." width="1600" height="1129" loading="lazy" decoding="async"></div><figcaption>Ranked, with a reason and an action. Real screen, seeded data.</figcaption></figure>
   </div>
 </section>
 
