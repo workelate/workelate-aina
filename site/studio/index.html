@@ -302,19 +302,22 @@
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
 
     <div id="ask">
-      <p class="ask-lead dim">Or ask first. The assistant answers from our work and a library we refresh every week.</p>
-      <form class="ask-form" autocomplete="off">
-        <label class="sr-only" for="ask-input">Ask what we would build for your business</label>
-        <input class="ask-input" id="ask-input" name="q" type="text" placeholder="Ask what we would build for your business&hellip;">
+      <p class="ask-lead dim">Or ask first. Explore what the team can do, what we have built, what we are building now and what is changing in your industry.</p>
+      <!-- No-JS contract: without site/js/chat.min.js the form and every chip submit
+           to the contact page (a plain link with the question attached). -->
+      <form class="ask-form" id="ask-form" action="/studio/contact" method="get" autocomplete="off">
+        <label class="sr-only" for="ask-input">Ask about our team, our work or your industry</label>
+        <input class="ask-input" id="ask-input" name="q" type="text" maxlength="500" placeholder="Ask about our work, or your industry&hellip;">
         <button class="ask-send" type="submit" aria-label="Send">&rarr;</button>
       </form>
-      <div class="ask-chips" aria-label="example questions">
-        <button type="button" data-ask="What do you actually build?">What do you build?</button>
-        <button type="button" data-ask="We need an MVP shipped in weeks, not quarters">Ship an MVP</button>
-        <button type="button" data-ask="Can you add AI features to our existing product?">Add AI to our product</button>
-        <button type="button" data-ask="Our build has stalled, can you take over the codebase?">Take over a stalled build</button>
-        <button type="button" data-ask="Do you build mobile apps?">Mobile apps</button>
-        <button type="button" data-ask="What does a build cost and how long does it take?">Cost and timeline</button>
+      <noscript><p class="ask-nojs"><a href="/studio/contact">Ask the team directly &rarr;</a></p></noscript>
+      <div class="ask-chips" aria-label="Start with a question">
+        <button type="submit" form="ask-form" name="q" value="What can your team do?" data-ask="What can your team do?">What can your team do?</button>
+        <button type="submit" form="ask-form" name="q" value="What have you built?" data-ask="What have you built?">What have you built?</button>
+        <button type="submit" form="ask-form" name="q" value="What are you building now?" data-ask="What are you building now?">What are you building now?</button>
+        <button type="submit" form="ask-form" name="q" value="What's next for you?" data-ask="What's next for you?">What's next for you?</button>
+        <button type="submit" form="ask-form" name="q" value="What's changing in my industry?" data-ask="What's changing in my industry?">What's changing in my industry?</button>
+        <button type="submit" form="ask-form" name="q" value="How would we start?" data-ask="How would we start?">How would we start?</button>
       </div>
       <div class="ask-log" role="log" aria-live="polite"></div>
     </div>
