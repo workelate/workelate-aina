@@ -6,7 +6,9 @@
 // Keep this a GENERATOR. Editing site/data/corpus.json by hand dies on the
 // next run.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { createHash } from "node:crypto";
 import path from "node:path";
+import { FEATURED, INDUSTRIES, CASE_RP } from "./workdata.mjs";
 
 const ROOT = path.join(import.meta.dirname, "..");
 const read = p => JSON.parse(readFileSync(path.join(ROOT, p), "utf8"));
@@ -101,13 +103,13 @@ const FACTS = [
   {
     id: "trust",
     q: ["proof", "trust", "reference", "portfolio", "experience", "track record", "done before", "credentials", "how many projects", "how much work"],
-    a: "100+ projects shipped continuously from 2018 to 2026, across 16 sectors. Whole systems with their apps, backends, admin consoles and integrations, not a wall of demos. Ask about your sector and I will point you at the closest one.",
+    a: "25+ products shipped across six industries since 2018. Whole systems with their apps, backends, admin consoles and integrations, not a wall of demos. Ask about your industry and I will point you at the closest one.",
     links: [{ label: "Depth and width", href: "/#portfolio" }, { label: "Case studies", href: "/case-studies" }]
   },
   {
     id: "sectors",
     q: ["industry", "industries", "sector", "sectors", "verticals", "who do you work with", "clients", "kind of business", "worked with"],
-    a: "Sixteen sectors so far: property development, industrial operations, fuel distribution, freight, manufacturing, pharma and diversified industry, ERP and finance ops, e-commerce, edtech, SaaS, marketing, ML tooling, AR and VR, marketplaces, HR and contract intelligence.",
+    a: "Six industries, on purpose: building materials, logistics and dispatch, OOH and digital billboards, fintech, manufacturing, re-commerce and retail. Earlier builds also reach education, legal technology, real estate and service operations.",
     links: [{ label: "Depth and width", href: "/#portfolio" }]
   },
   {
@@ -229,33 +231,58 @@ const FACTS = [
 
 const chunks = [];
 
+// The corpus spells one product "CitiSense" in data/projects.json; the product
+// and every page call it CitySense. The assistant uses the product's name.
+const fixName = t => String(t || "").replace(/CitiSense/g, "CitySense");
+
+// Featured and industry cards on /studio/work, keyed by project id, so a build's
+// passage carries the same one line, image and page the gallery shows.
+const CARD = {}, IND_OF = {};
+for (const c of [...FEATURED, ...INDUSTRIES.flatMap(i => i.builds)])
+  if (c.id && !CARD[c.id]) CARD[c.id] = c;
+for (const i of INDUSTRIES) for (const b of i.builds) if (b.id && !IND_OF[b.id]) IND_OF[b.id] = i.k;
+
+// One image per build for the answer's work card. Only files that exist in
+// site/img/studio, the same ones /studio/work renders.
+const IMGDIR = path.join(ROOT, "site", "img", "studio");
+const imgOk = f => { try { readFileSync(path.join(IMGDIR, f)); return "/img/studio/" + f; } catch { return null; } };
+
 for (const p of projects) {
+  const card = CARD[p.id];
+  const title = fixName(p.named ? `${p.name}: ${p.headline}` : `${p.headline}`);
   chunks.push({
     id: `project:${p.id}`,
     kind: "project",
-    title: p.named ? `${p.name}: ${p.headline}` : `${p.headline}`,
-    body: p.what,
-    meta: `${p.sector} · ${p.years} · ${p.repos} ${p.repos === 1 ? "repository" : "repositories"}`,
-    outcomes: p.outcomes || [],
-    links: p.links || [],
-    terms: [
-      p.named ? p.name : "", p.sector, p.headline, p.what,
+    topic: "work",
+    name: p.named ? fixName(card?.title || p.name) : null,
+    title,
+    body: fixName(p.what),
+    meta: fixName(`${p.sector} · ${p.years} · ${p.repos} ${p.repos === 1 ? "repository" : "repositories"}`),
+    outcomes: (p.outcomes || []).map(fixName),
+    line: card ? fixName(card.line) : null,
+    url: card?.href || (p.id === "rockpros" ? CASE_RP : IND_OF[p.id] ? `/studio/work#${IND_OF[p.id]}` : "/studio/work"),
+    img: card?.img ? imgOk(card.img) : null,
+    links: card?.href ? [{ label: card.cta || "See the work", href: card.href }, ...(p.links || [])] : (p.links || []),
+    terms: fixName([
+      p.named ? p.name : "", card?.title || "", card?.line || "", p.sector, p.headline, p.what,
       ...(p.capabilities || []), ...(p.tags || []), ...(p.outcomes || [])
-    ].join(" ").toLowerCase()
+    ].join(" ")).toLowerCase()
   });
 }
 
 for (const c of cases) {
   if (c.status === "placeholder") continue;
   chunks.push({
-    id: `case:${c.title.slice(0, 24)}`,
+    id: `case:${fixName(c.title).slice(0, 24)}`,
     kind: "case",
-    title: c.title,
-    body: c.summary,
-    meta: `${c.tag} · ${c.metric} ${c.metricLabel}`,
+    topic: "work",
+    title: fixName(c.title),
+    body: fixName(c.summary),
+    meta: fixName(`${c.tag} · ${c.metric} ${c.metricLabel}`),
     outcomes: [],
-    links: [{ label: "Read the case studies", href: "/case-studies" }],
-    terms: `${c.tag} ${c.title} ${c.summary} ${c.metricLabel}`.toLowerCase()
+    url: c.href || "/studio/case-studies",
+    links: [{ label: "Read the case studies", href: c.href || "/case-studies" }],
+    terms: fixName(`${c.tag} ${c.title} ${c.summary} ${c.metricLabel}`).toLowerCase()
   });
 }
 
@@ -272,6 +299,7 @@ for (const [slug, title, body, terms] of SYSTEMS) {
   chunks.push({
     id: `system:${slug}`,
     kind: "system",
+    topic: "capability",
     title,
     body,
     meta: "System we install",
@@ -281,12 +309,187 @@ for (const [slug, title, body, terms] of SYSTEMS) {
   });
 }
 
+// ------------------------------------------------------------------------
+// The six topics a visitor explores (founder, 2026-09-29: "an experience about
+// the capability of the team, experience, work we did, are doing and want to
+// do, and trends"). Every chunk below is copied from a file in this repo or a
+// product repo's own docs, dated where the source is dated. Nothing here is a
+// new claim: if a line cannot point at its source, it does not belong.
+// ------------------------------------------------------------------------
+const studio = read("data/studio.json");
+const library = read("site/data/library.json");
+const push = c => chunks.push({ outcomes: [], links: [{ label: "See the work", href: c.url }], ...c,
+  terms: [c.title, c.body, c.terms || ""].join(" ").toLowerCase() });
+
+// capability: the six capabilities on /studio (data/studio.json)
+push({
+  id: "capability:overview", kind: "capability", topic: "capability",
+  title: "What our team does",
+  body: `One team for product, tech, ops and marketing. Six capabilities: ${studio.capabilities.map(c => c.name).join("; ")}. Senior people with an AI fleet doing the volume work, embedded with you until it ships.`,
+  meta: "Capabilities", url: "/studio#services", img: imgOk("photo-studio-whiteboard-4x3.webp"),
+  terms: "team capabilities services skills what can you do offer help with"
+});
+for (const c of studio.capabilities) {
+  push({
+    id: "capability:" + c.name.toLowerCase().replace(/[^a-z]+/g, "-"), kind: "capability", topic: "capability",
+    title: c.name, body: `${c.note} Where it shows: ${c.proof}.`, meta: "Capability",
+    url: "/studio#services", img: imgOk(c.img), line: c.note,
+    terms: `capability team ${c.proof}`
+  });
+}
+
+// experience: the studio's numbers and the six industries (studio.json + workdata)
+const [kProducts, kInd, kYears] = studio.kpi;
+push({
+  id: "experience:overview", kind: "experience", topic: "experience",
+  title: "Our experience",
+  body: `${kProducts[0]} ${kProducts[1]} across ${kInd[0]} ${kInd[1]} ${kYears[1].replace(/^years shipping, /, "")}: ${studio.industries.map(i => i.name).join("; ")}. Whole systems with their apps, backends, admin consoles and integrations.`,
+  meta: "Experience", url: "/studio/work", img: imgOk("photo-studio-review-4x3.webp"),
+  terms: "experience track record years how long been doing industries sectors products shipped portfolio"
+});
+for (const ind of INDUSTRIES) {
+  push({
+    id: "industry:" + ind.k, kind: "industry", topic: "experience",
+    title: `${ind.name}: our work`,
+    body: ind.builds.map(b => `${fixName(b.title)}: ${fixName(b.line)}`).join(" "),
+    meta: "Industry", url: `/studio/work#${ind.k}`, img: imgOk(ind.photo),
+    line: `${ind.builds.length} ${ind.builds.length === 1 ? "build" : "builds"} in ${ind.name.toLowerCase()}.`,
+    terms: `industry ${ind.name} ${ind.k}`
+  });
+}
+
+// work we did: the featured builds in one passage, for "what have you built"
+push({
+  id: "work:overview", kind: "work", topic: "work",
+  title: "What we have built",
+  body: FEATURED.map(f => `${f.title}: ${f.line}`).join(" ") + " Beyond these, builds across fintech, manufacturing, re-commerce, logistics, education, legal technology and real estate.",
+  meta: "Work", url: "/studio/work", img: null,
+  terms: "built build shipped made work portfolio products examples what have you built featured"
+});
+
+// work we did: featured builds that have no projects.json row (CitedSpy, infinitie)
+for (const f of FEATURED.filter(f => !projects.some(p => p.id === f.id))) {
+  const extra = {
+    citedspy: {
+      body: "CitedSpy is our AI search visibility product, the GEO category (generative engine optimization). It shows whether ChatGPT, Perplexity, Gemini, Copilot and Google AI Mode recommend your brand, with what sentiment, and which sources those answers cite, so a marketing team can see and grow the AI-answer channel it cannot see in Google Analytics.",
+      terms: "citedspy ai search visibility geo generative engine optimization aeo answer engine cited chatgpt perplexity gemini copilot ai overviews brand mentions citations share of voice seo llm visibility"
+    },
+    infinitie: {
+      body: "infinitie is an invite-only network for vetted growth, product and founder operators: vouched intros, senior roles and candid peer counsel. Registration is an application, and every intro is vouched for by a member.",
+      terms: "infinitie invite only network community operators founders vouched intros referrals roles peer"
+    }
+  }[f.id] || { body: f.line, terms: "" };
+  push({
+    id: "build:" + f.id, kind: "build", topic: "work", name: f.title,
+    title: `${f.title}: ${f.line.replace(/\.$/, "")}`, body: extra.body, line: f.line,
+    meta: `${f.tag} · ${f.years}`, url: `/studio/work`, img: imgOk(f.img),
+    links: [{ label: "See the work", href: "/studio/work" }],
+    terms: `${f.title} ${f.tag} ${extra.terms}`
+  });
+}
+
+// doing now: current builds, from each product repo's own docs and recent
+// history (WorkElate: site/brain/roadmap.html "shipped" and "building now";
+// CitySense: its June 2026 client changelog and September commits; CitedSpy:
+// AGENTS.md and September commits; infinitie: docs/PROGRESS.md, 12 Sep 2026).
+push({
+  id: "now:workelate", kind: "now", topic: "now", name: "WorkElate",
+  title: "Building now: WorkElate Chief",
+  body: "We are building WorkElate Chief, the Brain inside our AI-native office suite, and our own delivery runs on it. In flight now: the morning list as cards you act on in place, a desk brief that assembles a client's state from everything in their folder, a mail policy that decides nudge, draft or silence from each organization's own documents, and cheaper turns so the briefing can run more often. Already running: mail replies drafted with the account's context, one folder holding every artifact for a client, and decks built from the files in a folder.",
+  line: "The Brain inside our AI-native office suite. Our own delivery runs on it.",
+  meta: "Building now", url: "/brain/roadmap", img: imgOk("workelate-start-my-day.webp"),
+  terms: "workelate chief brain office suite ai native morning brief desk brief mail building now current"
+});
+push({
+  id: "now:citedspy", kind: "now", topic: "now", name: "CitedSpy",
+  title: "Building now: CitedSpy",
+  body: "CitedSpy is live and we keep shipping it. It reads the real answer pages of ChatGPT, Perplexity, Gemini, Copilot and Google AI Mode rather than calling their APIs, so it sees what a buyer sees. Recent work: a WordPress plugin and a Webflow integration, connectors for Zapier, Make, n8n, Activepieces and Looker Studio, bring-your-own-key setup for agencies, and localized PDF reports.",
+  line: "AI search visibility, live and shipping weekly.",
+  meta: "Building now", url: "/studio/work", img: imgOk("citedspy-citations.webp"),
+  terms: "citedspy ai search visibility geo integrations wordpress webflow zapier building now current"
+});
+push({
+  id: "now:citysense", kind: "now", topic: "now", name: "CitySense",
+  title: "Building now: CitySense",
+  body: "CitySense, our DOOH platform, is live with agencies and display teams in Mexico and in active development. Recent work: a marketplace for printed billboards with negotiation, artwork approval and photo proof of installation, rolling out per account; live proof of play from the field; CPM plans priced from real screen audience rather than the budget; screens chosen by brand and location, not size alone; and a self-updating player that runs on Raspberry Pi. A test connector to Broadsign and NovaCloud is live, with certification in progress.",
+  line: "AI plans, schedules and runs billboard campaigns.",
+  meta: "Building now", url: "/studio/work#ooh", img: imgOk("citysense-live-campaign.webp"),
+  terms: "citysense dooh ooh billboard billboards digital signage screens out of home proof of play cpm building now current"
+});
+push({
+  id: "now:infinitie", kind: "now", topic: "now", name: "infinitie",
+  title: "Building now: infinitie",
+  body: "infinitie is live as an invite-only network for operators. Registration is an application, and recent work added a feed with media and polls, a follow graph, funding and sponsor slots.",
+  line: "An invite-only network where every intro is vouched for.",
+  meta: "Building now", url: "/studio/work", img: imgOk("infinitie-room.webp"),
+  terms: "infinitie network community operators building now current"
+});
+
+// want to do next: roadmap items, phrased as roadmap, never as shipped
+push({
+  id: "next:workelate", kind: "next", topic: "next", name: "WorkElate",
+  title: "On our roadmap: WorkElate Chief",
+  body: "On our roadmap for WorkElate Chief, not started yet: connections to the systems a company already runs, added by telling the Brain what each system records; opening a document, sheet or deck read only inside another application; the morning brief delivered where a team already looks, at the hour they start; briefing shapes per role, since finance, delivery and revenue need different first items; and a self-serve check showing what the Brain could see in your stack. The order is set by what a client needs in production.",
+  line: "What the Brain learns next, set by what clients need in production.",
+  meta: "Roadmap", url: "/brain/roadmap", img: imgOk("workelate-suite-ring.webp"),
+  terms: "roadmap next future plan plans vision workelate chief brain connections"
+});
+push({
+  id: "next:infinitie", kind: "next", topic: "next", name: "infinitie",
+  title: "On our roadmap: infinitie",
+  body: "On our roadmap for infinitie: meetup outcomes posted back to the feed, a weekly board of who opened doors, signed invite links, notifications as an email digest first, the digest on WhatsApp, one search across members, posts and playbooks, and an Ask that reads a problem and names the right three people.",
+  line: "Next for the operator network.",
+  meta: "Roadmap", url: "/studio/work", img: imgOk("infinitie-room.webp"),
+  terms: "roadmap next future plan infinitie network"
+});
+push({
+  id: "next:studio", kind: "next", topic: "next",
+  title: "Where the studio is heading",
+  body: "We are staying focused on six industries rather than going wide: building materials, logistics and dispatch, OOH and digital billboards, fintech, manufacturing, re-commerce and retail. Every build is scoped, built and run inside WorkElate, the product we would sell you, so what we learn on client work goes back into the product.",
+  meta: "Focus", url: "/studio", img: null,
+  terms: "roadmap next future plan focus vision direction heading studio want to do"
+});
+
+// trends: what the weekly library covers (derived from library.json)
+{
+  const counts = {};
+  for (const it of library.items || []) counts[it.topic] = (counts[it.topic] || 0) + 1;
+  const topics = Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([t]) => t)
+    .filter(t => !/^(citedspy|citysense|workelate)$/i.test(t));
+  const pubs = [...new Set((library.items || []).map(i => i.source))];
+  push({
+    id: "trends:library", kind: "trends", topic: "trends",
+    title: "What we read every week",
+    body: `We keep a reading library, refreshed every week from ${pubs.length} publications, on ${topics.join("; ")}. Name your industry and we will tell you what is moving in it, with the publication that reported it.`,
+    meta: "Weekly library", url: "/studio", img: null,
+    terms: "trends trend changing change industry market news whats happening shift"
+  });
+}
+
+// every chunk carries a topic; a chunk without one is a generator bug
+for (const c of chunks) if (!c.topic) throw new Error(`gencorpus: chunk ${c.id} has no topic`);
+for (const c of chunks) for (const k of ["title", "body", "line"]) if (/—/.test(c[k] || "")) throw new Error(`gencorpus: em dash in ${c.id}.${k}`);
+
+// Topic per fact, for the assistant's follow-ups (how to start vs who we are).
+const FACT_TOPIC = {
+  guarantee: "start", exit: "start", references: "experience", location: "start", security: "start",
+  price: "start", speed: "start", start: "start", own: "start", mvp: "start", rescue: "start", hire: "start",
+  trust: "experience", sectors: "experience", enterprise: "experience", erp: "work", mobile: "work",
+  platform: "work", aifeature: "work", billing: "work", integrate: "work"
+};
+for (const f of FACTS) f.topic = FACT_TOPIC[f.id] || "capability";
+
+const body = { facts: FACTS, chunks };
 const out = {
   generated: new Date().toISOString().slice(0, 10),
-  facts: FACTS,
-  chunks
+  // content hash: the assistant's answer cache is keyed by it, so any corpus
+  // change retires every cached answer
+  hash: createHash("sha1").update(JSON.stringify(body)).digest("hex").slice(0, 12),
+  ...body
 };
 
 mkdirSync(path.join(ROOT, "site", "data"), { recursive: true });
 writeFileSync(path.join(ROOT, "site", "data", "corpus.json"), JSON.stringify(out));
-console.log(`wrote site/data/corpus.json: ${chunks.length} chunks, ${FACTS.length} facts`);
+const byTopic = {};
+for (const c of chunks) byTopic[c.topic] = (byTopic[c.topic] || 0) + 1;
+console.log(`wrote site/data/corpus.json: ${chunks.length} chunks (${Object.entries(byTopic).map(([k, v]) => k + " " + v).join(", ")}), ${FACTS.length} facts`);

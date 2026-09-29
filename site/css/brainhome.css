@@ -1,0 +1,182 @@
+/* brainhome (2026-09-29): /brain only. The Monday sticky story, the ladder,
+   the judgment flow, the black trust chapter and the role cards.
+   Motion is transform/opacity only. No gradients, no backdrop-filter.
+   No-JS: every step, its text and the first stage screen are visible.
+   Narrow screens and reduced motion: each step carries its own screen. */
+
+/* ---------------------------------------------------------- numbers -- */
+.bh-nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
+.bh-num { background: var(--v-white); border-radius: 28px; padding: 36px 28px 32px; }
+.bh-n {
+  display: block; font-size: clamp(48px, 5vw, 72px); font-weight: 600; line-height: 0.95;
+  letter-spacing: -0.05em; color: var(--v-ink); font-variant-numeric: tabular-nums;
+}
+.bh-num:nth-child(2) .bh-n { color: var(--v-teal); }
+.bh-num p { margin-top: 16px; font-size: 17px; line-height: 1.45; color: var(--v-ink-2); max-width: 24ch; }
+.bh-num p b { font-weight: 600; color: var(--v-ink); }
+.bh-fine { margin-top: 32px; font-size: 14px; line-height: 1.5; color: var(--v-grey); }
+section > .wrap > .bh-fine { color: var(--v-grey); }
+
+/* ----------------------------------------------------- sticky story -- */
+.bh-monday { padding-bottom: 96px; }
+.bh-story { margin-top: 56px; }
+.bh-steps { list-style: none; margin: 0; padding: 0; }
+.bh-step { padding: 28px 0; }
+.bh-t {
+  display: inline-block; font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+  color: var(--v-teal); margin-bottom: 10px;
+}
+.bh-step h3 { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: -0.025em; }
+.bh-step p { margin-top: 10px; font-size: 19px; line-height: 1.45; color: var(--v-grey); max-width: 36ch; }
+.bh-inline { margin: 24px 0 0; }
+.bh-inline img, .bh-shot {
+  display: block; background: var(--v-white); border-radius: 14px; box-shadow: var(--v-window);
+}
+.bh-inline img { width: 100%; height: auto; }
+
+.bh-stage { display: none; }
+.bh-now { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--v-ink); margin-bottom: 16px; }
+.bh-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--v-teal); }
+.bh-device {
+  position: relative; aspect-ratio: 4 / 3; border-radius: 28px; background: var(--v-light); overflow: hidden;
+}
+.bh-shot {
+  position: absolute; inset: 0; margin: auto;
+  width: auto; height: auto; max-width: 92%; max-height: 90%;
+  opacity: 0; transform: translate3d(0, 28px, 0) scale(0.975);
+  transition: opacity 0.6s var(--ease), transform 0.8s var(--ease);
+}
+.bh-shot.is-on { opacity: 1; transform: none; }
+.bh-shot.is-past { transform: translate3d(0, -28px, 0) scale(0.975); }
+.bh-pips { list-style: none; display: flex; gap: 8px; justify-content: center; margin: 18px 0 0; padding: 0; }
+.bh-pips li { width: 8px; height: 8px; border-radius: 50%; background: var(--v-line); transition: transform 0.4s var(--ease), background-color 0.4s; }
+.bh-pips li.is-on { background: var(--v-teal); transform: scale(1.35); }
+
+@media (min-width: 1024px) {
+  .bh-story { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 56px; align-items: start; }
+  .bh-stage { display: block; height: 100%; }
+  .bh-sticky { position: sticky; top: max(72px, calc(50vh - 290px)); }
+  .bh-inline { display: none; }
+  .bh-step { min-height: 58vh; display: flex; flex-direction: column; justify-content: center; padding: 0; }
+  .bh-step:first-child { min-height: 48vh; justify-content: flex-start; padding-top: 72px; }
+  .bh-step:last-child { min-height: 70vh; }
+  /* with JS, the step being read is ink, the others step back to grey */
+  html[data-bh] .bh-step h3 { color: var(--v-grey); transition: color 0.4s; }
+  html[data-bh] .bh-step.is-on h3 { color: var(--v-ink); }
+}
+/* reduced motion: the stage never runs, every step shows its own screen */
+@media (prefers-reduced-motion: reduce) {
+  .bh-stage { display: none !important; }
+  .bh-inline { display: block !important; }
+  .bh-step { min-height: 0 !important; padding: 28px 0 !important; }
+  .bh-shot, .bh-pips li, .bh-ladder .bh-bar { transition: none !important; }
+}
+
+/* ----------------------------------------------------------- ladder -- */
+.bh-mega { font-size: clamp(48px, 8.4vw, 112px); line-height: 0.98; letter-spacing: -0.045em; margin-bottom: 56px; }
+.bh-ladder {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; align-items: end;
+}
+.bh-bar {
+  display: flex; align-items: flex-start; padding: 16px;
+  height: calc(var(--i) * 44px + 36px); border-radius: 20px; background: var(--v-white);
+  transform-origin: 50% 100%;
+  transition: transform 0.9s var(--ease); transition-delay: calc(var(--i) * 70ms);
+}
+.bh-ladder li:last-child .bh-bar { background: var(--v-teal); }
+.bh-bn { font-size: 14px; font-weight: 600; color: var(--v-grey); }
+.bh-ladder li:last-child .bh-bn { color: #fff; }
+.bh-ladder h3 { margin-top: 18px; font-size: 21px; }
+.bh-ladder .bh-ds { margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--v-teal); }
+.bh-ladder p:last-child { margin-top: 8px; font-size: 15px; line-height: 1.45; color: var(--v-ink-2); }
+html[data-bh] .bh-ladder:not(.in) .bh-bar { transform: scaleY(0.18); }
+.bh-ladder li { align-self: start; }
+.bh-ladder .bh-bar { margin-top: calc((6 - var(--i)) * 44px); }
+
+/* --------------------------------------------------------- judgment -- */
+.bh-flow {
+  margin-top: 56px; display: grid; align-items: center; gap: 16px;
+  grid-template-columns: 90px repeat(3, minmax(0, 1fr)) 150px;
+}
+.bh-in { width: 90px; height: 150px; }
+.bh-q { background: var(--v-light); border-radius: 28px; padding: 28px; min-height: 220px; position: relative; }
+.bh-k { display: block; font-size: 14px; font-weight: 600; color: var(--v-teal); margin-bottom: 12px; }
+.bh-q h3 { font-size: 22px; }
+.bh-q p { margin-top: 10px; font-size: 16px; line-height: 1.45; color: var(--v-ink-2); }
+.bh-out { display: flex; flex-direction: column; gap: 8px; }
+.bh-o {
+  display: block; text-align: center; border-radius: 980px; padding: 10px 12px;
+  font-size: 14px; font-weight: 600; color: var(--v-ink-2); border: 1px solid var(--v-line);
+}
+.bh-o-quiet { padding: 26px 12px; font-size: 17px; background: var(--v-ui); border-color: var(--v-ui); color: #fff; }
+.bh-huge {
+  margin-top: 88px; text-align: center;
+  font-size: clamp(52px, 9.6vw, 136px); font-weight: 600; line-height: 0.98; letter-spacing: -0.05em;
+}
+section > .wrap > p.bh-huge { color: var(--v-ink); }
+
+/* ---------------------------------------------- black trust chapter -- */
+.bh-black { background: #000; color: #f5f5f7; padding: 120px 0; }
+.bh-black .label, .bh-black h2, .bh-black h3 { color: #f5f5f7; }
+.bh-teal { color: #3fb8bb; }
+.bh-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.bh-card { background: #161617; border-radius: 28px; padding: 36px; overflow: hidden; display: flex; flex-direction: column; gap: 28px; }
+.bh-card .bh-k { color: #3fb8bb; }
+.bh-card h3 { font-size: 28px; line-height: 1.15; }
+.bh-card p { margin-top: 10px; font-size: 17px; line-height: 1.45; color: #a1a1a6; max-width: 34ch; }
+.bh-wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); align-items: center; gap: 40px; }
+.bh-pic { margin: 0; }
+.bh-pic img { display: block; width: 100%; height: auto; border-radius: 16px; }
+.bh-fence { width: 100%; max-width: 340px; height: auto; margin-top: auto; }
+.bh-caps { display: flex; gap: 48px; justify-content: flex-end; }
+.bh-caps p { margin: 0; font-size: 17px; color: #a1a1a6; max-width: none; }
+.bh-cn { display: block; font-size: clamp(88px, 11vw, 160px); font-weight: 600; line-height: 0.9; letter-spacing: -0.05em; color: #f5f5f7; margin-bottom: 8px; }
+.bh-caps p:first-child .bh-cn { color: #3fb8bb; }
+
+/* ------------------------------------------------------------ roles -- */
+.bh-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.bh-role {
+  display: flex; flex-direction: column; background: var(--v-light); border-radius: 28px; padding: 24px 24px 32px;
+  color: var(--v-ink); text-decoration: none; transition: transform 0.4s var(--ease);
+}
+.bh-role:hover { color: var(--v-ink); transform: translateY(-4px); }
+.bh-rpic {
+  display: flex; align-items: center; justify-content: center; aspect-ratio: 4 / 3;
+  background: var(--v-white); border-radius: 20px; overflow: hidden; margin-bottom: 24px; padding: 18px;
+}
+.bh-rpic img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.bh-role h3 { font-size: 24px; }
+.bh-role p { margin-top: 8px; font-size: 17px; line-height: 1.45; color: var(--v-ink-2); }
+.srcnote { margin-top: 32px; font-size: 14px; }
+
+/* ----------------------------------------------------------- narrow -- */
+@media (max-width: 1023px) {
+  .bh-nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bh-ladder { grid-template-columns: repeat(3, 1fr); row-gap: 32px; }
+  .bh-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bh-in { display: none; }
+  .bh-out { grid-column: 1 / -1; flex-direction: row; }
+  .bh-o { flex: 1; }
+  .bh-o-quiet { flex: 2; padding: 10px 12px; }
+  .bh-wide { grid-template-columns: 1fr; }
+  .bh-roles { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .bh-nums { gap: 10px; margin-top: 36px; }
+  .bh-num { padding: 24px 18px; border-radius: 20px; }
+  .bh-num p { font-size: 15px; }
+  .bh-n { font-size: 44px; }
+  .bh-ladder { grid-template-columns: 1fr; gap: 10px; }
+  .bh-ladder li { display: grid; grid-template-columns: 56px 1fr; column-gap: 16px; align-items: start; }
+  .bh-ladder .bh-bar { margin-top: 0; }
+  .bh-bar { grid-row: 1 / span 3; height: auto; min-height: 64px; padding: 12px; border-radius: 16px; transform-origin: 0 50%; }
+  html[data-bh] .bh-ladder:not(.in) .bh-bar { transform: scaleX(0.3); }
+  .bh-ladder h3 { margin-top: 0; }
+  .bh-flow { grid-template-columns: 1fr; }
+  .bh-q { min-height: 0; }
+  .bh-grid { grid-template-columns: 1fr; }
+  .bh-card { padding: 28px 22px; }
+  .bh-caps { justify-content: flex-start; gap: 36px; }
+  .bh-black { padding: 88px 0; }
+}

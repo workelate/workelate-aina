@@ -88,11 +88,17 @@ the next regeneration.
 - The old /api/score readiness widget was DELETED 2026-07-23; the one
   CTA phrase is now "Book a Diagnostic Sprint" (verify enforces it).
 
-- Hero assistant (site/js/chat.js) answers from site/data/corpus.json ONLY,
-  a local deterministic retrieval engine, no model call. It cannot say
-  anything the corpus does not contain, which is deliberate: a hosted model
-  free-typing about our numbers is how a consultancy site starts lying.
-  Corpus comes from data/projects.json + data/cases.json via gencorpus.mjs.
+- /studio assistant (founder call 2026-09-29): site/js/chat.js POSTs to
+  app/api/ask/route.js, which retrieves passages (BM25 in lib/ask.js) from
+  site/data/corpus.json (our work) and site/data/library.json (weekly crawl,
+  scripts/crawl-library.mjs over data/library-sources.json, run by
+  .github/workflows/crawl-library.yml) and streams a cited answer from a HOSTED
+  model (Anthropic Haiku). Never call it "our own model". Env: ANTHROPIC_API_KEY,
+  ASK_LLM=off kill switch, ASK_DAILY_CAP (default 300/instance/day). Any
+  decline or failure (no key, cap, rate limit, nothing retrieved, API error)
+  falls back to the local deterministic engine in chat.js, which can only say
+  what corpus.json contains. Offline test: `node scripts/test-ask.mjs` ($0).
+  Live smoke (spends ~$0.02, needs approval): `node scripts/ask-smoke.mjs --yes`.
 - data/projects.json is the delivery portfolio, derived from the ESLABS101 /
   workelate GitHub account (300 accessible repos, 2019-2026, crawled
   2026-07-22). `named:false` means the client has NOT cleared use of their

@@ -1,15 +1,27 @@
-// On-page assistant. Replaces the hero stat row (founder call 2026-07-22:
-// "those numbers add no value") with something a visitor can actually talk to.
+// On-page assistant on /studio: a conversation, not a chatbot. Founder,
+// 2026-09-29: "a user may ask back-to-back questions ... redirect only when
+// it's a must ... an experience about the capability of the team, experience,
+// work we did, are doing and want to do, and trends."
 //
-// Design decision worth knowing: the answering engine is LOCAL and
-// deterministic, not a hosted model call. Reasons:
-//   1. It answers in ~1ms with no key, no vendor and no per-visit cost, so it
-//      cannot be the thing that breaks in front of a prospect.
-//   2. It can only say what is in site/data/corpus.json, which is generated
-//      from the real portfolio. A hosted model free-typing about our numbers
-//      is exactly how a consultancy site starts lying.
-// When ANTHROPIC_API_KEY exists, POST /api/chat is used to REPHRASE the
-// retrieved answer, never to invent one. Retrieval stays the source of truth.
+// Two engines, one voice:
+//
+//   1. POST /api/ask (app/api/ask/route.js): a hosted model that answers ONLY
+//      from passages retrieved server side, from our own work
+//      (site/data/corpus.json) and a reading library crawled every week
+//      (site/data/library.json). It streams text, then a `sources` event: the
+//      source chips, one work card when the answer is about a build, the topic
+//      for follow-up chips, and whether a call to action may show.
+//   2. The LOCAL deterministic engine below, answering from corpus.json in
+//      ~1ms with no key, vendor or cost. It is the fallback whenever the model
+//      path says so (no key, kill switch, daily cap, rate limit, nothing
+//      retrieved) or fails in any way, so a visitor never sees a blank or an
+//      error. It also still decides the buying signal on that path.
+//
+// The thread stays on the page. Nothing here navigates: sources and "See the
+// work" open in a new tab or in place, and the only call to action appears
+// when the visitor asks how to start, price, timeline or talk to someone.
+//
+// Honest label: the model is hosted, not ours. Never call it "our own model".
 
 const STOP = new Set("a an and are as at be but by can do does for from has have how i if in is it its me my of on or our so that the their they this to us was we what when where which who why will with you your".split(" "));
 const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(w => w && !STOP.has(w) && w.length > 2);
@@ -169,7 +181,8 @@ function answer(text) {
   // Neither of these is a question about the firm. The engine has no model to
   // hijack, so injection was already harmless, but answering it with a random
   // project reads as if something almost worked. Both go to the fallback.
-  if (HOSTILE.test(flat) || INJECTION.test(flat)) return fallback();
+  if (INJECTION.test(flat)) return { ...fallback(), guard: true, injection: true, topic: "capability" };
+  if (HOSTILE.test(flat)) return { ...fallback(), guard: true };
 
   const ind = detectIndustry(text);
   if (ind) state.industry = ind;
@@ -228,7 +241,7 @@ function answer(text) {
         factId: null
       };
     }
-    return { text: bestFact.a, links: bestFact.links, followup: pickFollowup(), factId: bestFact.id };
+    return { text: bestFact.a, links: bestFact.links, followup: pickFollowup(), factId: bestFact.id, topic: bestFact.topic };
   }
   if (ranked.length) {
     const top = ranked[0].c;
@@ -240,6 +253,7 @@ function answer(text) {
       links: top.links,
       followup: pickFollowup(),
       factId: null,
+      topic: top.topic,
       matched: true
     };
   }
@@ -258,31 +272,52 @@ function pickFollowup() {
   return null;
 }
 
+// ---- pure helpers (exported for scripts/test-ask.mjs) ----
+
+// Safety net: the model is told never to write passage tags, and the server
+// strips them, but a tag must never reach the visitor even if both slip.
+const TAG_RE = /\s*[[(【]\s*(?:[WL]\d+)(?:\s*[,;/]\s*[WL]?\d+)*\s*[\])】]/g;
+export const stripTags = t => String(t || "").replace(TAG_RE, "").replace(/\s*—\s*/g, ", ");
+
+// Follow-up chips by the answer's topic. Questions, not links: each one stays
+// in the conversation.
+const FOLLOW = {
+  capability: ["What have you built?", "Which industries do you know best?", "What are you building now?"],
+  experience: ["What have you built?", "What are you building now?", "What's changing in my industry?"],
+  work: ["What are you building now?", "What can your team do?", "What's next for you?"],
+  now: ["What's next for you?", "What have you built?", "What can your team do?"],
+  next: ["What are you building now?", "What have you built?", "What can your team do?"],
+  trends: ["Have you built anything for this?", "What can your team do?", "What are you building now?"],
+  start: ["What happens in the Diagnostic Sprint?", "How long does a build take?", "Who would I work with?"]
+};
+const normQ = q => String(q || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+export function followupsFor(topic, name, asked = []) {
+  const seen = new Set(asked.map(normQ));
+  const list = [];
+  if (name) list.push(`What are you building on ${name} now?`);
+  list.push(...(FOLLOW[topic] || FOLLOW.capability));
+  if (topic !== "start") list.push("How would we start?");
+  return [...new Set(list)].filter(q => !seen.has(normQ(q))).slice(0, 3);
+}
+
 // ---- UI ----
-const root = document.getElementById("ask");
+const root = typeof document !== "undefined" ? document.getElementById("ask") : null;
 if (root) {
   const form = root.querySelector(".ask-form");
   const input = root.querySelector(".ask-input");
   const log = root.querySelector(".ask-log");
   const chips = root.querySelector(".ask-chips");
+  // The no-JS contract: without this script the form and its chips submit to
+  // /studio/contact. With it, the conversation happens here.
+  root.classList.add("ask-live");
 
-  const bubble = (who, html) => {
-    const d = document.createElement("div");
-    d.className = `ask-msg ${who}`;
-    d.innerHTML = html;
-    log.appendChild(d);
-    log.scrollTop = log.scrollHeight;
-    return d;
-  };
-
-  const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const el = (cls, html, tag = "div") => { const d = document.createElement(tag); d.className = cls; d.innerHTML = html; return d; };
 
   // Presentation only. A "Label: a, b, c and d." answer reads as a wall of
   // prose; render it as a lead line plus bullets. Anything that is not clearly
   // a short-label list stays as plain paragraphs. Never changes the words.
   function formatAnswer(text) {
-    // "Label: a, b, c and d. <rest>"  — the list is only up to the first
-    // period; anything after it stays as a trailing paragraph so no words move.
     const m = text.match(/^(.{3,46}?):\s+([^.]+)\.(.*)$/s);
     if (m && !m[1].includes(",")) {
       const parts = m[2]
@@ -295,9 +330,10 @@ if (root) {
           (rest ? `<p>${esc(rest)}</p>` : "");
       }
     }
-    // otherwise a single paragraph; never split or drop, the words are the words
     return `<p>${esc(text)}</p>`;
   }
+  const paras = t => stripTags(t).split(/\n{2,}/).map(x => x.trim()).filter(Boolean)
+    .map(x => `<p>${esc(x).replace(/\n/g, "<br>")}</p>`).join("");
 
   async function ensureCorpus() {
     if (CORPUS) return;
@@ -305,63 +341,218 @@ if (root) {
     CORPUS = await r.json();
   }
 
-  // transcript is sent with the lead so the team reads the intent, not just
-  // an address. capture state gates the ask so it fires once, at the right time.
+  // transcript goes with a lead so the team reads the intent, not just an
+  // address; history is what the model sees; subject is what the last answer
+  // was about, so "have you built it?" keeps its subject.
   const transcript = [];
+  const history = [];
+  const asked = [];
+  let subject = [];
+  const cid = (Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).slice(0, 24);
   const cap = { done: false, shown: false };
+  let busy = false;
+
+  const thin = s => s.length > 56 ? s.slice(0, 53).replace(/\s\S*$/, "") + "..." : s;
+  const niceDate = d => {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || "");
+    if (!m) return "";
+    return `${+m[3]} ${"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[+m[2] - 1]} ${m[1]}`;
+  };
+
+  // Source chips: ours link to the page, the library's to the publication.
+  // Both open in a new tab so the conversation stays where it is.
+  function renderSources(turn, sources) {
+    const ours = sources.filter(s => s.kind === "work");
+    const lib = sources.filter(s => s.kind === "library");
+    if (!ours.length && !lib.length) return;
+    const a = (s, label) => `<a class="ask-src" href="${esc(s.url)}" target="_blank" rel="noopener${/^https?:/.test(s.url) ? " nofollow" : ""}">${label}</a>`;
+    let html = "";
+    if (ours.length) html += `<div class="ask-srcs"><span class="ask-srcs-h">From our work</span>` +
+      ours.map(s => a(s, esc(thin(s.name || s.title)))).join("") + `</div>`;
+    if (lib.length) html += `<div class="ask-srcs"><span class="ask-srcs-h">From our weekly library</span>` +
+      lib.map(s => a(s, `<b>${esc(s.source || "")}</b>${s.date ? ` <span>${esc(niceDate(s.date))}</span>` : ""} ${esc(thin(s.title))}`)).join("") + `</div>`;
+    turn.appendChild(el("ask-sources", html));
+  }
+
+  // One work card when the answer is about a build. "See the work" opens the
+  // build's own passage here; the page itself is one more deliberate click.
+  const carded = new Set();
+  function renderCard(turn, c) {
+    // one card per build per conversation: the second answer about it says
+    // so in words and keeps the source chip
+    if (!c || !c.img || carded.has(c.name || c.title)) return;
+    carded.add(c.name || c.title);
+    const card = el("ask-card", `
+      <figure class="ask-card-media"><img src="${esc(c.img)}" alt="${esc(c.name || c.title)}, from our work" width="1600" height="1000" loading="lazy" decoding="async"></figure>
+      <div class="ask-card-b">
+        <p class="ask-card-k">From our work</p>
+        <p class="ask-card-t">${esc(c.name || c.title)}</p>
+        ${c.line ? `<p class="ask-card-l">${esc(c.line)}</p>` : ""}
+        <button type="button" class="ask-card-go" aria-expanded="false">See the work <span aria-hidden="true">&rarr;</span></button>
+        <div class="ask-card-more" hidden>
+          ${c.more ? `<p>${esc(stripTags(c.more))}</p>` : ""}
+          <a href="${esc(c.url)}" target="_blank" rel="noopener">Open the full page in a new tab</a>
+        </div>
+      </div>`);
+    const go = card.querySelector(".ask-card-go");
+    const more = card.querySelector(".ask-card-more");
+    go.addEventListener("click", () => {
+      const open = more.hidden;
+      more.hidden = !open;
+      go.setAttribute("aria-expanded", String(open));
+      go.firstChild.textContent = open ? "Hide the work " : "See the work ";
+    });
+    turn.appendChild(card);
+  }
+
+  // Three next questions; only the newest answer carries them.
+  function renderFollowups(turn, topic, name) {
+    log.querySelectorAll(".ask-next").forEach(n => n.remove());
+    const qs = followupsFor(topic, name, asked);
+    if (!qs.length) return;
+    const box = el("ask-next", qs.map(q => `<button type="button" data-ask="${esc(q)}">${esc(q)}</button>`).join(""));
+    box.setAttribute("aria-label", "Ask next");
+    turn.appendChild(box);
+  }
+
+  // The one call to action, only on a buying signal.
+  function renderCta(turn) {
+    turn.appendChild(el("ask-cta-row", `<a class="ask-pill ask-cta-pill" href="/studio/contact">Book a Diagnostic Sprint <span aria-hidden="true">&rarr;</span></a>`));
+  }
+
+  // Returns {text, sources, card, topic, cta} when the model path answered,
+  // {limit:true} at the conversation cap, or null so the local engine answers.
+  async function askModel(text, bot) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 12000);
+    let r;
+    try {
+      r = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ question: text.slice(0, 500), history: history.slice(-6), subject, cid }),
+        signal: ctl.signal
+      });
+    } catch { clearTimeout(timer); return null; }
+    const ct = r.headers.get("content-type") || "";
+    if (!ct.includes("text/event-stream")) {
+      clearTimeout(timer);
+      const j = await r.json().catch(() => ({}));
+      return j.mode === "limit" ? { limit: true } : null;
+    }
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "", out = "", body = null, status = "open", src = null;
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i;
+        while ((i = buf.indexOf("\n\n")) >= 0) {
+          const raw = buf.slice(0, i); buf = buf.slice(i + 2);
+          const ev = (raw.match(/^event: (.+)$/m) || [])[1];
+          const data = (raw.match(/^data: (.+)$/m) || [])[1];
+          let d = {}; try { d = JSON.parse(data || "{}"); } catch {}
+          if (ev === "delta" && d.t) {
+            clearTimeout(timer);
+            out += d.t;
+            if (!body) {
+              bot.innerHTML = `<span class="ask-who">WE_AINA assistant <span class="ask-ai">AI answer</span></span><div class="ask-body"></div>`;
+              body = bot.querySelector(".ask-body");
+            }
+            body.innerHTML = paras(out);
+          } else if (ev === "sources") src = d;
+          else if (ev === "error") status = "error";
+          else if (ev === "done") status = "done";
+        }
+      }
+    } catch { status = "error"; }
+    clearTimeout(timer);
+    if (!out.trim()) return null;                  // nothing shown yet: local answer takes over
+    if (status !== "done") body.insertAdjacentHTML("beforeend", `<p class="ask-note">The answer was cut short. Ask again, or the team answers the rest directly.</p>`);
+    return { text: stripTags(out), ...(src || { sources: [], card: null, topic: "capability", cta: false }) };
+  }
 
   async function ask(text) {
-    if (!text.trim()) return;
+    text = String(text || "").trim();
+    if (!text || busy) return;
+    busy = true;
     root.classList.add("open");
-    bubble("me", esc(text));
-    transcript.push("You: " + text);
     input.value = "";
-    const thinking = bubble("bot", '<span class="ask-dots"><i></i><i></i><i></i></span>');
+    const turn = el("ask-turn", "");
+    turn.appendChild(el("ask-msg me", esc(text)));
+    const bot = el("ask-msg bot", '<span class="ask-dots" aria-label="Thinking"><i></i><i></i><i></i></span>');
+    turn.appendChild(bot);
+    log.appendChild(turn);
+    // bring the new question into view once; the answer grows under it
+    turn.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
+    transcript.push("You: " + text);
     try {
       await ensureCorpus();
+      // The local engine always runs (1ms, free): it holds the buying signal on
+      // the fallback path, and the answer if the model path declines.
       const a = answer(text);
-      await new Promise(r => setTimeout(r, 260));
-      let html = `<span class="ask-who">WE_AINA</span>` + formatAnswer(a.text);
-      if (a.followup) html += `<p class="ask-follow">${esc(a.followup)}</p>`;
-      if (a.links && a.links.length) {
-        html += `<div class="ask-links">` +
-          a.links.map(l => `<a class="ask-pill" href="${esc(l.href)}">${esc(l.label)} →</a>`).join("") + `</div>`;
+      const said = a.guard ? null : await askModel(text, bot);
+      let topic, name = null, cta;
+      if (said && said.limit) {
+        bot.innerHTML = `<p>This conversation has run long. The team can pick it up directly from here.</p>`;
+        renderCta(turn);
+        cta = true;
+      } else if (said) {
+        renderCard(turn, said.card);
+        renderSources(turn, said.sources || []);
+        topic = said.topic; name = said.card?.name || null; cta = !!said.cta;
+        transcript.push("WE_AINA assistant (AI): " + said.text);
+        history.push({ role: "user", text }, { role: "assistant", text: said.text });
+        subject = [...new Set([said.card?.name, ...(said.sources || []).filter(s => s.kind === "work").map(s => s.name || s.title)].filter(Boolean))].slice(0, 3);
+      } else {
+        await new Promise(r => setTimeout(r, 200));
+        const guardLine = "I can't share how I'm set up, but I'm happy to talk about our work, what we're building now, or what's changing in your industry.";
+        bot.innerHTML = `<span class="ask-who">WE_AINA assistant</span>` + formatAnswer(a.injection ? guardLine : a.text);
+        if (a.links && a.links.length && !a.guard) {
+          renderSources(turn, a.links.map(l => ({ kind: "work", title: l.label, url: l.href })));
+        }
+        topic = a.topic; cta = BUYING.has(a.factId);
+        transcript.push("WE_AINA: " + a.text);
+        history.push({ role: "user", text }, { role: "assistant", text: a.text });
       }
-      thinking.innerHTML = html;
-      transcript.push("WE_AINA: " + a.text);
-      log.scrollTop = log.scrollHeight;
-      // the right point: a buying-signal answer, or once the conversation has
-      // real substance (>=2 exchanges). Never on the first curious question.
-      const signal = BUYING.has(a.factId);
-      if (!cap.done && !cap.shown && (signal || state.turns >= 2)) showCapture(signal);
+      asked.push(text);
+      if (cta && !(said && said.limit)) renderCta(turn);
+      renderFollowups(turn, topic || "capability", name);
+      // lead capture: on a buying signal, or once after a real conversation
+      // (five exchanges). Never on the first curious question.
+      if (!cap.done && !cap.shown && (cta || asked.length >= 5)) showCapture(cta);
     } catch (err) {
-      thinking.innerHTML = `<p>That did not load. The case studies cover the same ground: <a href="/studio/case-studies">browse them here →</a></p>`;
+      bot.innerHTML = `<p>That did not load. The work itself covers the same ground: <a href="/studio/work" target="_blank" rel="noopener">see the work</a>.</p>`;
+    } finally {
+      busy = false;
     }
   }
 
-  // ---- lead capture, inline in the chat ----
+  // ---- lead capture, inline in the conversation ----
   function showCapture(signal) {
     cap.shown = true;
     const lead = signal
       ? "If you want this costed, leave an email or phone and the team will come back with a build plan, usually same day."
       : "Want the team to look at your specifics? Leave an email or phone and we will come back with where we would start.";
-    const el = bubble("bot cap", `
+    const box = el("ask-msg bot cap", `
       <p>${lead}</p>
       <form class="cap-form" autocomplete="on">
         <input class="cap-website" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input class="cap-input" name="contact" type="text" inputmode="email"
-               placeholder="you@company.com or +91…" aria-label="Your email or phone">
+               placeholder="you@company.com or +91..." aria-label="Your email or phone">
         <button class="cap-send" type="submit">Send</button>
       </form>
       <p class="cap-msg" role="status"></p>`);
-    const f = el.querySelector(".cap-form");
-    const msg = el.querySelector(".cap-msg");
+    log.appendChild(box);
+    const f = box.querySelector(".cap-form");
+    const msg = box.querySelector(".cap-msg");
     f.addEventListener("submit", async e => {
       e.preventDefault();
       const contact = f.contact.value.trim();
       if (!contact) return;
-      f.cap_send?.setAttribute("disabled", "true");
-      msg.textContent = "Sending…";
+      msg.textContent = "Sending...";
       try {
         const r = await fetch("/api/lead", {
           method: "POST",
@@ -388,17 +579,24 @@ if (root) {
         msg.textContent = "Could not send just now. Try the form at /studio/contact instead.";
       }
     });
-    log.scrollTop = log.scrollHeight;
   }
 
-  form.addEventListener("submit", e => { e.preventDefault(); ask(input.value); });
-  chips?.addEventListener("click", e => {
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    // a chip is a submit button for the no-JS path; with JS its click asks
+    if (e.submitter && e.submitter.dataset.ask) return;
+    ask(input.value);
+  });
+  root.addEventListener("click", e => {
     const c = e.target.closest("[data-ask]");
-    if (c) ask(c.dataset.ask);
+    if (!c || !(chips?.contains(c) || log.contains(c))) return;
+    e.preventDefault();
+    ask(c.dataset.ask);
   });
 
   // "Book a Diagnostic Sprint" is the one CTA phrase sitewide (design rule 5).
-  // It opens the assistant and goes straight to capturing a way to reach back.
+  // A #ask link opens the assistant and goes straight to capturing a way to
+  // reach back: the visitor asked to start, so this is the buying signal.
   document.querySelectorAll('a[href="#ask"], a[href="/#ask"]').forEach(a => {
     a.addEventListener("click", e => {
       if (a.getAttribute("href") === "/#ask" && location.pathname !== "/") return;
@@ -407,7 +605,7 @@ if (root) {
       input.focus({ preventScroll: true });
       if (!root.classList.contains("open")) {
         root.classList.add("open");
-        bubble("bot", "<p>The Diagnostic Sprint is two weeks: we sit inside your operation, then hand you a build plan with a fixed price. Tell me your industry and what you want built, or leave a contact below and we will reach out.</p>");
+        log.appendChild(el("ask-msg bot", "<p>The Diagnostic Sprint is two weeks: we sit inside your operation, then hand you a build plan with a fixed price. Tell me your industry and what you want built, or leave a contact below and we will reach out.</p>"));
         if (!cap.done) showCapture(true);
       }
     });

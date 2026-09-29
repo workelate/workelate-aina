@@ -177,7 +177,11 @@ for (const route of PAGES) {
         if (pseudo && (cs.content === "none" || cs.content === "normal")) continue;
         const bg = cs.backgroundImage || "";
         const bf = cs.backdropFilter || cs.webkitBackdropFilter || "none";
-        if (/gradient\(/.test(bg) || (bf && bf !== "none")) {
+        // Founder call 2026-09-29 (colour option C): the headline accent word
+        // may carry the teal-to-blue gradient as TEXT (background-clip: text).
+        // A gradient painted as a surface still fails.
+        const textClip = (cs.backgroundClip || cs.webkitBackgroundClip || "") === "text";
+        if ((/gradient\(/.test(bg) && !textClip) || (bf && bf !== "none")) {
           const id = el.id ? "#" + el.id : (el.className && typeof el.className === "string" ? "." + el.className.trim().split(/\s+/)[0] : el.tagName.toLowerCase());
           styleHits.push(id + (pseudo || ""));
         }

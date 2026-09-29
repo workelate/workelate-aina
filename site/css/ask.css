@@ -1,0 +1,88 @@
+/* ask (2026-09-29): the /studio assistant as a conversation. site.css owns the
+   input, the entry chips and the message bubbles; this file adds what makes it
+   a thread: turns that stay on the page, source chips, the work card, the
+   follow-up chips and the one call to action. v8 tokens only: no gradients,
+   no glass, the window shadow is the only shadow. Linked on /studio alone. */
+
+/* the thread grows on the page instead of scrolling inside a 320px box */
+#ask.open .ask-log { max-height: none; overflow: visible; }
+.ask-turn { margin-bottom: 30px; }
+.ask-turn + .ask-turn { padding-top: 26px; border-top: 1px solid var(--v-hair); }
+.ask-turn .ask-msg { margin-bottom: 14px; }
+.ask-turn .ask-msg.me {
+  max-width: 80%; width: fit-content; margin-left: auto; text-align: left;
+  background: var(--v-light); color: var(--v-ink); border-radius: 20px 20px 6px 20px;
+  padding: 10px 16px; font-size: 16px; line-height: 1.45;
+}
+.ask-turn .ask-msg.bot { max-width: 100%; }
+.ask-nojs { margin: 12px 0 0; text-align: center; font-size: 16px; }
+
+.ask-ai {
+  display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 980px;
+  font-size: 12px; font-weight: 600; line-height: 18px; letter-spacing: 0;
+  color: var(--v-teal-2); background: var(--v-teal-soft); vertical-align: 1px;
+}
+.ask-body p { margin: 0 0 10px; }
+.ask-body p:last-child { margin-bottom: 0; }
+.ask-note { color: var(--v-grey); font-size: 15px; }
+
+/* sources: small chips under the answer, ours and the library's apart */
+.ask-sources { margin: 0 0 0 20px; display: grid; gap: 8px; }
+.ask-srcs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.ask-srcs-h { font-size: 13px; font-weight: 600; color: var(--v-grey); margin-right: 2px; }
+.ask-src {
+  display: inline-block; max-width: 100%; overflow-wrap: anywhere;
+  font-size: 13px; line-height: 1.35; color: var(--v-ink-2); text-decoration: none;
+  background: var(--v-light); border-radius: var(--r-pill); padding: 5px 11px;
+  transition: background 0.15s, color 0.15s;
+}
+.ask-src b { font-weight: 600; color: var(--v-ink); }
+.ask-src span { color: var(--v-grey); }
+.ask-src:hover { background: var(--v-teal-soft); color: var(--v-teal-2); }
+.ask-src:focus-visible { outline: 2px solid var(--v-teal); outline-offset: 2px; }
+
+/* the work card: the build the answer is about, with its real screen */
+.ask-card {
+  margin: 4px 0 14px 20px; display: grid; grid-template-columns: minmax(0, 44%) minmax(0, 1fr);
+  background: var(--v-light); border-radius: var(--r-card-sm); overflow: hidden;
+}
+.ask-card-media { margin: 0; background: var(--v-hair); }
+.ask-card-media img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: left top; }
+.ask-card-b { padding: 18px 20px; min-width: 0; }
+.ask-card-k { margin: 0 0 4px; font-size: 13px; font-weight: 600; color: var(--v-grey); }
+.ask-card-t { margin: 0 0 6px; font-size: 21px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: var(--v-ink); }
+.ask-card-l { margin: 0 0 12px; font-size: 15px; line-height: 1.45; color: var(--v-ink-2); }
+.ask-card-go {
+  border: 0; background: none; padding: 0; cursor: pointer;
+  font: inherit; font-size: 15px; font-weight: 600; color: var(--v-teal);
+}
+.ask-card-go:hover { color: var(--v-teal-2); text-decoration: underline; }
+.ask-card-go:focus-visible { outline: 2px solid var(--v-teal); outline-offset: 3px; border-radius: 4px; }
+.ask-card-more { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--v-hair); }
+.ask-card-more p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; color: var(--v-ink-2); }
+.ask-card-more a { font-size: 14px; font-weight: 600; color: var(--v-teal); }
+
+/* three next questions; they ask here, they never navigate */
+.ask-next { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0 20px; }
+.ask-next button {
+  background: var(--v-white); border: 1px solid var(--v-line); color: var(--v-ink);
+  font-family: var(--sans); font-size: 14px; font-weight: 500; line-height: 1.3;
+  padding: 8px 14px; border-radius: var(--r-pill); cursor: pointer; text-align: left;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.ask-next button:hover { background: var(--v-teal-soft); border-color: var(--v-teal); color: var(--v-teal-2); }
+.ask-next button:focus-visible { outline: 2px solid var(--v-teal); outline-offset: 2px; }
+
+/* the one call to action, only after a buying signal */
+.ask-cta-row { margin: 12px 0 0 20px; }
+.ask-cta-pill { display: inline-block; background: var(--v-ink); border-color: var(--v-ink); color: #fff; }
+.ask-cta-pill:hover { background: #000; border-color: #000; color: #fff; }
+
+@media (max-width: 600px) {
+  .ask-turn .ask-msg.bot { padding-left: 14px; font-size: 17px; }
+  .ask-sources, .ask-next, .ask-cta-row { margin-left: 16px; }
+  .ask-card { grid-template-columns: 1fr; margin-left: 16px; }
+  .ask-card-media img { height: auto; }
+  .ask-card-b { padding: 14px 16px 16px; }
+  .ask-next button { font-size: 13px; }
+}

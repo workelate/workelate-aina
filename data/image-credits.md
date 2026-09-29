@@ -95,3 +95,55 @@ For the /studio/systems pages (founder 2026-09-28, "images daalo"). Unsplash Lic
 | `sys-compliance-paper-4x3.webp` | Stacks of paper documents and folders in an office | compliance "Today" tile | Wesley Tingey | https://unsplash.com/photos/snNHKZ-mGfE |
 
 Also reused from site/img/studio/: `photo-ind-logistics-4x3.webp` (freight "Today" tile) and `photo-ind-quarry-16x9.webp` (compliance band).
+
+# Image credits: site/img/brain/ (the /brain page, 2026-09-29)
+
+Every file is a crop and WebP (quality 82) re-encode of an existing real capture already in this repo; no new capture, no stock photo, pixels not recoloured. Crops are cut to the app window only.
+
+| file | source | crop |
+|---|---|---|
+| `story-folder.webp` | `site/img/real/folder-container@2x.png` (local WorkElate hub, seeded org) | full frame, 1600w |
+| `story-blocked.webp` | `site/img/real/tasks-board-rockcross-ops-portal@2x.png` (local Tasks app, seeded org) | board columns only, sidebar and account row removed |
+| `story-quiet.webp` | `site/img/real/start-my-day-fresh@2x.png` (local hub Start my day, seeded org) | full frame |
+| `story-draft.webp` | `site/img/studio/workelate-chief-hero.webp` (workelate.com home hero, sample data) | inner window, outer shadow removed |
+| `story-yes.webp` | `site/img/studio/workelate-asks-first.webp` (workelate.com 'It asks first.') | card interior, black surround removed |
+| `story-written.webp` | `site/img/studio/workelate-chief-reschedule.webp` (workelate.com hero, second prompt) | inner window |
+| `gov-gate.webp` | `site/img/real/draft-at-confirm-gate@2x.png` (local hub, seeded org) | full frame |
+| `gov-checks.webp` | `site/img/studio/workelate-checks-work.webp` (workelate.com 'It checks its work.') | trimmed margins |
+| `role-day.webp` | `site/img/studio/workelate-start-my-day.webp` (workelate.com 'Your day, sorted.') | card interior |
+| `role-ring.webp` | `site/img/studio/workelate-suite-ring.webp` (workelate.com 'Every app. One Chief.') | 1000w |
+| `role-quiet.webp` | `site/img/real/gone-quiet-nudge@2x.png` (local hub, seeded org; the client and contact are seed personas) | title, reasons and actions |
+
+# Image credits: site/img/brain/sub/ (the /brain sub-pages, 2026-09-29)
+
+Visual pass on /brain/* sub-pages (founder 2026-09-29: "clean but text heavy"). Every file is WebP, resized with sharp (quality 80 to 82 for screens, 74 for photos); files over 1000px wide also ship a `-800.webp` for `srcset`. Screens are never recoloured.
+
+Product illustrations captured 2026-09-29 from https://www.workelate.com (our own product site; it labels its screens as illustrations with sample data), headless Chromium at 1440 wide, 3x, element screenshots of the product windows:
+
+| file | what it shows | source on workelate.com |
+|---|---|---|
+| `chief-send.webp` | Chief window: a request, four checked steps, the WeMail draft with its pipeline table | home hero |
+| `start-my-day.webp` | Start my day: needs you, slipping, handled, each with a Because line | home 'Your day, sorted.' |
+| `checks-work.webp` | Before vs With Chief: a card moved, then the board checked | home 'It checks its work.' |
+| `asks-first.webp` | 'Waiting for your yes' confirm card, Send or Edit | home 'It asks first.' |
+| `tasks-done.webp` | Tasks board, Doing and Done, the moved card outlined | home highlight |
+| `folder-client.webp` | One client folder with five artifacts of five kinds | home highlights 'One client. One place.' |
+| `board-update.webp` | Chief prepares a board update, checks each change, waits for a yes | /capabilities/founder |
+| `quiet-deals.webp` | Chief finds five deals with no touch in 14 days, drafts follow-ups, waits | /capabilities/sales-leader |
+| `followups.webp`, `calendar-slot.webp` | Five drafts waiting; a slot free for everyone, waiting | /capabilities/sales-leader |
+| `reread.webp` | Chief re-reads the sheet and reports the one row that did not change | /security 'Every change, re-read.' |
+| `permissions.webp` | Chief declines to edit a view-only sheet and says who can grant access | /security 'If you can't, Chief won't.' |
+| `found-three.webp`, `needs-you.webp`, `share-confirm.webp` | Search results across apps; a needs-you list; a share confirm card | /products/hub |
+
+Real product captures, re-encoded from `site/img/real/` (local hub, seeded org; credited above): `real-tasks-board`, `real-drawer`, `real-deck-folder`, `real-folder`, `real-quiet`, `real-refusal`, `real-decline`, `real-draft-gate`, `real-briefing`, `real-smd`. Re-encoded from `site/img/studio/`: `suite-ring` (workelate.com), `rockpros-dispatch` (RockProsUSA dispatch board, credited above).
+
+Persona photographs, Unsplash License (free for commercial use; credited anyway), downloaded 2026-09-29 through each photo's download link, cropped 16:9 with attention crop:
+
+| file | what it shows | used on | author | source |
+|---|---|---|---|---|
+| `persona-coo.webp`, `-800` | A worker walking a bright warehouse aisle under orange racking | /brain/for/coo | Adrian Sulyok | https://unsplash.com/photos/MqtT8GL_5Ks |
+| `persona-cio.webp`, `-800` | A rack of servers, patch cables and status lights | /brain/for/cio | Kevin Ache | https://unsplash.com/photos/2JJ3wBHu4_0 |
+| `persona-revenue.webp`, `-800` | A team with coffee around a laptop in a glass-walled office | /brain/for/revenue | Vitaly Gariev | https://unsplash.com/photos/YyJNda7nsPo |
+
+Also reused read-only from `site/img/brain/` (the /brain home's crops, credited above): the six `story-*.webp` on /brain/use-cases/client-delivery.
+Added the same day: `workgraph.webp` / `-800` (re-encoded from `site/img/workgraph-poster.webp`, the work map poster) for /brain/architecture, /brain/glossary and the work-graph capability.

@@ -1,0 +1,66 @@
+{
+  "_note": "Curated sources for the weekly library crawl (scripts/crawl-library.mjs). Feeds are read for items from the last 30 days; pages are snapshotted (title + meta description + a short excerpt). Only reputable trade press, vendor engineering blogs and our own public product pages. Every URL here was probed 2026-09-29 and answered 200 to the crawler's UA; sources that answer 403 to a bot are left out rather than worked around.",
+  "scopes": {
+    "industries": "Our industries: building materials, logistics and dispatch, OOH/DOOH advertising, fintech, manufacturing, re-commerce and retail",
+    "practice": "AI and product practice: AI agents, product building, go-to-market, SEO and AI search",
+    "products": "Our own products: WorkElate, CitedSpy, CitySense"
+  },
+  "sources": [
+    { "id": "construction-dive", "name": "Construction Dive", "scope": "industries", "topic": "building materials", "type": "feed", "url": "https://www.constructiondive.com/feeds/news/", "max": 6 },
+    { "id": "global-cement", "name": "Global Cement", "scope": "industries", "topic": "building materials", "type": "feed", "url": "https://www.globalcement.com/news?format=feed", "max": 6 },
+    { "id": "aggregates-manager", "name": "Aggregates Manager", "scope": "industries", "topic": "building materials", "type": "feed", "url": "https://aggman.com/feed/", "max": 4 },
+    { "id": "cement-americas", "name": "Cement Americas", "scope": "industries", "topic": "building materials", "type": "feed", "url": "https://www.cementamericas.com/rss", "max": 4 },
+
+    { "id": "supply-chain-dive", "name": "Supply Chain Dive", "scope": "industries", "topic": "logistics and dispatch", "type": "feed", "url": "https://www.supplychaindive.com/feeds/news/", "max": 6 },
+    { "id": "freightwaves", "name": "FreightWaves", "scope": "industries", "topic": "logistics and dispatch", "type": "feed", "url": "https://www.freightwaves.com/news/feed", "max": 6 },
+    { "id": "dc-velocity", "name": "DC Velocity", "scope": "industries", "topic": "logistics and dispatch", "type": "feed", "url": "https://www.dcvelocity.com/rss/", "max": 5 },
+    { "id": "transport-topics", "name": "Transport Topics", "scope": "industries", "topic": "logistics and dispatch", "type": "feed", "url": "https://www.ttnews.com/rss.xml", "max": 5 },
+    { "id": "supply-chain-brain", "name": "SupplyChainBrain", "scope": "industries", "topic": "logistics and dispatch", "type": "feed", "url": "https://www.supplychainbrain.com/rss/articles", "max": 5 },
+
+    { "id": "invidis", "name": "invidis", "scope": "industries", "topic": "OOH and DOOH advertising", "type": "feed", "url": "https://invidis.com/feed/", "max": 6 },
+    { "id": "dailydooh", "name": "DailyDOOH", "scope": "industries", "topic": "OOH and DOOH advertising", "type": "feed", "url": "https://www.dailydooh.com/feed/", "max": 6 },
+    { "id": "digital-signage-today", "name": "Digital Signage Today", "scope": "industries", "topic": "OOH and DOOH advertising", "type": "feed", "url": "https://www.digitalsignagetoday.com/rss/", "max": 5 },
+    { "id": "adexchanger", "name": "AdExchanger", "scope": "industries", "topic": "OOH and DOOH advertising", "type": "feed", "url": "https://www.adexchanger.com/feed/", "max": 5 },
+
+    { "id": "finextra", "name": "Finextra", "scope": "industries", "topic": "fintech", "type": "feed", "url": "https://www.finextra.com/rss/headlines.aspx", "max": 6 },
+    { "id": "payments-dive", "name": "Payments Dive", "scope": "industries", "topic": "fintech", "type": "feed", "url": "https://www.paymentsdive.com/feeds/news/", "max": 5 },
+    { "id": "banking-dive", "name": "Banking Dive", "scope": "industries", "topic": "fintech", "type": "feed", "url": "https://www.bankingdive.com/feeds/news/", "max": 5 },
+    { "id": "pymnts", "name": "PYMNTS", "scope": "industries", "topic": "fintech", "type": "feed", "url": "https://www.pymnts.com/feed/", "max": 5 },
+    { "id": "techcrunch-fintech", "name": "TechCrunch Fintech", "scope": "industries", "topic": "fintech", "type": "feed", "url": "https://techcrunch.com/category/fintech/feed/", "max": 5 },
+
+    { "id": "manufacturing-dive", "name": "Manufacturing Dive", "scope": "industries", "topic": "manufacturing", "type": "feed", "url": "https://www.manufacturingdive.com/feeds/news/", "max": 6 },
+
+    { "id": "retail-dive", "name": "Retail Dive", "scope": "industries", "topic": "re-commerce and retail", "type": "feed", "url": "https://www.retaildive.com/feeds/news/", "max": 6 },
+    { "id": "modern-retail", "name": "Modern Retail", "scope": "industries", "topic": "re-commerce and retail", "type": "feed", "url": "https://www.modernretail.co/feed/", "max": 6 },
+    { "id": "retail-insight", "name": "Retail Insight Network", "scope": "industries", "topic": "re-commerce and retail", "type": "feed", "url": "https://www.retail-insight-network.com/feed/", "max": 5 },
+    { "id": "twice", "name": "TWICE", "scope": "industries", "topic": "re-commerce and retail", "type": "feed", "url": "https://www.twice.com/feed", "max": 4 },
+
+    { "id": "openai-news", "name": "OpenAI News", "scope": "practice", "topic": "AI agents", "type": "feed", "url": "https://openai.com/news/rss.xml", "max": 5 },
+    { "id": "google-ai", "name": "Google AI Blog", "scope": "practice", "topic": "AI agents", "type": "feed", "url": "https://blog.google/technology/ai/rss/", "max": 5 },
+    { "id": "deepmind", "name": "Google DeepMind Blog", "scope": "practice", "topic": "AI agents", "type": "feed", "url": "https://deepmind.google/blog/rss.xml", "max": 5 },
+    { "id": "huggingface", "name": "Hugging Face Blog", "scope": "practice", "topic": "AI agents", "type": "feed", "url": "https://huggingface.co/blog/feed.xml", "max": 5 },
+    { "id": "aws-ml", "name": "AWS Machine Learning Blog", "scope": "practice", "topic": "AI agents", "type": "feed", "url": "https://aws.amazon.com/blogs/machine-learning/feed/", "max": 5 },
+    { "id": "github-blog", "name": "The GitHub Blog", "scope": "practice", "topic": "product building", "type": "feed", "url": "https://github.blog/feed/", "max": 5 },
+    { "id": "vercel-blog", "name": "Vercel Blog", "scope": "practice", "topic": "product building", "type": "feed", "url": "https://vercel.com/atom", "max": 5 },
+    { "id": "intercom-blog", "name": "Intercom Blog", "scope": "practice", "topic": "product building", "type": "feed", "url": "https://www.intercom.com/blog/feed/", "max": 5 },
+    { "id": "saastr", "name": "SaaStr", "scope": "practice", "topic": "go-to-market", "type": "feed", "url": "https://www.saastr.com/feed/", "max": 5 },
+    { "id": "hubspot-sales", "name": "HubSpot Sales Blog", "scope": "practice", "topic": "go-to-market", "type": "feed", "url": "https://blog.hubspot.com/sales/rss.xml", "max": 5 },
+    { "id": "sej", "name": "Search Engine Journal", "scope": "practice", "topic": "SEO and AI search", "type": "feed", "url": "https://www.searchenginejournal.com/feed/", "max": 6 },
+    { "id": "google-search-central", "name": "Google Search Central Blog", "scope": "practice", "topic": "SEO and AI search", "type": "feed", "url": "https://developers.google.com/search/blog/feed.xml", "max": 5 },
+    { "id": "moz", "name": "Moz Blog", "scope": "practice", "topic": "SEO and AI search", "type": "feed", "url": "https://moz.com/blog/feed", "max": 5 },
+    { "id": "ahrefs", "name": "Ahrefs Blog", "scope": "practice", "topic": "SEO and AI search", "type": "feed", "url": "https://ahrefs.com/blog/feed/", "max": 5 },
+
+    { "id": "workelate-home", "name": "WorkElate", "scope": "products", "topic": "WorkElate", "type": "page", "url": "https://www.workelate.com/" },
+    { "id": "workelate-alternatives", "name": "WorkElate", "scope": "products", "topic": "WorkElate", "type": "page", "url": "https://www.workelate.com/alternatives" },
+    { "id": "workelate-compare", "name": "WorkElate", "scope": "products", "topic": "WorkElate", "type": "page", "url": "https://www.workelate.com/compare" },
+    { "id": "workelate-blog", "name": "WorkElate Blog", "scope": "products", "topic": "WorkElate", "type": "sitemap", "url": "https://www.workelate.com/sitemap.xml", "match": "/blog/", "max": 6 },
+    { "id": "citedspy-home", "name": "CitedSpy", "scope": "products", "topic": "CitedSpy", "type": "page", "url": "https://www.citedspy.com/" },
+    { "id": "citedspy-features", "name": "CitedSpy", "scope": "products", "topic": "CitedSpy", "type": "page", "url": "https://www.citedspy.com/features" },
+    { "id": "citedspy-pricing", "name": "CitedSpy", "scope": "products", "topic": "CitedSpy", "type": "page", "url": "https://www.citedspy.com/pricing" },
+    { "id": "citedspy-changelog", "name": "CitedSpy", "scope": "products", "topic": "CitedSpy", "type": "page", "url": "https://www.citedspy.com/changelog" },
+    { "id": "citedspy-blog", "name": "CitedSpy Blog", "scope": "products", "topic": "CitedSpy", "type": "sitemap", "url": "https://www.citedspy.com/sitemap.xml", "match": "/blog/", "max": 8 },
+    { "id": "citysense-home", "name": "CitySense", "scope": "products", "topic": "CitySense", "type": "page", "url": "https://www.citysenseooh.com/" },
+    { "id": "citysense-how", "name": "CitySense", "scope": "products", "topic": "CitySense", "type": "page", "url": "https://www.citysenseooh.com/how-we-work" },
+    { "id": "citysense-pricing", "name": "CitySense", "scope": "products", "topic": "CitySense", "type": "page", "url": "https://www.citysenseooh.com/pricing" }
+  ]
+}

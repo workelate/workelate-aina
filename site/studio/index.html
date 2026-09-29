@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/site.min.css">
 <link rel="stylesheet" href="/css/studio.min.css">
 <link rel="stylesheet" href="/css/hero.min.css">
+<link rel="stylesheet" href="/css/ask.min.css">
 <link rel="canonical" href="https://aina.workelate.com/studio">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:type" content="website">
@@ -265,26 +266,33 @@
   <div class="wrap">
     <span class="label rv">Go deeper</span>
     <h2 class="rv">See how we <span class="accent">work.</span></h2>
-    <a class="svc rv" href="/studio/case-studies/rockprosusa">
-      <span class="num">01</span><h3>The case study</h3>
-      <p class="dim">Thirteen quarries on one system, and what changed in a year.</p>
-    </a>
-    <a class="svc rv" href="/studio/how-we-work">
-      <span class="num">02</span><h3>How we work</h3>
-      <p class="dim">A tier-1 team, a fixed price, and everything you own at the end.</p>
-    </a>
-    <a class="svc rv" href="/studio/about">
-      <span class="num">03</span><h3>The team</h3>
-      <p class="dim">Senior engineers, product and growth people who sit with you until it ships.</p>
-    </a>
-    <a class="svc rv" href="/studio/blog">
-      <span class="num">04</span><h3>Field notes</h3>
-      <p class="dim">Notes from shipping: what worked, what broke, what moved.</p>
-    </a>
+    <div class="deeper">
+      <a class="deep-card rv" href="/studio/case-studies/rockprosusa">
+        <figure><img src="/img/studio/rockpros-quarry-red-1200.webp" alt="Red rock quarry, RockProsUSA" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <h3>The case study <span aria-hidden="true">&rarr;</span></h3>
+        <p>Thirteen quarries on one system, and what changed in a year.</p>
+      </a>
+      <a class="deep-card rv" href="/studio/how-we-work">
+        <figure><img src="/img/studio/photo-studio-whiteboard-4x3.webp" alt="Team planning a build at a whiteboard" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <h3>How we work <span aria-hidden="true">&rarr;</span></h3>
+        <p>A tier-1 team, a fixed price, and everything you own at the end.</p>
+      </a>
+      <a class="deep-card rv" href="/studio/about">
+        <figure><img src="/img/studio/photo-studio-review-4x3.webp" alt="Team reviewing a build together" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <h3>The team <span aria-hidden="true">&rarr;</span></h3>
+        <p>Senior engineers, product and growth people who sit with you until it ships.</p>
+      </a>
+      <a class="deep-card rv" href="/studio/blog">
+        <figure><img src="/img/studio/photo-studio-code-4x3.webp" alt="Code on a laptop screen" width="1200" height="900" loading="lazy" decoding="async"></figure>
+        <h3>Field notes <span aria-hidden="true">&rarr;</span></h3>
+        <p>Notes from shipping: what worked, what broke, what moved.</p>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- CTA + the assistant. It answers only from our own delivery history, which is
+<!-- CTA + the assistant. It answers from our own work plus a weekly-refreshed reading
+     library (hosted model, grounded and cited, deterministic fallback), which is
      why it sits here and not in the hero: a wrong answer costs less than a wrong
      first impression, and the hero now leads with a number instead of an input. -->
 <section id="cta">
@@ -294,19 +302,22 @@
     <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
 
     <div id="ask">
-      <p class="ask-lead dim">Or ask first. The assistant answers only from what we have built.</p>
-      <form class="ask-form" autocomplete="off">
-        <label class="sr-only" for="ask-input">Ask what we would build for your business</label>
-        <input class="ask-input" id="ask-input" name="q" type="text" placeholder="Ask what we would build for your business&hellip;">
+      <p class="ask-lead dim">Or ask first. Explore what the team can do, what we have built, what we are building now and what is changing in your industry.</p>
+      <!-- No-JS contract: without site/js/chat.min.js the form and every chip submit
+           to the contact page (a plain link with the question attached). -->
+      <form class="ask-form" id="ask-form" action="/studio/contact" method="get" autocomplete="off">
+        <label class="sr-only" for="ask-input">Ask about our team, our work or your industry</label>
+        <input class="ask-input" id="ask-input" name="q" type="text" maxlength="500" placeholder="Ask about our work, or your industry&hellip;">
         <button class="ask-send" type="submit" aria-label="Send">&rarr;</button>
       </form>
-      <div class="ask-chips" aria-label="example questions">
-        <button type="button" data-ask="What do you actually build?">What do you build?</button>
-        <button type="button" data-ask="We need an MVP shipped in weeks, not quarters">Ship an MVP</button>
-        <button type="button" data-ask="Can you add AI features to our existing product?">Add AI to our product</button>
-        <button type="button" data-ask="Our build has stalled, can you take over the codebase?">Take over a stalled build</button>
-        <button type="button" data-ask="Do you build mobile apps?">Mobile apps</button>
-        <button type="button" data-ask="What does a build cost and how long does it take?">Cost and timeline</button>
+      <noscript><p class="ask-nojs"><a href="/studio/contact">Ask the team directly &rarr;</a></p></noscript>
+      <div class="ask-chips" aria-label="Start with a question">
+        <button type="submit" form="ask-form" name="q" value="What can your team do?" data-ask="What can your team do?">What can your team do?</button>
+        <button type="submit" form="ask-form" name="q" value="What have you built?" data-ask="What have you built?">What have you built?</button>
+        <button type="submit" form="ask-form" name="q" value="What are you building now?" data-ask="What are you building now?">What are you building now?</button>
+        <button type="submit" form="ask-form" name="q" value="What's next for you?" data-ask="What's next for you?">What's next for you?</button>
+        <button type="submit" form="ask-form" name="q" value="What's changing in my industry?" data-ask="What's changing in my industry?">What's changing in my industry?</button>
+        <button type="submit" form="ask-form" name="q" value="How would we start?" data-ask="How would we start?">How would we start?</button>
       </div>
       <div class="ask-log" role="log" aria-live="polite"></div>
     </div>

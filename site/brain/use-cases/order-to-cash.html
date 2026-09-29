@@ -6,6 +6,7 @@
 <title>Order to cash, walked end to end, WE_AINA</title>
 <meta name="description" content="Order raised, dispatched, invoiced, matched, collected; between each stage a person carries a number from one screen to another.">
 <link rel="stylesheet" href="/css/site.min.css">
+<link rel="stylesheet" href="/css/brain.min.css">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://aina.workelate.com/brain/use-cases/order-to-cash">
 <meta property="og:type" content="website">
@@ -218,6 +219,7 @@
     <h1>Order fine. Cash took <span class="accent">nineteen days</span>.</h1>
     <p class="sub dim">Order raised, dispatched, invoiced, matched, collected; between each stage a person carries a number from one screen to another.</p>
     <p class="hero-cta"><a class="btn" href="/book-a-demo">Book a demo</a> <a href="/book-a-demo">See it running first</a></p>
+      <figure class="bx-fig bx-fig-hero"><div class="bx-stage"><img src="/img/brain/sub/rockpros-dispatch.webp" srcset="/img/brain/sub/rockpros-dispatch-800.webp 800w, /img/brain/sub/rockpros-dispatch.webp 1600w" sizes="(max-width: 900px) 92vw, 1000px" alt="The RockProsUSA dispatch board, loads by quarry and status." width="1600" height="1189" fetchpriority="high" decoding="async"></div><figcaption>RockProsUSA dispatch board. Real screen.</figcaption></figure>
   </div>
 </section>
 
@@ -225,37 +227,25 @@
   <div class="wrap">
     <h2>The joins stop being people</h2>
 
-    <div class="step rv"><span class="k">Day 1, 08:20</span><div>
-      <h3>The order is read once</h3>
-      <p class="dim">Mail, portal or PDF, whatever arrived becomes one record with lines, price and original attached.</p>
-    </div></div>
-
-    <div class="step rv"><span class="k">Day 1, 08:22 &middot; a person confirms</span><div>
-      <h3>Creating the order waits for a yes</h3>
-      <p class="dim">The record is shown before it exists; the operator corrects one quantity and confirms.</p>
-    </div></div>
-
-    <div class="step rv"><span class="k">Day 2, 17:40</span><div>
-      <h3>A short delivery is raised same day</h3>
-      <p class="dim">Dispatch is attached to the order line, so a short line reaches the site manager that day.</p>
-    </div></div>
-
-    <div class="step rv"><span class="k">Day 3, 09:00 &middot; a person confirms</span><div>
-      <h3>The invoice is drafted, then approved</h3>
-      <p class="dim">The draft carries the customer&rsquo;s own purchase order reference from the order document, and a person clicks.</p>
-    </div></div>
-
-    <div class="step rv"><span class="k">Day 3, 09:01</span><div>
-      <h3>The three-way match runs on every invoice</h3>
-      <p class="dim">Order, delivery note and invoice, line by line; disagreements go to a person&rsquo;s short queue.</p>
-    </div></div>
-
-    <div class="step rv"><span class="k">Day 34, 07:20 &middot; a person confirms</span><div>
-      <h3>The chase carries its evidence</h3>
-      <p class="dim">An invoice past terms is raised with order, delivery and reference; nothing goes out until finance clicks.</p>
-    </div></div>
-<p class="dim">On Monday the carrying, comparing and chasing stop being done by hand: WorkElate Chief, installed by WE_AINA on what you run.</p>
-    <p class="dim"><a href="/brain/use-cases">The other three workflows &rarr;</a></p>
+    <ol class="bx-story">
+      <li class="rv">
+        <div class="bx-txt"><span class="k">Day 1, 08:20</span><h3>The order is read once</h3><p>Mail, portal or PDF, whatever arrived becomes one record with lines, price and original attached.</p><span class="k bx-k2">Day 1, 08:22 &middot; <b>a person confirms</b></span><h3>Creating the order waits for a yes</h3><p>The record is shown before it exists; the operator corrects one quantity and confirms.</p></div>
+        <figure class="bx-fig"><div class="bx-stage bx-mid"><img src="/img/brain/sub/real-draft-gate.webp" srcset="/img/brain/sub/real-draft-gate-800.webp 800w, /img/brain/sub/real-draft-gate.webp 1350w" sizes="(max-width: 900px) 92vw, 640px" alt="Chief asks a quick clarification before acting: save this draft as shown, or cancel, or type a change." width="1350" height="832" loading="lazy" decoding="async"></div><figcaption>It asks before it guesses. Real screen, seeded data.</figcaption></figure>
+      </li>
+      <li class="rv">
+        <div class="bx-txt"><span class="k">Day 2, 17:40</span><h3>A short delivery is raised same day</h3><p>Dispatch is attached to the order line, so a short line reaches the site manager that day.</p></div>
+        <figure class="bx-fig"><div class="bx-stage bx-card"><img src="/img/brain/sub/needs-you.webp" alt="A needs-you list: a reply with its draft ready, a plan due today, a client review with its agenda ready." width="864" height="690" loading="lazy" decoding="async"></div><figcaption>Only what needs you. Product illustration, sample data.</figcaption></figure>
+      </li>
+      <li class="rv">
+        <div class="bx-txt"><span class="k">Day 3, 09:00 &middot; <b>a person confirms</b></span><h3>The invoice is drafted, then approved</h3><p>The draft carries the customer&rsquo;s own purchase order reference from the order document, and a person clicks.</p><span class="k bx-k2">Day 3, 09:01</span><h3>The three-way match runs on every invoice</h3><p>Order, delivery note and invoice, line by line; disagreements go to a person&rsquo;s short queue.</p></div>
+        <figure class="bx-fig"><div class="bx-stage"><img src="/img/brain/sub/reread.webp" srcset="/img/brain/sub/reread-800.webp 800w, /img/brain/sub/reread.webp 1600w" sizes="(max-width: 900px) 92vw, 640px" alt="Chief reports three rows updated, re-reads the sheet, confirms two changed, and flags the one row that did not change and why." width="1600" height="701" loading="lazy" decoding="async"></div><figcaption>Re-read after the write; the miss is told. Product illustration, sample data.</figcaption></figure>
+      </li>
+      <li class="rv">
+        <div class="bx-txt"><span class="k">Day 34, 07:20 &middot; <b>a person confirms</b></span><h3>The chase carries its evidence</h3><p>An invoice past terms is raised with order, delivery and reference; nothing goes out until finance clicks.</p></div>
+        <figure class="bx-fig"><div class="bx-stage"><img src="/img/brain/sub/real-smd.webp" srcset="/img/brain/sub/real-smd-800.webp 800w, /img/brain/sub/real-smd.webp 1600w" sizes="(max-width: 900px) 92vw, 640px" alt="Start my day in the hub: six items need you, twenty-two slipping, eight handled, drawn from sixteen of sixteen sources." width="1600" height="1217" loading="lazy" decoding="async"></div><figcaption>Ranked for one person, from every source. Real screen, seeded data.</figcaption></figure>
+      </li>
+    </ol>
+    <p class="dim bx-after"><a href="/brain/use-cases">The other three workflows &rarr;</a></p>
   </div>
 </section>
 
