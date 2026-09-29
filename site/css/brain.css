@@ -229,3 +229,4 @@ section.deep .bx-verbs li { background: var(--v-white); }
 .bx-verbs-key i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--v-teal-soft); border: 1px solid var(--v-teal); box-sizing: border-box; vertical-align: -1px; margin-right: 6px; }
 .bx-bar.bx-w10 ol { grid-template-columns: 2fr 3fr 2fr 3fr; }
 .bx-bar.bx-w10 .ticks { grid-template-columns: repeat(10, 1fr); padding: 0 4px; }
+@media (max-width: 900px) { .bx-loopback::before { display: none; } .bx-path > li { padding: 18px; } .bx-path .i { margin-bottom: 8px; } }

@@ -146,3 +146,4 @@ Persona photographs, Unsplash License (free for commercial use; credited anyway)
 | `persona-revenue.webp`, `-800` | A team with coffee around a laptop in a glass-walled office | /brain/for/revenue | Vitaly Gariev | https://unsplash.com/photos/YyJNda7nsPo |
 
 Also reused read-only from `site/img/brain/` (the /brain home's crops, credited above): the six `story-*.webp` on /brain/use-cases/client-delivery.
+Added the same day: `workgraph.webp` / `-800` (re-encoded from `site/img/workgraph-poster.webp`, the work map poster) for /brain/architecture, /brain/glossary and the work-graph capability.
