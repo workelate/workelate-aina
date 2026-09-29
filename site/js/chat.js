@@ -1,15 +1,16 @@
-// On-page assistant. Replaces the hero stat row (founder call 2026-07-22:
-// "those numbers add no value") with something a visitor can actually talk to.
+// On-page assistant on /studio. Two engines, one voice:
 //
-// Design decision worth knowing: the answering engine is LOCAL and
-// deterministic, not a hosted model call. Reasons:
-//   1. It answers in ~1ms with no key, no vendor and no per-visit cost, so it
-//      cannot be the thing that breaks in front of a prospect.
-//   2. It can only say what is in site/data/corpus.json, which is generated
-//      from the real portfolio. A hosted model free-typing about our numbers
-//      is exactly how a consultancy site starts lying.
-// When ANTHROPIC_API_KEY exists, POST /api/chat is used to REPHRASE the
-// retrieved answer, never to invent one. Retrieval stays the source of truth.
+//   1. POST /api/ask (app/api/ask/route.js): a hosted model (Anthropic) that
+//      answers ONLY from passages retrieved server side, from our own work
+//      (site/data/corpus.json) and a reading library crawled every week
+//      (site/data/library.json). It streams, and cites what it used.
+//   2. The LOCAL deterministic engine below, answering from corpus.json in
+//      ~1ms with no key, vendor or cost. It is the fallback whenever the model
+//      path says so (no key, kill switch, daily cap, rate limit, nothing
+//      retrieved) or fails in any way, so a visitor never sees a blank or an
+//      error. It also still decides the buying signal and the follow-up.
+//
+// Honest label: the model is hosted, not ours. Never call it "our own model".
 
 const STOP = new Set("a an and are as at be but by can do does for from has have how i if in is it its me my of on or our so that the their they this to us was we what when where which who why will with you your".split(" "));
 const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(w => w && !STOP.has(w) && w.length > 2);
@@ -169,7 +170,7 @@ function answer(text) {
   // Neither of these is a question about the firm. The engine has no model to
   // hijack, so injection was already harmless, but answering it with a random
   // project reads as if something almost worked. Both go to the fallback.
-  if (HOSTILE.test(flat) || INJECTION.test(flat)) return fallback();
+  if (HOSTILE.test(flat) || INJECTION.test(flat)) return { ...fallback(), guard: true };
 
   const ind = detectIndustry(text);
   if (ind) state.industry = ind;
@@ -310,6 +311,80 @@ if (root) {
   const transcript = [];
   const cap = { done: false, shown: false };
 
+  // what the model sees of the conversation (server caps it again)
+  const history = [];
+
+  // [W1] / [L2] tags from the model become the citation list, never text.
+  const TAGS = /\s*\[((?:[WL]\d+)(?:\s*,\s*[WL]\d+)*)\]/g;
+  const clean = t => t.replace(TAGS, "").replace(/\s*\u2014\s*/g, ", ");
+  const paras = t => clean(t).split(/\n{2,}/).map(x => x.trim()).filter(Boolean)
+    .map(x => `<p>${esc(x).replace(/\n/g, "<br>")}</p>`).join("");
+
+  // Returns the answer text when the model path answered, or null so the
+  // caller renders the local answer instead. Any failure is a null.
+  async function askModel(text, el) {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 9000);
+    let r;
+    try {
+      r = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ question: text.slice(0, 500), history: history.slice(-6) }),
+        signal: ctl.signal
+      });
+    } catch { clearTimeout(timer); return null; }
+    if (!r.ok || !r.body || !(r.headers.get("content-type") || "").includes("text/event-stream")) {
+      clearTimeout(timer);
+      return null;
+    }
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "", out = "", passages = [], state2 = "open", body = null;
+    try {
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i;
+        while ((i = buf.indexOf("\n\n")) >= 0) {
+          const raw = buf.slice(0, i); buf = buf.slice(i + 2);
+          const ev = (raw.match(/^event: (.+)$/m) || [])[1];
+          const data = (raw.match(/^data: (.+)$/m) || [])[1];
+          let d = {}; try { d = JSON.parse(data || "{}"); } catch {}
+          if (ev === "meta") passages = d.passages || [];
+          else if (ev === "delta" && d.t) {
+            clearTimeout(timer);
+            out += d.t;
+            if (!body) {
+              el.innerHTML = `<span class="ask-who">WE_AINA assistant <span class="ask-ai">AI answer</span></span><div class="ask-body"></div>`;
+              body = el.querySelector(".ask-body");
+            }
+            body.innerHTML = paras(out);
+            log.scrollTop = log.scrollHeight;
+          } else if (ev === "error") state2 = "error";
+          else if (ev === "done") state2 = "done";
+        }
+      }
+    } catch { state2 = "error"; }
+    clearTimeout(timer);
+    if (!out.trim()) return null;                  // nothing shown yet: local answer takes over
+    if (state2 !== "done") body.insertAdjacentHTML("beforeend", `<p class="ask-note">The answer was cut short. The team answers the rest directly.</p>`);
+
+    const cited = new Set();
+    for (const m of out.matchAll(TAGS)) m[1].split(/\s*,\s*/).forEach(t => cited.add(t));
+    const used = passages.filter(p => cited.has(p.tag));
+    if (used.length) {
+      el.insertAdjacentHTML("beforeend", `<div class="ask-cites"><span class="ask-cites-h">Sources</span>` +
+        used.map(p => {
+          const ext = /^https?:/.test(p.url);
+          const label = p.kind === "library" && p.source ? `${p.source}: ${p.title}` : p.title;
+          return `<a class="ask-cite" href="${esc(p.url)}"${ext ? ' target="_blank" rel="noopener nofollow"' : ""}>${esc(label.length > 90 ? label.slice(0, 87) + "..." : label)}</a>`;
+        }).join("") + `</div>`);
+    }
+    return clean(out);
+  }
+
   async function ask(text) {
     if (!text.trim()) return;
     root.classList.add("open");
@@ -319,16 +394,26 @@ if (root) {
     const thinking = bubble("bot", '<span class="ask-dots"><i></i><i></i><i></i></span>');
     try {
       await ensureCorpus();
+      // The local engine always runs (1ms, free): it holds the buying signal,
+      // the follow-up, and the answer if the model path declines.
       const a = answer(text);
-      await new Promise(r => setTimeout(r, 260));
-      let html = `<span class="ask-who">WE_AINA</span>` + formatAnswer(a.text);
-      if (a.followup) html += `<p class="ask-follow">${esc(a.followup)}</p>`;
-      if (a.links && a.links.length) {
-        html += `<div class="ask-links">` +
-          a.links.map(l => `<a class="ask-pill" href="${esc(l.href)}">${esc(l.label)} →</a>`).join("") + `</div>`;
+      const said = a.guard ? null : await askModel(text, thinking);
+      if (said) {
+        if (a.followup) thinking.insertAdjacentHTML("beforeend", `<p class="ask-follow">${esc(a.followup)}</p>`);
+        transcript.push("WE_AINA assistant (AI): " + said);
+        history.push({ role: "user", text }, { role: "assistant", text: said });
+      } else {
+        await new Promise(r => setTimeout(r, 260));
+        let html = `<span class="ask-who">WE_AINA assistant</span>` + formatAnswer(a.text);
+        if (a.followup) html += `<p class="ask-follow">${esc(a.followup)}</p>`;
+        if (a.links && a.links.length) {
+          html += `<div class="ask-links">` +
+            a.links.map(l => `<a class="ask-pill" href="${esc(l.href)}">${esc(l.label)} →</a>`).join("") + `</div>`;
+        }
+        thinking.innerHTML = html;
+        transcript.push("WE_AINA: " + a.text);
+        history.push({ role: "user", text }, { role: "assistant", text: a.text });
       }
-      thinking.innerHTML = html;
-      transcript.push("WE_AINA: " + a.text);
       log.scrollTop = log.scrollHeight;
       // the right point: a buying-signal answer, or once the conversation has
       // real substance (>=2 exchanges). Never on the first curious question.
