@@ -187,3 +187,11 @@ section.deep .bx-rail > *::before { background: var(--v-light); }
   .bx-story > li:nth-child(even) > .bx-txt { order: 0; }
 }
 .bx-after { margin-top: 64px; }
+.bx-story .bx-k2 { margin-top: 32px; }
+.bx-story .bx-card img { max-width: 440px; }
+/* a thumbnail on top of an index card */
+.fn .bx-thumb { display: block; margin: -8px -8px 22px; border-radius: 16px; background: var(--v-light); padding: 18px; overflow: hidden; }
+section.deep .fn .bx-thumb { background: var(--v-light); }
+.fn .bx-thumb img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: top left; border-radius: 10px; box-shadow: var(--v-window); background: var(--v-white); }
+.fngrid.bx-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 700px) { .fngrid.bx-2 { grid-template-columns: minmax(0, 1fr); } }
