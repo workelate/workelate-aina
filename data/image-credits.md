@@ -95,3 +95,21 @@ For the /studio/systems pages (founder 2026-09-28, "images daalo"). Unsplash Lic
 | `sys-compliance-paper-4x3.webp` | Stacks of paper documents and folders in an office | compliance "Today" tile | Wesley Tingey | https://unsplash.com/photos/snNHKZ-mGfE |
 
 Also reused from site/img/studio/: `photo-ind-logistics-4x3.webp` (freight "Today" tile) and `photo-ind-quarry-16x9.webp` (compliance band).
+
+# Image credits: site/img/brain/ (the /brain page, 2026-09-29)
+
+Every file is a crop and WebP (quality 82) re-encode of an existing real capture already in this repo; no new capture, no stock photo, pixels not recoloured. Crops are cut to the app window only.
+
+| file | source | crop |
+|---|---|---|
+| `story-folder.webp` | `site/img/real/folder-container@2x.png` (local WorkElate hub, seeded org) | full frame, 1600w |
+| `story-blocked.webp` | `site/img/real/tasks-board-rockcross-ops-portal@2x.png` (local Tasks app, seeded org) | board columns only, sidebar and account row removed |
+| `story-quiet.webp` | `site/img/real/start-my-day-fresh@2x.png` (local hub Start my day, seeded org) | full frame |
+| `story-draft.webp` | `site/img/studio/workelate-chief-hero.webp` (workelate.com home hero, sample data) | inner window, outer shadow removed |
+| `story-yes.webp` | `site/img/studio/workelate-asks-first.webp` (workelate.com 'It asks first.') | card interior, black surround removed |
+| `story-written.webp` | `site/img/studio/workelate-chief-reschedule.webp` (workelate.com hero, second prompt) | inner window |
+| `gov-gate.webp` | `site/img/real/draft-at-confirm-gate@2x.png` (local hub, seeded org) | full frame |
+| `gov-checks.webp` | `site/img/studio/workelate-checks-work.webp` (workelate.com 'It checks its work.') | trimmed margins |
+| `role-day.webp` | `site/img/studio/workelate-start-my-day.webp` (workelate.com 'Your day, sorted.') | card interior |
+| `role-ring.webp` | `site/img/studio/workelate-suite-ring.webp` (workelate.com 'Every app. One Chief.') | 1000w |
+| `role-quiet.webp` | `site/img/real/gone-quiet-nudge@2x.png` (local hub, seeded org; the client and contact are seed personas) | title, reasons and actions |
