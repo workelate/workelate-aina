@@ -157,6 +157,10 @@ section.deep .bx-rail > *::before { background: var(--v-light); }
   .bx-bar ol { grid-template-columns: minmax(0, 1fr) !important; }
   .bx-bar .ticks { display: none; }
   .bx-fig, .bx-photo, .bx-row { margin-top: 40px; }
+  .bx-stage:not(.bx-card) { padding: 14px; border-radius: var(--r-card-sm); }
+  .bx-stage:not(.bx-card) img { border-radius: 10px; }
+  .bx-cards .principle { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 24px 20px; border-radius: var(--r-card-sm); }
+  .bx-cards .principle .pn { font-size: 26px; margin: 0; }
 }
 
 /* reveal: the figures rise once, by transform only; still under reduced motion */
