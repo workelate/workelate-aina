@@ -22,7 +22,7 @@ import corpus from "../../../site/data/corpus.json";
 import library from "../../../site/data/library.json";
 import {
   createKnowledge, retrieve, readIntent, buildRequest, validate, createRateLimiter, createTurnLimiter,
-  createDailyCap, createCache, cacheKey, anthropicText, openaiText, toOpenAI, tidy,
+  createDailyCap, createCache, cacheKey, PROMPT_VERSION, anthropicText, openaiText, toOpenAI, tidy,
   createTagStripper, stripTags, pickSources, INJECTION, INJECTION_REPLY
 } from "../../../lib/ask.js";
 
@@ -109,7 +109,7 @@ export async function POST(req) {
   // Nothing to ground on: the deterministic engine answers for free.
   if (!passages.length) return fallback("no passages");
 
-  const ck = cacheKey(K.version, v.question, v.history, v.subject);
+  const ck = cacheKey(K.version + ":" + PROMPT_VERSION, v.question, v.history, v.subject);
   if (ck) {
     const hit = cache.get(ck);
     if (hit) return streamCached(hit);
