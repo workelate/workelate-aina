@@ -9,20 +9,25 @@
 //   text/event-stream  meta {passages:[{tag,title,url,kind,source}]}, delta {t}...,
 //                      done {cached}, or error {reason} if the model fails mid-answer.
 //
-// Env: ANTHROPIC_API_KEY (no key = fallback), ASK_LLM=off (kill switch),
+// Env: OPENAI_API_KEY (preferred) or ANTHROPIC_API_KEY (no key = fallback), ASK_LLM=off (kill switch),
 //      ASK_DAILY_CAP (model calls per UTC day per instance, default 300),
 //      ASK_MODEL (default claude-haiku-4-5-20251001).
 import corpus from "../../../site/data/corpus.json";
 import library from "../../../site/data/library.json";
 import {
   createKnowledge, retrieve, buildRequest, validate, createRateLimiter,
-  createDailyCap, createCache, cacheKey, anthropicText, tidy
+  createDailyCap, createCache, cacheKey, anthropicText, openaiText, toOpenAI, tidy
 } from "../../../lib/ask.js";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const MODEL = process.env.ASK_MODEL || "claude-haiku-4-5-20251001";
+// Provider: OpenAI when OPENAI_API_KEY is set (founder's choice, 2026-09-29),
+// else Anthropic when ANTHROPIC_API_KEY is set, else the free fallback.
+const PROVIDER = process.env.OPENAI_API_KEY ? "openai" : "anthropic";
+const MODEL = process.env.ASK_MODEL || (PROVIDER === "openai" ? "gpt-4.1-mini" : "claude-haiku-4-5-20251001");
+// $ per million tokens [in, out], for the log line only
+const PRICE = PROVIDER === "openai" ? [0.4, 1.6] : [1, 5];
 const MAX_TOKENS = 400;
 
 // Built once per instance; the JSON is bundled at build time.
@@ -60,7 +65,7 @@ export async function POST(req) {
   if (limited(ip)) return fallback("rate limited", 429);
 
   if (process.env.ASK_LLM === "off") return fallback("llm off");
-  const key = process.env.ANTHROPIC_API_KEY;
+  const key = PROVIDER === "openai" ? process.env.OPENAI_API_KEY : process.env.ANTHROPIC_API_KEY;
   if (!key) return fallback("no key");
 
   // Retrieval sees the last visitor turn too, so "and how long?" keeps its subject.
@@ -84,12 +89,20 @@ export async function POST(req) {
 
   let res;
   try {
-    res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify(buildRequest({ passages, question: v.question, history: v.history, model: MODEL, maxTokens: MAX_TOKENS })),
-      signal: AbortSignal.timeout(25_000)
-    });
+    const body = buildRequest({ passages, question: v.question, history: v.history, model: MODEL, maxTokens: MAX_TOKENS });
+    res = PROVIDER === "openai"
+      ? await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+          body: JSON.stringify(toOpenAI(body)),
+          signal: AbortSignal.timeout(25_000)
+        })
+      : await fetch("https://api.anthropic.com/v1/messages", {
+          method: "POST",
+          headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+          body: JSON.stringify(body),
+          signal: AbortSignal.timeout(25_000)
+        });
   } catch (e) {
     console.error("[ask] model fetch failed", e.message);
     return fallback("model unreachable");
@@ -109,7 +122,7 @@ export async function POST(req) {
       controller.enqueue(enc.encode(sse("meta", { passages: meta })));
       let text = "", usage = {};
       try {
-        for await (const ev of anthropicText(res)) {
+        for await (const ev of (PROVIDER === "openai" ? openaiText(res) : anthropicText(res))) {
           if (ev.text) {
             const t = tidy(ev.text);
             text += t;
@@ -118,8 +131,7 @@ export async function POST(req) {
           if (ev.usage) usage = { ...usage, ...ev.usage };
         }
         controller.enqueue(enc.encode(sse("done", { cached: false })));
-        // cost line for the logs: Haiku 4.5 at $1 / $5 per million tokens
-        const cost = ((usage.input_tokens || 0) * 1 + (usage.output_tokens || 0) * 5) / 1e6;
+        const cost = ((usage.input_tokens || 0) * PRICE[0] + (usage.output_tokens || 0) * PRICE[1]) / 1e6;
         console.log(`[ask] ${MODEL} in=${usage.input_tokens || 0} out=${usage.output_tokens || 0} ~$${cost.toFixed(5)} calls_today=${cap.used}`);
         const entry = { text, passages: meta };
         if (ck && text.trim()) cache.set(ck, entry);

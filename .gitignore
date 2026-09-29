@@ -45,3 +45,8 @@ site/img/real/*
 
 # verify-live hook receipts: never inside site/
 site/**/.verify-live/
+
+# secrets: never commit
+.env
+.env.*
+!.env.example
