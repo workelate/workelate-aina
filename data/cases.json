@@ -1,51 +1,51 @@
 {
-  "_howto": "Add one object per project. Required: tag (industry, geography), title, summary, metric, metricLabel. Optional: href (+ hrefLabel) renders the card as a link and puts it in the page's JSON-LD; anonymous:true renders without the client name pressure; status:'placeholder' renders as a dashed coming-soon card. Vocabulary: the Brain (never agents / agentic / autonomous); RockProsUSA numbers are always 'over the first twelve months'; no numbers for any other client (data/brain-narrative.md §5). Run `node scripts/gencases.mjs` after editing.",
+  "_howto": "Add one object per project. Required: tag (industry, geography), title, summary, metric, metricLabel. Optional: href (+ hrefLabel) renders the card as a link and puts it in the page's JSON-LD; anonymous:true renders without the client name pressure; status:'placeholder' renders as a dashed coming-soon card. Vocabulary: the Brain (never agents / agentic / autonomous); Southwest quarries numbers are always 'over the first twelve months'; no numbers for any other client (data/brain-narrative.md §5), except the two search cases, whose numbers are the clients' own Google Search Console figures (the screenshots behind the SimpleForm2290 proposal, 23 Sep 2026): always anonymous, always named as Search Console, never a shape we did not measure. A case with `insight` (anonymous, no photography) renders the insight layout instead of the story layout. Run `node scripts/gencases.mjs` after editing.",
   "cases": [
     {
       "tag": "Industrial ops, USA",
-      "title": "RockProsUSA: 13 quarries on one dispatch system",
+      "title": "Southwest quarries: 13 sites on one dispatch system",
       "summary": "Dispatch, invoicing and reporting moved onto one system across 13 quarry sites, with three native iPhone apps for customers, drivers and haulers. The Brain proposes each truck assignment with its reasoning and a dispatcher approves it; invoices are matched against the delivery and the order without a manual pass; the daily report is written by 6 AM. Over the first twelve months: 2,140 invoices with zero manual touches, 11,200 operations hours returned.",
       "metric": "13",
       "metricLabel": "quarry sites on one system · 2,140 invoices, zero touches",
-      "href": "/studio/case-studies/rockprosusa",
+      "href": "/studio/case-studies/southwest-quarries",
       "hrefLabel": "Read the full case study",
       "story": {
-        "slug": "rockprosusa",
-        "title": "RockProsUSA: 13 quarries on one dispatch system",
-        "crumb": "RockProsUSA",
-        "description": "RockProsUSA mines decorative rock at 13 quarries in the American Southwest. We built the system that moves it: dispatch, invoicing, reporting and three iPhone apps.",
+        "slug": "southwest-quarries",
+        "title": "Southwest quarries: 13 sites on one dispatch system",
+        "crumb": "Southwest quarries",
+        "description": "A family-owned producer mines decorative rock at 13 quarries in the American Southwest. We built the system that moves it: dispatch, invoicing, reporting and three iPhone apps.",
         "published": "2026-09-15",
         "modified": "2026-09-28",
         "hero": {
-          "eyebrow": "Case study · RockProsUSA",
+          "eyebrow": "Case study · Aggregates, US Southwest",
           "h1": "Thirteen quarries.<br>One system.",
-          "sub": "RockProsUSA mines decorative rock across the American Southwest. We built what moves it, from the order to the truck to the invoice.",
-          "img": "/img/studio/rockpros-quarry-red",
+          "sub": "A family-owned producer mines decorative rock across the American Southwest. We built what moves it, from the order to the truck to the invoice.",
+          "img": "/img/studio/quarry-red",
           "w": 2400,
           "h": 1600,
-          "alt": "Aerial view of a red-rock RockProsUSA quarry below a desert mountain, with crushing plant and stockpiles"
+          "alt": "Aerial view of a red-rock quarry below a desert mountain, with crushing plant and stockpiles"
         },
         "client": {
           "eyebrow": "The client",
           "h2": "Family owned since 1998.",
           "lines": [
-            "RockProsUSA quarries landscape, architectural and boulder rock in 22 colours, and ships it by truck to contractors, landscapers and distributors across the western United States."
+            "The client quarries landscape, architectural and boulder rock in 22 colours, and ships it by truck to contractors, landscapers and distributors across the western United States."
           ],
           "stones": [
             {
-              "img": "/img/studio/rockpros-stone-gold.webp",
+              "img": "/img/studio/quarry-stone-gold.webp",
               "name": "Gold"
             },
             {
-              "img": "/img/studio/rockpros-stone-red.webp",
+              "img": "/img/studio/quarry-stone-red.webp",
               "name": "Red"
             },
             {
-              "img": "/img/studio/rockpros-stone-brown.webp",
+              "img": "/img/studio/quarry-stone-brown.webp",
               "name": "Brown"
             },
             {
-              "img": "/img/studio/rockpros-stone-modern.webp",
+              "img": "/img/studio/quarry-stone-modern.webp",
               "name": "Modern"
             }
           ]
@@ -63,43 +63,43 @@
           "h2": "One engine under every screen.",
           "sub": "A load, an invoice and a production number describe the same event, so nobody reconciles them later.",
           "main": {
-            "img": "/img/studio/rockpros-dispatch-board.webp",
+            "img": "/img/studio/quarry-dispatch-board.webp",
             "w": 2400,
             "h": 1784,
-            "alt": "RockProsUSA admin console: the Open Jobs dispatch board across every quarry site",
+            "alt": "The admin console: the Open Jobs dispatch board across every quarry site",
             "cap": "The admin console. Every open job across 13 sites, on one board."
           },
           "pair": [
             {
-              "img": "/img/studio/rockpros-customer-tracking.webp",
+              "img": "/img/studio/quarry-customer-tracking.webp",
               "w": 1600,
               "h": 1242,
-              "alt": "RockProsUSA customer portal: scheduled deliveries per load with truck and loaded tons",
+              "alt": "The customer portal: scheduled deliveries per load with truck and loaded tons",
               "cap": "The customer portal. Every load, truck and ton, as it moves."
             },
             {
-              "img": "/img/studio/rockpros-po-progress-admin.webp",
+              "img": "/img/studio/quarry-po-progress-admin.webp",
               "w": 1600,
               "h": 1242,
-              "alt": "RockProsUSA admin console: purchase order progress bars per order line",
+              "alt": "The admin console: purchase order progress bars per order line",
               "cap": "Purchase orders. Ordered against delivered, line by line."
             }
           ]
         },
         "band": {
-          "img": "/img/studio/rockpros-truck-2200.webp",
+          "img": "/img/studio/quarry-truck-2200.webp",
           "w": 2200,
           "h": 704,
-          "alt": "A green RockProsUSA tri-axle dump truck parked outside a depot",
+          "alt": "A green tri-axle dump truck parked outside a depot",
           "line": "Pit to job site, one record."
         },
         "numbers": {
           "eyebrow": "The first twelve months",
           "h2": "The numbers that moved.",
-          "img": "/img/studio/rockpros-quarry-blue",
+          "img": "/img/studio/quarry-blue",
           "w": 2400,
           "h": 1798,
-          "alt": "Aerial view of a terraced RockProsUSA quarry in a desert valley, haul roads winding between blue-grey benches",
+          "alt": "Aerial view of a terraced quarry in a desert valley, haul roads winding between blue-grey benches",
           "items": [
             {
               "n": "13",
@@ -116,33 +116,30 @@
           ]
         },
         "apps": {
-          "eyebrow": "On the App Store",
+          "eyebrow": "In the field",
           "h2": "Three apps. One for every hand on the load.",
-          "sub": "Native iPhone apps, published by RockProsUSA and built by us.",
+          "sub": "Native iPhone apps, published under the client's own name and built by us.",
           "items": [
             {
-              "name": "Rock Pros Customer",
+              "name": "Customer app",
               "tag": "Track deliveries in real time.",
-              "icon": "/img/studio/rockpros-icon-customer.webp",
-              "shot": "/img/studio/rockpros-app-customer-stats.webp",
-              "alt": "Rock Pros Customer app: dispatched and received tons for today, last week, last month and last year",
-              "href": "https://apps.apple.com/us/app/rock-pros-customer/id6740747257"
+              "icon": "/img/studio/quarry-icon-customer.webp",
+              "shot": "/img/studio/quarry-app-customer-stats.webp",
+              "alt": "Customer app: dispatched and received tons for today, last week, last month and last year"
             },
             {
-              "name": "Rock Pros Driver",
+              "name": "Driver app",
               "tag": "The load, the route, the signature.",
-              "icon": "/img/studio/rockpros-icon-driver.webp",
-              "shot": "/img/studio/rockpros-app-driver-sign.webp",
-              "alt": "Rock Pros Driver app: the delivery signature pad with Clear and Save",
-              "href": "https://apps.apple.com/us/app/rock-pros-driver/id6742345868"
+              "icon": "/img/studio/quarry-icon-driver.webp",
+              "shot": "/img/studio/quarry-app-driver-sign.webp",
+              "alt": "Driver app: the delivery signature pad with Clear and Save"
             },
             {
-              "name": "Rock Pros Trucker",
+              "name": "Trucker app",
               "tag": "The hauler's fleet and dispatches.",
-              "icon": "/img/studio/rockpros-icon-trucker.webp",
-              "shot": "/img/studio/rockpros-app-trucker-loads.webp",
-              "alt": "Rock Pros Trucker app: dispatched loads with pickup number, quarry and pending pickup status",
-              "href": "https://apps.apple.com/us/app/rock-pros-trucker/id6742343397"
+              "icon": "/img/studio/quarry-icon-trucker.webp",
+              "shot": "/img/studio/quarry-app-trucker-loads.webp",
+              "alt": "Trucker app: dispatched loads with pickup number, quarry and pending pickup status"
             }
           ]
         },
@@ -153,7 +150,7 @@
             {
               "k": "01",
               "h": "Diagnose",
-              "t": "A two-week Sprint mapped every order, truck and ticket across the sites."
+              "t": "Two weeks inside the sites mapped every order, truck and ticket."
             },
             {
               "k": "02",
@@ -186,7 +183,376 @@
             "label": "Freight reconciliation"
           }
         ],
-        "cta": "These numbers started as a two-week Sprint. Yours starts the same way."
+        "cta": "These numbers started with one conversation. Yours starts the same way."
+      }
+    },
+    {
+      "tag": "SaaS, organic search",
+      "title": "From 100 to 1,400 clicks a day in sixteen months",
+      "summary": "A SaaS platform's organic search, measured in its own Google Search Console: 256K clicks and 12.8M impressions over sixteen months, with daily clicks up about fourteen times. The method: fix the foundations first (duplicates, internal links, schema), then push the keywords parked on page two.",
+      "metric": "256K",
+      "metricLabel": "organic clicks · 12.8M impressions · 16 months",
+      "anonymous": true,
+      "href": "/studio/case-studies/saas-search-growth",
+      "hrefLabel": "Read the full case study",
+      "insight": {
+        "slug": "saas-search-growth",
+        "crumb": "SaaS search growth",
+        "title": "SaaS organic search: 100 to 1,400 clicks a day in sixteen months",
+        "description": "A SaaS platform grew from about 100 to about 1,400 organic clicks a day over sixteen months: 256K clicks and 12.8M impressions, measured in Google Search Console.",
+        "published": "2026-09-30",
+        "modified": "2026-09-30",
+        "hero": {
+          "eyebrow": "SaaS platform · name under NDA",
+          "h1": "100 to 1,400 clicks a day. <span class=\"accent\">Sixteen months.</span>",
+          "sub": "Organic search for a SaaS platform, straight from the client's own Google Search Console: daily clicks from about 100 to peaks of about 1,400, with an average position of 12.2.",
+          "window": {
+            "kind": "shot",
+            "img": "/img/studio/gsc-saas-16mo.webp",
+            "w": 1190,
+            "h": 420,
+            "alt": "Google Search Console, 16 months: 256K clicks, 12.8M impressions, 2% CTR, average position 12.2, with clicks and impressions climbing in two clear steps",
+            "cap": "The client's Google Search Console, May 2025 to September 2026. Property name hidden, nothing else changed."
+          }
+        },
+        "numbers": {
+          "eyebrow": "The numbers, from Search Console",
+          "h2": "What moved.",
+          "items": [
+            {
+              "n": "256K",
+              "t": "organic clicks over the sixteen months."
+            },
+            {
+              "n": "12.8M",
+              "t": "impressions in Google search."
+            },
+            {
+              "n": "14×",
+              "t": "daily clicks, from about 100 to peaks of about 1,400."
+            },
+            {
+              "n": "12.2",
+              "t": "average position across the whole window. Most rankings were on page two, and it still grew."
+            }
+          ],
+          "note": "All four numbers are from one engagement, as Search Console reports them. A second SaaS site, run with the same method, is at the foot of this page."
+        },
+        "sections": [
+          {
+            "kind": "table",
+            "eyebrow": "The shape we look for first",
+            "h2": "Rankings earned. Clicks parked on page two.",
+            "lines": [
+              "Most clicks go to the top three results. A site can rank for a thousand keywords and still not grow, because its rankings sit at positions 4 to 20, where almost nobody clicks.",
+              "That is not solved by publishing more. It is a foundations problem, and the cheapest growth a mature site has."
+            ],
+            "caption": "Organic search symptoms, with the direct cause and the deeper cause behind each",
+            "head": [
+              "What you see",
+              "Direct cause",
+              "Deeper cause, the one that brings it back"
+            ],
+            "rows": [
+              [
+                "Keywords stuck at positions 11 to 20",
+                "The page answers the query only partly, and few internal links point at it.",
+                "Trusted sites link to the home page, not to the pages that earn money."
+              ],
+              [
+                "Two pages trading one keyword",
+                "Duplicate pages for one intent: due dates, calculators, addresses.",
+                "No page has one clear job, so Google splits the signal and neither wins."
+              ],
+              [
+                "High impressions, low click-through",
+                "Titles and descriptions that do not carry the offer.",
+                "The proof that sells (price, speed, credentials) lives on the page, not in the result."
+              ],
+              [
+                "Blog traffic that never converts",
+                "Topics picked by search volume.",
+                "Posts do not feed a service page, so traffic arrives and leaves."
+              ],
+              [
+                "A monthly report with no explanation",
+                "Numbers without the action behind them.",
+                "Nobody links what changed on the site to what moved in search."
+              ]
+            ],
+            "note": "Every problem gets two answers. Fixing only the first is why the same problem is back six months later."
+          },
+          {
+            "kind": "steps",
+            "eyebrow": "How we run it",
+            "h2": "Fix the foundations. Then grow on top.",
+            "lines": [
+              "New content on a site Google half understands compounds slowly. The same content on a clean site compounds fast."
+            ],
+            "items": [
+              {
+                "k": "Weeks 1 to 2",
+                "h": "Diagnose",
+                "t": "Page by page: indexing, duplicates, internal links, schema, backlinks and an AI-answer baseline. Working, not working and why, agreed with your team."
+              },
+              {
+                "k": "Weeks 3 to 4",
+                "h": "Fix",
+                "t": "Duplicates merged behind 301s, one keyword owner per page, titles rewritten to carry the proof, links pointed at the pages that earn."
+              },
+              {
+                "k": "Month 2",
+                "h": "Structure",
+                "t": "A schema framework: organization, product, pricing, FAQ, how-to and article, with the same facts stated the same way everywhere."
+              },
+              {
+                "k": "Month 3 on",
+                "h": "Grow",
+                "t": "Page-two keywords first, because they are closest to paying. Content in clusters that feed one service page. Links earned, never bought in spikes."
+              }
+            ]
+          },
+          {
+            "kind": "cards",
+            "eyebrow": "Where this pattern bites hardest",
+            "h2": "Three businesses we read differently.",
+            "items": [
+              {
+                "h": "Deadline and seasonal demand",
+                "t": "When the year's demand lands in a few weeks, month on month is noise. We compare year on year, and build before the peak so you enter it already ranking."
+              },
+              {
+                "h": "Commodity products near the price floor",
+                "t": "When the product is the same everywhere, search is where share is won: one price stated once, trust in the result itself, and an answer for every question the leader answers and you do not."
+              },
+              {
+                "h": "A network of sites and an in-house team",
+                "t": "We own the sites we are given, and write every tactic that works as a playbook with the return it produced, so your team can run it across the rest of the portfolio."
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "eyebrow": "What you hear from us",
+            "h2": "Every Monday: what moved, and why.",
+            "lines": [
+              "Four questions in every report: what is working, what is not, why, and what we do next."
+            ],
+            "caption": "The four layers of organic search measurement",
+            "head": [
+              "Layer",
+              "What we measure"
+            ],
+            "rows": [
+              [
+                "Site health",
+                "Issues closed, pages indexed, duplicates removed, schema coverage."
+              ],
+              [
+                "Search visibility",
+                "Positions, impressions, click-through rate, organic clicks."
+              ],
+              [
+                "AI visibility",
+                "AI Visibility Score, share of voice, AI Overview mentions."
+              ],
+              [
+                "Business results",
+                "Sign-ups, completed purchases and revenue from organic and AI traffic."
+              ]
+            ],
+            "note": "We do not promise rankings. We commit to the work, and show every week what it moved."
+          }
+        ],
+        "also": {
+          "eyebrow": "The same method, a second time",
+          "h2": "A second SaaS site, three times over in three months.",
+          "t": "A separate engagement, also under NDA: 5,589 organic clicks in its first three months, with daily clicks rising from about 35 to peaks of about 100.",
+          "n": "5,589",
+          "nl": "organic clicks in three months · about 35 to about 100 a day",
+          "shot": {
+            "img": "/img/studio/gsc-saas2-3mo.webp",
+            "w": 970,
+            "h": 350,
+            "alt": "Google Search Console overview: 5,589 total web search clicks over three months, daily clicks rising from about 35 to peaks above 100",
+            "cap": "Search Console, June to September 2026. Property name hidden."
+          }
+        },
+        "next": {
+          "href": "/studio/case-studies/ai-search-visibility",
+          "label": "Next: AI search visibility"
+        },
+        "cta": "Two weeks, and you get the working, not working and why report for your own sites, with the page-two keywords ranked by what they would earn."
+      }
+    },
+    {
+      "tag": "AI search, GEO",
+      "title": "379K impressions in Google's AI answers in four months",
+      "summary": "Impressions in Google's AI features, from the client's own Search Console, with daily AI impressions roughly doubled. Answer-first pages, one consistent set of facts in schema, and mentions where the engines look, measured across six AI engines by our own tool, CitedSpy.",
+      "metric": "379K",
+      "metricLabel": "AI-feature impressions · 4 months",
+      "anonymous": true,
+      "href": "/studio/case-studies/ai-search-visibility",
+      "hrefLabel": "Read the full case study",
+      "insight": {
+        "slug": "ai-search-visibility",
+        "crumb": "AI search visibility",
+        "title": "379K impressions in Google's AI answers, in four months",
+        "description": "379K impressions in Google's AI features in four months, with daily AI impressions roughly doubled. How we get a brand named in AI answers, and how we measure it across six engines.",
+        "published": "2026-09-30",
+        "modified": "2026-09-30",
+        "hero": {
+          "eyebrow": "Client site · name under NDA",
+          "h1": "379K impressions in <span class=\"accent\">AI answers.</span> Four months.",
+          "sub": "Impressions in Google's AI features, from the client's own Search Console, with daily AI impressions roughly doubled over the window. Measured with the tool we built for it.",
+          "window": {
+            "kind": "shot",
+            "img": "/img/studio/gsc-ai-features.webp",
+            "w": 1198,
+            "h": 417,
+            "alt": "Google Search Console, Generative AI features report: 379K total impressions, daily impressions rising from about 2K to about 4K between May and September 2026",
+            "cap": "The client's Google Search Console, Generative AI features report. Property name hidden, nothing else changed."
+          }
+        },
+        "numbers": {
+          "eyebrow": "The numbers",
+          "h2": "What moved.",
+          "items": [
+            {
+              "n": "379K",
+              "t": "impressions in Google's AI features, from Search Console."
+            },
+            {
+              "n": "~2×",
+              "t": "daily AI impressions, start of the window to the end."
+            },
+            {
+              "n": "4",
+              "t": "months, measured on one engagement."
+            },
+            {
+              "n": "6",
+              "t": "AI engines CitedSpy tracks on every engagement."
+            }
+          ],
+          "note": "The first three numbers are from one engagement. The fourth is what we measure with, for every client."
+        },
+        "sections": [
+          {
+            "kind": "cards",
+            "eyebrow": "Why this is the new click",
+            "h2": "The answer is read before the results are.",
+            "lines": [
+              "The questions hit hardest are the how-to and deadline ones: when is it due, how much is it, how do I file. If your category runs on those, being named inside the answer is worth as much as ranking under it."
+            ],
+            "items": [
+              {
+                "n": "34.5%",
+                "h": "less click-through at position one",
+                "t": "when an AI Overview appears on the page. Ahrefs."
+              },
+              {
+                "n": "58%",
+                "h": "in the 2026 follow-up",
+                "t": "the same measure, a year later, as AI answers spread. Ahrefs."
+              },
+              {
+                "n": "8%",
+                "h": "click a result under an AI summary",
+                "t": "against 15% on a page without one. Pew Research."
+              }
+            ]
+          },
+          {
+            "kind": "table",
+            "eyebrow": "How an engine chooses a brand to name",
+            "h2": "Four signals, and what we build for each.",
+            "caption": "What AI engines look for when naming a brand, and the work that answers it",
+            "head": [
+              "What the engine looks for",
+              "What we build"
+            ],
+            "rows": [
+              [
+                "A clear answer it can quote",
+                "Answer-first blocks of 40 to 60 words, numbered steps, tables of deadlines, rates and penalties."
+              ],
+              [
+                "Facts it can trust",
+                "FAQ, how-to, organization and pricing schema, with one price and one set of facts across every site you run."
+              ],
+              [
+                "Other sites that mention you",
+                "Mentions where buyers ask: Reddit, trade forums, Quora, YouTube how-tos, trade media."
+              ],
+              [
+                "The pages it already cites",
+                "The pages the engines quote for your topics, including the best-provider lists your competitors wrote, and a place on them."
+              ]
+            ]
+          },
+          {
+            "kind": "shot",
+            "eyebrow": "Measured, not screenshotted",
+            "h2": "An AI answer changes every time. So we ask many times.",
+            "lines": [
+              "One screenshot proves nothing. CitedSpy asks the same questions across engines, again and again, and reports the average."
+            ],
+            "shot": {
+              "img": "/img/studio/citedspy-citations.webp",
+              "w": 1600,
+              "h": 1242,
+              "alt": "CitedSpy citations view: every source AI engines cite, which ones cite you, and the ones missing you",
+              "cap": "The gap list: every source that cites a competitor and not you. Demo workspace."
+            },
+            "items": [
+              {
+                "h": "Every major engine",
+                "t": "ChatGPT, Gemini, Perplexity, Claude, Copilot and Google AI Overviews."
+              },
+              {
+                "h": "One number, weekly",
+                "t": "An AI Visibility Score from 0 to 100, and share of voice against the competitors you name."
+              },
+              {
+                "h": "A gap list that becomes the work",
+                "t": "Sources citing a competitor and not you are next month's outreach plan."
+              },
+              {
+                "h": "Joined to Search Console",
+                "t": "Rankings next to AI mentions per topic, so you see which moved, and what moved it."
+              }
+            ]
+          },
+          {
+            "kind": "prose",
+            "eyebrow": "What we will not do",
+            "h2": "In a trust-led category, a penalty costs more than it gains.",
+            "lines": [
+              "No private blog networks, no paid link farms, no bulk directories, no spikes. Every link sits inside relevant content on a site your buyers read, aimed at the page that needs the authority, and reported with its URL, target, anchor and live date.",
+              "And no promised rankings or AI placements. We commit to the work, and show what it moved."
+            ]
+          }
+        ],
+        "also": {
+          "eyebrow": "The same method, on a new site",
+          "h2": "From zero to 2.57M impressions in three months.",
+          "t": "A separate engagement, also under NDA: a new single-page site reached 2.57M impressions and 4.8K clicks in its first three months, at an average position of 8.6.",
+          "n": "2.57M",
+          "nl": "impressions from zero · 4.8K clicks · average position 8.6",
+          "shot": {
+            "img": "/img/studio/gsc-newsite-3mo.webp",
+            "w": 1195,
+            "h": 416,
+            "alt": "Google Search Console, three months: 4.8K clicks, 2.57M impressions, 0.2% CTR, average position 8.6, rising from zero",
+            "cap": "Search Console, June to September 2026, from launch. Property name hidden."
+          }
+        },
+        "next": {
+          "href": "/studio/case-studies/saas-search-growth",
+          "label": "Previous: SaaS search growth"
+        },
+        "cta": "Two weeks, and you get your AI Visibility Score against your three closest competitors, with the gap list that says where to start."
       }
     },
     {

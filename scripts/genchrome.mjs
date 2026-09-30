@@ -121,10 +121,10 @@ function brand(zone) {
   </div>`;
 }
 
-// ONE PRIMARY CTA PER ZONE (audit-ux #3). The phrase "Book a Diagnostic Sprint"
+// ONE PRIMARY CTA PER ZONE (audit-ux #3). The phrase "Book a call"
 // is what the gate asserts on every page; in the brain zone it lives in the
 // footer, so the brain header can carry the product's own next step.
-const SPRINT = `<a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a>`;
+const SPRINT = `<a class="btn" href="/studio/contact">Book a call</a>`;
 const DEMO = `<a class="btn" href="/book-a-demo">Book a demo</a>`;
 
 /* ============================================================ BRAIN ZONE == */
@@ -204,7 +204,9 @@ ${panel("menu-work", "Work",
   colOf("Proof",
     L("/studio/work", "The index"),
     L("/studio/case-studies", "Case studies"),
-    L("/studio/case-studies/rockprosusa", "RockProsUSA")),
+    L("/studio/case-studies/southwest-quarries", "Southwest quarries"),
+    L("/studio/case-studies/saas-search-growth", "SaaS search growth"),
+    L("/studio/case-studies/ai-search-visibility", "AI search visibility")),
   colOf("Systems we build",
     L("/studio/systems/quarry-dispatch-automation", "Dispatch automation"),
     L("/studio/systems/ar-followup-automation", "AR follow-up"),
@@ -297,20 +299,20 @@ const brainFooter = footer("brain",
     F("/brain/use-cases", "Use cases"), F("/brain/compare", "Compare"), F("/brain/compare#alternatives", "All alternatives"),
     F("/brain/objections", "Objections"), F("/brain/pricing", "Pricing"), F("/book-a-demo", "Book a demo") ],
   [ F("/studio", "WE_AINA"), F("/studio/work", "The work index"), F("/studio/case-studies", "Case studies"),
-    F("/studio/how-we-work", "How we work"), F("/studio/contact", "Book a Diagnostic Sprint") ],
+    F("/studio/how-we-work", "How we work"), F("/studio/contact", "Book a call") ],
   [ F("/studio/about", "About"), F("/studio/blog", "Blog"), F("/brain/faq", "FAQ"), F("/brain/glossary", "Glossary"),
     F("/brain/roadmap", "Roadmap"), F("/brain/changelog", "What shipped"),
     `<a href="/studio/contact">Talk to us</a>` ]);
 
 const studioFooter = footer("studio",
   `<a class="logo" href="/studio">WE_<span>AINA</span></a>`,
-  "An AI-native product studio. WorkElate's AI-Native Studio: our delivery runs on our own platform, products shipped in weeks not quarters, $30K&ndash;$100K fixed, receipts at every step.",
+  "An AI-native product studio. WorkElate's AI-Native Studio: our delivery runs on our own platform, products shipped in weeks not quarters, receipts at every step.",
   [ F("/brain", "Chief, the Brain"), F("/brain/capabilities", "Capabilities"), F("/brain/use-cases", "Use cases"),
     F("/brain/compare", "Compare"), F("/brain/pricing", "Pricing"), F("/book-a-demo", "Book a demo") ],
   [ F("/studio/work", "The work index"), F("/studio/case-studies", "Case studies"), F("/studio/systems", "Systems we build"),
     F("/studio/systems/quarry-dispatch-automation", "Dispatch automation"), F("/studio/systems/ar-followup-automation", "AR follow-up"),
     F("/studio/systems/freight-reconciliation", "Freight reconciliation"), F("/studio/how-we-work", "How we work"),
-    F("/studio/contact", "Book a Diagnostic Sprint") ],
+    F("/studio/contact", "Book a call") ],
   [ F("/studio/about", "About us"), F("/studio/blog", "Blog"), F("/brain/faq", "FAQ"),
     `<a href="/studio/contact">Talk to us</a>` ]);
 
@@ -320,7 +322,7 @@ const hubFooter = footer("hub",
   [ F("/brain", "Chief, the Brain"), F("/brain/capabilities", "Capabilities"), F("/brain/use-cases", "Use cases"),
     F("/brain/compare", "Compare"), F("/brain/pricing", "Pricing"), F("/book-a-demo", "Book a demo") ],
   [ F("/studio", "WE_AINA"), F("/studio/work", "The work index"), F("/studio/case-studies", "Case studies"),
-    F("/studio/how-we-work", "How we work"), F("/studio/contact", "Book a Diagnostic Sprint") ],
+    F("/studio/how-we-work", "How we work"), F("/studio/contact", "Book a call") ],
   [ F("/studio/about", "About"), F("/studio/blog", "Blog"), F("/brain/faq", "FAQ"), F("/brain/objections", "Objections"),
     `<a href="/studio/contact">Talk to us</a>` ]);
 

@@ -163,3 +163,108 @@
   .cs-phone { max-width: 260px; }
   .cs-story .cs-band { padding-bottom: 72px; }
 }
+
+/* ---- insight layout (2026-09-30): anonymous cases, no client photography.
+   One product window in a light hero, the black chapter for the numbers,
+   then sections alternating white / #f5f5f7. Rendered by gencases.mjs
+   insightPage(); tokens only, no gradient, the window shadow is the one shadow. */
+.ci-page .ci-hero { padding: 96px 0 120px; background: var(--v-white); }
+.ci-hero .crumb { font-size: 14px; color: var(--v-grey); margin-bottom: 28px; }
+.ci-hero .crumb a { color: var(--v-teal); text-decoration: none; }
+.ci-hero h1 {
+  margin-top: 14px; max-width: 15ch;
+  font-size: clamp(44px, 7vw, 96px); line-height: 1; letter-spacing: -0.045em;
+}
+.ci-hero h1 .accent { color: var(--v-teal); }
+.ci-page .ci-hero .ci-sub { margin-top: 28px; max-width: 42ch; }
+.ci-window { margin: 72px 0 0; }
+.ci-window figcaption { margin-top: 16px; font-size: 14px; line-height: 1.45; color: var(--v-grey); max-width: 70ch; }
+.ci-shot img { display: block; width: 100%; height: auto; border-radius: 28px; background: var(--v-light); }
+.ci-sec .ci-wide { margin-top: 56px; }
+.ci-panel {
+  background: var(--v-white); border-radius: 28px; box-shadow: var(--v-window);
+  padding: clamp(24px, 4vw, 48px);
+}
+.ci-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.ci-tile { background: var(--v-light); border-radius: 20px; padding: 24px 24px 22px; }
+.ci-tk { display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--v-grey); }
+.ci-tn {
+  display: block; margin-top: 10px; color: var(--v-ink);
+  font-size: clamp(36px, 4.4vw, 56px); font-weight: 600; line-height: 1; letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.ci-td { display: block; margin-top: 10px; font-size: 15px; line-height: 1.45; color: var(--v-ink-2); }
+.ci-bars { margin-top: 36px; display: grid; gap: 14px; }
+.ci-bar { display: grid; grid-template-columns: 11ch 1fr 7ch; gap: 16px; align-items: center; font-size: 15px; }
+.ci-bk { color: var(--v-ink-2); }
+.ci-bt { display: block; height: 14px; border-radius: 980px; background: var(--v-light); overflow: hidden; }
+.ci-bf { display: block; height: 100%; border-radius: 980px; background: var(--v-teal); }
+.ci-bn { text-align: right; font-weight: 600; color: var(--v-ink); font-variant-numeric: tabular-nums; }
+
+.ci-numbers { background: #000; }
+.ci-page .ci-numbers { padding: 140px 0; }
+.ci-numbers .label, .ci-numbers h2 { color: #f5f5f7; }
+.ci-numbers .cs-stats.ci-four { grid-template-columns: repeat(4, 1fr); gap: 40px; }
+.ci-numbers .cs-n { font-size: clamp(56px, 6.4vw, 96px); }
+.ci-numbers .cs-t { color: #a1a1a6; font-size: 17px; }
+.ci-note { margin-top: 48px; font-size: 15px; line-height: 1.5; color: var(--v-grey); max-width: 64ch; }
+.ci-numbers .ci-note { color: #a1a1a6; }
+
+.ci-light { background: var(--v-light); }
+.ci-white { background: var(--v-white); }
+.ci-sec h2 { max-width: 20ch; }
+.ci-sec .cs-lede { margin-top: 20px; max-width: 46ch; }
+.ci-sec .cs-lede + .cs-lede { margin-top: 18px; }
+.ci-light .cmp-wrap { border-color: transparent; }
+.ci-table td:first-child { color: var(--v-ink); font-weight: 600; }
+.ci-table td.us { color: var(--v-ink); }
+.ci-white .cs-steplist li { background: var(--v-light); }
+.ci-light .cs-steplist li { background: var(--v-white); }
+.cs-steplist.ci-three { grid-template-columns: repeat(3, 1fr); }
+
+.ci-cards {
+  list-style: none; margin: 56px 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.ci-cards.ci-four { grid-template-columns: repeat(4, 1fr); }
+.ci-cards li { border-radius: 28px; padding: 32px 28px 36px; }
+.ci-white .ci-cards li { background: var(--v-light); }
+.ci-light .ci-cards li { background: var(--v-white); }
+.ci-cn {
+  display: block; margin-bottom: 20px; color: var(--v-teal);
+  font-size: clamp(44px, 4.6vw, 64px); font-weight: 600; line-height: 1; letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.ci-cards h3 { font-size: 22px; line-height: 1.25; }
+.ci-cards p { margin-top: 10px; color: var(--v-ink-2); font-size: 17px; line-height: 1.47; }
+
+.ci-also { background: var(--v-light); }
+.ci-also-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 64px; align-items: center; }
+.ci-also h2 { max-width: 18ch; }
+.ci-also .cs-lede { margin-top: 20px; }
+.ci-also-card { background: var(--v-white); border-radius: 28px; padding: 44px 40px; }
+.ci-also-card .cs-n { color: var(--v-ink); font-size: clamp(64px, 7vw, 104px); }
+
+@media (max-width: 900px) {
+  .ci-page .ci-hero { padding: 64px 0 80px; }
+  .ci-tiles { grid-template-columns: 1fr; }
+  .ci-numbers .cs-stats.ci-four { grid-template-columns: 1fr 1fr; }
+  .ci-page .ci-numbers { padding: 96px 0; }
+  .ci-cards, .ci-cards.ci-four, .cs-steplist.ci-three { grid-template-columns: 1fr 1fr; }
+  .ci-also-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 600px) {
+  .ci-window { margin-top: 48px; }
+  .ci-shot img, .ci-panel { border-radius: 18px; }
+  .ci-bar { grid-template-columns: 1fr auto; }
+  .ci-bar .ci-bt { grid-column: 1 / -1; grid-row: 2; }
+  .ci-numbers .cs-stats.ci-four { grid-template-columns: 1fr; }
+  .ci-cards, .ci-cards.ci-four, .cs-steplist.ci-three { grid-template-columns: 1fr; }
+}
+
+/* real Search Console captures (2026-09-30): the screenshot is the proof, so it
+   sits in the same window treatment as a product capture, on white. */
+.ci-shot img[src*="/gsc-"] { background: var(--v-white); box-shadow: var(--v-window); border-radius: 20px; }
+.ci-also-wide { grid-template-columns: 1fr 1.25fr; }
+.ci-also-shot { margin: 0; }
+@media (max-width: 900px) { .ci-also-wide { grid-template-columns: 1fr; } }

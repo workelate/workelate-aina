@@ -30,7 +30,7 @@ const FACTS = [
     // Apostrophes are stripped before matching, so triggers are written flat.
     id: "guarantee",
     q: ["what if it doesnt work", "doesnt work", "does not work", "dont work", "didnt work", "guarantee", "guarantees", "guaranteed", "refund", "money back", "what if it fails", "it fails", "goes wrong", "go wrong", "worst case", "no results", "doesnt deliver", "over budget", "overrun", "who carries the risk", "our risk", "downside"],
-    a: "Three things carry that risk instead of you. The price is fixed before we start, so an overrun is our problem and not a change order. Every build runs a deterministic verify gate plus weekly demos on your real data from week 3, so you watch it work long before you sign anything off. And if the Diagnostic Sprint finds nothing worth building, we say so in writing and you keep your money. Beyond that we do not publish a money-back guarantee, and I am not going to invent one: ask us directly and you get a straight answer rather than a clause.",
+    a: "Three things carry that risk instead of you. The price is fixed before we start, so an overrun is our problem and not a change order. Every build runs a deterministic verify gate plus weekly demos on your real data from week 3, so you watch it work long before you sign anything off. And if we find nothing worth building, we say so in writing and you keep your money. Beyond that we do not publish a money-back guarantee, and I am not going to invent one: ask us directly and you get a straight answer rather than a clause.",
     links: [{ label: "How engagement works", href: "/how-we-work" }, { label: "Talk to the team", href: "/contact" }]
   },
   {
@@ -70,13 +70,13 @@ const FACTS = [
     // prevent. FOUNDER-BLOCKED: certifications, data residency, DPA/NDA.
     id: "security",
     q: ["soc2", "soc 2", "iso 27001", "iso27001", "iso certification", "gdpr", "hipaa", "security", "secure", "data security", "infosec", "information security", "penetration test", "pentest", "vulnerability", "privacy", "privacy policy", "confidential", "confidentiality", "nda", "dpa", "data processing agreement", "data residency", "where is our data", "who sees our data", "data protection", "certification", "certifications", "vendor security", "security questionnaire", "encryption"],
-    a: "We have not published a security posture, a SOC 2 or an ISO certificate on this site, and I will not claim a badge we have not shown you. What is true and on record: you own the code and the data, there is no lock-in clause and nothing requires us to stay for the system to keep running, and client names are held under NDA unless the client clears them. For certifications, data residency and an NDA or DPA, put it to us before the Sprint and you get a straight answer instead of a logo wall.",
+    a: "We have not published a security posture, a SOC 2 or an ISO certificate on this site, and I will not claim a badge we have not shown you. What is true and on record: you own the code and the data, there is no lock-in clause and nothing requires us to stay for the system to keep running, and client names are held under NDA unless the client clears them. For certifications, data residency and an NDA or DPA, put it to us before we start and you get a straight answer instead of a logo wall.",
     links: [{ label: "How we work", href: "/how-we-work" }, { label: "Talk to the team", href: "/contact" }]
   },
   {
     id: "price",
     q: ["price", "cost", "budget", "fee", "how much", "expensive", "rate", "pricing", "afford"],
-    a: "Builds are fixed price, $30K to $100K, agreed before we start. Most first systems land in the $30K to $50K band; multi-site builds run higher. The two-week Diagnostic Sprint is what sets that number.",
+    a: "Every engagement is priced before we start: builds at a fixed price, and growth work such as SEO and AI search as a monthly retainer. The number comes out of the first call and a short look at what you run today.",
     links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
   {
@@ -85,7 +85,7 @@ const FACTS = [
     // asks ("an MVP in weeks", "live in weeks") and was stealing them from the
     // more specific facts. "mvp" belongs to the mvp fact, not here.
     q: ["how long", "timeline", "how fast", "duration", "deadline", "quickly", "how soon", "when can you"],
-    a: "Diagnostic Sprint takes two weeks. The build runs weeks, not quarters, with demos on your real data every week. Before agents this same scope took us nine to twelve months.",
+    a: "A first plan takes about two weeks. The build runs weeks, not quarters, with demos on your real data every week. Before agents this same scope took us nine to twelve months.",
     links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
   {
@@ -129,7 +129,7 @@ const FACTS = [
   {
     id: "start",
     q: ["start", "begin", "next step", "get going", "engage", "talk", "call", "reach", "book", "sprint", "diagnostic", "proposal", "quote"],
-    a: "Tell me your industry and the process that hurts and I will show you the closest thing we have built. When you want it costed, the two-week Diagnostic Sprint ends with a build plan and a fixed price, and if we find nothing worth building we say so in writing.",
+    a: "Tell me your industry and the process that hurts and I will show you the closest thing we have built. When you want it costed, a first call and a short look at what you run give you a plan and a fixed price, and if we find nothing worth building we say so in writing.",
     links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
   {
@@ -158,13 +158,13 @@ const FACTS = [
   {
     id: "mvp",
     q: ["mvp", "from scratch", "zero", "new product", "greenfield", "idea", "prototype", "v1", "first version", "ship a product"],
-    a: "A first version is where the fixed price works hardest: we scope it in the two-week Sprint, then build it for $30K to $100K in weeks. You get a product real users can hit, not a prototype that needs rebuilding.",
+    a: "A first version is where the fixed price works hardest: we scope it first, then build it at a fixed price in weeks. You get a product real users can hit, not a prototype that needs rebuilding.",
     links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
   {
     id: "mobile",
     q: ["mobile", "app", "ios", "android", "react native", "phone app", "mobile app"],
-    a: "Yes. At RockProsUSA we shipped three separate React Native apps, one each for customers, truckers and drivers, against a shared backend. Field apps are a different discipline from web and we build both.",
+    a: "Yes. For a 13-quarry producer in the US Southwest we shipped three separate React Native apps, one each for customers, truckers and drivers, against a shared backend. Field apps are a different discipline from web and we build both.",
     links: [{ label: "Read the case study", href: "/case-studies" }]
   },
   {
@@ -182,7 +182,7 @@ const FACTS = [
   {
     id: "rescue",
     q: ["stalled", "take over", "takeover", "inherit", "existing codebase", "rescue", "stuck", "abandoned", "previous developer", "previous agency", "half built", "half-built"],
-    a: "We inherit the codebase and spend the two-week Sprint on what is actually there rather than what the last team said was there. It ends with a fixed price to finish it, or a written recommendation to stop.",
+    a: "We inherit the codebase and spend the first two weeks on what is actually there rather than what the last team said was there. It ends with a fixed price to finish it, or a written recommendation to stop.",
     links: [{ label: "How engagement works", href: "/how-we-work" }]
   },
   {
@@ -212,7 +212,7 @@ const FACTS = [
   {
     id: "integrate",
     q: ["integrate", "integration", "erp", "tally", "sap", "api", "existing systems", "connect", "sync", "whatsapp", "legacy"],
-    a: "Every build we ship plugs into something older than itself: ERP exports, weighbridges, WhatsApp, spreadsheets, customer portals. Integration is usually where the real work is, so we scope it in the Sprint rather than discovering it later.",
+    a: "Every build we ship plugs into something older than itself: ERP exports, weighbridges, WhatsApp, spreadsheets, customer portals. Integration is usually where the real work is, so we scope it first rather than discovering it later.",
     links: [{ label: "See the systems we install", href: "/systems/quarry-dispatch-automation" }]
   },
   {
@@ -260,7 +260,7 @@ for (const p of projects) {
     meta: fixName(`${p.sector} · ${p.years} · ${p.repos} ${p.repos === 1 ? "repository" : "repositories"}`),
     outcomes: (p.outcomes || []).map(fixName),
     line: card ? fixName(card.line) : null,
-    url: card?.href || (p.id === "rockpros" ? CASE_RP : IND_OF[p.id] ? `/studio/work#${IND_OF[p.id]}` : "/studio/work"),
+    url: card?.href || (p.id === "quarries" ? CASE_RP : IND_OF[p.id] ? `/studio/work#${IND_OF[p.id]}` : "/studio/work"),
     img: card?.img ? imgOk(card.img) : null,
     links: card?.href ? [{ label: card.cta || "See the work", href: card.href }, ...(p.links || [])] : (p.links || []),
     terms: fixName([

@@ -17,7 +17,7 @@
   "capabilities": [
     {
       "name": "Product management",
-      "note": "Discovery, roadmap and a two-week sprint that prices the build.",
+      "note": "Discovery, roadmap and a plan that prices the build.",
       "proof": "Every engagement",
       "img": "photo-studio-whiteboard-4x3.webp",
       "layers": [
@@ -53,14 +53,14 @@
           "x": 6.0,
           "y": 8.0,
           "icon": "note",
-          "text": "Sprint plan · 2 weeks"
+          "text": "Plan · 2 weeks"
         }
       ]
     },
     {
       "name": "AI product development",
       "note": "Web, mobile and AI agents, from first commit to live.",
-      "proof": "WorkElate, RockPros",
+      "proof": "WorkElate, Southwest quarries",
       "img": "workelate-chief-hero.webp",
       "layers": [
         {
@@ -120,8 +120,8 @@
     {
       "name": "Operations and automation",
       "note": "Dispatch, CRM, quality and service systems the business runs on.",
-      "proof": "RockPros, QMS",
-      "img": "rockpros-dispatch-board.webp",
+      "proof": "Southwest quarries, QMS",
+      "img": "quarry-dispatch-board.webp",
       "layers": [
         {
           "kind": "photo",
@@ -134,8 +134,8 @@
         },
         {
           "kind": "win",
-          "src": "rockpros-dispatch-board.webp",
-          "alt": "RockPros dispatch board of open jobs",
+          "src": "quarry-dispatch-board.webp",
+          "alt": "Quarry dispatch board of open jobs",
           "dims": [
             2400,
             1784
@@ -152,8 +152,8 @@
         },
         {
           "kind": "phone",
-          "src": "rockpros-driver-loads-phone.webp",
-          "alt": "RockPros driver app showing an open load",
+          "src": "quarry-driver-loads-phone.webp",
+          "alt": "Quarry driver app showing an open load",
           "dims": [
             1600,
             1660
@@ -179,7 +179,7 @@
     },
     {
       "name": "Performance marketing",
-      "note": "Campaigns planned by AI and scheduled across paid and billboard screens.",
+      "note": "Paid search, social and billboard campaigns, planned, bought and measured against revenue.",
       "proof": "CitySense",
       "img": "citysense-planner-map.webp",
       "layers": [
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "name": "AI-led GTM",
+      "name": "Go-to-market",
       "note": "Buyer signals, research and outbound that find the warm door.",
       "proof": "Signals",
       "img": "photo-studio-review-4x3.webp",
@@ -249,8 +249,8 @@
     },
     {
       "name": "SEO and AI search",
-      "note": "Rank in Google and get cited in ChatGPT answers.",
-      "proof": "CitedSpy",
+      "note": "Rank in Google and get named in AI answers: 256K organic clicks for one client, 379K AI-answer impressions for another.",
+      "proof": "CitedSpy, two search case studies",
       "img": "citedspy-dashboard.webp",
       "layers": [
         {
@@ -320,7 +320,7 @@
     "_note": "scripts/genhero.mjs renders both animated heroes from this block and cuts the hero/ derivatives from these crops. Chips describe an action shown in the real screen, never a metric we do not have. pt = where the cursor taps, as fractions of the screen.",
     "back": "citysense-planner-map.webp",
     "front": "citedspy-dashboard.webp",
-    "third": "rockpros-dispatch-board.webp",
+    "third": "quarry-dispatch-board.webp",
     "scenes": [
       {
         "word": "Product",
@@ -367,15 +367,15 @@
       },
       {
         "word": "Ops",
-        "name": "RockPros",
-        "src": "rockpros-dispatch-board.webp",
+        "name": "Southwest quarries",
+        "src": "quarry-dispatch-board.webp",
         "crop": [
           166,
           165,
           2068,
           1371
         ],
-        "alt": "RockPros, quarry dispatch board",
+        "alt": "Quarry dispatch board",
         "chip": "Load dispatched",
         "pt": [
           0.3,
@@ -417,14 +417,14 @@
         "w": 900
       },
       "phone": {
-        "src": "rockpros-driver-loads-phone.webp",
+        "src": "quarry-driver-loads-phone.webp",
         "crop": [
           451,
           112,
           698,
           1429
         ],
-        "alt": "RockPros driver app with an open load",
+        "alt": "Quarry driver app with an open load",
         "w": 360
       }
     },
@@ -469,9 +469,9 @@
           "alt": "CitedSpy visibility dashboard"
         },
         {
-          "src": "rockpros-dispatch-board.webp",
+          "src": "quarry-dispatch-board.webp",
           "chip": "Load dispatched",
-          "alt": "RockPros dispatch board"
+          "alt": "Quarry dispatch board"
         }
       ]
     }

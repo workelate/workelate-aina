@@ -18,7 +18,7 @@
 //    site/img/studio (data/image-credits.md). Outcome lines are the data
 //    file's own words; nothing is measured here that was not measured there.
 // 2. `named:false` projects render the descriptor, never a client name.
-// 3. RockProsUSA numbers always carry "over the first twelve months".
+// 3. Southwest quarries numbers always carry "over the first twelve months".
 // 4. The studio's numbers are 25+ products, 6 industries, since 2018
 //    (data/studio.json). No other count appears on the page.
 // 5. No em dashes in copy; no "not yet matched / not proven" lines.
@@ -39,9 +39,9 @@ const IMG = "/img/studio/";
 // Intrinsic sizes of every image used here, so each <img> carries width and
 // height (CLS 0). Measured with `sips` on 2026-09-28.
 const SIZE = {
-  "rockpros-dispatch-board.webp": [2400, 1784],
-  "rockpros-customer-po.webp": [1600, 1242],
-  "rockpros-driver-loads-phone.webp": [1600, 1660],
+  "quarry-dispatch-board.webp": [2400, 1784],
+  "quarry-customer-po.webp": [1600, 1242],
+  "quarry-driver-loads-phone.webp": [1600, 1660],
   "citysense-planner-map.webp": [2400, 1784],
   "citysense-live-campaign.webp": [1600, 1242],
   "citedspy-dashboard.webp": [2400, 1784],
@@ -213,9 +213,9 @@ ${moreTiles}
 
 <section id="cta" class="deep">
   <div class="wrap center-head">
-    <h2>Book a Diagnostic Sprint</h2>
+    <h2>Book a call</h2>
     <p class="dim">Two weeks to scope and price your build.</p>
-    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a call</a></p>
   </div>
 </section>
 

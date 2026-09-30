@@ -86,7 +86,7 @@ the next regeneration.
   LEAD_NOTIFY_FROM with a verified domain) to turn sending on. Until
   then leads are stored and the audit table records notify_skipped.
 - The old /api/score readiness widget was DELETED 2026-07-23; the one
-  CTA phrase is now "Book a Diagnostic Sprint" (verify enforces it).
+  CTA phrase is now "Book a call" (2026-09-30; verify enforces it).
 
 - /studio assistant (founder call 2026-09-29): site/js/chat.js POSTs to
   app/api/ask/route.js, which retrieves passages (BM25 in lib/ask.js) from
@@ -126,7 +126,7 @@ buyer-facing numbers only. Never on a page: a commit sha, file / emit-site /
 model / identity-field / evaluation counts, internal module or service names,
 or any sentence about how the code is structured. Public set: 15 verbs, 287
 actions, the Brain's own 12 application surfaces, 71
-confirm-gated, 40 per organization and 5 per person per hour, the RockProsUSA
+confirm-gated, 40 per organization and 5 per person per hour, the Southwest quarries
 receipts, $30K to $100K, the 2-week Sprint, 34 / 9 / 374. The full measurement
 and the long form live in `data/brain-facts.md` and `data/brain-reading-pack.md`
 (section 13 is the redaction checklist). Pages run 250 to 400 words. Visuals
@@ -153,6 +153,15 @@ must be the real product (local stack, seeded org), never a mockup.
   characters, an SVG `<title>` included.
 
 ## Copy rules
+- THE QUARRY CLIENT IS NEVER NAMED (founder call 2026-09-30: "rockprosusa
+  hata do pure website se, give an indicative name only"). On the site it is
+  "Southwest quarries" (label) or "a 13-quarry producer in the US Southwest"
+  (sentence). No name in copy, alt text, image file names or paths, links
+  (App Store listings carry it), JSON-LD, llms.txt or the corpus; the logo and
+  the address bar are painted out of every screenshot. Case URL is
+  /studio/case-studies/southwest-quarries (the old slug 308s to it from
+  next.config.mjs). verify.mjs asserts the name nowhere in served source, the
+  served data files, or a file name under site/.
 - NO INDIVIDUAL NAMES (founder call 2026-09-28): no founder or staff name,
   avatar, bio, alumni, signature, byline or personal email on any page, in
   JSON-LD, llms.txt or the corpus. The site presents a tier-1 team (senior
@@ -167,12 +176,14 @@ must be the real product (local stack, seeded org), never a mockup.
   NUMBER THAT MOVED, not a log line — say what changed, not that it was
   recorded. The leads/audit DB tables in lib/db.js stay untouched; this
   is a copy ban, not an architecture change.
-- One CTA phrase sitewide: "Book a Diagnostic Sprint" (the score widget and
+- One CTA phrase sitewide: "Book a call" (founder call 2026-09-30: the
+  Diagnostic Sprint and the $30K to $100K band are gone from the studio zone,
+  they clashed with monthly growth retainers such as SEO; before that, the score widget and
   its phrase were retired 2026-07-23; verify enforces the live phrase).
   "contact us" is banned (verify enforces both).
 - NEVER fabricate customer quotes, testimonials, or project numbers.
   Missing number → ask the founder, or ship without the claim.
-- Real numbers in stock: RockProsUSA 13 quarries, −38% dispatch cycle,
+- Real numbers in stock: Southwest quarries (the quarry client) 13 quarries, −38% dispatch cycle,
   2,140 invoices zero touches, 11,200 ops hours returned. CitiSense =
   AI marketing/sales platform for agencies, Mexico (no numbers yet —
   blocked on founder).

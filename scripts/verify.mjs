@@ -60,6 +60,10 @@ if (!PAGES.length) { console.error("Discovered zero pages under site/ — refusi
 const BRAND_GROUND = "rgb(255, 255, 255)";
 const BRAND_FAMILY = /-apple-system|SF Pro/i;
 
+// Clients whose names are withheld sitewide (founder call 2026-09-30). One
+// pattern, checked over every page's raw source and over the served data files.
+const CLIENT_NAMES = /rock[\s_-]?pros/gi;
+
 const BANNED_COPY = [
   "audit trail", "auditable", "every action logged", "every claim auditable",
   "every touch logged", "the log shows", "contact us"
@@ -112,6 +116,10 @@ for (const route of PAGES) {
   const rawSrc = await res.text().catch(() => "");
   const nameHits = [...new Set((rawSrc.match(/chitransh|pratik/gi) || []).map(s => s.toLowerCase()))];
   assert("no individual names (source + JSON-LD)", nameHits.length === 0, route, nameHits.join(", "));
+  // Founder call 2026-09-30: the quarry client is not named anywhere on the
+  // site, in copy, alt text, image paths or links. Raw source, like the above.
+  const clientHits = rawSrc.match(CLIENT_NAMES) || [];
+  assert("no withheld client names (source)", clientHits.length === 0, route, [...new Set(clientHits)].join(", "));
 
   const facts = await page.evaluate((banned) => {
     const txt = el => (el.innerText || "").replace(/\s+/g, " ").trim();
@@ -267,7 +275,7 @@ for (const route of PAGES) {
   }
 
   // CTA discipline: the one CTA phrase must actually appear on every page
-  const cta = await page.getByText("Book a Diagnostic Sprint").count();
+  const cta = await page.getByText("Book a call").count();
   assert("CTA phrase present", cta >= 1, route, `found ${cta}`);
 
   await page.close();
@@ -321,6 +329,28 @@ for (const route of PAGES) {
     if (r.status && r.status < 400) served.push(`${p} -> ${r.status}`);
   }
   assert("no dot-prefixed path is served", served.length === 0, "dotfiles", served.join(" | "));
+}
+
+/* ------------------------------------------- withheld names, data files -- */
+// Pages are covered per route above. The assistant's corpus, llms.txt and the
+// sitemap are served too, and an image path is as public as a sentence.
+{
+  const hits = [];
+  for (const p of ["/data/corpus.json", "/llms.txt", "/sitemap.xml"]) {
+    const t = await fetch(URL + p).then(r => r.ok ? r.text() : "").catch(() => "");
+    if (CLIENT_NAMES.test(t)) hits.push(p);
+    CLIENT_NAMES.lastIndex = 0;
+  }
+  const files = [];
+  (function walk(dir) {
+    for (const name of readdirSync(dir)) {
+      const q = path.join(dir, name);
+      if (statSync(q).isDirectory()) walk(q);
+      else if (/rock[\s_-]?pros/i.test(name)) files.push("/" + path.relative(SITE, q).split(path.sep).join("/"));
+    }
+  })(SITE);
+  assert("no withheld client names (data files + file names)", hits.length === 0 && files.length === 0,
+    "site/", [...hits, ...files].join(" | "));
 }
 
 /* ------------------------------------------------------- JS-off rendering -- */

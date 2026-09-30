@@ -2,8 +2,8 @@
   "_howto": "Delivery portfolio, grouped by programme rather than repository. Derived from the ESLABS101 / workelate GitHub account on 2026-07-22 (300 accessible repositories, 2019-2026). `repos` is the count of repositories in that programme and is evidence, not a marketing number. `named: false` means the client has not confirmed we may use their name, so the site renders the descriptor only. Run `node scripts/gencorpus.mjs` after editing.",
   "projects": [
     {
-      "id": "rockpros",
-      "name": "RockProsUSA",
+      "id": "quarries",
+      "name": "Southwest quarries",
       "named": true,
       "sector": "Industrial operations, USA",
       "years": "2020-2026",

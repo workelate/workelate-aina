@@ -14,7 +14,7 @@ mkdirSync(OUT, { recursive: true });
 
 const { cases } = JSON.parse(readFileSync(path.join(ROOT, "data", "cases.json"), "utf8"));
 
-const DESC = "Case studies with the operating numbers before and after: 13 quarries on one dispatch system, AI campaign operations, freight reconciliation.";
+const DESC = "Case studies with the numbers before and after: 13 quarries on one dispatch system, 256K organic clicks for a SaaS platform, 379K impressions in Google's AI answers.";
 
 const card = c => {
   const inner = `
@@ -80,7 +80,7 @@ ${JSON.stringify(itemList, null, 2)}
     <a href="/studio/case-studies" aria-current="page">Case studies</a>
     <a href="/studio/blog">Blog</a>
     <a href="/studio/systems">Systems</a>
-    <a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a>
+    <a class="btn" href="/studio/contact">Book a call</a>
   </nav>
 </div></header>
 
@@ -91,24 +91,24 @@ ${JSON.stringify(itemList, null, 2)}
     <span class="label">Case studies</span>
     <h1>The builds we can put<br><span class="accent">numbers</span> against.</h1>
     <p class="sub dim">Each card names the operation before, what the Brain now does inside it, and the number that moved.</p>
-    <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <p class="hero-cta"><a class="btn" href="/studio/contact">Book a call</a></p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <h2 style="margin-bottom:16px">One card per build, with the number.</h2>
-    <p class="dim" style="margin-bottom:32px">RockProsUSA is measured over its first twelve months; the rest are described, and named only where the client has cleared it.</p>
+    <p class="dim" style="margin-bottom:32px">The Southwest quarries case is measured over its first twelve months; the two search cases are measured in the client's own Google Search Console; the rest are described, and named only where the client has cleared it.</p>
 ${cases.map(card).join("\n")}
-    <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
+    <p class="dim srcnote">Updated 30 September 2026 &middot; WE_AINA</p>
   </div>
 </section>
 
 <section id="cta" class="deep">
   <div class="wrap">
-    <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">Every card above began as a two-week Sprint; yours starts the same way.</p>
-    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <h2>Book a call</h2>
+    <p class="dim">Every card above began with one conversation; yours starts the same way.</p>
+    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a call</a></p>
   </div>
 </section>
 
@@ -119,7 +119,7 @@ ${cases.map(card).join("\n")}
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, $30K to $100K fixed.</p>
+        <p>WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters.</p>
       </div>
     </div>
     <div class="baseline">
@@ -208,7 +208,7 @@ ${JSON.stringify(crumbs, null, 2)}
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio/case-studies">Case studies</a> / ${esc(s.crumb)}</nav>
     <h1>${s.hero.h1}</h1>
     <p class="cs-hero-sub">${esc(s.hero.sub)}</p>
-    <p class="cs-hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <p class="cs-hero-cta"><a class="btn" href="/studio/contact">Book a call</a></p>
   </div>
 </section>
 
@@ -273,7 +273,7 @@ ${JSON.stringify(crumbs, null, 2)}
         <div class="cs-phone"><img src="${a.shot}" width="645" height="1401" alt="${esc(a.alt)}" loading="lazy" decoding="async"></div>
         <div class="cs-app">
           <img class="cs-icon" src="${a.icon}" width="160" height="160" alt="" aria-hidden="true" loading="lazy">
-          <div><h3>${esc(a.name)}</h3><p>${esc(a.tag)}</p><a href="${a.href}" rel="noopener" target="_blank">View on the App Store</a></div>
+          <div><h3>${esc(a.name)}</h3><p>${esc(a.tag)}</p>${a.href ? `<a href="${a.href}" rel="noopener" target="_blank">View on the App Store</a>` : ""}</div>
         </div>
       </li>`).join("\n      ")}
     </ul>
@@ -293,9 +293,9 @@ ${JSON.stringify(crumbs, null, 2)}
 
 <section id="cta" class="cs-cta">
   <div class="wrap">
-    <h2>Book a Diagnostic Sprint</h2>
+    <h2>Book a call</h2>
     <p class="cs-lede">${esc(s.cta)}</p>
-    <p class="cs-cta-row"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a> <a class="cs-back" href="/studio/case-studies">All case studies</a></p>
+    <p class="cs-cta-row"><a class="btn" href="/studio/contact">Book a call</a> <a class="cs-back" href="/studio/case-studies">All case studies</a></p>
   </div>
 </section>
 
@@ -314,5 +314,185 @@ ${JSON.stringify(crumbs, null, 2)}
 for (const c of cases.filter(c => c.story)) {
   writeFileSync(path.join(OUT, `${c.story.slug}.html`), storyPage(c));
   console.log(`wrote case study /studio/case-studies/${c.story.slug}`);
+}
+
+/* ---------------------------------------------------------- insight pages -- */
+// 2026-09-30. The story layout above is photo-led and needs a client's own
+// photography. A case that is anonymous (numbers under NDA, no photos) carries
+// `insight` instead: a light hero with one product window, a black numbers
+// chapter, then a list of sections, each one of five generic kinds. Grounds
+// alternate white / #f5f5f7 by position, so the data never picks a colour.
+//
+//   window  { kind:"metrics", tiles:[{k,n,d}], bars:{title,items:[{k,n,v}]}, cap }
+//         | { kind:"shot", img, w, h, alt, cap }
+//   section kinds: "table" {head:[..], rows:[[..]], caption}
+//                  "steps" {items:[{k,h,t}]}
+//                  "cards" {items:[{n?,h,t}]}          (n: an optional big figure)
+//                  "shot"  {shot:{img,w,h,alt,cap}, items?:[{h,t}]}
+//                  "prose" {}                          (eyebrow, h2, lines only)
+const insightWindow = w => w.kind === "shot"
+  ? `<figure class="ci-window ci-shot">
+      <img src="${w.img}" width="${w.w}" height="${w.h}" alt="${esc(w.alt)}" fetchpriority="high" decoding="async">
+      <figcaption>${esc(w.cap)}</figcaption>
+    </figure>`
+  : `<figure class="ci-window">
+      <div class="ci-panel" role="img" aria-label="${esc(w.aria)}">
+        <div class="ci-tiles">
+          ${w.tiles.map(t => `<div class="ci-tile"><span class="ci-tk">${esc(t.k)}</span><span class="ci-tn">${esc(t.n)}</span><span class="ci-td">${esc(t.d)}</span></div>`).join("\n          ")}
+        </div>
+        <div class="ci-bars">
+          <span class="ci-tk">${esc(w.bars.title)}</span>
+          ${w.bars.items.map(b => `<div class="ci-bar"><span class="ci-bk">${esc(b.k)}</span><span class="ci-bt"><span class="ci-bf" style="width:${Number(b.v)}%"></span></span><span class="ci-bn">${esc(b.n)}</span></div>`).join("\n          ")}
+        </div>
+      </div>
+      <figcaption>${esc(w.cap)}</figcaption>
+    </figure>`;
+
+const insightBody = sec => {
+  if (sec.kind === "table") return `<div class="cmp-wrap">
+      <table class="cmp ci-table">
+        <caption class="sr-only">${esc(sec.caption)}</caption>
+        <thead><tr>${sec.head.map(h => `<th scope="col">${esc(h)}</th>`).join("")}</tr></thead>
+        <tbody>
+          ${sec.rows.map(r => `<tr>${r.map((c, i) => `<td${i === r.length - 1 ? ' class="us"' : ""}>${esc(c)}</td>`).join("")}</tr>`).join("\n          ")}
+        </tbody>
+      </table>
+    </div>`;
+  if (sec.kind === "steps") return `<ol class="cs-steplist${sec.items.length === 3 ? " ci-three" : ""}">
+      ${sec.items.map(i => `<li><span class="cs-k">${esc(i.k)}</span><h3>${esc(i.h)}</h3><p>${esc(i.t)}</p></li>`).join("\n      ")}
+    </ol>`;
+  if (sec.kind === "cards") return `<ul class="ci-cards${sec.items.length === 4 ? " ci-four" : ""}">
+      ${sec.items.map(i => `<li>${i.n ? `<span class="ci-cn">${esc(i.n)}</span>` : ""}<h3>${esc(i.h)}</h3><p>${esc(i.t)}</p></li>`).join("\n      ")}
+    </ul>`;
+  if (sec.kind === "shot") return `<figure class="ci-window ci-shot ci-wide">
+      <img src="${sec.shot.img}" width="${sec.shot.w}" height="${sec.shot.h}" alt="${esc(sec.shot.alt)}" loading="lazy" decoding="async">
+      <figcaption>${esc(sec.shot.cap)}</figcaption>
+    </figure>${sec.items ? `
+    <ul class="ci-cards ci-four">
+      ${sec.items.map(i => `<li><h3>${esc(i.h)}</h3><p>${esc(i.t)}</p></li>`).join("\n      ")}
+    </ul>` : ""}`;
+  return "";
+};
+
+const insightPage = (c) => {
+  const s = c.insight;
+  const url = `https://aina.workelate.com/studio/case-studies/${s.slug}`;
+  const article = {
+    "@context": "https://schema.org", "@type": "Article",
+    headline: s.title, description: s.description,
+    datePublished: s.published, dateModified: s.modified,
+    author: { "@type": "Organization", name: "WE_AINA" },
+    publisher: { "@type": "Organization", name: "WE_AINA", url: "https://aina.workelate.com/" },
+    image: "https://aina.workelate.com/og.png", mainEntityOfPage: url
+  };
+  const crumbs = {
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Case studies", item: "https://aina.workelate.com/studio/case-studies" },
+      { "@type": "ListItem", position: 2, name: s.crumb, item: url }
+    ]
+  };
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(s.title)}, WE_AINA</title>
+<meta name="description" content="${esc(s.description)}">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/case.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="${url}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="${esc(s.title)}">
+<meta property="og:description" content="${esc(s.description)}">
+<meta property="og:image" content="https://aina.workelate.com/og.png">
+<meta property="og:url" content="${url}">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+${JSON.stringify(article, null, 2)}
+</script>
+<script type="application/ld+json">
+${JSON.stringify(crumbs, null, 2)}
+</script>
+<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body class="cs-story ci-page">
+
+<!-- NAV:start -->
+<header class="nav"></header>
+<!-- NAV:end -->
+
+<main id="main">
+
+<section class="ci-hero">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/studio/case-studies">Case studies</a> / ${esc(s.crumb)}</nav>
+    <span class="label">${esc(s.hero.eyebrow)}</span>
+    <h1>${s.hero.h1}</h1>
+    <p class="cs-lede ci-sub">${esc(s.hero.sub)}</p>
+    <p class="cs-hero-cta"><a class="btn" href="/studio/contact">Book a call</a></p>
+    ${insightWindow(s.hero.window)}
+  </div>
+</section>
+
+<section class="ci-numbers">
+  <div class="wrap">
+    <span class="label">${esc(s.numbers.eyebrow)}</span>
+    <h2>${esc(s.numbers.h2)}</h2>
+    <ul class="cs-stats${s.numbers.items.length === 4 ? " ci-four" : ""}">
+      ${s.numbers.items.map(i => `<li><span class="cs-n">${esc(i.n)}</span><span class="cs-t">${esc(i.t)}</span></li>`).join("\n      ")}
+    </ul>
+    <p class="ci-note">${esc(s.numbers.note)}</p>
+  </div>
+</section>
+${s.sections.map((sec, i) => `
+<section class="ci-sec ${i % 2 ? "ci-white" : "ci-light"}">
+  <div class="wrap">
+    <span class="label">${esc(sec.eyebrow)}</span>
+    <h2>${esc(sec.h2)}</h2>
+    ${(sec.lines || []).map(l => `<p class="cs-lede">${esc(l)}</p>`).join("\n    ")}
+    ${insightBody(sec)}${sec.note ? `
+    <p class="ci-note">${esc(sec.note)}</p>` : ""}
+  </div>
+</section>`).join("\n")}
+
+<section class="ci-also">
+  <div class="wrap ci-also-grid${s.also.shot ? " ci-also-wide" : ""}">
+    <div>
+      <span class="label">${esc(s.also.eyebrow)}</span>
+      <h2>${esc(s.also.h2)}</h2>
+      <p class="cs-lede">${esc(s.also.t)}</p>
+    </div>
+    ${s.also.shot ? `<figure class="ci-window ci-shot ci-also-shot">
+      <img src="${s.also.shot.img}" width="${s.also.shot.w}" height="${s.also.shot.h}" alt="${esc(s.also.shot.alt)}" loading="lazy" decoding="async">
+      <figcaption>${esc(s.also.shot.cap)}</figcaption>
+    </figure>` : `<div class="ci-also-card"><span class="cs-n">${esc(s.also.n)}</span><span class="ci-td">${esc(s.also.nl)}</span></div>`}
+  </div>
+</section>
+
+<section id="cta" class="cs-cta">
+  <div class="wrap">
+    <h2>Book a call</h2>
+    <p class="cs-lede">${esc(s.cta)}</p>
+    <p class="cs-cta-row"><a class="btn" href="/studio/contact">Book a call</a> <a class="cs-back" href="${s.next.href}">${esc(s.next.label)}</a> <a class="cs-back" href="/studio/case-studies">All case studies</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER:start -->
+<footer class="mega"></footer>
+<!-- FOOTER:end -->
+<script src="/js/nav.js" defer></script>
+<script type="module" src="/js/reveal.js"></script>
+</body>
+</html>
+`;
+};
+
+for (const c of cases.filter(c => c.insight)) {
+  writeFileSync(path.join(OUT, `${c.insight.slug}.html`), insightPage(c));
+  console.log(`wrote case study /studio/case-studies/${c.insight.slug}`);
 }
 

@@ -13,7 +13,7 @@ export const byId = Object.fromEntries(projects.map(p => [p.id, p]));
 
 const cap = s => s ? s[0].toUpperCase() + s.slice(1) : s;
 const yrs = y => (y && y.trim()) ? y.trim().replace(/^(\d{4})-(\d{4})$/, "$1 to $2") : "";
-export const CASE_RP = "/studio/case-studies/rockprosusa";
+export const CASE_RP = "/studio/case-studies/southwest-quarries";
 
 // A projects.json entry as a card: the descriptor when the client is not cleared.
 export function fromProject(id, over = {}) {
@@ -24,12 +24,12 @@ export function fromProject(id, over = {}) {
 
 /* ───────────────────────────────────────────────────────────── featured -- */
 export const FEATURED = [
-  { ...fromProject("rockpros", { title: "RockProsUSA" }),
+  { ...fromProject("quarries", { title: "Southwest quarries" }),
     wide: true, tag: "Building materials and dispatch",
     line: "13 quarries on one dispatch system. 2,140 invoices with zero manual touches in the first year.",
-    img: "rockpros-dispatch-board.webp", phone: "rockpros-driver-loads-phone.webp",
-    phoneAlt: "RockProsUSA driver app on a phone, showing an open load",
-    alt: "RockProsUSA dispatch board listing open jobs by delivery date, customer and trucker",
+    img: "quarry-dispatch-board.webp", phone: "quarry-driver-loads-phone.webp",
+    phoneAlt: "The quarry driver app on a phone, showing an open load",
+    alt: "The quarry dispatch board listing open jobs by delivery date, customer and trucker",
     href: CASE_RP, cta: "Read the case study" },
   { ...fromProject("citysense", { title: "CitySense" }),
     tag: "OOH and digital billboards",
@@ -58,8 +58,8 @@ export const INDUSTRIES = [
   { k: "building-materials", name: "Building materials", photo: "photo-ind-quarry-4x3.webp",
     alt: "Terraced quarry face with an excavator at its base",
     builds: [
-      fromProject("rockpros", { title: "RockProsUSA", img: "rockpros-customer-po.webp",
-        alt: "RockProsUSA customer portal: purchase orders, ordered against delivered",
+      fromProject("quarries", { title: "Southwest quarries", img: "quarry-customer-po.webp",
+        alt: "The customer portal: purchase orders, ordered against delivered",
         line: "Customer, trucker and driver apps and an admin console, across 13 quarry sites.",
         href: CASE_RP, cta: "Read the case study" })
     ] },

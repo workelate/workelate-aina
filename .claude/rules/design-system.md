@@ -62,7 +62,7 @@ It also asserts **"no gradient or glass surface"**: no element may compute a
 
 Unchanged and still binding: fonts self-hosted or system only; no backdrop-filter on
 the sticky header; em dashes banned in copy; receipts over adjectives; the single CTA
-phrase "Book a Diagnostic Sprint"; "contact us" banned; never fabricate a customer
+phrase "Book a call" (was "Book a Diagnostic Sprint" until 2026-09-30); "contact us" banned; never fabricate a customer
 quote, a number or a testimonial; no individual names on the site, the team is the face
 (founder call 2026-09-28, see §9); WCAG AA contrast
 on every text tier (grey `#6e6e73` is the floor, never lighter for text).
@@ -101,7 +101,7 @@ exactly why this one is measured.
 
 Unchanged and still binding from the old system: fonts are self-hosted only; no
 backdrop-filter on the sticky header; em dashes banned in copy; receipts over
-adjectives; the single CTA phrase "Book a Diagnostic Sprint"; "contact us" banned;
+adjectives; the single CTA phrase "Book a call" (was "Book a Diagnostic Sprint" until 2026-09-30); "contact us" banned;
 never fabricate a customer quote, a number or a testimonial; no individual names
 (superseded 2026-09-28, see §9). Contrast still has to clear WCAG on the dark ground, and dark grounds
 make that harder, not easier: check every accent used as text, and note that the
@@ -187,7 +187,7 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    (1px borders), whitespace, inversion, and type scale.
 4. Receipts over adjectives. Every claim carries a real number or it
    gets cut. No "world-class", no "cutting-edge".
-5. One CTA on the whole site: "Book a Diagnostic Sprint" (founder call
+5. One CTA on the whole site: "Book a call" (2026-09-30; earlier founder call
    2026-07-23 retired "Get your AI Readiness Score" with the score widget).
    The phrase "contact us" is banned.
 6. Motion: count-up stats, reveal-on-scroll, hover fills are welcome —
@@ -204,7 +204,7 @@ speed, team size, fixed budgets ($30K–$100K) stated on the page.
    and reads the same on mobile and desktop. Any full-viewport
    scroll-jacked section needs a founder call before it ships.
 8. Voice: industry-agnostic, process-agnostic. Never position as
-   "industrial only". Named proof: RockProsUSA (industrial ops),
+   "industrial only". Named proof: Southwest quarries, a client we do not name (industrial ops, founder call 2026-09-30),
    CitiSense (marketing/creative, Mexico). The other projects stay
    anonymized as industry + receipt tiles.
    WE_AINA is WorkElate's AI-Native Agency — the dogfooding flywheel

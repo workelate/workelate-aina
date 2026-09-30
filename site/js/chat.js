@@ -147,7 +147,7 @@ const fallback = () => ({
   factId: null
 });
 
-// "we do not want mobile apps" used to return "Yes. At RockProsUSA we shipped
+// "we do not want mobile apps" used to return "Yes. For a 13-quarry producer in the US Southwest we shipped
 // three separate React Native apps..." â€” the exact opposite of what was asked.
 // If a negation cue sits within three words before a matched single-word
 // trigger, we do not assert the positive. A cue that is part of a matched
@@ -282,13 +282,13 @@ export const stripTags = t => String(t || "").replace(TAG_RE, "").replace(/\s*â€
 // Follow-up chips by the answer's topic. Questions, not links: each one stays
 // in the conversation.
 const FOLLOW = {
-  capability: ["What have you built?", "Which industries do you know best?", "What are you building now?"],
+  capability: ["What have you built?", "How do you grow search and AI visibility?", "Which industries do you know best?"],
   experience: ["What have you built?", "What are you building now?", "What's changing in my industry?"],
   work: ["What are you building now?", "What can your team do?", "What's next for you?"],
   now: ["What's next for you?", "What have you built?", "What can your team do?"],
   next: ["What are you building now?", "What have you built?", "What can your team do?"],
   trends: ["Have you built anything for this?", "What can your team do?", "What are you building now?"],
-  start: ["What happens in the Diagnostic Sprint?", "How long does a build take?", "Who would I work with?"]
+  start: ["What happens on the first call?", "How long does a build take?", "Who would I work with?"]
 };
 const normQ = q => String(q || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 export function followupsFor(topic, name, asked = []) {
@@ -417,7 +417,7 @@ if (root) {
 
   // The one call to action, only on a buying signal.
   function renderCta(turn) {
-    turn.appendChild(el("ask-cta-row", `<a class="ask-pill ask-cta-pill" href="/studio/contact">Book a Diagnostic Sprint <span aria-hidden="true">&rarr;</span></a>`));
+    turn.appendChild(el("ask-cta-row", `<a class="ask-pill ask-cta-pill" href="/studio/contact">Book a call <span aria-hidden="true">&rarr;</span></a>`));
   }
 
   // Returns {text, sources, card, topic, cta} when the model path answered,
@@ -594,7 +594,7 @@ if (root) {
     ask(c.dataset.ask);
   });
 
-  // "Book a Diagnostic Sprint" is the one CTA phrase sitewide (design rule 5).
+  // "Book a call" is the one CTA phrase sitewide (design rule 5).
   // A #ask link opens the assistant and goes straight to capturing a way to
   // reach back: the visitor asked to start, so this is the buying signal.
   document.querySelectorAll('a[href="#ask"], a[href="/#ask"]').forEach(a => {
@@ -605,7 +605,7 @@ if (root) {
       input.focus({ preventScroll: true });
       if (!root.classList.contains("open")) {
         root.classList.add("open");
-        log.appendChild(el("ask-msg bot", "<p>The Diagnostic Sprint is two weeks: we sit inside your operation, then hand you a build plan with a fixed price. Tell me your industry and what you want built, or leave a contact below and we will reach out.</p>"));
+        log.appendChild(el("ask-msg bot", "<p>It starts with a call: we look at what you run today and come back with a plan and a price. Tell me your industry and what you want built, or leave a contact below and we will reach out.</p>"));
         if (!cap.done) showCapture(true);
       }
     });

@@ -79,7 +79,7 @@ the next regeneration.
   LEAD_NOTIFY_FROM with a verified domain) to turn sending on. Until
   then leads are stored and the audit table records notify_skipped.
 - The old /api/score readiness widget was DELETED 2026-07-23; the one
-  CTA phrase is now "Book a Diagnostic Sprint" (verify enforces it).
+  CTA phrase is now "Book a call" (2026-09-30; verify enforces it).
 
 - Hero assistant (site/js/chat.js) answers from site/data/corpus.json ONLY,
   a local deterministic retrieval engine, no model call. It cannot say
@@ -103,12 +103,14 @@ the next regeneration.
   NUMBER THAT MOVED, not a log line — say what changed, not that it was
   recorded. The leads/audit DB tables in lib/db.js stay untouched; this
   is a copy ban, not an architecture change.
-- One CTA phrase sitewide: "Book a Diagnostic Sprint" (the score widget and
+- One CTA phrase sitewide: "Book a call" (founder call 2026-09-30: the
+  Diagnostic Sprint and the $30K to $100K band are gone from the studio zone,
+  they clashed with monthly growth retainers such as SEO; before that, the score widget and
   its phrase were retired 2026-07-23; verify enforces the live phrase).
   "contact us" is banned (verify enforces both).
 - NEVER fabricate customer quotes, testimonials, or project numbers.
   Missing number → ask the founder, or ship without the claim.
-- Real numbers in stock: RockProsUSA 13 quarries, −38% dispatch cycle,
+- Real numbers in stock: Southwest quarries (never name the client) 13 quarries, −38% dispatch cycle,
   2,140 invoices zero touches, 11,200 ops hours returned. CitiSense =
   AI marketing/sales platform for agencies, Mexico (no numbers yet —
   blocked on founder).
