@@ -17,7 +17,9 @@ const { cases } = JSON.parse(readFileSync(path.join(ROOT, "data", "cases.json"),
 const DESC = "Case studies with the numbers before and after: 13 quarries on one dispatch system, 256K organic clicks for a SaaS platform, 379K impressions in Google's AI answers.";
 
 const card = c => {
-  const inner = `
+  const img = c.img ? `
+      <figure class="case-img${c.imgFit === "contain" ? " case-img--shot" : ""}"><img src="${c.img}" alt="${c.imgAlt || ""}" loading="lazy" decoding="async"></figure>` : "";
+  const inner = `${img}
       <div>
         <span class="ctag">${c.tag}${c.anonymous ? " · client name under NDA" : ""}</span>
         <h3>${c.title}</h3>
@@ -25,7 +27,7 @@ const card = c => {
         <span class="ctag" style="display:inline-block;margin-top:16px">${c.hrefLabel || "Read more"} &rarr;</span>` : ""}
       </div>
       <div class="cnum">${c.metric}<small>${c.metricLabel}</small></div>`;
-  const cls = `case rv${c.status === "placeholder" ? " placeholder" : ""}`;
+  const cls = `case rv${c.img ? " has-img" : ""}${c.status === "placeholder" ? " placeholder" : ""}`;
   return c.href
     ? `\n    <a class="${cls}" href="${c.href}" style="text-decoration:none">${inner}\n    </a>`
     : `\n    <div class="${cls}">${inner}\n    </div>`;

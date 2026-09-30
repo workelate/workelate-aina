@@ -184,7 +184,9 @@
           }
         ],
         "cta": "These numbers started with one conversation. Yours starts the same way."
-      }
+      },
+      "img": "/img/studio/quarry-red-1200.webp",
+      "imgAlt": "Aerial view of a red-rock quarry in the US Southwest"
     },
     {
       "tag": "SaaS, organic search",
@@ -383,7 +385,10 @@
           "label": "Next: AI search visibility"
         },
         "cta": "Two weeks, and you get the working, not working and why report for your own sites, with the page-two keywords ranked by what they would earn."
-      }
+      },
+      "img": "/img/studio/gsc-saas-16mo.webp",
+      "imgAlt": "Google Search Console: 256K clicks and 12.8M impressions over 16 months",
+      "imgFit": "contain"
     },
     {
       "tag": "AI search, GEO",
@@ -553,14 +558,19 @@
           "label": "Previous: SaaS search growth"
         },
         "cta": "Two weeks, and you get your AI Visibility Score against your three closest competitors, with the gap list that says where to start."
-      }
+      },
+      "img": "/img/studio/gsc-ai-features.webp",
+      "imgAlt": "Google Search Console, Generative AI features: 379K impressions",
+      "imgFit": "contain"
     },
     {
       "tag": "Marketing & creative, Mexico",
       "title": "CitiSense: AI marketing & sales platform for agencies",
       "summary": "An AI-enabled marketing and sales platform for advertising and creative agencies and display teams: campaign operations, sales workflows and reporting carried by the Brain, so the creative teams do creative work.",
       "metric": "MX",
-      "metricLabel": "agencies & display teams live"
+      "metricLabel": "agencies & display teams live",
+      "img": "/img/studio/photo-cap-billboards-4x3.webp",
+      "imgAlt": "Digital billboards lining a busy city street at night"
     },
     {
       "tag": "Logistics, India",
@@ -570,7 +580,9 @@
       "metricLabel": "clear automatically; disputes carry their evidence",
       "anonymous": true,
       "href": "/studio/systems/freight-reconciliation",
-      "hrefLabel": "See the system"
+      "hrefLabel": "See the system",
+      "img": "/img/systems/sys-freight-loading-4x3.webp",
+      "imgAlt": "Freight being loaded at a warehouse dock"
     },
     {
       "tag": "Professional services, India",
@@ -580,7 +592,9 @@
       "metricLabel": "DSO (days to get paid) measured against the prior baseline",
       "anonymous": true,
       "href": "/studio/systems/ar-followup-automation",
-      "hrefLabel": "See the system"
+      "hrefLabel": "See the system",
+      "img": "/img/systems/sys-ar-desk-4x3.webp",
+      "imgAlt": "Finance desk working through receivables"
     },
     {
       "tag": "AI tooling, 2020",
@@ -588,7 +602,9 @@
       "summary": "A labelling platform for machine-learning datasets: polygon and bounding-box tooling on canvas, with a detection model running in the browser to pre-annotate every image before a human touched it. Projects, datasets and team notifications built in; exports to Pascal-VOC XML and JSON. Four engineers, 117 commits, shipped in one quarter.",
       "metric": "2020",
       "metricLabel": "human-plus-model labelling, five years before the hype",
-      "anonymous": true
+      "anonymous": true,
+      "img": "/img/studio/photo-case-annotation-4x3.webp",
+      "imgAlt": "Aerial view of a car park, the kind of image a labelling platform annotates"
     },
     {
       "tag": "SaaS product, subscription",
@@ -596,14 +612,18 @@
       "summary": "The full commercial surface of a CX product: journey-mapping module, tiered pricing, Stripe and PayPal checkout, blog engine and a programmatic SEO service generating landing pages from a template. Front end, payments and content infrastructure delivered by one team.",
       "metric": "2 rails",
       "metricLabel": "Stripe + PayPal, live subscription billing",
-      "anonymous": true
+      "anonymous": true,
+      "img": "/img/studio/photo-case-journeymap-4x3.webp",
+      "imgAlt": "Team mapping a customer journey with sticky notes"
     },
     {
       "tag": "Marketplace, EdTech",
       "title": "Edunomics Scholar: a two-sided scholarship marketplace",
       "summary": "Donors publish scholarships, invite and review applicants and award grants; applicants build profiles, apply and track status, with a super-admin console over both. 33 API endpoints, token auth with password reset, document upload, transactional email and status workflows. Three years of continuous development.",
       "metric": "33",
-      "metricLabel": "API endpoints · donor, applicant and admin consoles"
+      "metricLabel": "API endpoints · donor, applicant and admin consoles",
+      "img": "/img/studio/photo-case-graduation-4x3.webp",
+      "imgAlt": "Graduates throwing their caps in the air"
     },
     {
       "tag": "Fintech, data",
@@ -611,7 +631,9 @@
       "summary": "ETL scripts pulling, normalising and reconciling financial records into a single feed, the unglamorous plumbing that decides whether every dashboard above it is trustworthy.",
       "metric": "ETL",
       "metricLabel": "ingestion, normalisation, reconciliation",
-      "anonymous": true
+      "anonymous": true,
+      "img": "/img/studio/photo-ind-fintech-4x3.webp",
+      "imgAlt": "People working at monitors showing financial dashboards"
     },
     {
       "tag": "More to come",

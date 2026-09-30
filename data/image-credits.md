@@ -147,3 +147,11 @@ Persona photographs, Unsplash License (free for commercial use; credited anyway)
 
 Also reused read-only from `site/img/brain/` (the /brain home's crops, credited above): the six `story-*.webp` on /brain/use-cases/client-delivery.
 Added the same day: `workgraph.webp` / `-800` (re-encoded from `site/img/workgraph-poster.webp`, the work map poster) for /brain/architecture, /brain/glossary and the work-graph capability.
+
+## C. Case-study card photos (added 2026-09-30, Unsplash License; 4:3 crop, saturation 0.9, WebP)
+
+| file | what it shows | photographer | source |
+|---|---|---|---|
+| `photo-case-graduation-4x3.webp` | Graduates in gowns throwing their caps against a city skyline at dusk (scholarship marketplace card) | [Pang Yuhao](https://unsplash.com/@yuhao) | https://unsplash.com/photos/_kd5cxwZOK4 (Unsplash License) |
+| `photo-case-journeymap-4x3.webp` | Hands placing sticky notes on a printed customer journey map (CX SaaS card) | [UX Indonesia](https://unsplash.com/@uxindo) | https://unsplash.com/photos/w00FkE6e8zE (Unsplash License) |
+| `photo-case-annotation-4x3.webp` | Aerial view of a car park full of cars, the kind of image a labelling platform annotates (annotation card) | [Ryan Searle](https://unsplash.com/@ryan_searle) | https://unsplash.com/photos/k1AFA4N8O0g (Unsplash License) |

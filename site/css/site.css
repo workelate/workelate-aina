@@ -741,7 +741,15 @@ section.deep .cmp-wrap, .band-dark .cmp-wrap { background: var(--v-white); borde
 .case .cnum small { display: block; font-family: var(--sans); font-weight: 400; font-size: 15px; color: var(--ws-text-muted); margin-top: 8px; line-height: 1.45; }
 /* the dashed edge is the product's "not ours yet" signal [SPEC §4.6c] */
 .case.placeholder { border-style: dashed; border-color: var(--ws-border-strong); }
-@media (max-width: 768px) { .case { grid-template-columns: 1fr; } .case .cnum { text-align: left; } }
+/* 2026-09-30: every case carries a picture (real capture or licensed photo) */
+.case.has-img { grid-template-columns: 300px 1fr 200px; align-items: start; }
+.case-img { margin: 0; aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; background: var(--v-light); }
+.case-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.case-img--shot { background: var(--v-white); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06); }
+.case-img--shot { aspect-ratio: auto; }
+.case-img--shot img { height: auto; object-fit: contain; padding: 8px; }
+@media (max-width: 1000px) { .case.has-img { grid-template-columns: 240px 1fr; } .case.has-img .cnum { grid-column: 2; text-align: left; } }
+@media (max-width: 768px) { .case, .case.has-img { grid-template-columns: 1fr; } .case.has-img .cnum { grid-column: auto; } .case .cnum { text-align: left; } }
 
 /* ------------------------------------------------------ blog + article -- */
 .post-item { padding: 26px; margin-top: var(--gap); }
