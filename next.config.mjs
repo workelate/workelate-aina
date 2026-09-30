@@ -30,7 +30,10 @@ const nextConfig = {
       { source: "/case-studies", destination: "/studio/case-studies", permanent: true },
       { source: "/case-studies/:path*", destination: "/studio/case-studies/:path*", permanent: true },
       { source: "/systems", destination: "/studio/systems", permanent: true },
-      { source: "/systems/:path*", destination: "/studio/systems/:path*", permanent: true }
+      { source: "/systems/:path*", destination: "/studio/systems/:path*", permanent: true },
+      // 2026-09-30 (founder): the quarry client is no longer named anywhere on the
+      // site. The old case-study URL carried the name; inbound links still land.
+      { source: "/studio/case-studies/rockprosusa", destination: "/studio/case-studies/southwest-quarries", permanent: true }
     ];
   },
 

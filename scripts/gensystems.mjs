@@ -27,14 +27,14 @@ const PAGES = [
       "Your best dispatcher is unpromotable because nobody else can hold the board.",
       "Cycle counts come from a diary, and the diary disagrees with the weighbridge.",
       "Evening reconciliation finds hauls nobody can explain."],
-    proof: "This is the system running 13 quarry sites at RockProsUSA today, where 11,200 operations hours were returned over the first twelve months.",
+    proof: "This is the system running 13 quarry sites for a producer in the US Southwest today, where 11,200 operations hours were returned over the first twelve months.",
     faq: [
       ["Does this replace my dispatchers?", "No. It replaces the radio tag and the spreadsheet copying. Every assignment is proposed with its reasoning and a dispatcher approves it."],
       ["We run mixed fleets, owned and hired trucks. Does that work?", "Yes. Hired trucks are tracked gate-in to gate-out from gate events; owned trucks with GPS get full cycle tracking."],
       ["What data does it need on day one?", "Orders, truck list and weighbridge feed. Telematics and loader status make it sharper but are not prerequisites."],
       ["What happens when the internet drops at the pit?", "Dispatch falls back to the last approved plan and queues events locally; when the link returns, the gaps are flagged."],
-      ["Can it handle multiple sites with shared fleet?", "Yes, that is the RockProsUSA configuration: 13 sites, one system, trucks moving between quarries as demand shifts."],
-      ["How long until it pays for itself?", "We do not quote a number we have not measured on your site. The Sprint measures it; the build price is fixed before it starts."]
+      ["Can it handle multiple sites with shared fleet?", "Yes, that is the Southwest quarries configuration: 13 sites, one system, trucks moving between quarries as demand shifts."],
+      ["How long until it pays for itself?", "We do not quote a number we have not measured on your site. We measure it first; the price is fixed before the build starts."]
     ]
   },
   {
@@ -51,7 +51,7 @@ const PAGES = [
       "Downtime totals differ depending on who you ask.",
       "Month-end production numbers get adjusted and nobody can say why.",
       "Your monthly report is accurate but ten days late, or timely but wrong."],
-    proof: "The same reporting runs at RockProsUSA, where 11,200 operations hours were returned over the first twelve months, a large share of them reporting hours.",
+    proof: "The same reporting runs at the Southwest quarries, where 11,200 operations hours were returned over the first twelve months, a large share of them reporting hours.",
     faq: [
       ["Our data lives in Tally, Excel and the plant control system. Can it read all three?", "Yes. Connectors read accounting exports, spreadsheet drops and control-system feeds."],
       ["What if the underlying data is wrong?", "The report says so, mismatch called out. Bad data flagged at 6 AM is fixable; at month-end it is a write-off."],
@@ -75,7 +75,7 @@ const PAGES = [
       "Dealers call to confirm the order they already sent.",
       "Credit breaches get discovered at dispatch, not at order time.",
       "Two people key the same order twice a week."],
-    proof: "The same system runs at RockProsUSA, where 2,140 invoices flowed through with zero manual touches over the first twelve months.",
+    proof: "The same system runs at the Southwest quarries, where 2,140 invoices flowed through with zero manual touches over the first twelve months.",
     faq: [
       ["Our dealers will not change how they order. Do they have to?", "No. They keep sending WhatsApp messages; the system meets them there. Dealers only see faster confirmations."],
       ["What about credit holds and pricing exceptions?", "Rules you set. Orders breaching credit or off-list pricing never auto-confirm; they route to the person who owns that call."],
@@ -99,7 +99,7 @@ const PAGES = [
       "The same route's billed distance varies 20% between carriers.",
       "Disputes die because assembling the evidence costs more than the amount.",
       "You have only ever checked samples, never a full month."],
-    proof: "The same matching runs at RockProsUSA, where 2,140 invoices went out with zero manual touches over the first twelve months.",
+    proof: "The same matching runs at the Southwest quarries, where 2,140 invoices went out with zero manual touches over the first twelve months.",
     faq: [
       ["Our carriers bill in every format imaginable. Does that break it?", "No. PDFs, spreadsheets and scans are all read. Missing source data is the only real blocker, and the system says when that is so."],
       ["What happens to disputed lines?", "They queue for a person with the bill line, matching records and discrepancy bundled. Nothing goes to a carrier until your team approves it."],
@@ -123,7 +123,7 @@ const PAGES = [
       "Follow-up collapses whenever the person who owns it goes on leave.",
       "Promises to pay are remembered, not tracked.",
       "Your largest overdue account is the one nobody wants to call."],
-    proof: "The same system runs at RockProsUSA, where 2,140 invoices went out with zero manual touches over the first twelve months.",
+    proof: "The same system runs at the Southwest quarries, where 2,140 invoices went out with zero manual touches over the first twelve months.",
     faq: [
       ["Will this annoy my customers?", "The cadence and tone are yours. Customers respond better to consistent reminders than to silence and an angry call at day 90."],
       ["Can it hold back on strategic accounts?", "Yes. Key accounts route straight to a named owner with a prepared summary instead of an automated reminder."],
@@ -147,11 +147,11 @@ const PAGES = [
       "Filed and operating numbers are reconciled only when an inspector asks.",
       "One person holds the filing process, and their notice period is 30 days.",
       "You paid a late fee this year for a filing whose data existed on time."],
-    proof: "The same system runs at RockProsUSA, where every reported number comes straight from the operating data that produced it.",
+    proof: "The same system runs at the Southwest quarries, where every reported number comes straight from the operating data that produced it.",
     faq: [
       ["Our compliance rules change constantly. How does the system keep up?", "Rule changes are configuration. The template updates once and every later filing follows it."],
       ["Does it file directly with government portals?", "Where portals allow it, yes. Otherwise your team submits a prepared package instead of building one."],
-      ["What about historical gaps, we are behind on documentation?", "The Sprint sizes the backlog first. Back-filling from weighbridge and dispatch records usually covers 12 to 18 months of history."],
+      ["What about historical gaps, we are behind on documentation?", "We size the backlog first. Back-filling from weighbridge and dispatch records usually covers 12 to 18 months of history."],
       ["Can it handle multi-state GST and different state royalty regimes?", "Yes. Each site carries its own regime configuration; the group view shows every site's filing status on one board."],
       ["What does an inspector see?", "A filing where every number traces to the ticket, dispatch record or production entry that produced it."],
       ["Who is liable if a filing is wrong?", "Same as today: you. What changes is that wrong filings become rare and defensible."]
@@ -174,28 +174,28 @@ const scr = (f, alt, cap) => ({ kind: WHITE_GROUND.has(f) ? "screen is-white" : 
 const pho = (src, alt, cap) => ({ kind: "photo", src, alt, cap });
 const MEDIA = {
   "quarry-dispatch-automation": {
-    hero: scr("rockpros-dispatch-board", "Open Jobs dispatch board listing delivery dates, customers, truckers and sites", "The dispatch board at RockProsUSA, shown here with demo data."),
+    hero: scr("quarry-dispatch-board", "Open Jobs dispatch board listing delivery dates, customers, truckers and sites", "A quarry dispatch board, shown here with demo data."),
     band: pho(Y("quarry-haul-16x9"), "A loaded haul truck climbing a quarry road", "Every cycle between gate and loader is a decision someone made."),
     before: pho(Y("quarry-truck-4x3"), "A haul truck on a dusty quarry road", "Assignments go out by radio and live in one dispatcher's head."),
-    after: scr("rockpros-driver-loads-phone", "Driver app on a phone showing an open load with pickup and delivery details", "The approved load lands in the driver app."),
+    after: scr("quarry-driver-loads-phone", "Driver app on a phone showing an open load with pickup and delivery details", "The approved load lands in the driver app."),
     card: Y("quarry-haul-4x3")
   },
   "plant-production-reporting": {
     hero: pho(Y("plant-stockpile-16x9"), "Sand and gravel stockpiles under conveyors at a processing plant", "Shift logs, weighbridge tickets and downtime, reconciled before the morning meeting."),
     band: pho(Y("plant-conveyor-16x9"), "A conveyor dropping crushed stone onto a conical stockpile", "Tonnage that does not match the tickets is flagged in the report."),
     before: pho(Y("plant-clipboard-4x3"), "A hand writing on a clipboard", "The report is copied together by hand from logs and tickets."),
-    after: scr("rockpros-customer-tracking", "Scheduled deliveries table with truck and loaded tons for each load", "Loaded tons per load, read from the records that produced them. RockProsUSA, demo data."),
+    after: scr("quarry-customer-tracking", "Scheduled deliveries table with truck and loaded tons for each load", "Loaded tons per load, read from the records that produced them. Southwest quarries, demo data."),
     card: Y("plant-stockpile-4x3")
   },
   "dealer-order-management": {
-    hero: scr("rockpros-customer-po", "Customer portal listing active purchase orders with ordered against delivered progress", "The customer portal at RockProsUSA: every active order, ordered against delivered. Demo data."),
+    hero: scr("quarry-customer-po", "Customer portal listing active purchase orders with ordered against delivered progress", "The customer portal at the Southwest quarries: every active order, ordered against delivered. Demo data."),
     band: pho(Y("dealer-delivery-16x9"), "A dump truck tipping aggregate at a stockyard", "A mis-keyed order is material moving to the wrong place."),
     before: pho(Y("dealer-phone-4x3"), "A person typing on a smartphone", "Orders arrive on WhatsApp and get re-typed into the ERP."),
-    after: scr("rockpros-po-progress-admin", "Open jobs table with a progress bar for each order line", "One queue in the office, with progress on every order line."),
+    after: scr("quarry-po-progress-admin", "Open jobs table with a progress bar for each order line", "One queue in the office, with progress on every order line."),
     card: Y("dealer-delivery-4x3")
   },
   "freight-reconciliation": {
-    hero: scr("rockpros-dispatched-loads", "Dispatched loads table with trucker, truck, quantity and delivery status", "Dispatched loads with truck, quantity and delivery status at RockProsUSA. Demo data."),
+    hero: scr("quarry-dispatched-loads", "Dispatched loads table with trucker, truck, quantity and delivery status", "Dispatched loads with truck, quantity and delivery status at the Southwest quarries. Demo data."),
     band: pho(Y("freight-loading-16x9"), "Crushed stone falling from a conveyor onto a stockpile", "Every billed trip should match a weighbridge record."),
     before: pho("/img/studio/photo-ind-logistics-4x3.webp", "Aerial view of trailers parked in angled bays at a truck yard", "Bills get paid on trust in busy months."),
     after: scr("workelate-checks-work", "Before and after: a task marked done, then checked against the board", "Nothing is marked done until it has been checked."),
@@ -212,7 +212,7 @@ const MEDIA = {
     hero: pho(Y("compliance-folders-16x9"), "A stack of thick white folders on a white surface", "Filings built from operating data, days before they are due."),
     band: pho("/img/studio/photo-ind-quarry-16x9.webp", "Quarry terraces with a small excavator at the base", "Weighbridge tickets become royalty returns."),
     before: pho(Y("compliance-paper-4x3"), "Stacks of paper documents and file folders in an office", "The three days before a filing deadline are the worst of the month."),
-    after: scr("rockpros-customer-tracking", "Scheduled deliveries table with truck and loaded tons for each load", "Every number traces to the ticket or dispatch record that produced it. RockProsUSA, demo data."),
+    after: scr("quarry-customer-tracking", "Scheduled deliveries table with truck and loaded tons for each load", "Every number traces to the ticket or dispatch record that produced it. Southwest quarries, demo data."),
     card: Y("compliance-folders-4x3")
   }
 };
@@ -292,7 +292,7 @@ ${JSON.stringify({
     <a href="/studio/case-studies">Case studies</a>
     <a href="/studio/blog">Blog</a>
     <a href="/studio/systems/${p.slug}" aria-current="page">Systems</a>
-    <a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a>
+    <a class="btn" href="/studio/contact">Book a call</a>
   </nav>
 </div></header>
 
@@ -302,7 +302,7 @@ ${JSON.stringify({
     <nav class="crumb" aria-label="Breadcrumb"><a href="/studio">WE_AINA</a> / <a href="/studio/systems">systems</a></nav>
     <h1>${p.h1html || p.h1}</h1>
     <p class="sub dim">Built before and run by the Brain, WorkElate Chief: it proposes each action with its reasoning, and your team approves it.</p>
-    <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <p class="hero-cta"><a class="btn" href="/studio/contact">Book a call</a></p>
     ${fig(m.hero, "sys-lead", { eager: true })}
   </div>
 </section>
@@ -348,9 +348,9 @@ ${JSON.stringify({
 
 <section id="cta">
   <div class="wrap">
-    <h2>Book a Diagnostic Sprint</h2>
+    <h2>Book a call</h2>
     <p class="dim">Two weeks in your operation to size what ${p.cat.toLowerCase()} returns, before a price.</p>
-    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a call</a></p>
   </div>
 </section>
 
@@ -370,7 +370,7 @@ ${JSON.stringify({
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>An AI-native product studio. WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
+        <p>An AI-native product studio. WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, receipts at every step.</p>
       </div>
       <div>
         <div class="fh">Company</div>
@@ -390,8 +390,8 @@ ${JSON.stringify({
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/studio/contact">Book a Diagnostic Sprint</a>
-        <a href="/studio/how-we-work">The Diagnostic Sprint</a>
+        <a href="/studio/contact">Book a call</a>
+        <a href="/studio/how-we-work">How we work</a>
         <a href="/studio/contact">Talk to us</a>
         <a href="/studio/blog/receipts-over-decks">Receipts over decks</a>
       </div>
@@ -463,7 +463,7 @@ ${JSON.stringify({
     <a href="/studio/case-studies">Case studies</a>
     <a href="/studio/blog">Blog</a>
     <a href="/studio/systems" aria-current="page">Systems</a>
-    <a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a>
+    <a class="btn" href="/studio/contact">Book a call</a>
   </nav>
 </div></header>
 
@@ -474,7 +474,7 @@ ${JSON.stringify({
     <span class="label">Systems</span>
     <h1>Six systems already built.<br>Yours is <span class="accent">the seventh.</span></h1>
     <p class="sub dim">Each one is a system we have designed, shipped and run on operating data, with the Brain proposing and a person approving.</p>
-    <p class="hero-cta"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <p class="hero-cta"><a class="btn" href="/studio/contact">Book a call</a></p>
     ${fig(MEDIA["quarry-dispatch-automation"].hero, "sys-lead", { eager: true })}
   </div>
 </section>
@@ -497,7 +497,7 @@ ${JSON.stringify({
   <div class="wrap">
     <span class="label">Not on this list</span>
     <h2>Where we have been, not where we stop.</h2>
-    <p class="dim">Behind these six sit 34 products across 9 sectors and 374 repositories since 2018; dispatch and reporting have the cleanest numbers. If your problem is not here, the two-week Diagnostic Sprint sizes it.</p>
+    <p class="dim">Behind these six sit 34 products across 9 sectors and 374 repositories since 2018; dispatch and reporting have the cleanest numbers. If your problem is not here, one call is enough to size it.</p>
     <p style="margin-top:24px"><a href="/studio/case-studies">See the case studies</a> · <a href="/studio/how-we-work">How we work</a> · <a href="/studio/contact">Talk to us</a></p>
     <p class="dim srcnote">Updated 15 September 2026 &middot; WE_AINA</p>
   </div>
@@ -505,9 +505,9 @@ ${JSON.stringify({
 
 <section id="cta">
   <div class="wrap">
-    <h2>Book a Diagnostic Sprint</h2>
-    <p class="dim">If your problem is not one of the six, the Sprint sizes and prices it.</p>
-    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a Diagnostic Sprint</a></p>
+    <h2>Book a call</h2>
+    <p class="dim">If your problem is not one of the six, we size and price it.</p>
+    <p style="margin-top:24px"><a class="btn" href="/studio/contact">Book a call</a></p>
   </div>
 </section>
 
@@ -518,7 +518,7 @@ ${JSON.stringify({
     <div class="cols">
       <div class="brand">
         <a class="logo" href="/">WE_<span>AINA</span></a>
-        <p>An AI-native product studio. WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, $30K–$100K fixed, receipts at every step.</p>
+        <p>An AI-native product studio. WorkElate's AI-Native Agency: our delivery runs on our own platform, products shipped in weeks not quarters, receipts at every step.</p>
       </div>
       <div>
         <div class="fh">Company</div>
@@ -538,8 +538,8 @@ ${JSON.stringify({
       </div>
       <div>
         <div class="fh">Engage</div>
-        <a href="/studio/contact">Book a Diagnostic Sprint</a>
-        <a href="/studio/how-we-work">The Diagnostic Sprint</a>
+        <a href="/studio/contact">Book a call</a>
+        <a href="/studio/how-we-work">How we work</a>
         <a href="/studio/contact">Talk to us</a>
         <a href="/studio/blog/receipts-over-decks">Receipts over decks</a>
       </div>

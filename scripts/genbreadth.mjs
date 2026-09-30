@@ -34,7 +34,7 @@ const rows = projects.map(row).join("\n");
 // 2026-09-07: "project name or client name dont excite them ... need to brief
 // the type of work, means technical product terms of them like P2P, D2C,
 // E-com, O2C, or more than that". A buyer scanning for their own problem
-// recognises "O2C · DISPATCH" and does not recognise "RockProsUSA".
+// recognises "O2C · DISPATCH" and does not recognise a client name.
 const heroRows = studio.capabilities.map((c, i) => `        <li style="--pig:${["#0F8083", "#0b6366", "#1d1d1f", "#0F8083", "#0b6366", "#1d1d1f"][i % 6]}"><i aria-hidden="true"></i><b>${esc(c.name)}</b><span>${esc(c.note)}</span><em>${esc(c.proof)}</em></li>`).join("\n");
 
 // KPI line. Every figure is derived, not asserted:
@@ -119,7 +119,7 @@ const heroBlock = `
       <div class="mosaic">
         <figure class="m-a"><img src="${IMG(H.back)}" alt="CitySense, AI billboard campaign planner" width="1600" height="1000" decoding="async" fetchpriority="high"></figure>
         <figure class="m-b"><img src="${IMG(H.front)}" alt="CitedSpy, AI search visibility dashboard" width="1600" height="1000" decoding="async"></figure>
-        <figure class="m-c"><img src="${IMG(H.third)}" alt="RockPros, quarry dispatch board" width="1600" height="1000" decoding="async"></figure>
+        <figure class="m-c"><img src="${IMG(H.third)}" alt="Quarry dispatch board" width="1600" height="1000" decoding="async"></figure>
       </div>
 `;
 

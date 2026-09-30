@@ -59,18 +59,23 @@ const FIRST = [
   ["What is AI search visibility?", [], [], /^build:citedspy$/],
   ["How do I get my brand cited in ChatGPT answers?", [], [], /citedspy/],
   ["Do you do anything with billboards?", [], [], /^project:citysense$|^now:citysense$/],
-  ["We are a cement distributor and dispatch is a mess. Can you help?", [], [], /^project:rockpros$/],
-  ["Do you have experience with quarries and aggregates?", [], [], /rockpros/],
+  ["We are a cement distributor and dispatch is a mess. Can you help?", [], [], /^project:quarries$/],
+  ["Do you have experience with quarries and aggregates?", [], [], /quarries/],
   ["Tell me about your AI-native office suite", [], [], /^project:workelate$|^now:workelate$/],
   ["What can your team do?", [], [], /^capability:overview$/],
   ["What have you built?", [], [], /^work:overview$/],
   ["What are you building now?", [], [], /^now:/],
   ["What's next for you?", [], [], /^next:/],
   ["What's changing in my industry?", [], [], /^trends:library$/],
+  // marketing entry points on the /studio ask box (founder 2026-09-30: "marketing cover nahi hua")
+  ["How do you grow search and AI visibility?", [], [], /^(build:citedspy|capability:seo-and-ai-search)$/],
+  ["Have you grown organic traffic for a client?", [], [], /^(case:From 100 to 1,400|capability:seo-and-ai-search)/],
+  ["Do you do SEO?", [], [], /^capability:seo-and-ai-search$/],
+  ["How do you do performance marketing?", [], [], /^capability:performance-marketing$/],
   ["How would we start?", [], [], /^fact:(start|price|speed|mvp)$/],
   // conversation subject carried across turns
   ["And have you built it?", [U("What is AI search visibility?"), A("It is how often AI answers recommend a brand.")], ["CitedSpy"], /^build:citedspy$/],
-  ["How much would that cost?", [U("We run a cement distribution business and dispatch is a mess")], ["RockProsUSA"], /^fact:price$/]
+  ["How much would that cost?", [U("We run a cement distribution business and dispatch is a mess")], ["Southwest quarries"], /^fact:price$/]
 ];
 for (const [q, history, subject, first] of FIRST) {
   const ps = retrieve(K, q, { history, subject });
@@ -87,10 +92,10 @@ for (const [q, history, subject, first] of FIRST) {
   ok("CitySense is spelled CitySense in every passage", !JSON.stringify(corpus).includes("CitiSense"));
   const topics = new Set(corpus.chunks.map(c => c.topic));
   ok("corpus covers the six topics", ["capability", "experience", "work", "now", "next", "trends"].every(t => topics.has(t)), [...topics].join(","));
-  const cards = corpus.chunks.filter(c => c.name && ["RockProsUSA", "CitySense", "CitedSpy", "WorkElate", "infinitie"].includes(c.name) && c.kind !== "now" && c.kind !== "next");
+  const cards = corpus.chunks.filter(c => c.name && ["Southwest quarries", "CitySense", "CitedSpy", "WorkElate", "infinitie"].includes(c.name) && c.kind !== "now" && c.kind !== "next");
   ok("every featured build carries a page url and an image", cards.length >= 5 && cards.every(c => c.url && /^\/img\/studio\/.+\.(webp|png)$/.test(c.img || "")), cards.map(c => c.id).join(","));
-  const rp = corpus.chunks.find(c => c.id === "project:rockpros");
-  ok("RockProsUSA keeps its real numbers (13 / 2,140 / 11,200)", /13 quarry/.test(rp.title) && rp.outcomes.some(o => o.includes("2,140")) && rp.outcomes.some(o => o.includes("11,200")));
+  const rp = corpus.chunks.find(c => c.id === "project:quarries");
+  ok("Southwest quarries keeps its real numbers (13 / 2,140 / 11,200)", /13 quarry/.test(rp.title) && rp.outcomes.some(o => o.includes("2,140")) && rp.outcomes.some(o => o.includes("11,200")));
 }
 
 // --------------------------------------------------------------- intent / CTA
@@ -189,7 +194,7 @@ console.log("\nguards");
   const v2 = validate({ question: "q", subject: ["CitedSpy", 5, "x".repeat(200)], cid: "abc-12345678" });
   ok("subject and cid validated", v2.subject.length === 2 && v2.subject[1].length === 80 && v2.cid === "abc-12345678" && validate({ question: "q", cid: "<script>" }).cid === null);
   ok("cache key: same conversation, same key; different turn, different key",
-    cacheKey("v", "And how long?", [U("dispatch"), A("x")], ["RockProsUSA"]) === cacheKey("v", "and how long", [U("Dispatch"), A("y")], ["RockProsUSA"]) &&
+    cacheKey("v", "And how long?", [U("dispatch"), A("x")], ["Southwest quarries"]) === cacheKey("v", "and how long", [U("Dispatch"), A("y")], ["Southwest quarries"]) &&
     cacheKey("v", "And how long?", [U("dispatch")]) !== cacheKey("v", "And how long?", [U("billboards")]));
   ok("em dashes are tidied out of model text", tidy("fast — and fixed") === "fast, and fixed");
 }
@@ -214,7 +219,7 @@ console.log("\nroute (fetch mocked, zero network)");
     if (mode === "500") return new Response("overloaded", { status: 500 });
     const events = [
       { type: "message_start", message: { usage: { input_tokens: 900, output_tokens: 1 } } },
-      { type: "content_block_delta", delta: { type: "text_delta", text: "Yes. RockProsUSA runs on a dispatch platform we built — [W" } },
+      { type: "content_block_delta", delta: { type: "text_delta", text: "Yes. Southwest quarries runs on a dispatch platform we built — [W" } },
       { type: "content_block_delta", delta: { type: "text_delta", text: "1][L2] across 13 quarry sites [W1]." } },
       ...(mode === "midfail" ? [{ type: "error", error: { type: "overloaded_error" } }] : []),
       { type: "message_delta", delta: { stop_reason: "end_turn" }, usage: { output_tokens: 20 } },
@@ -259,7 +264,7 @@ console.log("\nroute (fetch mocked, zero network)");
     calls[0].body.model === "claude-haiku-4-5-20251001" && calls[0].body.max_tokens === 260 && calls[0].body.stream === true);
   const srcEv = JSON.parse((text.match(/event: sources\ndata: (.*)\n/) || [])[1] || "{}");
   ok("stream carries a sources event with page urls", srcEv.sources?.some(s => /^\/studio\//.test(s.url)), JSON.stringify(srcEv).slice(0, 200));
-  ok("the answer about RockProsUSA carries its work card", srcEv.card?.name === "RockProsUSA" && /\/img\/studio\//.test(srcEv.card.img) && srcEv.card.more);
+  ok("the answer about Southwest quarries carries its work card", srcEv.card?.name === "Southwest quarries" && /\/img\/studio\//.test(srcEv.card.img) && srcEv.card.more);
   ok("no CTA on an exploring question", srcEv.cta === false);
   ok("stream carries deltas and done", text.includes("event: delta") && text.includes("event: done"));
   const streamed = [...text.matchAll(/event: delta\ndata: (.*)\n/g)].map(m => JSON.parse(m[1]).t).join("");
@@ -270,7 +275,7 @@ console.log("\nroute (fetch mocked, zero network)");
   const text2 = await readAll(r);
   ok("repeat question served from cache, no second call", calls.length === 1 && text2.includes('"cached":true'));
 
-  const turn2 = { question: "And how long would that take?", history: [{ role: "user", text: "Do you build dispatch systems?" }, { role: "assistant", text: "Yes." }], subject: ["RockProsUSA"] };
+  const turn2 = { question: "And how long would that take?", history: [{ role: "user", text: "Do you build dispatch systems?" }, { role: "assistant", text: "Yes." }], subject: ["Southwest quarries"] };
   r = await post(turn2);
   const t2 = await readAll(r);
   ok("follow-up with history calls the model with alternating turns",

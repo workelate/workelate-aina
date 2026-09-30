@@ -69,7 +69,7 @@ const NEEDS = {
   "manual-ops": {
     label: "Cut manual operations", tracks: ["ops", "both"],
     title: "Put the repetitive day on agents",
-    blurb: "Data entry, matching, chasing and coordinating are what agent systems carry best. At RockProsUSA that approach put 13 quarry sites on one dispatch system.",
+    blurb: "Data entry, matching, chasing and coordinating are what agent systems carry best. For a quarry operator in the US Southwest that approach put 13 quarry sites on one dispatch system.",
     link: "/systems/quarry-dispatch-automation", linkText: "See the dispatch automation system"
   },
   "reporting": {
@@ -106,7 +106,7 @@ const NEEDS = {
   "ship-product": {
     label: "Ship a product faster", tracks: ["build", "both"],
     title: "A product team's output, without hiring a product team",
-    blurb: "Two senior people and an agent fleet build what used to need eight engineers. The same scope we quoted at $100K–$500K before agents now lands in the $30K–$100K band, in weeks.",
+    blurb: "Two senior people and an agent fleet build what used to need eight engineers. The same scope that used to take quarters now lands in weeks, at a fixed price.",
     link: "/how-we-work", linkText: "See how the build works"
   },
   "ai-features": {
@@ -118,8 +118,8 @@ const NEEDS = {
   "rescue": {
     label: "Rescue a stalled build", tracks: ["build", "both"],
     title: "Take over the build that stopped moving",
-    blurb: "We inherit the codebase, run a two-week diagnostic on what is actually there, and come back with a fixed price to finish it or a written recommendation to stop.",
-    link: "/how-we-work", linkText: "See the Diagnostic Sprint"
+    blurb: "We inherit the codebase, look at what is actually there, and come back with a fixed price to finish it or a written recommendation to stop.",
+    link: "/how-we-work", linkText: "See how we work"
   },
   "internal-tools": {
     label: "Internal tools done by hand", tracks: ["build", "ops", "both"],

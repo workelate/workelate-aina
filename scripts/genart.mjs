@@ -60,7 +60,7 @@ ${body}${dots}
 }
 
 ribbons("art-hero", "azure", 11, 1920, 1080);
-ribbons("art-case-rockpros", "glacier", 23);
+ribbons("art-case-quarries", "glacier", 23);
 ribbons("art-case-citisense", "ice", 37);
 ribbons("art-case-logistics", "cobalt", 51);
 ribbons("art-case-services", "midnight", 67);
